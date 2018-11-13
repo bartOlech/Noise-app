@@ -1,32 +1,179 @@
-.App {
-  text-align: center;
+
+/* Phone menu */
+.menu-toggle{
+  display: block;
+  position: relative;
+  top:-154px;
+  left: 30px;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.menu-toggle input{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0; 
+  z-index: 2; 
+  
+  -webkit-touch-callout: none;}
+.menu-toggle span{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #232323;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.menu-toggle span:first-child{
+  transform-origin: 0% 0%;
 }
 
-.App-link {
-  color: #61dafb;
+.menu-toggle span:nth-last-child(2){
+  transform-origin: 0% 100%;
+}
+.menu-toggle input:checked ~ span{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #eee7e7;
+}
+.menu-toggle input:checked ~ span:nth-last-child(3){
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+.menu-toggle input:checked ~ span:nth-last-child(2){
+  transform: rotate(-45deg) translate(0, -1px);
+}
+.nav-phone{
+  display:none;
+}
+.menu{
+  position: absolute;
+  width: 100vw;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  background:rgb(11, 27, 58);
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.menu li{
+  font-size: 1.4em;
+  padding:5px 0;
+  margin-left:10%;
+}
+.menu-line{
+    width:2px;
+    height:44%;
+    background:#fff;
+    position: absolute;
+    top:152px;
+    left:80px;
+}
+
+.menu-toggle input:checked ~ ul{
+  transform: none;
+}
+
+.menu li div{
+  text-decoration: none;
+  color: #eee7e7;
+  display:block;
+  transition: color 0.3s ease;
+  padding:20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  cursor:pointer;
+}
+.menu li div:hover{
+  color: rgb(6, 138, 138);
+}
+
+/* desktop menu */
+
+.nav-desktop{
+  margin-top:55px;
+  margin-left:-40px;
+  position: absolute;
+  right:40px;
+}
+.nav-desktop ul{
+  display:flex;
+}
+.nav-desktop ul li{
+  margin-left:30px;
+  list-style:none;
+  display:block;
+}
+.nav-desktop ul li div{
+  color:#fff;
+  font-size:1.1em;
+  font-family:'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight:400;
+  cursor:pointer;
+  display:block;
+  transition: color 0.3s ease;
+  padding:1px 12px 1px 12px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  letter-spacing: 1.2px;
+  position: relative;
+}
+.nav-desktop ul li div:hover{
+  color:rgb(225, 239, 255);
+}
+@keyframes lineAnimation{
+  0% {width:0px; padding:1px}
+  100% {width:100%;}
+}
+.horizontal-line{
+  box-sizing: border-box;
+  width:100%;
+  height:1px;
+  background-color:#fff;
+  margin-top:3px;
+  display:none;
+  position: absolute;
+  animation: lineAnimation 500ms;
+  background:rgb(225, 239, 255);
+}
+
+@media screen and (max-width:600px){
+  .nav-phone{
+      display:inline;
   }
-  to {
-    transform: rotate(360deg);
+  .nav-desktop{
+      display:none;
+  }
+} 
+@media screen and (min-width:600px){
+  .menu-line{
+      left:100px;
+  }
+}
+@media screen and (min-width:1000px){
+  .nav-desktop{
+    right:100px;
   }
 }
