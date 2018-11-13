@@ -70,9 +70,9 @@ class Header extends Component{
                 </nav>
                 <nav class='nav-desktop'>
                     <ul>
-                        <li><div onMouseOut={()=>this.textOut(one)} onMouseOver={()=>this.textOver(one)}>Jak zasnąć<div style={this.state.horizontalLine==='one'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
-                        <li><div onMouseOut={()=>this.textOut(two)} onMouseOver={()=>this.textOver(two)}>Sklep<div style={this.state.horizontalLine==='two'?horizontalLineVisible:horizontalLine}  className='horizontal-line'></div></div></li>
-                        <li><div onMouseOut={()=>this.textOut(three)} onMouseOver={()=>this.textOver(three)}>Odgłosy<div style={this.state.horizontalLine==='three'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
+                        <li><div onMouseOut={()=>this.textOut('one')} onMouseOver={()=>this.textOver('one')}>Jak zasnąć<div style={this.state.horizontalLine==='one'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
+                        <li><div onMouseOut={()=>this.textOut('two')} onMouseOver={()=>this.textOver('two')}>Sklep<div style={this.state.horizontalLine==='two'?horizontalLineVisible:horizontalLine}  className='horizontal-line'></div></div></li>
+                        <li><div onMouseOut={()=>this.textOut('three')} onMouseOver={()=>this.textOver('three')}>Odgłosy<div style={this.state.horizontalLine==='three'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
                     </ul>
                 </nav>
             </Content>
