@@ -30,10 +30,6 @@ const horizontalLineVisible = {
     display: 'block'
 }
 
-const one = 'one';
-const two = 'two';
-const three = 'three';
-
 class Header extends Component{
     state = {
         horizontalLine:''
