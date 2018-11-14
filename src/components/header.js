@@ -29,7 +29,6 @@ const horizontalLine = {
 const horizontalLineVisible = {
     display: 'block'
 }
-
 class Header extends Component{
     state = {
         horizontalLine:''
