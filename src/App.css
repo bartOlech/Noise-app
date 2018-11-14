@@ -1,15 +1,19 @@
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  overflow-x: hidden;
+}
 /* Phone menu */
 .menu-toggle{
   display: block;
   position: relative;
   top:-154px;
   left: 30px;
-  
-  z-index: 1;
-  
+  z-index: 2;
   -webkit-user-select: none;
-  user-select: none;
 }
 
 .menu-toggle input{
@@ -30,12 +34,9 @@
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  
   background: #232323;
   border-radius: 3px;
-  
   z-index: 1;
-  
   transform-origin: 4px 0px;
   
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
@@ -67,7 +68,7 @@
 }
 .menu{
   position: absolute;
-  width: 100vw;
+  width: 110vw;
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
@@ -159,6 +160,157 @@
   background:rgb(225, 239, 255);
 }
 
+/* main content */
+
+.music-btn-list {
+  margin: 30px auto;
+  text-align: center;
+}
+.music-btn-list li:first-child{
+  margin-top:0;
+}
+.music-btn-list li {
+  list-style: none;
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-top:50px;
+}
+
+.music-btn-list{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+}
+.round {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 30px;		
+  text-decoration: none;		
+  text-align: center;
+  font-size: 25px;		
+  text-shadow: 0 1px 0 rgba(255,255,255,.7);
+  letter-spacing: -.065em;
+  font-family: "Hammersmith One", sans-serif;		
+  -webkit-transition: all .25s ease-in-out;
+  -o-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+  box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+  border-radius: 300px;
+  z-index: 1;
+  border-width: 4px;
+  border-style: solid;
+  margin-top:20px;
+}
+
+.round:hover {
+  width: 109%;
+  height: 109%;
+  left: -4px;
+  top: -5px;
+  font-size: 23px;
+  padding-top: 38px;
+  -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+  -o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+  -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+  box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+  z-index: 2;
+
+}
+
+.round img{
+  position:absolute;
+  top:30px;
+  left:30px;
+}
+
+.baby {
+  background-color: rgb(224, 176, 16);
+  color: rgb(41, 82, 41);
+  border-color: rgba(133,32,28,.2);
+}
+
+.baby:hover {
+  color:rgb(255, 196, 0);
+
+}
+
+.adult {
+  background-color: rgb(1, 171, 44);
+  color: rgba(0,63,71,1);
+  border-color: rgba(0,63,71,.2);
+}
+
+.adult:hover {
+  color: rgb(1, 171, 44);
+}
+
+.rain {
+  background-color: rgba(1,151,171,1);
+  color: rgba(0,63,71,1);
+  border-color: rgba(0,63,71,.2);
+}
+
+.rain:hover {
+  color: rgba(1,151,171,1);
+}
+
+.round div.round {
+  display: block;
+  opacity: 0;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  font-size: 1px;
+  border: none;
+  padding: 40% 20% 0 20%;
+  color: #fff;
+  margin-top:0;
+  margin-left:-1px;
+}
+
+.round div:hover {
+  opacity: .85;
+  font-size: 16px;
+  -webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+  -moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+  -o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+  text-shadow: 0 1px 1px rgba(0,0,0,.5);
+  cursor: pointer;	
+}
+
+.adult div {
+  background: rgba(0,63,71,.7);		
+}
+
+.baby div {
+  background: rgba(118, 126, 5, 0.7);		
+}
+
+.rain div {
+  background: rgba(0, 70, 161, 0.7);	
+
+}
+
+@media (min-width:600px){
+  .music-btn-list{
+    margin-top:50px;
+    display: block;
+  }
+  .music-btn-list li{
+    margin-left: 50px;
+  }
+  .music-btn-list li:first-child{
+    margin-left:0;
+  }
+} 
 @media screen and (max-width:600px){
   .nav-phone{
       display:inline;

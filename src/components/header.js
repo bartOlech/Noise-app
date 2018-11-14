@@ -7,7 +7,7 @@ const Content = styled.div`
         width: 100vw;
         height: 180px;
         background-color: #166678;
-
+        box-shadow: 2px 2px 15px rgba(0,0,0,.2);
         @media (min-width:600px){
             display:flex;
             flex-direction:row;

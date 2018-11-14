@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Header from './components/header';
 import Favicon from 'react-favicon';
+import MainContent from './containers/mainContent';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,6 +22,7 @@ class App extends Component {
       <div>
         <Favicon url='./img/favicon.ico' />
         <Header></Header>
+        <MainContent></MainContent>
         <GlobalStyle></GlobalStyle>
       </div>
     )
