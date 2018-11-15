@@ -298,6 +298,15 @@ body{
   background: rgba(0, 70, 161, 0.7);	
 
 }
+/* clicked animation incorrect work*/
+@keyframes clicked{
+  0%{width:110%; height:110%}
+  100%{width:111%; height:111%}
+}
+.clicked-btn:hover{
+  animation: clicked 150ms;
+}
+/* end clicked animation */
 
 @media (min-width:600px){
   .music-btn-list{
