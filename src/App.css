@@ -208,6 +208,10 @@ body{
   border-style: solid;
   margin-top:20px;
 }
+button.round{
+  padding-bottom: 50%;
+}
+button:focus { outline: none; }
 
 .round:hover {
   width: 109%;
@@ -216,9 +220,6 @@ body{
   top: -5px;
   font-size: 23px;
   padding-top: 38px;
-  -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
-  -o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
-  -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
   box-shadow: 5px 5px 10px rgba(0,0,0,.3);
   z-index: 2;
 
@@ -264,9 +265,6 @@ body{
 .round div.round {
   display: block;
   opacity: 0;
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;
   font-size: 1px;
   border: none;
@@ -276,12 +274,9 @@ body{
   margin-left:-1px;
 }
 
-.round div:hover {
+.round div.round:hover {
   opacity: .85;
   font-size: 16px;
-  -webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
-  -moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
-  -o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
   text-shadow: 0 1px 1px rgba(0,0,0,.5);
   cursor: pointer;	
 }
@@ -303,9 +298,24 @@ body{
   0%{width:110%; height:110%}
   100%{width:111%; height:111%}
 }
-.clicked-btn:hover{
-  animation: clicked 150ms;
+.clicked-btn{
+  /* animation: clicked 150ms; */
+  background:red;
 }
+/* checked classes */
+.checked-btn-button{
+  width: 109%;
+  height: 109%;
+  left: -4px;
+  top: -5px;
+  font-size: 23px;
+  padding-top: 38px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+  z-index: 2;
+  opacity: .4;
+  color:rgba(66, 56, 56, 0.219)
+}
+
 /* end clicked animation */
 
 @media (min-width:600px){
