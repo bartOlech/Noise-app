@@ -44,7 +44,7 @@ class Header extends Component{
     render(){
         const {isClicked, babySoundBtn, adultSoundBtn, rainSoundBtn} = this.state;
         return(
-        <div>
+        <div className='main-content'>
             <Category></Category>
             <Content>
               <ul className='music-btn-list'>

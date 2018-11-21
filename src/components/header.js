@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import mainLogo from '../img/logo.png';
+import mainLogo from '../img/logoo.png';
 import '../App.css';
 
 const Content = styled.div`
         width: 100vw;
         height: 180px;
-        background-color: #166678;
+        background-image: linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%);
         box-shadow: 2px 2px 15px rgba(0,0,0,.2);
         @media (min-width:600px){
             display:flex;
@@ -14,7 +14,8 @@ const Content = styled.div`
         } 
     `;
 const Img = styled.img`
-    margin-left:40px;
+    margin-left:4px;
+    margin-top:-10px;
 
     @media (max-width:600px){
         margin-left: 110px;

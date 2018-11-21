@@ -6,6 +6,10 @@
 body{
   overflow-x: hidden;
 }
+.main-content{
+  
+  
+}
 /* Phone menu */
 .menu-toggle{
   display: block;
@@ -72,7 +76,7 @@ body{
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
-  background:rgb(11, 27, 58);
+  background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
@@ -323,6 +327,7 @@ button:focus { outline: none; }
   display:flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 }
 .category-content h3{
   margin-top:30px;
@@ -348,32 +353,14 @@ button:focus { outline: none; }
   margin-bottom: 40px;
   position: relative;
   border-radius: 1.8em 0.6em / 0.6em 1em 3em 1em;
-  border:none;
+  border:2px solid #fff;
   cursor: pointer;
+  transition:250ms;
+  background-color:rgb(32, 134, 124);
 }
-.ctg-btn-1{
-  background-image: linear-gradient(-225deg, #2B86C5 0%, rgb(104, 21, 177) 52%, #2B86C5 100%);
-  transition: 300ms;
-
+.ctg-btn:hover{
+  box-shadow: 2px 4px 8px rgb(3, 109, 109);
 }
-.ctg-btn-1:hover{
-  opacity: .8;
-}
-.ctg-btn-2{
-  background-image: linear-gradient(-20deg, #f54b61 0%, #fc9338 100%);
-  transition: 300ms;
-}
-.ctg-btn-2:hover{
-  opacity: .7;
-}
-.ctg-btn-3{
-  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-  transition: 300ms;
-}
-.ctg-btn-3:hover{
-  opacity: .7;
-}
-
     
 @font-face {
   font-family: 'Montserrat';

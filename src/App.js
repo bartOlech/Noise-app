@@ -6,7 +6,7 @@ import MainContent from './containers/mainContent';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background:#104C69;
+    background-color:#259E91;
   }
 `
 class App extends Component {
