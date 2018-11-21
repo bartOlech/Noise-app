@@ -56,9 +56,9 @@ class Header extends Component{
                         <span></span>
                         <span></span>
                         <ul className="menu">
-                            <li className=""><div>Jak zasnąć</div></li>
+                            <li className=""><div>Uśpij dziecko</div></li>
                             <li className=""><div>Sklep</div></li>
-                            <li className=""><div>Odgłosy</div></li>
+                            <li className=""><div>Jak zasnąć</div></li>
                             <div className='menu-line'></div>
                         </ul>
                     </div>

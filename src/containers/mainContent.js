@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import '../App.css';
-import PlayIcon from '../img/play_icon.png'
+import PlayIcon from '../img/play_icon.png';
+import Category from './category';
 
 const Content = styled.div`
-       
+       display:none;
     `;
 const btnStyle = {
     animation: {animation: 'clicked 150ms'},
@@ -43,6 +44,8 @@ class Header extends Component{
     render(){
         const {isClicked, babySoundBtn, adultSoundBtn, rainSoundBtn} = this.state;
         return(
+        <div>
+            <Category></Category>
             <Content>
               <ul className='music-btn-list'>
                     <li><button onClick={() => this.clickBtn('baby')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'baby'?btnStyle.animation:null} className={animationValue === 'baby'?' checked-btn-button round baby':'round baby'}>{babySoundBtn}<div style={animationValue === 'baby'?visibleImg:null} className='round'><img src={PlayIcon} alt='play ico'></img></div></button>
@@ -53,6 +56,7 @@ class Header extends Component{
                     </li>
                  </ul> 
             </Content>
+            </div>
         )
     }
 }
