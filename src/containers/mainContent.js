@@ -31,6 +31,7 @@ class Header extends Component{
             adultSoundBtn: 'Dorosły',
             rainSoundBtn: 'Deszcz',
             isClicked: false,
+            category:''
         }
     }
 
@@ -40,19 +41,25 @@ class Header extends Component{
             })
             animationValue = val
         }
+        setValue = (val)=>{
+            this.setState({
+                category:val
+            })
+        }
     
     render(){
         const {isClicked, babySoundBtn, adultSoundBtn, rainSoundBtn} = this.state;
         return(
         <div className='main-content'>
-            <Category></Category>
+            <Category ctgValue={this.setValue}></Category>
             <Content>
+                {console.log(this.state.category)}
               <ul className='music-btn-list'>
                     <li><button onClick={() => this.clickBtn('baby')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'baby'?btnStyle.animation:null} className={animationValue === 'baby'?' checked-btn-button round baby':'round baby'}>{babySoundBtn}<div style={animationValue === 'baby'?visibleImg:null} className='round'><img src={PlayIcon} alt='play ico'></img></div></button>
                     </li>
                     <li><button onClick={() => this.clickBtn('adult')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'adult'?btnStyle.animation:null} className={animationValue === 'adult'?' checked-btn-button round adult':'round adult'}>{adultSoundBtn}<div style={animationValue === 'adult'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
                     </li>
-                    <li><button onClick={() => this.clickBtn('rain')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'rain'?btnStyle.animation:null} class={animationValue === 'rain'?' checked-btn-button round rain':'round rain'}>{rainSoundBtn}<div style={animationValue === 'rain'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
+                    <li><button onClick={() => this.clickBtn('rain')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'rain'?btnStyle.animation:null} className={animationValue === 'rain'?' checked-btn-button round rain':'round rain'}>{rainSoundBtn}<div style={animationValue === 'rain'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
                     </li>
                  </ul> 
             </Content>
