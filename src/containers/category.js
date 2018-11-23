@@ -8,25 +8,28 @@ const fadeOutRightAnimation = keyframes`${fadeOutRight}`;
  
 const BouncyDiv = styled.div`
   animation: 700ms forwards ${props =>props.animationVal};
+  position: ${props=>props.displayValue};
 `;
 class Category extends Component{
     constructor(props){
         super(props)
         this.state = {
-            visibleContent: true
+            visibleContent: true,
+            isClickedBtn: false
         }
     }
     chooseCategory = (val)=>{
-        this.props.ctgValue(val)
+        this.props.ctgValue(val);
         this.setState({
-            visibleContent: false
+            visibleContent: false,
+            isClickedBtn: true
         })
     }
 
     render(){
-        const {visibleContent} = this.state;
+        const {visibleContent, isClickedBtn} = this.state;
         return(
-            <BouncyDiv animationVal={visibleContent?bounceAnimation:fadeOutRightAnimation}>
+            <BouncyDiv displayValue={isClickedBtn?'absolute':'relative'} animationVal={visibleContent?bounceAnimation:fadeOutRightAnimation}>
                 <div className='category-content'>
                     <h3>Wybierz kategorię:</h3>
                     <div className='content-buttons'>
