@@ -235,34 +235,34 @@ button:focus { outline: none; }
   left:30px;
 }
 
-.baby {
+.btn1 {
   background-color: rgb(224, 176, 16);
   color: rgb(41, 82, 41);
   border-color: rgba(133,32,28,.2);
 }
 
-.baby:hover {
+.btn1:hover {
   color:rgb(255, 196, 0);
 
 }
 
-.adult {
+.btn2 {
   background-color: rgb(1, 171, 44);
   color: rgba(0,63,71,1);
   border-color: rgba(0,63,71,.2);
 }
 
-.adult:hover {
+.btn2:hover {
   color: rgb(1, 171, 44);
 }
 
-.rain {
+.btn3 {
   background-color: rgba(1,151,171,1);
   color: rgba(0,63,71,1);
   border-color: rgba(0,63,71,.2);
 }
 
-.rain:hover {
+.btn3:hover {
   color: rgba(1,151,171,1);
 }
 

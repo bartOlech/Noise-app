@@ -25,8 +25,6 @@ const visibleImg = {
     top: '-4px'
 };
 
-let animationValue = '';
-
 class Header extends Component{
     constructor(props){
         super(props)
@@ -36,18 +34,19 @@ class Header extends Component{
             button3: 'Deszcz',
             isClicked: false,
             category: '',
-            animation: false
+            animationValue: '',
         }
     }
 
         clickBtn = (val)=>{
             this.setState({
                 isClicked: true,
-                animation: !this.state.animation
+                animationValue: val,
             })
-            animationValue = val
-            if(!this.state.animation){
-                animationValue = '';
+            if(val === this.state.animationValue){
+                this.setState({
+                    animationValue: ''
+                })
             }
         }
         setValue = (val)=>{
@@ -75,21 +74,19 @@ class Header extends Component{
                     })
                 }
             }, 200)
-        }      
-    
+        }   
     render(){
-        const {isClicked, button1, button2, button3, category, animation} = this.state;
+        const {isClicked, button1, button2, button3, category, animationValue} = this.state;
         return(
         <div className='main-content'>
             <Category  ctgValue={this.setValue}></Category>
             <Content displayValue={category?'flex':'none'}>
-                {console.log(this.state.category)}
               <ul className='music-btn-list'>
-                    <li><button onClick={() => this.clickBtn('baby')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'baby'?btnStyle.animation:null} className={animationValue === 'baby'?' checked-btn-button round baby':'round baby'}>{button1}<div style={animationValue === 'baby'?visibleImg:null} className='round'><img src={PlayIcon} alt='play ico'></img></div></button>
+                    <li><button onClick={() => this.clickBtn('btn1')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn1'?btnStyle.animation:null} className={animationValue === 'btn1'?' checked-btn-button round btn1':'round btn1'}>{button1}<div style={animationValue === 'btn1'?visibleImg:null} className='round'><img src={PlayIcon} alt='play ico'></img></div></button>
                     </li>
-                    <li><button onClick={() => this.clickBtn('adult')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'adult'?btnStyle.animation:null} className={animationValue === 'adult'?' checked-btn-button round adult':'round adult'}>{button2}<div style={animationValue === 'adult'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
+                    <li><button onClick={() => this.clickBtn('btn2')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn2'?btnStyle.animation:null} className={animationValue === 'btn2'?' checked-btn-button round btn2':'round btn2'}>{button2}<div style={animationValue === 'btn2'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
                     </li>
-                    <li><button onClick={() => this.clickBtn('rain')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'rain'?btnStyle.animation:null} className={animationValue === 'rain'?' checked-btn-button round rain':'round rain'}>{button3}<div style={animationValue === 'rain'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
+                    <li><button onClick={() => this.clickBtn('btn3')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn3'?btnStyle.animation:null} className={animationValue === 'btn3'?' checked-btn-button round btn3':'round btn3'}>{button3}<div style={animationValue === 'btn3'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
                     </li>
                  </ul> 
             </Content>
