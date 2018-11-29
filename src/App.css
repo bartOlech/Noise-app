@@ -13,9 +13,9 @@ body{
 /* Phone menu */
 .menu-toggle{
   display: block;
-  position: relative;
-  top:-154px;
-  left: 30px;
+  position: absolute;
+  top: 40px;
+  left: 20px;
   z-index: 2;
   -webkit-user-select: none;
 }

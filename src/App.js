@@ -15,14 +15,19 @@ class App extends Component {
     this.state = {
       
     }
+    this.child = React.createRef();
+  }
+
+  hideMusicCnt = ()=>{
+    this.child.current.resaveView();
   }
 
   render() {
     return (
       <div>
         <Favicon url='./img/favicon.ico' />
-        <Header></Header>
-        <MainContent></MainContent>
+        <Header clickHeaderLogo={this.hideMusicCnt}></Header>
+        <MainContent ref={this.child}></MainContent>
         <GlobalStyle></GlobalStyle>
       </div>
     )

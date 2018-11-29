@@ -14,8 +14,11 @@ const Content = styled.div`
         } 
     `;
 const Img = styled.img`
+    width: 200px;
+    height: 200px;
     margin-left:4px;
     margin-top:-10px;
+    cursor: pointer;
 
     @media (max-width:600px){
         margin-left: 110px;
@@ -45,11 +48,14 @@ class Header extends Component{
             horizontalLine: ''
         })
     }
+    clickHeaderLogo = ()=>{
+      this.props.clickHeaderLogo()
+    }
     
     render(){
         return(
             <Content>
-                <Img src={mainLogo} alt='logo'></Img>
+                <Img onClick={this.clickHeaderLogo} src={mainLogo} alt='logo'></Img>
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
                         <input type="checkbox" />

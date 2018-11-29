@@ -10,6 +10,8 @@ const BouncyDiv = styled.div`
   animation: 700ms forwards ${props =>props.animationVal};
   position: ${props=>props.displayValue};
 `;
+
+
 class Category extends Component{
     constructor(props){
         super(props)
@@ -25,8 +27,15 @@ class Category extends Component{
             isClickedBtn: true
         })
     }
+    resaveViews = ()=>{
+        this.setState({
+            visibleContent: true,
+            isClickedBtn: false
+        })
+    }
 
     render(){
+        
         const {visibleContent, isClickedBtn} = this.state;
         return(
             <BouncyDiv displayValue={isClickedBtn?'absolute':'relative'} animationVal={visibleContent?bounceAnimation:fadeOutRightAnimation}>

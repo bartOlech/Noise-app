@@ -24,7 +24,6 @@ const visibleImg = {
     left: '-4px',
     top: '-4px'
 };
-
 class Header extends Component{
     constructor(props){
         super(props)
@@ -36,6 +35,7 @@ class Header extends Component{
             category: '',
             animationValue: '',
         }
+        this.child = React.createRef();
     }
 
         clickBtn = (val)=>{
@@ -75,11 +75,20 @@ class Header extends Component{
                 }
             }, 200)
         }   
+
+        resaveView() {
+            this.setState({
+                category: '',
+                animationValue: ''
+            })
+            this.child.current.resaveViews();
+          }
+
     render(){
         const {isClicked, button1, button2, button3, category, animationValue} = this.state;
         return(
         <div className='main-content'>
-            <Category  ctgValue={this.setValue}></Category>
+            <Category ref={this.child} ctgValue={this.setValue}></Category>
             <Content displayValue={category?'flex':'none'}>
               <ul className='music-btn-list'>
                     <li><button onClick={() => this.clickBtn('btn1')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn1'?btnStyle.animation:null} className={animationValue === 'btn1'?' checked-btn-button round btn1':'round btn1'}>{button1}<div style={animationValue === 'btn1'?visibleImg:null} className='round'><img src={PlayIcon} alt='play ico'></img></div></button>
