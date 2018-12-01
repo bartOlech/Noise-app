@@ -4,8 +4,15 @@ import '../App.css';
 import PlayIcon from '../img/play_icon.png';
 import Category from './category';
 import { zoomIn } from 'react-animations';
-import bellSound1 from '../sounds/bell.mp3'
-import bellSound2 from '../sounds/bell2.mp3'
+import piano from '../sounds/piano.mp3';
+import violin from '../sounds/violin.mp3';
+import guitar from '../sounds/guitar.mp3';
+import rain from '../sounds/rain.mp3';
+import fire from '../sounds/fire.mp3';
+import noise from '../sounds/noise.mp3';
+import forrest from '../sounds/forrest.mp3';
+import waves from '../sounds/waves.mp3';
+import wind from '../sounds/wind.mp3';
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
 
@@ -72,7 +79,7 @@ class Header extends Component{
                     this.setState({
                         button1: 'Fortepian',
                         button2: 'Skrzypce',
-                        button3: 'Classic',
+                        button3: 'Gitara',
                     })
                 }else if(this.state.category === 'relax'){
                     this.setState({
@@ -93,7 +100,10 @@ class Header extends Component{
         resaveView() {
             this.setState({
                 category: '',
-                animationValue: ''
+                animationValue: '',
+                btn1: false,
+                btn2: false,
+                btn3: false
             })
             this.child.current.resaveViews();
           }
@@ -103,14 +113,19 @@ class Header extends Component{
             const {currentSelectedCtg, btn1, btn2, btn3, category,} = this.state;
             let currentSound = null;
             let curSoundBtnClicked = null;
+            
             if(category === 'learn'){
-               if(btn1){currentSound = bellSound1; curSoundBtnClicked = 'btn1'}else
-               if(btn2){currentSound = bellSound2; curSoundBtnClicked = 'btn2'}else
-               if(btn3){currentSound = bellSound1; curSoundBtnClicked = 'btn3'}
+                if(btn1){currentSound = piano; curSoundBtnClicked = 'btn1'}else
+                if(btn2){currentSound = violin; curSoundBtnClicked = 'btn2'}else
+                if(btn3){currentSound = guitar; curSoundBtnClicked = 'btn3'}
             }else if(category === 'relax'){
-                
+                if(btn1){currentSound = fire; curSoundBtnClicked = 'btn1'}else
+                if(btn2){currentSound = forrest; curSoundBtnClicked = 'btn2'}else
+                if(btn3){currentSound = rain; curSoundBtnClicked = 'btn3'}
             }else if(category === 'sleep'){
-
+                if(btn1){currentSound = noise; curSoundBtnClicked = 'btn1'}else
+                if(btn2){currentSound = wind; curSoundBtnClicked = 'btn2'}else
+                if(btn3){currentSound = waves; curSoundBtnClicked = 'btn3'}
             }
               return(
                 <audio src={currentSound} muted={curSoundBtnClicked !== currentSelectedCtg?true:false} loop autoPlay/>
