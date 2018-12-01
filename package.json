@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.6.1",
     "react-animations": "^1.0.0",
+    "react-audio-spectrum": "0.0.9",
     "react-dom": "^16.6.1",
     "react-favicon": "0.0.14",
     "react-scripts": "2.1.1",

@@ -377,8 +377,15 @@ button:focus { outline: none; }
   font-family: Montserrat;
   font-weight: 500;
 }
-
-
+/* Visualizer */
+#audio-canvas{
+  position: absolute;
+  left: 51%;
+  top: 80%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 250px;
+}
 
 
 
@@ -400,6 +407,9 @@ button:focus { outline: none; }
   }
   .nav-desktop{
       display:none;
+  }
+  #audio-canvas{
+    display: none;
   }
 } 
 @media screen and (min-width:600px){

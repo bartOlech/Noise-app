@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled, { keyframes } from 'styled-components';
+import AudioSpectrum from 'react-audio-spectrum';
 import '../App.css';
 import PlayIcon from '../img/play_icon.png';
 import Category from './category';
@@ -15,6 +16,10 @@ import waves from '../sounds/waves.mp3';
 import wind from '../sounds/wind.mp3';
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
+
+const visualizerStyle = {
+    marginLeft: '300px'
+}
 
 const Content = styled.div`
        display: ${props=>props.displayValue};
@@ -128,7 +133,7 @@ class Header extends Component{
                 if(btn3){currentSound = waves; curSoundBtnClicked = 'btn3'}
             }
               return(
-                <audio src={currentSound} muted={curSoundBtnClicked !== currentSelectedCtg?true:false} loop autoPlay/>
+                <audio id='audio-element' src={currentSound} muted={curSoundBtnClicked !== currentSelectedCtg?true:false} loop autoPlay/>
               )
           }
 
@@ -137,6 +142,26 @@ class Header extends Component{
         return(
         <div className='main-content'>
          
+         {/* Visualizer */}
+         <AudioSpectrum
+            style={visualizerStyle}
+            id="audio-canvas"
+            height={200}
+            width={300}
+            audioId={'audio-element'}
+            capColor={'LightCoral '}
+            capHeight={2}
+            meterWidth={2}
+            meterCount={512}
+            meterColor={[
+                {stop: 0, color: '#f00'},
+                {stop: 0.5, color: '#0CD7FD'},
+                {stop: 1, color: 'red'}
+            ]}
+            gap={4}
+        />
+
+
             <Category  ref={this.child} ctgValue={this.setValue}></Category>
             <Content displayValue={category?'flex':'none'}>
 
