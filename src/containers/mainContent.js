@@ -137,29 +137,40 @@ class Header extends Component{
               )
           }
 
+    componentDidMount() {
+        window.addEventListener("resize", this.resize.bind(this));
+    }
+    resize() {
+        if(window.innerWidth > 600){
+            console.log('wide')
+            return(
+                <AudioSpectrum
+                style={visualizerStyle}
+                id="audio-canvas"
+                height={200}
+                width={300}
+                audioId={'audio-element'}
+                capColor={'LightCoral '}
+                capHeight={2}
+                meterWidth={2}
+                meterCount={512}
+                meterColor={[
+                    {stop: 0, color: '#f00'},
+                    {stop: 0.5, color: '#0CD7FD'},
+                    {stop: 1, color: 'red'}
+                ]}
+                gap={4}
+            />
+            )
+         }
+    }
+
     render(){
         const {isClicked, button1, button2, button3, category, animationValue} = this.state;
         return(
         <div className='main-content'>
-         
          {/* Visualizer */}
-         <AudioSpectrum
-            style={visualizerStyle}
-            id="audio-canvas"
-            height={200}
-            width={300}
-            audioId={'audio-element'}
-            capColor={'LightCoral '}
-            capHeight={2}
-            meterWidth={2}
-            meterCount={512}
-            meterColor={[
-                {stop: 0, color: '#f00'},
-                {stop: 0.5, color: '#0CD7FD'},
-                {stop: 1, color: 'red'}
-            ]}
-            gap={4}
-        />
+         {this.resize()}
 
 
             <Category  ref={this.child} ctgValue={this.setValue}></Category>
