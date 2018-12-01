@@ -99,7 +99,7 @@ class Header extends Component{
                         button3: 'Fale',
                     })
                 }
-            }, 200)
+            }, 1)
         }   
 
         resaveView() {
@@ -142,7 +142,6 @@ class Header extends Component{
     }
     resize() {
         if(window.innerWidth > 600){
-            console.log('wide')
             return(
                 <AudioSpectrum
                 style={visualizerStyle}
