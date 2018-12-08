@@ -17,6 +17,10 @@ import wind from '../sounds/wind.mp3';
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
 
+const hideStyle = {
+    display: 'none'
+}
+
 const visualizerStyle = {
     marginLeft: '300px'
 }
@@ -52,7 +56,8 @@ class Header extends Component{
             btn1: false,
             btn2: false,
             btn3: false,
-            curSoundBtnClicked: ''
+            curSoundBtnClicked: '',
+            cntIsVisible: true
         }
         this.child = React.createRef();
     }
@@ -108,7 +113,8 @@ class Header extends Component{
                 animationValue: '',
                 btn1: false,
                 btn2: false,
-                btn3: false
+                btn3: false,
+                cntIsVisible: true
             })
             this.child.current.resaveViews();
           }
@@ -164,10 +170,16 @@ class Header extends Component{
          }
     }
 
+    hideCnt() {
+        this.setState({
+            cntIsVisible: false
+        })
+    }
+
     render(){
-        const {isClicked, button1, button2, button3, category, animationValue} = this.state;
+        const {isClicked, button1, button2, button3, category, animationValue, cntIsVisible} = this.state;
         return(
-        <div className='main-content'>
+        <div style={cntIsVisible?null:hideStyle} className='main-content'>
          {/* Visualizer */}
          {this.resize()}
 

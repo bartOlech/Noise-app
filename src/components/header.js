@@ -51,6 +51,10 @@ class Header extends Component{
     clickHeaderLogo = ()=>{
       this.props.clickHeaderLogo()
     }
+
+    babySleepBtn = ()=>{
+        this.props.babySleepBtn()
+    }
     
     render(){
         return(
@@ -63,7 +67,7 @@ class Header extends Component{
                         <span></span>
                         <span></span>
                         <ul className="menu">
-                            <li className=""><div>Uśpij dziecko</div></li>
+                            <li className=""><div onClick={this.babySleepBtn}>Uśpij dziecko</div></li>
                             <li className=""><div>Sklep</div></li>
                             <li className=""><div>Jak zasnąć</div></li>
                             <div className='menu-line'></div>
@@ -72,7 +76,7 @@ class Header extends Component{
                 </nav>
                 <nav className='nav-desktop'>
                     <ul>
-                        <li><div onMouseOut={()=>this.textOut('one')} onMouseOver={()=>this.textOver('one')}>Uśpij dziecko<div style={this.state.horizontalLine==='one'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
+                        <li><div onMouseOut={()=>this.textOut('one')} onMouseOver={()=>this.textOver('one')} onClick={this.babySleepBtn}>Uśpij dziecko<div style={this.state.horizontalLine==='one'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
                         <li><div onMouseOut={()=>this.textOut('two')} onMouseOver={()=>this.textOver('two')}>Sklep<div style={this.state.horizontalLine==='two'?horizontalLineVisible:horizontalLine}  className='horizontal-line'></div></div></li>
                         <li><div onMouseOut={()=>this.textOut('three')} onMouseOver={()=>this.textOver('three')}>Jak zasnąć<div style={this.state.horizontalLine==='three'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
                     </ul>
