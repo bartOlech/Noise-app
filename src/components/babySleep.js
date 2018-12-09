@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import babySleepImg from '../img/sleep.png';
 import muteIco from '../img/mute-ico.png';
 import soundIco from '../img/sound-ico.png';
+import babySound from '../sounds/piano.mp3';
 
 const HideStyle = {
     display: 'none'
@@ -27,7 +28,10 @@ class BabySleep extends Component{
         super(props)
         this.state = {
             imgIsVisible: false,
-            isVisible: false
+            isVisible: false,
+            audioIsOff: true,
+            alreadyClickedOn: false,
+            alreadyClickedOff: true
         }
     }
 
@@ -40,34 +44,62 @@ class BabySleep extends Component{
 
     hideCnt(){
         this.setState({
-            isVisible: false
+            isVisible: false,
+            audioIsOff: true
         })
+    }
+    turnOnSound = ()=>{
+        if(this.state.audioIsOff && !this.state.alreadyClickedOn ){
+            this.setState({
+                audioIsOff: false,
+                alreadyClickedOn: true,
+                alreadyClickedOff: false
+            })
+        }
+    }
+    turnOffSound = ()=>{
+        if(!this.state.audioIsOff && !this.state.alreadyClickedOff ){
+            this.setState({
+                audioIsOff: true,
+                alreadyClickedOff: true,
+                alreadyClickedOn: false
+            })
+        }
+    }
+    playSound(){
+        return(
+            <audio  src={babySound} muted={this.state.audioIsOff?true:false} loop autoPlay/>
+        )
     }
 
     render(){
         const {imgIsVisible, isVisible} = this.state;
+        
         return(
             <div style={isVisible?null:HideStyle}>
+            {/* audio */}
+            {this.playSound()}
+
                 <div className='babySleepCnt'>
                     <h3 className='babySleepText'>Uśpij dziecko</h3>
-                    <img style={imgIsVisible?ImgStyle:HideStyle} src={babySleepImg}></img>
+                    <img style={imgIsVisible?ImgStyle:HideStyle} alt='main ico' src={babySleepImg}></img>
                 </div>
                 <div className='play-btn-section'>
-                <div class="normal-container">
-                    <div class="smile-rating-container">
-                        <div class="smile-rating-toggle-container">
-                            <form class="submit-rating">
-                                <input id="meh"  name="satisfaction" type="radio" /> 
-                                <input id="fun" name="satisfaction" type="radio" /> 
-                                <label for="meh" class="rating-label rating-label-meh"><img style={icoMuteStyle} src={muteIco} alt='sound ico'></img></label>
-                                <div class="smile-rating-toggle"></div>
-                                <div class="rating-eye rating-eye-left"></div>
-                                <div class="rating-eye rating-eye-right"></div>
+                <div className="normal-container">
+                    <div className="smile-rating-container">
+                        <div className="smile-rating-toggle-container">
+                            <form className="submit-rating">
+                                <input onClick={this.turnOffSound} id="meh"  name="satisfaction" type="radio" /> 
+                                <input onClick={this.turnOnSound} id="fun" name="satisfaction" type="radio" /> 
+                                <label htmlFor="meh" className="rating-label rating-label-meh"><img style={icoMuteStyle} src={muteIco} alt='sound ico'></img></label>
+                                <div className="smile-rating-toggle"></div>
+                                <div className="rating-eye rating-eye-left"></div>
+                                <div className="rating-eye rating-eye-right"></div>
                                 
-                                <div class="mouth rating-eye-bad-mouth"></div>
+                                <div className="mouth rating-eye-bad-mouth"></div>
                                 
-                                <div class="toggle-rating-pill"></div>
-                                <label for="fun" class="rating-label rating-label-fun"><img style={icoSoundStyle} src={soundIco} alt='sound ico'></img></label>
+                                <div className="toggle-rating-pill"></div>
+                                <label htmlFor="fun" className="rating-label rating-label-fun"><img style={icoSoundStyle} src={soundIco} alt='sound ico'></img></label>
                             </form>
                         </div>
                     </div>

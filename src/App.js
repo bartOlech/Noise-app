@@ -10,9 +10,6 @@ const GlobalStyle = createGlobalStyle`
     background-color:#259E91;
   }
 `
-const hideStyle = {
-  display: 'none'
-}
 class App extends Component {
   constructor(props){
     super(props);
@@ -34,7 +31,6 @@ class App extends Component {
   }
 
   render() {
-    const {} = this.state;
     return (
       <div>
         <Favicon url='./img/favicon.ico' />
