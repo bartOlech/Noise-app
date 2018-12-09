@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import babySleepImg from '../img/sleep.png';
+import muteIco from '../img/mute-ico.png';
+import soundIco from '../img/sound-ico.png';
 
 const HideStyle = {
     display: 'none'
@@ -8,6 +10,16 @@ const ImgStyle = {
     width: '100px',
     height: '100px'
 
+}
+const icoMuteStyle = {
+    width: '50px',
+    height: '50px',
+    marginLeft: '7px'
+}
+const icoSoundStyle = {
+    width: '50px',
+    height: '50px',
+    marginRight: '-8px'
 }
 
 class BabySleep extends Component{
@@ -47,16 +59,15 @@ class BabySleep extends Component{
                             <form class="submit-rating">
                                 <input id="meh"  name="satisfaction" type="radio" /> 
                                 <input id="fun" name="satisfaction" type="radio" /> 
-                                <label for="meh" class="rating-label rating-label-meh">Off</label>
+                                <label for="meh" class="rating-label rating-label-meh"><img style={icoMuteStyle} src={muteIco} alt='sound ico'></img></label>
                                 <div class="smile-rating-toggle"></div>
-                                
                                 <div class="rating-eye rating-eye-left"></div>
                                 <div class="rating-eye rating-eye-right"></div>
                                 
                                 <div class="mouth rating-eye-bad-mouth"></div>
                                 
                                 <div class="toggle-rating-pill"></div>
-                                <label for="fun" class="rating-label rating-label-fun">On</label>
+                                <label for="fun" class="rating-label rating-label-fun"><img style={icoSoundStyle} src={soundIco} alt='sound ico'></img></label>
                             </form>
                         </div>
                     </div>
