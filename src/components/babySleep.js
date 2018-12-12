@@ -31,7 +31,8 @@ class BabySleep extends Component{
             isVisible: false,
             audioIsOff: true,
             alreadyClickedOn: false,
-            alreadyClickedOff: true
+            alreadyClickedOff: true,
+            play: false
         }
     }
 
@@ -49,6 +50,7 @@ class BabySleep extends Component{
         })
     }
     turnOnSound = ()=>{
+        this.audio.play();
         if(this.state.audioIsOff && !this.state.alreadyClickedOn ){
             this.setState({
                 audioIsOff: false,
@@ -58,6 +60,7 @@ class BabySleep extends Component{
         }
     }
     turnOffSound = ()=>{
+        this.audio.pause();
         if(!this.state.audioIsOff && !this.state.alreadyClickedOff ){
             this.setState({
                 audioIsOff: true,
@@ -66,12 +69,12 @@ class BabySleep extends Component{
             })
         }
     }
+    
     playSound(){
         return(
-            <audio  src={babySound} muted={this.state.audioIsOff?true:false} loop autoPlay/>
+            <audio ref={(audio) => { this.audio = audio } } src={babySound} muted={this.state.audioIsOff?true:false} loop/>
         )
-    }
-
+}
     render(){
         const {imgIsVisible, isVisible} = this.state;
         
