@@ -68,9 +68,9 @@ class Header extends Component{
         return(
             <Content>
                 <Img onClick={this.clickHeaderLogo} src={mainLogo} alt='logo'></Img>
-                <nav onClick={this.clickHamMenu} className='nav-phone'>
+                <nav className='nav-phone'>
                     <div className="menu-toggle">
-                        <input type="checkbox" />
+                        <input onClick={this.clickHamMenu} type="checkbox" />
                         <span></span>
                         <span></span>
                         <span></span>

@@ -29,7 +29,6 @@ const visualizerStyle = {
 const Content = styled.div`
        display: ${props=>props.displayValue};
        animation: 700ms forwards ${fadeInLeftAnimation};
-       background-color: red;
     `;
 const btnStyle = {
     animation: {animation: 'clicked 150ms'},
@@ -185,14 +184,10 @@ class MainContent extends Component{
         })
     }
 
-    clickMainCnt = ()=>{
-        
-    }
-
     render(){
         const {isClicked, button1, button2, button3, category, animationValue, cntIsVisible, menuIsClicked} = this.state;
         return(
-        <div onClick={this.clickMainCnt} style={cntIsVisible?null:hideStyle} className='main-content'>
+        <div style={cntIsVisible?null:hideStyle} className='main-content'>
          {/* Visualizer */}
          {this.resize()}
 
