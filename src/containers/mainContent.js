@@ -22,6 +22,10 @@ const hideStyle = {
     opacity: 0
 }
 
+const hideElInLeft = {
+    marginLeft: '-1000px'
+}
+
 const visualizerStyle = {
     marginLeft: '300px'
 }
@@ -116,7 +120,8 @@ class MainContent extends Component{
                 btn1: false,
                 btn2: false,
                 btn3: false,
-                cntIsVisible: true
+                cntIsVisible: true,
+                menuIsClicked: true
             })
             this.child.current.resaveViews();
           }
@@ -179,9 +184,9 @@ class MainContent extends Component{
     }
 
     clickMenu(){
-        this.setState({
-            menuIsClicked: !this.state.menuIsClicked
-        })
+            this.setState({
+                menuIsClicked: !this.state.menuIsClicked
+            })  
     }
 
     //DODANIE FUNKCJI PAUZUJĄCEJ W GŁÓWNYM ODTWARZACZU(TERAZ TYLKO WYCISZA)
@@ -193,7 +198,7 @@ class MainContent extends Component{
          {/* Visualizer */}
          {this.resize()}
 
-            {menuIsClicked?<Category  ref={this.child} ctgValue={this.setValue}></Category>:null}
+            <div style={menuIsClicked?null:hideElInLeft}><Category  ref={this.child} ctgValue={this.setValue}></Category></div>
             
             <Content displayValue={category?'flex':'none'}>
 

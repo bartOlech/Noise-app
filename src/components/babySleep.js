@@ -35,7 +35,8 @@ class BabySleep extends Component{
             audioIsOff: true,
             alreadyClickedOn: false,
             alreadyClickedOff: true,
-            play: false
+            //play: false,
+            menuBtnIsCheck: false
         }
     }
 
@@ -68,12 +69,11 @@ class BabySleep extends Component{
             this.setState({
                 audioIsOff: true,
                 alreadyClickedOff: true,
-                alreadyClickedOn: false,
-                menuBtnIsCheck: false
+                alreadyClickedOn: false
             })
         }
     }
-    
+
     playSound(){
         return(
             <audio ref={(audio) => { this.audio = audio } } src={babySound} muted={this.state.audioIsOff?true:false} loop/>
