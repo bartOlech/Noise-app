@@ -78,7 +78,8 @@ body{
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
-  background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+  background-image: linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%);
+        box-shadow: 2px 2px 15px rgba(0,0,0,.2);
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
@@ -115,7 +116,7 @@ body{
   cursor:pointer;
 }
 .menu li div:hover{
-  color: rgb(6, 138, 138);
+  color: rgb(72, 172, 172);
 }
 
 /* desktop menu */
@@ -168,9 +169,6 @@ body{
 
 /* main content */
 
-.hide{
-  display: none;
-}
 
 .music-btn-list {
   margin: 30px auto;

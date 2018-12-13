@@ -29,6 +29,7 @@ const visualizerStyle = {
 const Content = styled.div`
        display: ${props=>props.displayValue};
        animation: 700ms forwards ${fadeInLeftAnimation};
+       background-color: red;
     `;
 const btnStyle = {
     animation: {animation: 'clicked 150ms'},
