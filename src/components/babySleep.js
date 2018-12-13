@@ -69,7 +69,7 @@ class BabySleep extends Component{
             })
         }
     }
-    
+    //DODANIE FUNKCJI PAUZUJĄCEJ W GŁÓWNYM ODTWARZACZU(TERAZ TYLKO WYCISZA)
     playSound(){
         return(
             <audio ref={(audio) => { this.audio = audio } } src={babySound} muted={this.state.audioIsOff?true:false} loop/>

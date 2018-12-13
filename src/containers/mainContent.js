@@ -18,7 +18,8 @@ import wind from '../sounds/wind.mp3';
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
 
 const hideStyle = {
-    display: 'none'
+    display: 'none',
+    opacity: 0
 }
 
 const visualizerStyle = {
@@ -42,7 +43,7 @@ const visibleImg = {
     left: '-4px',
     top: '-4px'
 };
-class Header extends Component{
+class MainContent extends Component{
     constructor(props){
         super(props)
         this.state= {
@@ -57,7 +58,8 @@ class Header extends Component{
             btn2: false,
             btn3: false,
             curSoundBtnClicked: '',
-            cntIsVisible: true
+            cntIsVisible: true,
+            menuIsClicked: !false
         }
         this.child = React.createRef();
     }
@@ -176,15 +178,25 @@ class Header extends Component{
         })
     }
 
+    clickMenu(){
+        this.setState({
+            menuIsClicked: !this.state.menuIsClicked
+        })
+    }
+
+    clickMainCnt = ()=>{
+        
+    }
+
     render(){
-        const {isClicked, button1, button2, button3, category, animationValue, cntIsVisible} = this.state;
+        const {isClicked, button1, button2, button3, category, animationValue, cntIsVisible, menuIsClicked} = this.state;
         return(
-        <div style={cntIsVisible?null:hideStyle} className='main-content'>
+        <div onClick={this.clickMainCnt} style={cntIsVisible?null:hideStyle} className='main-content'>
          {/* Visualizer */}
          {this.resize()}
 
-
-            <Category  ref={this.child} ctgValue={this.setValue}></Category>
+            {menuIsClicked?<Category  ref={this.child} ctgValue={this.setValue}></Category>:null}
+            
             <Content displayValue={category?'flex':'none'}>
 
            {/* audio */}
@@ -203,4 +215,4 @@ class Header extends Component{
         )
     }
 }
-export default Header;
+export default MainContent;

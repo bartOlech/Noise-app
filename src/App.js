@@ -30,11 +30,15 @@ class App extends Component {
     this.child.current.hideCnt();
   }
 
+  clickMenu = ()=>{
+    this.child.current.clickMenu();
+  }
+
   render() {
     return (
       <div>
         <Favicon url='./img/favicon.ico' />
-        <Header babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
+        <Header clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
         <BabySleep ref={this.childBabyBtn}></BabySleep>
         <MainContent ref={this.child}></MainContent>
         <GlobalStyle></GlobalStyle>

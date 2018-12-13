@@ -35,7 +35,8 @@ const horizontalLineVisible = {
 }
 class Header extends Component{
     state = {
-        horizontalLine:''
+        horizontalLine:'',
+        menuIsClicked: !false
     }
 
     textOver=(el)=>{
@@ -55,12 +56,19 @@ class Header extends Component{
     babySleepBtn = ()=>{
         this.props.babySleepBtn()
     }
+
+    clickHamMenu = ()=>{
+        this.setState({
+            menuIsClicked: !this.state.menuIsClicked
+        })
+        this.props.clickHamburgerMenu()
+    }
     
     render(){
         return(
             <Content>
                 <Img onClick={this.clickHeaderLogo} src={mainLogo} alt='logo'></Img>
-                <nav className='nav-phone'>
+                <nav onClick={this.clickHamMenu} className='nav-phone'>
                     <div className="menu-toggle">
                         <input type="checkbox" />
                         <span></span>
