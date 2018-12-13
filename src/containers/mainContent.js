@@ -184,6 +184,8 @@ class MainContent extends Component{
         })
     }
 
+    //DODANIE FUNKCJI PAUZUJĄCEJ W GŁÓWNYM ODTWARZACZU(TERAZ TYLKO WYCISZA)
+
     render(){
         const {isClicked, button1, button2, button3, category, animationValue, cntIsVisible, menuIsClicked} = this.state;
         return(

@@ -20,20 +20,20 @@ class Category extends Component{
         super(props)
         this.state = {
             visibleContent: true,
-            isClickedBtn: false,
+            isClickedBtn: false
         }
     }
     chooseCategory = (val)=>{
         this.props.ctgValue(val);
         this.setState({
             visibleContent: false,
-            isClickedBtn: true,
+            isClickedBtn: true
         })
     }
     resaveViews = ()=>{
         this.setState({
             visibleContent: true,
-            isClickedBtn: false,
+            isClickedBtn: false
         })
     }
 

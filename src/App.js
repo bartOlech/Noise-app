@@ -29,6 +29,10 @@ class App extends Component {
   showBabySleepCnt = ()=>{
       this.childBabyBtn.current.showBabyCnt();
       this.child.current.hideCnt();
+      this.childBabyBtn.current.fadeView();
+      this.setState({
+        menuIsClicked: !this.state.menuIsClicked
+    })
   }
 
   clickMenu = ()=>{
