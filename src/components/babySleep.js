@@ -22,6 +22,9 @@ const icoSoundStyle = {
     height: '50px',
     marginRight: '-8px'
 }
+const fade = {
+    opacity: '0.5'
+}
 
 class BabySleep extends Component{
     constructor(props){
@@ -65,7 +68,8 @@ class BabySleep extends Component{
             this.setState({
                 audioIsOff: true,
                 alreadyClickedOff: true,
-                alreadyClickedOn: false
+                alreadyClickedOn: false,
+                menuBtnIsCheck: false
             })
         }
     }
@@ -74,14 +78,22 @@ class BabySleep extends Component{
         return(
             <audio ref={(audio) => { this.audio = audio } } src={babySound} muted={this.state.audioIsOff?true:false} loop/>
         )
-}
+    }
+
+    fadeView(){
+        this.setState({
+            menuBtnIsCheck: !this.state.menuBtnIsCheck
+        })
+    }
+
     render(){
-        const {imgIsVisible, isVisible} = this.state;
+        const {imgIsVisible, isVisible, menuBtnIsCheck} = this.state;
         
         return(
             <div style={isVisible?null:HideStyle}>
-            {/* audio */}
-            {this.playSound()}
+            <div style={menuBtnIsCheck?fade:null}>
+                    {/* audio */}
+                {this.playSound()}
 
                 <div className='babySleepCnt'>
                     <h3 className='babySleepText'>Uśpij dziecko</h3>
@@ -108,6 +120,8 @@ class BabySleep extends Component{
                     </div>
                 </div>
                 </div>
+            </div>
+            
             </div>
         )
     }
