@@ -23,7 +23,7 @@ const icoSoundStyle = {
     marginRight: '-8px'
 }
 const fade = {
-    opacity: '0.5'
+    opacity: '0.1'
 }
 
 class BabySleep extends Component{

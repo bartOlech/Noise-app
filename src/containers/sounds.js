@@ -6,20 +6,16 @@ const hideCnt = {
     display: 'none'
 }
 
-const btnStyle = {
-    marginTop: '300px',
-    marginLeft: '50px',
-    background: 'blue',
-    width: '250px',
-    height: '250px',
-    border: 'none'
+const fade = {
+    opacity: '0.1'
 }
 
 class Sounds extends Component{
     constructor(props){
         super(props)
         this.state = {
-            cntIsVisible: false
+            cntIsVisible: false,
+            menuBtnIsCheck: false
         }
     }
 
@@ -35,11 +31,19 @@ class Sounds extends Component{
         })
     }
 
+    fadeView(){
+        this.setState({
+            menuBtnIsCheck: !this.state.menuBtnIsCheck
+        })
+    }
+
     render(){
-        const{cntIsVisible} = this.state;
+        const{cntIsVisible, menuBtnIsCheck} = this.state;
         return(
             <div style={cntIsVisible?null:hideCnt}>
-                <button style={btnStyle}>ssssss</button>
+                <div style={menuBtnIsCheck?fade:null}>
+                    
+                </div>
             </div>
         )
     }

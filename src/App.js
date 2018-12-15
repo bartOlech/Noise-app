@@ -31,9 +31,10 @@ class App extends Component {
   
   showBabySleepCnt = ()=>{
       this.childBabyBtn.current.showBabyCnt();
-      this.child.current.hideCnt();
       this.childBabyBtn.current.fadeView();
+      this.child.current.hideCnt(); 
       this.childMoreSounds.current.hideCnt();
+      this.childMoreSounds.current.fadeView();
       this.setState({
         menuIsClicked: !this.state.menuIsClicked
     })
@@ -45,10 +46,12 @@ class App extends Component {
       menuIsClicked: !this.state.menuIsClicked
   })
   this.childBabyBtn.current.fadeView();
+  this.childMoreSounds.current.fadeView();
   }
 
   clickMoreSounds = ()=>{
     this.childMoreSounds.current.clickMoreSounds();
+    this.childMoreSounds.current.fadeView();
     this.child.current.hideCnt();
     this.childBabyBtn.current.hideCnt();
     this.childBabyBtn.current.fadeView();
