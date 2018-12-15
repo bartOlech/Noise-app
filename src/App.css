@@ -169,6 +169,54 @@ body{
 
 /* main content */
 
+/* waves */
+
+/* .waves-main{
+  height: 400px;
+  width: 50px;
+  background-color: #fff;
+  position: relative;
+  margin-top: -362px;
+  float: right;
+}
+.waves-main:before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100% 60%;
+  width: 200px;
+  height: 140px;
+  background-color: white;
+  right: -100px;
+  top: 290px;
+  transform: rotate(95deg)
+} */
+.waves-cnt{
+ 
+  position: relative;
+
+ 
+}
+section{
+  width: 600px;
+  max-height: 100px;
+  position: absolute;
+}
+.wave{
+  float: right;
+  margin-top: -212px;
+  transform: rotate(-90deg);
+  position: absolute;
+  bottom: -335px;
+  left: 90px;
+  width: 600px;
+  height: 150px;
+  background: url('./img/tr.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
 
 .music-btn-list {
   margin: 30px auto;

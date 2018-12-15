@@ -195,6 +195,7 @@ class MainContent extends Component{
         const {isClicked, button1, button2, button3, category, animationValue, cntIsVisible, menuIsClicked} = this.state;
         return(
         <div style={cntIsVisible?null:hideStyle} className='main-content'>
+        
          {/* Visualizer */}
          {this.resize()}
 
