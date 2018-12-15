@@ -72,6 +72,13 @@ class Header extends Component{
     onChange = ()=>{
         
     }
+
+    clickMoreSounds = ()=>{
+        this.props.clickMoreSounds();
+        this.setState({
+            isChecked: false
+        })
+    }
     
     render(){
         return(
@@ -86,7 +93,7 @@ class Header extends Component{
                         <ul className="menu">
                             <li className=""><div onClick={this.babySleepBtn}>Uśpij dziecko</div></li>
                             <li className=""><div>Sklep</div></li>
-                            <li className=""><div>Jak zasnąć</div></li>
+                            <li className=""><div onClick={this.clickMoreSounds}>Więcej odgłosów</div></li>
                             <div className='menu-line'></div>
                         </ul>
                     </div>
@@ -95,7 +102,7 @@ class Header extends Component{
                     <ul>
                         <li><div onMouseOut={()=>this.textOut('one')} onMouseOver={()=>this.textOver('one')} onClick={this.babySleepBtn}>Uśpij dziecko<div style={this.state.horizontalLine==='one'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
                         <li><div onMouseOut={()=>this.textOut('two')} onMouseOver={()=>this.textOver('two')}>Sklep<div style={this.state.horizontalLine==='two'?horizontalLineVisible:horizontalLine}  className='horizontal-line'></div></div></li>
-                        <li><div onMouseOut={()=>this.textOut('three')} onMouseOver={()=>this.textOver('three')}>Jak zasnąć<div style={this.state.horizontalLine==='three'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
+                        <li><div onMouseOut={()=>this.textOut('three')} onMouseOver={()=>this.textOver('three')} onClick={this.clickMoreSounds}>Więcej odgłosów<div style={this.state.horizontalLine==='three'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
                     </ul>
                 </nav>
             </Content>
