@@ -166,36 +166,10 @@ body{
   animation: lineAnimation 500ms;
   background:rgb(225, 239, 255);
 }
-
-/* main content */
-
-/* waves */
-
-/* .waves-main{
-  height: 400px;
-  width: 50px;
-  background-color: #fff;
-  position: relative;
-  margin-top: -362px;
-  float: right;
-}
-.waves-main:before {
-  content: "";
-  display: block;
-  position: absolute;
-  border-radius: 100% 60%;
-  width: 200px;
-  height: 140px;
-  background-color: white;
-  right: -100px;
-  top: 290px;
-  transform: rotate(95deg)
-} */
 .waves-cnt{
  
   position: relative;
-
- 
+  float: right;
 }
 section{
   width: 600px;
@@ -207,17 +181,24 @@ section{
   margin-top: -212px;
   transform: rotate(-90deg);
   position: absolute;
-  bottom: -335px;
-  left: 90px;
+  bottom: -156px;
+  left: -310px;
   width: 600px;
   height: 150px;
-  background: url('./img/tr.png');
-  background-size: cover;
+  background: url('./img/wave.png');
+  background-size: 406px;
   background-repeat: no-repeat;
+  opacity: .35;
 }
-
-
-
+.sound-mute-ico{
+  position: absolute;
+  top: 207px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 2;
+}
 .music-btn-list {
   margin: 30px auto;
   text-align: center;
@@ -830,6 +811,11 @@ Toggle Changes
   }
 } 
 @media screen and (max-width:600px){
+  .sound-mute-ico{
+    width: 35px;
+    height: 35px;
+    top: 210px;
+  }
   .nav-phone{
       display:inline;
   }
@@ -848,5 +834,10 @@ Toggle Changes
 @media screen and (min-width:1000px){
   .nav-desktop{
     right:100px;
+  }
+  .sound-mute-ico{
+    position: absolute;
+    top: 207px;
+    left: 195px;
   }
 }

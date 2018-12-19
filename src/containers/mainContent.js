@@ -14,6 +14,7 @@ import noise from '../sounds/noise.mp3';
 import forrest from '../sounds/forrest.mp3';
 import waves from '../sounds/waves.mp3';
 import wind from '../sounds/wind.mp3';
+import {mutePage, playPage} from '.././components/muteToggle';
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
 
@@ -146,7 +147,7 @@ class MainContent extends Component{
                 if(btn3){currentSound = waves; curSoundBtnClicked = 'btn3'}
             }
               return(
-                <audio id='audio-element' src={currentSound} muted={curSoundBtnClicked !== currentSelectedCtg?true:false} loop autoPlay/>
+                <audio controls id='audio-element' src={currentSound} muted={curSoundBtnClicked !== currentSelectedCtg?true:false} loop autoPlay/>
               )
           }
 
