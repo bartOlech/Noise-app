@@ -5,9 +5,9 @@ import Favicon from 'react-favicon';
 import MainContent from './containers/mainContent';
 import BabySleep from './components/babySleep';
 import Sounds from './containers/sounds';
-import muteIco from './img/mute-ico.png';
-import soundIco from './img/sound-ico.png';
-import {mutePage, playPage} from './components/muteToggle';
+// import muteIco from './img/mute-ico.png';
+// import soundIco from './img/sound-ico.png';
+// import {mutePage, playPage} from './components/muteToggle';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -65,28 +65,28 @@ class App extends Component {
 
   
 
-  clickSoundMuteIco = ()=>{
-    if(this.state.muteIsClicked){
-      mutePage();
-      this.setState({
-        muteIsClicked: false
-      })
-    }else{
-      playPage();
-      this.setState({
-        muteIsClicked: true
-      })
-    }
-  }
+  // clickSoundMuteIco = ()=>{
+  //   if(this.state.muteIsClicked){
+  //     mutePage();
+  //     this.setState({
+  //       muteIsClicked: false
+  //     })
+  //   }else{
+  //     playPage();
+  //     this.setState({
+  //       muteIsClicked: true
+  //     })
+  //   }
+  // }
 
   render() {
-    const{menuIsClicked, muteIsClicked} = this.state;
+    const{menuIsClicked} = this.state;
     return (
       <div>
         <Favicon url='./img/favicon.ico' />
         <Header clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
         {/* sound / mute ico */}
-        <img onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
+        {/* <img onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img> */}
 
         <div className='waves-cnt'>
           <section className='wave'></section>

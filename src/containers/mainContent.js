@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import styled, { keyframes } from 'styled-components';
-import AudioSpectrum from 'react-audio-spectrum';
 import '../App.css';
 import PlayIcon from '../img/play_icon.png';
 import Category from './category';
@@ -14,7 +13,7 @@ import noise from '../sounds/noise.mp3';
 import forrest from '../sounds/forrest.mp3';
 import waves from '../sounds/waves.mp3';
 import wind from '../sounds/wind.mp3';
-import {mutePage, playPage} from '.././components/muteToggle';
+import Sound from 'react-sound';
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
 
@@ -25,10 +24,6 @@ const hideStyle = {
 
 const hideElInLeft = {
     marginLeft: '-1000px'
-}
-
-const visualizerStyle = {
-    marginLeft: '300px'
 }
 
 const Content = styled.div`
@@ -64,7 +59,8 @@ class MainContent extends Component{
             btn3: false,
             curSoundBtnClicked: '',
             cntIsVisible: true,
-            menuIsClicked: !false
+            menuIsClicked: !false,
+            soundsArray: []
         }
         this.child = React.createRef();
     }
@@ -129,54 +125,73 @@ class MainContent extends Component{
 
           playSound(){
 
-            const {currentSelectedCtg, btn1, btn2, btn3, category,} = this.state;
-            let currentSound = null;
+            const {currentSelectedCtg, soundsArray, category, btn1, btn2, btn3} = this.state;
+            let internalArr = [];
+            let currentSound = piano;
             let curSoundBtnClicked = null;
+            soundsArray.splice(0)
             
             if(category === 'learn'){
-                if(btn1){currentSound = piano; curSoundBtnClicked = 'btn1'}else
-                if(btn2){currentSound = violin; curSoundBtnClicked = 'btn2'}else
-                if(btn3){currentSound = guitar; curSoundBtnClicked = 'btn3'}
-            }else if(category === 'relax'){
-                if(btn1){currentSound = fire; curSoundBtnClicked = 'btn1'}else
-                if(btn2){currentSound = forrest; curSoundBtnClicked = 'btn2'}else
-                if(btn3){currentSound = rain; curSoundBtnClicked = 'btn3'}
-            }else if(category === 'sleep'){
-                if(btn1){currentSound = noise; curSoundBtnClicked = 'btn1'}else
-                if(btn2){currentSound = wind; curSoundBtnClicked = 'btn2'}else
-                if(btn3){currentSound = waves; curSoundBtnClicked = 'btn3'}
+                internalArr.length = 0;
+                soundsArray.push(piano, violin, guitar);
+                internalArr = soundsArray.slice(0, 3);
+                if(btn1){
+                    currentSound = internalArr[0];
+                    curSoundBtnClicked = 'btn1';
+                }
+                if(btn2){
+                    currentSound = internalArr[1];
+                    curSoundBtnClicked = 'btn2';
+                }
+                if(btn3){
+                    currentSound = internalArr[2];
+                    curSoundBtnClicked = 'btn3';
+                }
             }
-              return(
-                <audio controls id='audio-element' src={currentSound} muted={curSoundBtnClicked !== currentSelectedCtg?true:false} loop autoPlay/>
-              )
+            if(category === 'relax'){  
+                internalArr.length = 0;
+                soundsArray.push(fire, forrest, rain);
+                internalArr = soundsArray.slice(0, 3);
+                if(btn1){
+                    currentSound = internalArr[0];
+                    curSoundBtnClicked = 'btn1';
+                }
+                if(btn2){
+                    currentSound = internalArr[1];
+                    curSoundBtnClicked = 'btn2';
+                }
+                if(btn3){
+                    currentSound = internalArr[2];
+                    curSoundBtnClicked = 'btn3';
+                }
+            }
+            if(category === 'sleep'){
+                internalArr.length = 0;
+                soundsArray.push(noise, wind, waves);
+                internalArr = soundsArray.slice(0, 3);
+                if(btn1){
+                    currentSound = internalArr[0];
+                    curSoundBtnClicked = 'btn1';
+                }
+                if(btn2){
+                    currentSound = internalArr[1];
+                    curSoundBtnClicked = 'btn2';
+                }
+                if(btn3){
+                    currentSound = internalArr[2];
+                    curSoundBtnClicked = 'btn3';
+                }
+            }
+            return (
+                <Sound
+                  url={currentSound}
+                  playStatus={curSoundBtnClicked !== currentSelectedCtg?Sound.status.STOPPED:Sound.status.PLAYING}
+                  loop={true}
+                />
+              );
           }
 
-    componentDidMount() {
-        window.addEventListener("resize", this.resize.bind(this));
-    }
-    resize() {
-        if(window.innerWidth > 600){
-            return(
-                <AudioSpectrum
-                style={visualizerStyle}
-                id="audio-canvas"
-                height={200}
-                width={300}
-                audioId={'audio-element'}
-                capColor={'LightCoral '}
-                capHeight={2}
-                meterWidth={2}
-                meterCount={512}
-                meterColor={[
-                    {stop: 0, color: '#f00'},
-                    {stop: 0.5, color: '#0CD7FD'},
-                    {stop: 1, color: 'red'}
-                ]}
-                gap={4}
-            />
-            )
-         }
-    }
+
 
     hideCnt() {
         this.setState({
@@ -190,15 +205,11 @@ class MainContent extends Component{
             })  
     }
 
-    //DODANIE FUNKCJI PAUZUJĄCEJ W GŁÓWNYM ODTWARZACZU(TERAZ TYLKO WYCISZA)
-
     render(){
         const {isClicked, button1, button2, button3, category, animationValue, cntIsVisible, menuIsClicked} = this.state;
         return(
         <div style={cntIsVisible?null:hideStyle} className='main-content'>
-        
-         {/* Visualizer */}
-         {this.resize()}
+
 
             <div style={menuIsClicked?null:hideElInLeft}><Category  ref={this.child} ctgValue={this.setValue}></Category></div>
             
