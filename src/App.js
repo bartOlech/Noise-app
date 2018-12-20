@@ -13,12 +13,17 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${props => props.bcg}
   }
 `
+const hideEl = {
+  display: 'none'
+}
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
       menuIsClicked: !false,
-      muteIsClicked: !false
+      muteIsClicked: !false,
+      babyCntIsClicked: false, //if is true, hide side elements
+      selectedBabyComponent: false //is true if you'r in baby component then hide side el
     }
     this.child = React.createRef();
     this.childBabyBtn = React.createRef();
@@ -29,6 +34,10 @@ class App extends Component {
     this.child.current.resaveView();
     this.childBabyBtn.current.hideCnt();
     this.childMoreSounds.current.hideCnt();
+    this.setState({
+      babyCntIsClicked: false,
+      selectedBabyComponent: false,
+    })
   }
   
   showBabySleepCnt = ()=>{
@@ -38,15 +47,23 @@ class App extends Component {
       this.childMoreSounds.current.hideCnt();
       this.childMoreSounds.current.fadeView();
       this.setState({
-        menuIsClicked: !this.state.menuIsClicked
+        menuIsClicked: !this.state.menuIsClicked,
+        selectedBabyComponent: true,
+        babyCntIsClicked: true
     })
   }
 
   clickMenu = ()=>{
     this.child.current.clickMenu();
     this.setState({
-      menuIsClicked: !this.state.menuIsClicked
+      menuIsClicked: !this.state.menuIsClicked,
+      babyCntIsClicked: !this.state.babyCntIsClicked
   })
+  if(this.state.selectedBabyComponent){
+    this.setState({
+      babyCntIsClicked: true //hide side elements
+  })
+  }
   this.childBabyBtn.current.fadeView();
   this.childMoreSounds.current.fadeView();
   }
@@ -58,11 +75,11 @@ class App extends Component {
     this.childBabyBtn.current.hideCnt();
     this.childBabyBtn.current.fadeView();
     this.setState({
-      menuIsClicked: !this.state.menuIsClicked
+      menuIsClicked: !this.state.menuIsClicked,
+      babyCntIsClicked: false,
+      selectedBabyComponent: false,
   })
   }
-
-  
 
   clickSoundMuteIco = ()=>{
     if(this.state.muteIsClicked){
@@ -79,15 +96,15 @@ class App extends Component {
   }
 
   render() {
-    const{menuIsClicked, muteIsClicked} = this.state;
+    const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
     return (
       <div>
         <Favicon url='./img/favicon.ico' />
         <Header clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
         {/* sound / mute ico */}
-        <img onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
+        <img style={babyCntIsClicked?hideEl:null} onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
 
-        <div className='waves-cnt'>
+        <div style={babyCntIsClicked?hideEl:null} className='waves-cnt'>
           <section className='wave'></section>
         </div>
         <BabySleep ref={this.childBabyBtn}></BabySleep>
