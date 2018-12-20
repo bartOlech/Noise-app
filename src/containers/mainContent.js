@@ -60,7 +60,8 @@ class MainContent extends Component{
             curSoundBtnClicked: '',
             cntIsVisible: true,
             menuIsClicked: !false,
-            soundsArray: []
+            soundsArray: [],
+            volumeVal: 100
         }
         this.child = React.createRef();
     }
@@ -125,7 +126,7 @@ class MainContent extends Component{
 
           playSound(){
 
-            const {currentSelectedCtg, soundsArray, category, btn1, btn2, btn3} = this.state;
+            const {currentSelectedCtg, soundsArray, category, btn1, btn2, btn3, volumeVal} = this.state;
             let internalArr = [];
             let currentSound = piano;
             let curSoundBtnClicked = null;
@@ -187,11 +188,12 @@ class MainContent extends Component{
                   url={currentSound}
                   playStatus={curSoundBtnClicked !== currentSelectedCtg?Sound.status.STOPPED:Sound.status.PLAYING}
                   loop={true}
+                  volume={volumeVal}
                 />
               );
           }
 
-
+        
 
     hideCnt() {
         this.setState({
@@ -203,6 +205,18 @@ class MainContent extends Component{
             this.setState({
                 menuIsClicked: !this.state.menuIsClicked
             })  
+    }
+
+    reduceVolume(){
+       this.setState({
+           volumeVal: 0
+       })
+    }
+
+    increaseVolume(){
+        this.setState({
+            volumeVal: 100
+        })
     }
 
     render(){
