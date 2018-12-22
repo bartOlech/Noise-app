@@ -54,19 +54,26 @@ class Sounds extends Component{
             <div style={cntIsVisible?null:hideCnt}>
                 <div style={menuBtnIsCheck?fade:null}>
                 <div className="wrapperSounds">
-                    <button className="sounds-btn ">Hover me!</button>
-                    <button className="sounds-btn ">Hover me!</button>
-                    <button className="sounds-btn ">Hover me!</button>
-                    <button className="sounds-btn ">Hover me!</button>
+                      <button className='more-sounds-btn'>
+                        <span className='internal-el-btn'>ico</span>
+                      Example
+                      </button>
+
+                      <button className='more-sounds-btn'>
+                        <span className='internal-el-btn'>ico</span>
+                      Example
+                      </button>
+
+                      <button className='more-sounds-btn'>
+                        <span className='internal-el-btn'>ico</span>
+                      Example
+                      </button>
+                      
+                      <button className='more-sounds-btn'>
+                        <span className='internal-el-btn'>ico</span>
+                      Example
+                      </button>
                 </div>
-                    <svg style={{visibility: 'hidden', position: 'absolute'}} width={0} height={0}>
-                        <defs>
-                            <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation={10} result="blur" />    
-                            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-                            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-                            </filter>
-                        </defs>
-                    </svg>                
                 </div>
             </div>
         )
