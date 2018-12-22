@@ -10,17 +10,6 @@ const fade = {
     opacity: '0.1'
 }
 
-const border = {
-    border: 'none'
-}
-
-const svgStyle = {
-    visibility: 'hidden',
-    position: 'absolute',
-    width: 0,
-    height: 0
-}
-
 class Sounds extends Component{
     constructor(props){
         super(props)
@@ -48,29 +37,71 @@ class Sounds extends Component{
         })
     }
 
+    playBtn = ()=>{
+        return(
+            <div className="sounds-playIcoBtn">
+                <div class='internal-sounds-playIcoBtn'>
+                    <svg
+                    x="0px"
+                    y="0px"
+                    width="43.7px"
+                    height="43.7px"
+                    viewBox="0 0 213.7 213.7"
+                    enableBackground="new 0 0 213.7 213.7"
+                    xmlSpace="preserve"
+                    >
+                    <polygon
+                        className="triangle"
+                        id="XMLID_18_"
+                        fill="none"
+                        strokeWidth={7}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeMiterlimit={10}
+                        points="
+                    73.5,62.5 148.5,105.8 73.5,149.1 "
+                    />
+                    <circle
+                        className="circle"
+                        id="XMLID_17_"
+                        fill="none"
+                        strokeWidth={7}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeMiterlimit={10}
+                        cx="106.8"
+                        cy="106.8"
+                        r="103.3"
+                    />
+                    </svg>
+                </div>
+            </div>
+        )
+    }
+
     render(){
         const{cntIsVisible, menuBtnIsCheck} = this.state;
         return(
             <div style={cntIsVisible?null:hideCnt}>
                 <div style={menuBtnIsCheck?fade:null}>
                 <div className="wrapperSounds">
-                      <button className='more-sounds-btn'>
-                        <span className='internal-el-btn'>ico</span>
+                      <button className='all-sounds-btn'>
+                        {this.playBtn()}
                       Example
                       </button>
 
-                      <button className='more-sounds-btn'>
-                        <span className='internal-el-btn'>ico</span>
+                      <button className='all-sounds-btn'>
+                        {this.playBtn()}
                       Example
                       </button>
 
-                      <button className='more-sounds-btn'>
-                        <span className='internal-el-btn'>ico</span>
+                      <button className='all-sounds-btn'>
+                        {this.playBtn()}
                       Example
                       </button>
-                      
-                      <button className='more-sounds-btn'>
-                        <span className='internal-el-btn'>ico</span>
+
+                      <button className='all-sounds-btn'>
+                        {this.playBtn()}
                       Example
                       </button>
                 </div>

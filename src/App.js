@@ -95,6 +95,8 @@ class App extends Component {
     }
   }
 
+  
+
   render() {
     const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
     return (

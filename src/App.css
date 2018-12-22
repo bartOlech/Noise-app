@@ -442,7 +442,7 @@ button:focus { outline: none; }
   margin-top: 50px;
 }
 
-.more-sounds-btn{
+.all-sounds-btn{
   width: 210px;
   height: 50px;
   background-color: #0E8174;
@@ -455,16 +455,65 @@ button:focus { outline: none; }
   padding-right: 40px;
   margin-bottom: 30px;
   border-radius: 3px;
+  cursor: pointer;
 }
-.internal-el-btn{
-position: absolute;
-top: 0;
-right: 0;
-width: 40px;
-height: 45px;
-background-color: rgb(234, 241, 241);
-box-sizing: border-box;
-color: black;
+
+/* play-ico in button */
+
+.circle {
+  stroke: #0E8174;
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  transition: all 0.5s ease-in-out;
+  opacity: 0.3;
+}
+.internal-sounds-playIcoBtn{
+  position: relative;
+  margin-right: -2px;
+}
+.sounds-playIcoBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 45px;
+  display: inline-block;
+  transition: all 0.5s ease;
+  background-color: #fff;
+}
+.sounds-playIcoBtn .triangle {
+  transition: all 0.7s ease-in-out;
+  stroke-dasharray: 240;
+  stroke-dashoffset: 480;
+  stroke: #000;
+  transform: translateY(0);
+  
+}
+.sounds-playIcoBtn:hover .triangle {
+  stroke-dashoffset: 0;
+  opacity: 1;
+  stroke: rgb(14, 77, 92);
+  animation: nudge 0.7s ease-in-out;
+}
+@keyframes nudge {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  70% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.sounds-playIcoBtn:hover .circle {
+  stroke-dashoffset: 0;
+  opacity: 1;
 }
 
 /* baby sleep btn */
