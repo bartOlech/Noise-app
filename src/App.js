@@ -110,7 +110,7 @@ class App extends Component {
         <BabySleep ref={this.childBabyBtn}></BabySleep>
         <Sounds ref={this.childMoreSounds}></Sounds>
         <MainContent clickCnt={this.clickCnt} ref={this.child}></MainContent>
-        <GlobalStyle bcg={menuIsClicked? '#259E91' : '#1D5A68'}></GlobalStyle>
+        <GlobalStyle bcg={menuIsClicked? 'rgb(14, 129, 116)' : '#1D5A68'}></GlobalStyle>
         
       </div>
     )
