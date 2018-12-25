@@ -495,6 +495,10 @@ button:focus { outline: none; }
   stroke: rgb(14, 77, 92);
   animation: nudge 0.7s ease-in-out;
 }
+.all-sounds-btn:hover .circle {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
 
 /* btn animation if you click  (!!! sometimes is crashed !!!)*/
 .all-sounds-btn:before {
@@ -547,10 +551,16 @@ button:focus { outline: none; }
     transform: translateX(0);
   }
 }
-.all-sounds-btn:hover .circle {
+
+.all-sounds-btn:focus .circle{
   stroke-dashoffset: 0;
   opacity: 1;
-}
+} 
+.all-sounds-btn:focus .triangle{
+  stroke-dashoffset: 0;
+  opacity: 1;
+  stroke: rgb(189, 178, 29);
+} 
 
 /* baby sleep btn */
 

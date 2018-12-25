@@ -10,13 +10,18 @@ const fade = {
     opacity: '0.1'
 }
 
+const clickedBtn = {
+    strokeDashoffset: 0,
+    opacity: 1
+}
+
 class Sounds extends Component{
     constructor(props){
         super(props)
         this.state = {
             cntIsVisible: false,
             menuBtnIsCheck: false,
-
+            clickedNumberOfButton: null
         }
     }
 
@@ -38,7 +43,8 @@ class Sounds extends Component{
         })
     }
 
-    playBtn = ()=>{
+    playBtn = (val)=>{
+        const{clickedNumberOfButton} = this.state;
         return(
             <div className="sounds-playIcoBtn">
                 <div className='internal-sounds-playIcoBtn'>
@@ -80,8 +86,17 @@ class Sounds extends Component{
         )
     }
 
-    mouseOverBtn = ()=>{
-        console.log('work')
+    clickSoundBtn = (number)=>{
+        const{clickedNumberOfButton} = this.state;
+        if(clickedNumberOfButton === number){
+            this.setState({
+                clickedNumberOfButton: null
+            })
+        }else{
+            this.setState({
+                clickedNumberOfButton: number
+            })
+        }
     }
 
     render(){
@@ -90,8 +105,8 @@ class Sounds extends Component{
             <div style={cntIsVisible?null:hideCnt}>
                 <div style={menuBtnIsCheck?fade:null}>
                 <div className="wrapperSounds">
-                      <button onMouseOver={this.mouseOverBtn} className='all-sounds-btn'>
-                        {this.playBtn()}
+                      <button onClick={() => this.clickSoundBtn('0')} className='all-sounds-btn'>
+                        {this.playBtn('1')}
                       Example
                       </button>
 
