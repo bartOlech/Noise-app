@@ -16,7 +16,7 @@ class Sounds extends Component{
         this.state = {
             cntIsVisible: false,
             menuBtnIsCheck: false,
-            
+
         }
     }
 
@@ -66,13 +66,13 @@ class Sounds extends Component{
                         className="circle"
                         id="XMLID_17_"
                         fill="none"
-                        strokeWidth={7}
+                        strokeWidth={8}
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeMiterlimit={10}
-                        cx="106.8"
+                        cx="108.8"
                         cy="106.8"
-                        r="103.3"
+                        r="100.3"
                     />
                     </svg>
                 </div>
