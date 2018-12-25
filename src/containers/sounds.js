@@ -10,9 +10,14 @@ const fade = {
     opacity: '0.1'
 }
 
-const clickedBtn = {
+const clickedBtnCircle = {
     strokeDashoffset: 0,
     opacity: 1
+}
+const clickedBtnTriangle = {
+    strokeDashoffset: 0,
+    opacity: 1,
+    stroke: 'rgb(189, 178, 29)'
 }
 
 class Sounds extends Component{
@@ -67,6 +72,7 @@ class Sounds extends Component{
                         strokeMiterlimit={10}
                         points="
                     73.5,62.5 148.5,105.8 73.5,149.1 "
+                        style={clickedNumberOfButton === val?clickedBtnTriangle:null}
                     />
                     <circle
                         className="circle"
@@ -79,6 +85,7 @@ class Sounds extends Component{
                         cx="108.8"
                         cy="106.8"
                         r="100.3"
+                        style={clickedNumberOfButton === val?clickedBtnCircle:null}
                     />
                     </svg>
                 </div>
@@ -105,23 +112,23 @@ class Sounds extends Component{
             <div style={cntIsVisible?null:hideCnt}>
                 <div style={menuBtnIsCheck?fade:null}>
                 <div className="wrapperSounds">
-                      <button onClick={() => this.clickSoundBtn('0')} className='all-sounds-btn'>
+                      <button onClick={() => this.clickSoundBtn('1')} className='all-sounds-btn'>
                         {this.playBtn('1')}
                       Example
                       </button>
 
-                      <button className='all-sounds-btn'>
-                        {this.playBtn()}
+                      <button onClick={() => this.clickSoundBtn('2')}  className='all-sounds-btn'>
+                        {this.playBtn('2')}
                       Example
                       </button>
 
-                      <button className='all-sounds-btn'>
-                        {this.playBtn()}
+                      <button onClick={() => this.clickSoundBtn('3')}  className='all-sounds-btn'>
+                        {this.playBtn('3')}
                       Example
                       </button>
 
-                      <button className='all-sounds-btn'>
-                        {this.playBtn()}
+                      <button onClick={() => this.clickSoundBtn('4')}  className='all-sounds-btn'>
+                        {this.playBtn('4')}
                       Example
                       </button>
                 </div>

@@ -552,16 +552,6 @@ button:focus { outline: none; }
   }
 }
 
-.all-sounds-btn:focus .circle{
-  stroke-dashoffset: 0;
-  opacity: 1;
-} 
-.all-sounds-btn:focus .triangle{
-  stroke-dashoffset: 0;
-  opacity: 1;
-  stroke: rgb(189, 178, 29);
-} 
-
 /* baby sleep btn */
 
 
