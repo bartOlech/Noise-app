@@ -15,7 +15,8 @@ class Sounds extends Component{
         super(props)
         this.state = {
             cntIsVisible: false,
-            menuBtnIsCheck: false
+            menuBtnIsCheck: false,
+            
         }
     }
 
@@ -40,7 +41,7 @@ class Sounds extends Component{
     playBtn = ()=>{
         return(
             <div className="sounds-playIcoBtn">
-                <div class='internal-sounds-playIcoBtn'>
+                <div className='internal-sounds-playIcoBtn'>
                     <svg
                     x="0px"
                     y="0px"
@@ -79,13 +80,17 @@ class Sounds extends Component{
         )
     }
 
+    mouseOverBtn = ()=>{
+        console.log('work')
+    }
+
     render(){
         const{cntIsVisible, menuBtnIsCheck} = this.state;
         return(
             <div style={cntIsVisible?null:hideCnt}>
                 <div style={menuBtnIsCheck?fade:null}>
                 <div className="wrapperSounds">
-                      <button className='all-sounds-btn'>
+                      <button onMouseOver={this.mouseOverBtn} className='all-sounds-btn'>
                         {this.playBtn()}
                       Example
                       </button>

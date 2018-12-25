@@ -488,7 +488,7 @@ button:focus { outline: none; }
   transform: translateY(0);
   
 }
-.sounds-playIcoBtn:hover .triangle {
+.all-sounds-btn:hover .triangle {
   stroke-dashoffset: 0;
   opacity: 1;
   stroke: rgb(14, 77, 92);
@@ -511,7 +511,7 @@ button:focus { outline: none; }
     transform: translateX(0);
   }
 }
-.sounds-playIcoBtn:hover .circle {
+.all-sounds-btn:hover .circle {
   stroke-dashoffset: 0;
   opacity: 1;
 }
