@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-// import styled from 'styled-components';
 import '../App.css';
+import Sound from 'react-sound';
+import piano from '../sounds/piano.mp3';
+import violin from '../sounds/violin.mp3';
+import guitar from '../sounds/guitar.mp3';
 
 const hideCnt = {
     display: 'none'
@@ -26,7 +29,9 @@ class Sounds extends Component{
         this.state = {
             cntIsVisible: false,
             menuBtnIsCheck: false,
-            clickedNumberOfButton: null
+            clickedNumberOfButton: null,
+            sounds: [],
+            curSoundBtnClicked: 0
         }
     }
 
@@ -50,6 +55,7 @@ class Sounds extends Component{
 
     playBtn = (val)=>{
         const{clickedNumberOfButton} = this.state;
+       
         return(
             <div className="sounds-playIcoBtn">
                 <div className='internal-sounds-playIcoBtn'>
@@ -95,6 +101,9 @@ class Sounds extends Component{
 
     clickSoundBtn = (number)=>{
         const{clickedNumberOfButton} = this.state;
+        this.setState({
+            curSoundBtnClicked: number
+        })
         if(clickedNumberOfButton === number){
             this.setState({
                 clickedNumberOfButton: null
@@ -104,15 +113,42 @@ class Sounds extends Component{
                 clickedNumberOfButton: number
             })
         }
+        
+    }
+
+    playSound(){
+        const{sounds, curSoundBtnClicked, clickedNumberOfButton} = this.state;
+        let currentSound = piano;
+        
+        sounds.splice(0)
+        sounds.push(piano, violin, guitar, piano);
+        currentSound = sounds[curSoundBtnClicked]
+        return (
+            <Sound
+              url={currentSound}
+              playStatus={clickedNumberOfButton !== curSoundBtnClicked?Sound.status.STOPPED:Sound.status.PLAYING}
+              loop={true}
+              //volume={volumeVal}
+              // DODAĆ FUNKCJE WYCISZAJĄCĄ (VOLUME)
+            />
+          );
     }
 
     render(){
         const{cntIsVisible, menuBtnIsCheck} = this.state;
         return(
             <div style={cntIsVisible?null:hideCnt}>
+
+            {this.playSound()}
+
                 <div style={menuBtnIsCheck?fade:null}>
                 <div className="wrapperSounds">
-                      <button onClick={() => this.clickSoundBtn('1')} className='all-sounds-btn'>
+                      <button onClick={() => this.clickSoundBtn('0')} className='all-sounds-btn'>
+                        {this.playBtn('0')}
+                      Example
+                      </button>
+
+                      <button onClick={() => this.clickSoundBtn('1')}  className='all-sounds-btn'>
                         {this.playBtn('1')}
                       Example
                       </button>
@@ -124,11 +160,6 @@ class Sounds extends Component{
 
                       <button onClick={() => this.clickSoundBtn('3')}  className='all-sounds-btn'>
                         {this.playBtn('3')}
-                      Example
-                      </button>
-
-                      <button onClick={() => this.clickSoundBtn('4')}  className='all-sounds-btn'>
-                        {this.playBtn('4')}
                       Example
                       </button>
                 </div>
