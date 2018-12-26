@@ -219,6 +219,7 @@ class MainContent extends Component{
         })
     }
 
+
     render(){
         const {isClicked, button1, button2, button3, category, animationValue, cntIsVisible, menuIsClicked} = this.state;
         return(

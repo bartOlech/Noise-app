@@ -95,6 +95,21 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener("resize", this.showWaveImg.bind(this));
+}
+
+  showWaveImg() {
+    const{babyCntIsClicked} = this.state
+    if(window.innerWidth > 600){
+        return(
+          <div style={babyCntIsClicked?hideEl:null} className='waves-cnt'>
+          <section className='wave'></section>
+        </div>
+        )
+     }
+}
+
   
 
   render() {
@@ -106,9 +121,7 @@ class App extends Component {
         {/* sound / mute ico */}
         <img style={babyCntIsClicked?hideEl:null} onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
 
-        <div style={babyCntIsClicked?hideEl:null} className='waves-cnt'>
-          <section className='wave'></section>
-        </div>
+        {this.showWaveImg()}
         <BabySleep ref={this.childBabyBtn}></BabySleep>
         <Sounds ref={this.childMoreSounds}></Sounds>
         <MainContent clickCnt={this.clickCnt} ref={this.child}></MainContent>

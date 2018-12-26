@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import babySleepImg from '../img/sleep.png';
 import muteIco from '../img/mute-ico.png';
 import soundIco from '../img/sound-ico.png';
-import babySound from '../sounds/piano.mp3';
+import babySound from '../sounds/fire.mp3';
 
 const HideStyle = {
     display: 'none'
