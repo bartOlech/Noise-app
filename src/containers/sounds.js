@@ -99,18 +99,18 @@ class Sounds extends Component{
         )
     }
 
-    clickSoundBtn = (number)=>{
+    clickSoundBtn = (event)=>{
         const{clickedNumberOfButton} = this.state;
         this.setState({
-            curSoundBtnClicked: number
+            curSoundBtnClicked: event.currentTarget.value
         })
-        if(clickedNumberOfButton === number){
+        if(clickedNumberOfButton === event.currentTarget.value){
             this.setState({
                 clickedNumberOfButton: null
             })
         }else{
             this.setState({
-                clickedNumberOfButton: number
+                clickedNumberOfButton: event.currentTarget.value
             })
         }
         
@@ -143,22 +143,22 @@ class Sounds extends Component{
 
                 <div style={menuBtnIsCheck?fade:null}>
                 <div className="wrapperSounds">
-                      <button onClick={() => this.clickSoundBtn('0')} className='all-sounds-btn'>
+                      <button value='0' onClick={this.clickSoundBtn} className='all-sounds-btn'>
                         {this.playBtn('0')}
                       Example
                       </button>
 
-                      <button onClick={() => this.clickSoundBtn('1')}  className='all-sounds-btn'>
+                      <button value='1' onClick={this.clickSoundBtn}  className='all-sounds-btn'>
                         {this.playBtn('1')}
                       Example
                       </button>
 
-                      <button onClick={() => this.clickSoundBtn('2')}  className='all-sounds-btn'>
+                      <button value='2' onClick={this.clickSoundBtn}  className='all-sounds-btn'>
                         {this.playBtn('2')}
                       Example
                       </button>
 
-                      <button onClick={() => this.clickSoundBtn('3')}  className='all-sounds-btn'>
+                      <button value='3' onClick={this.clickSoundBtn}  className='all-sounds-btn'>
                         {this.playBtn('3')}
                       Example
                       </button>
