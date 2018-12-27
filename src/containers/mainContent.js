@@ -66,22 +66,22 @@ class MainContent extends Component{
         this.child = React.createRef();
     }
 
-        clickBtn = (val)=>{
+        clickBtn = (event)=>{
 
             this.setState({
                 isClicked: true,
-                animationValue: val,
-                currentSelectedCtg: val
+                animationValue: event.currentTarget.value,
+                currentSelectedCtg: event.currentTarget.value
             })
-            if(val === this.state.animationValue){
+            if(event.currentTarget.value === this.state.animationValue){
                 this.setState({
                     animationValue: '',
                     currentSelectedCtg: ''
                 })
             }  
-            val === 'btn1'?this.setState({btn1: true}):this.setState({btn1: false});
-            val === 'btn2'?this.setState({btn2: true}):this.setState({btn2: false});
-            val === 'btn3'?this.setState({btn3: true}):this.setState({btn3: false});
+            event.currentTarget.value === 'btn1'?this.setState({btn1: true}):this.setState({btn1: false});
+            event.currentTarget.value === 'btn2'?this.setState({btn2: true}):this.setState({btn2: false});
+            event.currentTarget.value === 'btn3'?this.setState({btn3: true}):this.setState({btn3: false});
 
         }
         setValue = (val)=>{
@@ -234,11 +234,11 @@ class MainContent extends Component{
                 {this.playSound()}
             
               <ul className='music-btn-list'>
-                    <li><button onClick={() => this.clickBtn('btn1')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn1'?btnStyle.animation:null} className={animationValue === 'btn1'?' checked-btn-button round btn1':'round btn1'}>{button1}<div style={animationValue === 'btn1'?visibleImg:null} className='round'><img src={PlayIcon} alt='play ico'></img></div></button>
+                    <li><button value='btn1' onClick={this.clickBtn} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn1'?btnStyle.animation:null} className={animationValue === 'btn1'?' checked-btn-button round btn1':'round btn1'}>{button1}<div style={animationValue === 'btn1'?visibleImg:null} className='round'><img src={PlayIcon} alt='play ico'></img></div></button>
                     </li>
-                    <li><button onClick={() => this.clickBtn('btn2')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn2'?btnStyle.animation:null} className={animationValue === 'btn2'?' checked-btn-button round btn2':'round btn2'}>{button2}<div style={animationValue === 'btn2'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
+                    <li><button value='btn2' onClick={this.clickBtn} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn2'?btnStyle.animation:null} className={animationValue === 'btn2'?' checked-btn-button round btn2':'round btn2'}>{button2}<div style={animationValue === 'btn2'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
                     </li>
-                    <li><button onClick={() => this.clickBtn('btn3')} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn3'?btnStyle.animation:null} className={animationValue === 'btn3'?' checked-btn-button round btn3':'round btn3'}>{button3}<div style={animationValue === 'btn3'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
+                    <li><button value='btn3' onClick={this.clickBtn} onAnimationEnd={() => this.setState({isClicked: false})} style={isClicked && animationValue === 'btn3'?btnStyle.animation:null} className={animationValue === 'btn3'?' checked-btn-button round btn3':'round btn3'}>{button3}<div style={animationValue === 'btn3'?visibleImg:null} className="round"><img src={PlayIcon} alt='play ico'></img></div></button>
                     </li>
                  </ul> 
             </Content>
