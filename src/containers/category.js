@@ -23,8 +23,8 @@ class Category extends Component{
             isClickedBtn: false
         }
     }
-    chooseCategory = (val)=>{
-        this.props.ctgValue(val);
+    chooseCategory = (event)=>{
+        this.props.ctgValue(event.currentTarget.value);
         this.setState({
             visibleContent: false,
             isClickedBtn: true
@@ -45,11 +45,11 @@ class Category extends Component{
                 <div className='category-content'>
                     <h3>Wybierz kategorię:</h3>
                     <div className='content-buttons'>
-                        <button className='ctg-btn ctg-btn-1' onClick={()=>this.chooseCategory('learn')}><span className='ctg-text'>Nauka</span>
+                        <button value='learn' className='ctg-btn ctg-btn-1' onClick={this.chooseCategory}><span className='ctg-text'>Nauka</span>
                         </button>
-                        <button className='ctg-btn ctg-btn-2' onClick={()=>this.chooseCategory('relax')}><span className='ctg-text'>Relaks</span>
+                        <button value='relax' className='ctg-btn ctg-btn-2' onClick={this.chooseCategory}><span className='ctg-text'>Relaks</span>
                         </button>
-                        <button className='ctg-btn ctg-btn-3' onClick={()=>this.chooseCategory('sleep')}><span className='ctg-text'>Sen</span>
+                        <button value='sleep' className='ctg-btn ctg-btn-3' onClick={this.chooseCategory}><span className='ctg-text'>Sen</span>
                         </button>
                     </div>
                 </div>
