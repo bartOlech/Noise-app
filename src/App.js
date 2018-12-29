@@ -25,15 +25,16 @@ class App extends Component {
       babyCntIsClicked: false, //if is true, hide side elements
       selectedBabyComponent: false //is true if you'r in baby component then hide side el
     }
-    this.child = React.createRef();
+    this.childMainCnt = React.createRef();
     this.childBabyBtn = React.createRef();
     this.childMoreSounds = React.createRef();
   }
 
   clickLogo = ()=>{
-    this.child.current.resaveView();
+    this.childMainCnt.current.resaveView();
     this.childBabyBtn.current.hideCnt();
     this.childMoreSounds.current.hideCnt();
+    this.childMoreSounds.current.resaveView();
     this.setState({
       babyCntIsClicked: false,
       selectedBabyComponent: false,
@@ -43,7 +44,7 @@ class App extends Component {
   showBabySleepCnt = ()=>{
       this.childBabyBtn.current.showBabyCnt();
       this.childBabyBtn.current.fadeView();
-      this.child.current.hideCnt(); 
+      this.childMainCnt.current.hideCnt(); 
       this.childMoreSounds.current.hideCnt();
       this.childMoreSounds.current.fadeView();
       this.setState({
@@ -54,7 +55,7 @@ class App extends Component {
   }
 
   clickMenu = ()=>{
-    this.child.current.clickMenu();
+    this.childMainCnt.current.clickMenu();
     this.setState({
       menuIsClicked: !this.state.menuIsClicked,
       babyCntIsClicked: !this.state.babyCntIsClicked
@@ -71,7 +72,7 @@ class App extends Component {
   clickMoreSounds = ()=>{
     this.childMoreSounds.current.clickMoreSounds();
     this.childMoreSounds.current.fadeView();
-    this.child.current.hideCnt();
+    this.childMainCnt.current.hideCnt();
     this.childBabyBtn.current.hideCnt();
     this.childBabyBtn.current.fadeView();
     this.setState({
@@ -83,12 +84,14 @@ class App extends Component {
 
   clickSoundMuteIco = ()=>{
     if(this.state.muteIsClicked){
-      this.child.current.reduceVolume(0)
+      this.childMainCnt.current.reduceVolume(0)
+      this.childMoreSounds.current.reduceVolume(0);
       this.setState({
         muteIsClicked: false
       })
     }else{
-      this.child.current.increaseVolume(100)
+      this.childMainCnt.current.increaseVolume(100)
+      this.childMoreSounds.current.increaseVolume(100);
       this.setState({
         muteIsClicked: true
       })
@@ -124,7 +127,7 @@ class App extends Component {
         {this.showWaveImg()}
         <BabySleep ref={this.childBabyBtn}></BabySleep>
         <Sounds ref={this.childMoreSounds}></Sounds>
-        <MainContent clickCnt={this.clickCnt} ref={this.child}></MainContent>
+        <MainContent clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
         <GlobalStyle bcg={menuIsClicked? 'rgb(14, 129, 116)' : '#1D5A68'}></GlobalStyle>
         
       </div>

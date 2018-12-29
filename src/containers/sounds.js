@@ -31,7 +31,8 @@ class Sounds extends Component{
             menuBtnIsCheck: false,
             clickedNumberOfButton: null,
             sounds: [],
-            curSoundBtnClicked: 0
+            curSoundBtnClicked: 0,
+            volumeVal: 100
         }
     }
 
@@ -117,7 +118,7 @@ class Sounds extends Component{
     }
 
     playSound(){
-        const{sounds, curSoundBtnClicked, clickedNumberOfButton} = this.state;
+        const{sounds, curSoundBtnClicked, clickedNumberOfButton, volumeVal} = this.state;
         let currentSound = piano;
         
         sounds.splice(0)
@@ -128,10 +129,27 @@ class Sounds extends Component{
               url={currentSound}
               playStatus={clickedNumberOfButton !== curSoundBtnClicked?Sound.status.STOPPED:Sound.status.PLAYING}
               loop={true}
-              //volume={volumeVal}
-              // DODAĆ FUNKCJE WYCISZAJĄCĄ (VOLUME)
+              volume={volumeVal}
             />
           );
+    }
+
+    reduceVolume(){
+        this.setState({
+            volumeVal: 0
+        })
+     }
+
+     increaseVolume(){
+        this.setState({
+            volumeVal: 100
+        })
+    }
+
+    resaveView(){
+        this.setState({
+            clickedNumberOfButton: null
+        })
     }
 
     render(){
