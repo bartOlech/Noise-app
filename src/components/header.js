@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import mainLogo from '../img/logoo.png';
 import '../App.css';
+import LogInBtn from '../containers/logUser/logInBtn';
 
 const Content = styled.div`
         width: 100vw;
@@ -83,6 +84,7 @@ class Header extends Component{
     render(){
         return(
             <Content>
+                <LogInBtn></LogInBtn>
                 <Img onClick={this.clickHeaderLogo} src={mainLogo} alt='logo'></Img>
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
