@@ -21,12 +21,12 @@ class LogInBtn extends Component{
     constructor(props){
         super(props)
         this.state = {
-
+            isClicked: !false
         }
     }
 
     logInBtn = ()=>{
-        console.log('work')
+        this.props.isClickedLogIn(this.state.isClicked);
     }
 
     render(){

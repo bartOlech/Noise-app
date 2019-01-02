@@ -24,7 +24,9 @@ class App extends Component {
       menuIsClicked: !false,
       muteIsClicked: !false,
       babyCntIsClicked: false, //if is true, hide side elements
-      selectedBabyComponent: false //is true if you'r in baby component then hide side el
+      selectedBabyComponent: false, //is true if you'r in baby component then hide side el
+      clickLogIn: false
+
     }
     this.childMainCnt = React.createRef();
     this.childBabyBtn = React.createRef();
@@ -101,7 +103,7 @@ class App extends Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.showWaveImg.bind(this));
-}
+  }
 
   showWaveImg() {
     const{babyCntIsClicked} = this.state
@@ -112,17 +114,38 @@ class App extends Component {
         </div>
         )
      }
-}
+  }
 
-  
+ 
+
+  logInPage(){
+    if(this.state.clickLogIn){
+      return(
+        <LogInCnt closeLogIn={this.closeLogIn}></LogInCnt>
+      )
+    }
+  }
+
+  closeLogIn = (val)=>{
+    this.setState({
+      clickLogIn: val
+    })
+  }
+
+  isClickedLogIn = (val)=>{
+    this.setState({
+      clickLogIn: val
+    })
+  }
 
   render() {
     const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
+    console.log(this.state.clickLogIn)
     return (
       <div>
         <Favicon url='./img/favicon.ico' />
-        <LogInCnt></LogInCnt>
-        <Header clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
+        {this.logInPage()}
+        <Header isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
         {/* sound / mute ico */}
         <img style={babyCntIsClicked?hideEl:null} onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
 

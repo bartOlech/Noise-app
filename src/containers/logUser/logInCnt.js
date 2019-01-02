@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import facebookIco from '../../img/facebook-ico.png';
 import googleIco from '../../img/google-ico.png';
+import CloseLogIn from './closeLogIn';
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Varela+Round');
@@ -141,10 +142,16 @@ class LogInCnt extends Component{
         }
     }
 
+    closeLogIn = (val)=>{
+        this.props.closeLogIn(val)
+    }
+
 render(){
+
     return( 
         <Content>
             <GlobalStyle></GlobalStyle>
+            <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
             <Tittle>Zaloguj się przez</Tittle>
             <Buttons>
                 <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>

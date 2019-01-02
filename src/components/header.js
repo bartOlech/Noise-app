@@ -38,7 +38,8 @@ class Header extends Component{
     state = {
         horizontalLine:'',
         menuIsClicked: !false,
-        isChecked: false
+        isChecked: false,
+        isClickedLogIn: null
     }
 
     textOver=(el)=>{
@@ -80,11 +81,15 @@ class Header extends Component{
             isChecked: false
         })
     }
+
+    isClickedLogIn = (val)=>{
+        this.props.isClickedLogIn(val)
+    }
     
     render(){
         return(
             <Content>
-                <LogInBtn></LogInBtn>
+                <LogInBtn isClickedLogIn={this.isClickedLogIn}></LogInBtn>
                 <Img onClick={this.clickHeaderLogo} src={mainLogo} alt='logo'></Img>
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
