@@ -116,7 +116,7 @@ class App extends Component {
      }
   }
 
- 
+ //log-in page
 
   logInPage(){
     if(this.state.clickLogIn){
@@ -140,7 +140,6 @@ class App extends Component {
 
   render() {
     const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
-    console.log(this.state.clickLogIn)
     return (
       <div>
         <Favicon url='./img/favicon.ico' />

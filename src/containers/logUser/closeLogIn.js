@@ -10,6 +10,9 @@ const CloseBtn = styled.img`
     width: 30px;
     height: 30px;
     opacity: .8;
+    &:hover{
+        opacity: .9;
+    }
 `
 
 class CloseLogIn extends Component{
