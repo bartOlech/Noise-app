@@ -7,6 +7,7 @@ import BabySleep from './components/babySleep';
 import Sounds from './containers/sounds';
 import muteIco from './img/mute-ico.png';
 import soundIco from './img/sound-ico.png';
+import LogInCnt from './containers/logUser/logInCnt';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -120,6 +121,7 @@ class App extends Component {
     return (
       <div>
         <Favicon url='./img/favicon.ico' />
+        <LogInCnt></LogInCnt>
         <Header clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
         {/* sound / mute ico */}
         <img style={babyCntIsClicked?hideEl:null} onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>

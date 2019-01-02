@@ -24,10 +24,15 @@ class LogInBtn extends Component{
 
         }
     }
+
+    logInBtn = ()=>{
+        console.log('work')
+    }
+
     render(){
         return(
             <div>
-                <Btn>Zaloguj się</Btn>
+                <Btn onClick={this.logInBtn}>Zaloguj się</Btn>
             </div>
         )
     }
