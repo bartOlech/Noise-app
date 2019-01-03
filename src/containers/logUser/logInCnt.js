@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Content = styled.div`
     width: 340px;
-    height: 600px;
+    min-height: 600px;
     background-color: #f1f6fc;
     position: absolute;
     z-index: 7;
@@ -20,6 +20,7 @@ const Content = styled.div`
     border-radius: 8px;
     @media(max-width: 410px){
         width: 310px;
+        top: 330px;
     }
 `
 
@@ -145,6 +146,10 @@ const SingUp = styled.div`
     color: #555555;
     text-align: center;
     margin-top: 40px;
+    @media(max-width: 410px){
+        margin-top: 20px;
+        margin-bottom: 25px;
+    }
 `
 
 const CreateAccount = styled.a`
@@ -157,34 +162,76 @@ class LogInCnt extends Component{
     constructor(props){
         super(props)
         this.state = {
-
+            mainText: 'Zaloguj się przez',
+            logRegBtn: 'Zaloguj',
+            accountInfoText: 'Nie posiadasz konta?',
+            accountInfoBtn: 'Załóż teraz',
+            forgotPass: 'Nie pamiętasz hasła?',
+            logPage: !true
         }
     }
 
     closeLogIn = (val)=>{
         this.props.closeLogIn(val)
     }
+    logOrReg = ()=>{
+
+    }
+    logRegBtn = ()=>{
+        const {logPage} = this.state;
+        this.setState({
+            logPage: !logPage
+        })
+        if(logPage){
+            this.setState({
+                mainText: 'Zaloguj się przez',
+                logRegBtn: 'Zaloguj',
+                accountInfoText: 'Nie posiadasz konta?',
+                forgotPass: 'Nie pamiętasz hasła?',
+                accountInfoBtn: 'Załóż teraz'
+            })
+        }else{
+            this.setState({
+                mainText: 'Zarejestruj się',
+                logRegBtn: 'Zarejestruj',
+                accountInfoText: 'Posiadasz konto?',
+                forgotPass: null,
+                accountInfoBtn: 'Zaloguj się'
+            })
+        }
+    }
+
+    repeatPass = ()=>{
+        return(
+            <React.Fragment>
+                <FormText htmlFor='password2'>Powtórz hasło</FormText>
+                <FormInput type='password' id='password2' name='password2'></FormInput>
+            </React.Fragment>
+        )
+    }
 
 render(){
-
+    const {mainText, logRegBtn,accountInfoText, accountInfoBtn, forgotPass, logPage} = this.state;
+    this.logOrReg()
     return( 
         <Content>
             <GlobalStyle></GlobalStyle>
             <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
-            <Tittle>Zaloguj się przez</Tittle>
+            <Tittle>{mainText}</Tittle>
             <Buttons>
                 <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
                 <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
             </Buttons>
             <Form>
-                <FormText htmlFor='username'>Nazwa użytkownika</FormText>
+                <FormText htmlFor='username'>Email</FormText>
                 <FormInput type='text' id='username' name='username'></FormInput>
                 <FormText htmlFor='password'>Hasło</FormText>
                 <FormInput type='password' id='password' name='password'></FormInput>
-                <ForgotPass>Nie pamiętasz hasła?</ForgotPass>
-                <SubmitBtn>Zaloguj</SubmitBtn>
+                {logPage?this.repeatPass():null}
+                <ForgotPass>{forgotPass}</ForgotPass>
+                <SubmitBtn>{logRegBtn}</SubmitBtn>
             </Form>
-            <SingUp>Nie posiadasz konta?<CreateAccount>Załóż teraz</CreateAccount></SingUp>
+            <SingUp>{accountInfoText}<CreateAccount onClick={this.logRegBtn}>{accountInfoBtn}</CreateAccount></SingUp>
         </Content>  
     )
 }

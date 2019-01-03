@@ -25,7 +25,8 @@ class App extends Component {
       muteIsClicked: !false,
       babyCntIsClicked: false, //if is true, hide side elements
       selectedBabyComponent: false, //is true if you'r in baby component then hide side el
-      clickLogIn: false
+      //clickLogIn: false
+      clickLogIn: true
 
     }
     this.childMainCnt = React.createRef();
