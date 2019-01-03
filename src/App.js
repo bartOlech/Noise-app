@@ -11,7 +11,7 @@ import LogInCnt from './containers/logUser/logInCnt';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: ${props => props.bcg}
+    background-color: ${props => props.bcg};
   }
 `
 const hideEl = {

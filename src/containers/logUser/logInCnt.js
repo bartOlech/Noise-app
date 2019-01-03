@@ -13,11 +13,14 @@ const Content = styled.div`
     height: 600px;
     background-color: #f1f6fc;
     position: absolute;
-    z-index: 3;
+    z-index: 7;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 8px;
+    @media(max-width: 410px){
+        width: 310px;
+    }
 `
 
 const Tittle = styled.h2`
@@ -33,6 +36,10 @@ const Buttons = styled.div`
     display:flex;
     justify-content: center;
     margin-top: 30px;
+    @media(max-width: 410px){
+        flex-direction: column;
+        align-items: center;
+    }
 `
 
 const FacebookBtn = styled.button`
@@ -50,6 +57,12 @@ const FacebookBtn = styled.button`
     font-family: 'Trebuchet MS';
     &:hover{
         background-color: rgb(49, 77, 138);
+    }
+    @media(max-width: 410px){
+        flex-direction: column;
+        align-items: center;
+        margin-right: 0;
+        margin-bottom: 15px;
     }
 `
 const GoogleBtn = styled.button`
@@ -97,6 +110,9 @@ const FormInput = styled.input`
     border: none;
     box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2);
     margin-bottom: 15px;
+    @media(max-width: 410px){
+        width: 200px;
+    }
 `
 
 const ForgotPass = styled.a`
@@ -119,6 +135,9 @@ const SubmitBtn = styled.button`
     cursor: pointer;
     &:hover{
         background-color: #272727;
+    }
+    @media(max-width: 410px){
+        width: 200px;
     }
 `
 
