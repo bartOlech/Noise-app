@@ -158,16 +158,18 @@ const CreateAccount = styled.a`
     padding-left: 5px;
 `
 
-class LogInCnt extends Component{
+const LogInCnt = styled.div`
+    display: ${props => props.displayLogin};
+`
+const SingUpCnt = styled.div`
+    display: ${props => props.displaySingup};
+`
+
+class LogInSingUp extends Component{
     constructor(props){
         super(props)
         this.state = {
-            mainText: 'Zaloguj się przez',
-            logRegBtn: 'Zaloguj',
-            accountInfoText: 'Nie posiadasz konta?',
-            accountInfoBtn: 'Załóż teraz',
-            forgotPass: 'Nie pamiętasz hasła?',
-            logPage: !true
+            loginPage: !true
         }
     }
 
@@ -178,62 +180,56 @@ class LogInCnt extends Component{
 
     }
     logRegBtn = ()=>{
-        const {logPage} = this.state;
+        const {loginPage} = this.state;
         this.setState({
-            logPage: !logPage
+            loginPage: !loginPage
         })
-        if(logPage){
-            this.setState({
-                mainText: 'Zaloguj się przez',
-                logRegBtn: 'Zaloguj',
-                accountInfoText: 'Nie posiadasz konta?',
-                forgotPass: 'Nie pamiętasz hasła?',
-                accountInfoBtn: 'Załóż teraz'
-            })
-        }else{
-            this.setState({
-                mainText: 'Zarejestruj się',
-                logRegBtn: 'Zarejestruj',
-                accountInfoText: 'Posiadasz konto?',
-                forgotPass: null,
-                accountInfoBtn: 'Zaloguj się'
-            })
-        }
-    }
-
-    repeatPass = ()=>{
-        return(
-            <React.Fragment>
-                <FormText htmlFor='password2'>Powtórz hasło</FormText>
-                <FormInput type='password' id='password2' name='password2'></FormInput>
-            </React.Fragment>
-        )
     }
 
 render(){
-    const {mainText, logRegBtn,accountInfoText, accountInfoBtn, forgotPass, logPage} = this.state;
+    const {loginPage} = this.state;
     this.logOrReg()
     return( 
         <Content>
             <GlobalStyle></GlobalStyle>
-            <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
-            <Tittle>{mainText}</Tittle>
-            <Buttons>
-                <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
-                <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
-            </Buttons>
-            <Form>
-                <FormText htmlFor='username'>Email</FormText>
-                <FormInput type='text' id='username' name='username'></FormInput>
-                <FormText htmlFor='password'>Hasło</FormText>
-                <FormInput type='password' id='password' name='password'></FormInput>
-                {logPage?this.repeatPass():null}
-                <ForgotPass>{forgotPass}</ForgotPass>
-                <SubmitBtn>{logRegBtn}</SubmitBtn>
-            </Form>
-            <SingUp>{accountInfoText}<CreateAccount onClick={this.logRegBtn}>{accountInfoBtn}</CreateAccount></SingUp>
+            <LogInCnt displayLogin={loginPage?'none':'inline'}>
+                <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
+                <Tittle>Zaloguj się przez</Tittle>
+                <Buttons>
+                    <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
+                    <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
+                </Buttons>
+                <Form method='POST' action='/login'>
+                    <FormText htmlFor='emailLogin'>Email</FormText>
+                    <FormInput type='text' id='emailLogin' name='emailLogin'></FormInput>
+                    <FormText htmlFor='passwordLogin'>Hasło</FormText>
+                    <FormInput type='password' id='passwordLogin' name='passwordLogin'></FormInput>
+                    <ForgotPass>Nie pamiętasz hasła?</ForgotPass>
+                    <SubmitBtn>Zaloguj się</SubmitBtn>
+                </Form>
+                <SingUp>Nie posiadasz konta?<CreateAccount onClick={this.logRegBtn}>Zarejestruj się</CreateAccount></SingUp>
+            </LogInCnt>
+            <SingUpCnt displaySingup={loginPage?'inline':'none'}>
+            {console.log(loginPage)} 
+                <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
+                <Tittle>Zarejestruj się</Tittle>
+                <Buttons>
+                    <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
+                    <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
+                </Buttons>
+                <Form method='POST' action='/singup'>
+                    <FormText htmlFor='emailSingup'>Email</FormText>
+                    <FormInput type='text' id='emailSingup' name='emailSingup'></FormInput>
+                    <FormText htmlFor='passwordSingup'>Hasło</FormText>
+                    <FormInput type='password' id='passwordSingup' name='passwordSingup'></FormInput>
+                    <FormText htmlFor='passwordSingup2'>Powtórz hasło</FormText>
+                    <FormInput type='password' id='passwordSingup2' name='passwordSingup2'></FormInput>
+                    <SubmitBtn>Zarejestruj się</SubmitBtn>
+                </Form>
+                <SingUp>Posiadasz konto?<CreateAccount onClick={this.logRegBtn}>Zaloguj się</CreateAccount></SingUp>
+            </SingUpCnt>
         </Content>  
     )
 }
 }
-export default LogInCnt;
+export default LogInSingUp;
