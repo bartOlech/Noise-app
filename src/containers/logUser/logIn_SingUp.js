@@ -169,7 +169,8 @@ class LogInSingUp extends Component{
     constructor(props){
         super(props)
         this.state = {
-            loginPage: !true
+            loginPage: !true,
+            val: ''
         }
     }
 
@@ -182,7 +183,33 @@ class LogInSingUp extends Component{
     logRegBtn = ()=>{
         const {loginPage} = this.state;
         this.setState({
-            loginPage: !loginPage
+            loginPage: !loginPage,
+        })
+    }
+
+    handleSubmit = (event)=>{
+    event.preventDefault();
+    
+    fetch('/api/log', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: this.state.val
+        })
+      }).then(res => res.json())
+        .then(json => {
+          console.log('json', json);
+        }).catch(err => {
+            
+        })
+    }
+
+    changed = (event)=>{
+        event.preventDefault()
+        this.setState({
+            val: event.currentTarget.value
         })
     }
 
@@ -199,9 +226,9 @@ render(){
                     <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
                     <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
                 </Buttons>
-                <Form method='POST' action='/login'>
+                <Form onSubmit={this.handleSubmit} method='POST'>
                     <FormText htmlFor='emailLogin'>Email</FormText>
-                    <FormInput type='text' id='emailLogin' name='emailLogin'></FormInput>
+                    <FormInput onChange={this.changed} type='text' id='emailLogin' name='emailLogin'></FormInput>
                     <FormText htmlFor='passwordLogin'>Hasło</FormText>
                     <FormInput type='password' id='passwordLogin' name='passwordLogin'></FormInput>
                     <ForgotPass>Nie pamiętasz hasła?</ForgotPass>
@@ -210,7 +237,6 @@ render(){
                 <SingUp>Nie posiadasz konta?<CreateAccount onClick={this.logRegBtn}>Zarejestruj się</CreateAccount></SingUp>
             </LogInCnt>
             <SingUpCnt displaySingup={loginPage?'inline':'none'}>
-            {console.log(loginPage)} 
                 <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                 <Tittle>Zarejestruj się</Tittle>
                 <Buttons>
