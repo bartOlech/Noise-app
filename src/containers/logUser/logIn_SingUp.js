@@ -92,7 +92,7 @@ const Ico = styled.img`
 `
 //form
 
-const Form = styled.form`
+const FormCnt = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,13 +164,54 @@ const LogInCnt = styled.div`
 const SingUpCnt = styled.div`
     display: ${props => props.displaySingup};
 `
+const ErrorInfoCnt = styled.div`
+    display: flex; 
+    justify-content: center;
+    display: ${props => props.error};
+`
+
+const ErrorInfo = styled.div`
+    width: 280px;
+    min-height: 32px;
+    background-color: #d9534f;
+    text-align: center;
+    color: #fff;
+    padding-top: 3px;
+    margin-top: 10px;
+    border-radius: 5px;
+`
+
+const SuccessInfoCnt = styled.div`
+    display: flex; 
+    justify-content: center;
+    display: ${props => props.success};
+`
+
+const SuccessInfo = styled.div`
+    width: 280px;
+    min-height: 32px;
+    background-color: #5cb85c;
+    text-align: center;
+    color: #fff;
+    padding-top: 3px;
+    margin-top: 10px;
+    border-radius: 5px;
+`
 
 class LogInSingUp extends Component{
     constructor(props){
         super(props)
         this.state = {
-            loginPage: !true,
-            val: ''
+            //loginPage: !true,
+            loginPage: true,
+            valEmailSingUp: '',
+            valPassSingUp: '',
+            valPass2SingUp: '',
+            correctSingUp: true,
+            inputError: false,
+            inputSucces: false,
+            inputErrorEmailText: '',
+            inputErrorPassText: '',
         }
     }
 
@@ -187,34 +228,112 @@ class LogInSingUp extends Component{
         })
     }
 
-    handleSubmit = (event)=>{
-    event.preventDefault();
-    
-    fetch('/api/log', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: this.state.val
-        })
-      }).then(res => res.json())
-        .then(json => {
-          console.log('json', json);
-        }).catch(err => {
-            
-        })
+    formValid = ()=>{
+        const {valEmailSingUp, valPassSingUp, valPass2SingUp, inputSucces} = this.state;
+
+        const emailTest = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const emailValidation = emailTest.test(String(valEmailSingUp).toLowerCase());
+
+        if(!emailValidation){
+            if(valPassSingUp !== valPass2SingUp){
+                this.setState({
+                    inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się',
+                })
+            }else{
+                this.setState({
+                    inputErrorText: 'Podany email jest niepoprawny',
+
+                })
+            }
+        }
+        if(valPassSingUp !== valPass2SingUp || valPassSingUp === '' || valPass2SingUp === ''){
+            if(!emailValidation){
+                if(valPassSingUp === '' && valPass2SingUp === ''){
+                    this.setState({
+                        inputErrorText: 'Podany email jest niepoprawny. Wprowadź hasło'
+                    })
+                }else{
+                    this.setState({
+                        inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się'
+                    })
+                }
+            }else{
+                if(valPassSingUp === '' && valPass2SingUp === ''){
+                    this.setState({
+                        inputErrorText: 'Wpisz hasło'
+                    })
+                }else{
+                    this.setState({
+                        inputErrorText: 'Hasła różnią się'
+                    })
+                }
+            }
+        }
+        if(valEmailSingUp !== '' && valPassSingUp !== '' && valPass2SingUp !== '' && emailValidation && valPassSingUp === valPass2SingUp){
+            this.setState({
+                correctSingUp: true,
+                inputError: false,
+                inputSucces: true
+            })
+        }else{
+            this.setState({
+                correctSingUp: false,
+                inputError: true,
+                inputSucces: false
+            }) 
+        }
+        
     }
 
-    changed = (event)=>{
+    handleSubmitSingUp = (event)=>{
+        event.preventDefault();
+        const {correctSingUp, valEmailSingUp, valPassSingUp, valPass2SingUp} = this.state;
+
+        
+        
+        console.log(correctSingUp)
+    if(correctSingUp){
+        fetch('/api/log', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                valEmailSingUp,
+                valPassSingUp,
+                valPass2SingUp
+            })
+        }).then(res => res.json())
+            .then(json => {
+            console.log('json', json);
+            }).catch(err => {
+                
+        }) 
+    }  
+}
+
+
+    inputEmailSingUp = (event)=>{
         event.preventDefault()
         this.setState({
-            val: event.currentTarget.value
+            valEmailSingUp: event.currentTarget.value
+        })
+    }
+    inputPassSingUp = (event)=>{
+        event.preventDefault()
+        this.setState({
+            valPassSingUp: event.currentTarget.value
+        })
+    }
+    inputPass2SingUp = (event)=>{
+        event.preventDefault()
+        this.setState({
+            valPass2SingUp: event.currentTarget.value
         })
     }
 
 render(){
-    const {loginPage} = this.state;
+    const {loginPage, inputError, inputErrorText, valEmailSingUp, inputSucces} = this.state;
     this.logOrReg()
     return( 
         <Content>
@@ -226,14 +345,15 @@ render(){
                     <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
                     <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
                 </Buttons>
-                <Form onSubmit={this.handleSubmit} method='POST'>
+                
+                <FormCnt method='POST'>
                     <FormText htmlFor='emailLogin'>Email</FormText>
-                    <FormInput onChange={this.changed} type='text' id='emailLogin' name='emailLogin'></FormInput>
+                    <FormInput type='text' id='emailLogin' name='emailLogin'></FormInput>
                     <FormText htmlFor='passwordLogin'>Hasło</FormText>
                     <FormInput type='password' id='passwordLogin' name='passwordLogin'></FormInput>
                     <ForgotPass>Nie pamiętasz hasła?</ForgotPass>
                     <SubmitBtn>Zaloguj się</SubmitBtn>
-                </Form>
+                </FormCnt>
                 <SingUp>Nie posiadasz konta?<CreateAccount onClick={this.logRegBtn}>Zarejestruj się</CreateAccount></SingUp>
             </LogInCnt>
             <SingUpCnt displaySingup={loginPage?'inline':'none'}>
@@ -243,15 +363,19 @@ render(){
                     <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
                     <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
                 </Buttons>
-                <Form method='POST' action='/singup'>
+                {/* input alerts */}
+                <ErrorInfoCnt error={inputError?'flex':'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
+                <SuccessInfoCnt success={inputSucces?'flex':'none'}><SuccessInfo>Zarejestrowano pomyślnie</SuccessInfo></SuccessInfoCnt>
+
+                <FormCnt onSubmit={this.handleSubmitSingUp} method='POST'>
                     <FormText htmlFor='emailSingup'>Email</FormText>
-                    <FormInput type='text' id='emailSingup' name='emailSingup'></FormInput>
+                    <FormInput onChange={this.inputEmailSingUp} value={valEmailSingUp} type='text' id='emailSingup' name='emailSingup'></FormInput>
                     <FormText htmlFor='passwordSingup'>Hasło</FormText>
-                    <FormInput type='password' id='passwordSingup' name='passwordSingup'></FormInput>
+                    <FormInput onChange={this.inputPassSingUp} type='password' id='passwordSingup' name='passwordSingup'></FormInput>
                     <FormText htmlFor='passwordSingup2'>Powtórz hasło</FormText>
-                    <FormInput type='password' id='passwordSingup2' name='passwordSingup2'></FormInput>
-                    <SubmitBtn>Zarejestruj się</SubmitBtn>
-                </Form>
+                    <FormInput onChange={this.inputPass2SingUp} type='password' id='passwordSingup2' name='passwordSingup2'></FormInput>
+                    <SubmitBtn onClick={this.formValid}>Zarejestruj się</SubmitBtn>
+                </FormCnt>
                 <SingUp>Posiadasz konto?<CreateAccount onClick={this.logRegBtn}>Zaloguj się</CreateAccount></SingUp>
             </SingUpCnt>
         </Content>  
