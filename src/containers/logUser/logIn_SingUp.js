@@ -246,60 +246,58 @@ class LogInSingUp extends Component{
     }
 
     formValid = ()=>{
-        const {valEmailSingUp, valPassSingUp, valPass2SingUp} = this.state;
+        const {valEmailSingUp, valPassSingUp, valPass2SingUp, emailExist} = this.state;
 
         const emailTest = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const emailValidation = emailTest.test(String(valEmailSingUp).toLowerCase());
-
-        if(!emailValidation){
-            if(valPassSingUp !== valPass2SingUp){
-                this.setState({
-                    inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się',
-                })
-            }else{
-                this.setState({
-                    inputErrorText: 'Podany email jest niepoprawny',
-
-                })
-            }
-        }
-        if(valPassSingUp !== valPass2SingUp || valPassSingUp === '' || valPass2SingUp === ''){
             if(!emailValidation){
-                if(valPassSingUp === '' && valPass2SingUp === ''){
+                if(valPassSingUp !== valPass2SingUp ){
                     this.setState({
-                        inputErrorText: 'Podany email jest niepoprawny. Wprowadź hasło'
+                        inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się',
                     })
                 }else{
                     this.setState({
-                        inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się'
-                    })
-                }
-            }else{
-                if(valPassSingUp === '' && valPass2SingUp === ''){
-                    this.setState({
-                        inputErrorText: 'Wpisz hasło'
-                    })
-                }else{
-                    this.setState({
-                        inputErrorText: 'Hasła różnią się'
+                        inputErrorText: 'Podany email jest niepoprawny',
+    
                     })
                 }
             }
-        }
-        if(valEmailSingUp !== '' && valPassSingUp !== '' && valPass2SingUp !== '' && emailValidation && valPassSingUp === valPass2SingUp){
-            this.setState({
-                correctSingUp: true,
-                inputError: false,
-                inputSucces: true
-            })
-        }else{
-            this.setState({
-                correctSingUp: false,
-                inputError: true,
-                inputSucces: false
-            }) 
-        }
-        
+            if(valPassSingUp !== valPass2SingUp || valPassSingUp === '' || valPass2SingUp === ''){
+                if(!emailValidation){
+                    if(valPassSingUp === '' && valPass2SingUp === ''){
+                        this.setState({
+                            inputErrorText: 'Podany email jest niepoprawny. Wprowadź hasło'
+                        })
+                    }else{
+                        this.setState({
+                            inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się'
+                        })
+                    }
+                }else{
+                    if(valPassSingUp === '' && valPass2SingUp === ''){
+                        this.setState({
+                            inputErrorText: 'Wpisz hasło'
+                        })
+                    }else{
+                        this.setState({
+                            inputErrorText: 'Hasła różnią się'
+                        })
+                    }
+                }
+            }
+            if(valEmailSingUp !== '' && valPassSingUp !== '' && valPass2SingUp !== '' && emailValidation && valPassSingUp === valPass2SingUp){
+                this.setState({
+                    correctSingUp: true,
+                    inputError: false,
+                    inputSucces: true
+                })
+            }else{
+                this.setState({
+                    correctSingUp: false,
+                    inputError: true,
+                    inputSucces: false
+                }) 
+            } 
     }
 
     handleSubmitSingUp = (event)=>{
@@ -382,7 +380,7 @@ render(){
                 </Buttons>
                 {/* input alerts */}
                 <ErrorInfoCnt error={inputError?'flex':'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
-                <SuccessInfoCnt success={inputSucces?'flex':'none'}><SuccessInfo>Zarejestrowano pomyślnie</SuccessInfo></SuccessInfoCnt>
+                <SuccessInfoCnt success={inputSucces && emailExist === ''?'flex':'none'}><SuccessInfo>Zarejestrowano pomyślnie</SuccessInfo></SuccessInfoCnt>
 
                 <EmailExist alert={emailExist !== ''?'flex':'none'}><AlertInfo>{emailExist}</AlertInfo></EmailExist>
 
