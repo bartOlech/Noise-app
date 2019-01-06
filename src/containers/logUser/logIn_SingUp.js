@@ -202,7 +202,6 @@ class LogInSingUp extends Component{
     constructor(props){
         super(props)
         this.state = {
-            //loginPage: !true,
             loginPage: true,
             valEmailSingUp: '',
             valPassSingUp: '',
@@ -229,7 +228,7 @@ class LogInSingUp extends Component{
     }
 
     formValid = ()=>{
-        const {valEmailSingUp, valPassSingUp, valPass2SingUp, inputSucces} = this.state;
+        const {valEmailSingUp, valPassSingUp, valPass2SingUp} = this.state;
 
         const emailTest = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const emailValidation = emailTest.test(String(valEmailSingUp).toLowerCase());
@@ -288,10 +287,6 @@ class LogInSingUp extends Component{
     handleSubmitSingUp = (event)=>{
         event.preventDefault();
         const {correctSingUp, valEmailSingUp, valPassSingUp, valPass2SingUp} = this.state;
-
-        
-        
-        console.log(correctSingUp)
     if(correctSingUp){
         fetch('/api/log', {
             method: 'POST',
