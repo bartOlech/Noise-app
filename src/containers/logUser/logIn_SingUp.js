@@ -198,6 +198,23 @@ const SuccessInfo = styled.div`
     border-radius: 5px;
 `
 
+const AlertInfo = styled.div`
+    width: 280px;
+    min-height: 32px;
+    background-color: #ffc107;
+    text-align: center;
+    color: #fff;
+    padding-top: 3px;
+    margin-top: 10px;
+    border-radius: 5px;
+`
+
+const EmailExist = styled.div`
+    display: flex; 
+    justify-content: center;
+    display: ${props => props.alert};
+`
+
 class LogInSingUp extends Component{
     constructor(props){
         super(props)
@@ -211,6 +228,7 @@ class LogInSingUp extends Component{
             inputSucces: false,
             inputErrorEmailText: '',
             inputErrorPassText: '',
+            emailExist: ''
         }
     }
 
@@ -288,7 +306,7 @@ class LogInSingUp extends Component{
         event.preventDefault();
         const {correctSingUp, valEmailSingUp, valPassSingUp, valPass2SingUp} = this.state;
     if(correctSingUp){
-        fetch('/api/log', {
+        fetch('/api/singUp', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
@@ -300,7 +318,10 @@ class LogInSingUp extends Component{
             })
         }).then(res => res.json())
             .then(json => {
-            console.log('json', json);
+            //console.log('json', json);
+            this.setState({
+                emailExist: json.mailExist
+            })
             }).catch(err => {
                 
         }) 
@@ -328,7 +349,8 @@ class LogInSingUp extends Component{
     }
 
 render(){
-    const {loginPage, inputError, inputErrorText, valEmailSingUp, inputSucces} = this.state;
+    const {loginPage, inputError, inputErrorText, valEmailSingUp, inputSucces, emailExist} = this.state;
+    console.log(emailExist)
     this.logOrReg()
     return( 
         <Content>
@@ -361,6 +383,8 @@ render(){
                 {/* input alerts */}
                 <ErrorInfoCnt error={inputError?'flex':'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
                 <SuccessInfoCnt success={inputSucces?'flex':'none'}><SuccessInfo>Zarejestrowano pomyślnie</SuccessInfo></SuccessInfoCnt>
+
+                <EmailExist alert={emailExist !== ''?'flex':'none'}><AlertInfo>{emailExist}</AlertInfo></EmailExist>
 
                 <FormCnt onSubmit={this.handleSubmitSingUp} method='POST'>
                     <FormText htmlFor='emailSingup'>Email</FormText>
