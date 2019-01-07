@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import facebookIco from '../../img/facebook-ico.png';
 import googleIco from '../../img/google-ico.png';
 import CloseLogIn from './closeLogIn';
+import Loader from 'react-loader-spinner'
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Varela+Round');
@@ -96,7 +97,7 @@ const FormCnt = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 25px;
 `
 const FormText = styled.label`
     font-family: 'Varela Round', sans-serif;
@@ -215,6 +216,14 @@ const EmailExist = styled.div`
     display: ${props => props.alert};
 `
 
+const MsgCnt = styled.div`
+    display: ${props => props.visible};
+`
+const LoaderCnt = styled.div`
+    display: ${props => props.loader};
+    justify-content: center;
+`
+
 class LogInSingUp extends Component{
     constructor(props){
         super(props)
@@ -228,7 +237,9 @@ class LogInSingUp extends Component{
             inputSucces: false,
             inputErrorEmailText: '',
             inputErrorPassText: '',
-            emailExist: ''
+            emailExist: '',
+            loading: false,
+            SuccessSingUp: ''
         }
     }
 
@@ -289,7 +300,7 @@ class LogInSingUp extends Component{
                 this.setState({
                     correctSingUp: true,
                     inputError: false,
-                    inputSucces: true
+                    inputSucces: true,
                 })
             }else{
                 this.setState({
@@ -302,6 +313,9 @@ class LogInSingUp extends Component{
 
     handleSubmitSingUp = (event)=>{
         event.preventDefault();
+        this.setState({
+            loading: true
+        })
         const {correctSingUp, valEmailSingUp, valPassSingUp, valPass2SingUp} = this.state;
     if(correctSingUp){
         fetch('/api/singUp', {
@@ -314,14 +328,23 @@ class LogInSingUp extends Component{
                 valPassSingUp,
                 valPass2SingUp
             })
-        }).then(res => res.json())
+        })
+        .then(res =>res.json())
             .then(json => {
             //console.log('json', json);
             this.setState({
-                emailExist: json.mailExist
+                emailExist: json.mailExist,
+                SuccessSingUp: json.SuccessSingUp,
+                loading: false
             })
+            console.log('sss')
             }).catch(err => {
-                
+
+                //????????? here the function is performed if the email has been send
+
+                this.setState({
+                    loading: false
+                })
         }) 
     }  
 }
@@ -347,7 +370,7 @@ class LogInSingUp extends Component{
     }
 
 render(){
-    const {loginPage, inputError, inputErrorText, valEmailSingUp, inputSucces, emailExist} = this.state;
+    const {loginPage, inputError, inputErrorText, valEmailSingUp, inputSucces, emailExist, loading} = this.state;
     console.log(emailExist)
     this.logOrReg()
     return( 
@@ -379,10 +402,21 @@ render(){
                     <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
                 </Buttons>
                 {/* input alerts */}
-                <ErrorInfoCnt error={inputError?'flex':'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
-                <SuccessInfoCnt success={inputSucces && emailExist === ''?'flex':'none'}><SuccessInfo>Zarejestrowano pomyślnie</SuccessInfo></SuccessInfoCnt>
+                <MsgCnt visible={loading?'none':'inline'}>
+                    <ErrorInfoCnt error={inputError?'flex':'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
+                    <SuccessInfoCnt success={inputSucces && emailExist === ''?'flex':'none'}><SuccessInfo>Zarejestrowano pomyślnie</SuccessInfo></SuccessInfoCnt>
 
-                <EmailExist alert={emailExist !== ''?'flex':'none'}><AlertInfo>{emailExist}</AlertInfo></EmailExist>
+                    <EmailExist alert={emailExist !== ''?'flex':'none'}><AlertInfo>{emailExist}</AlertInfo></EmailExist>
+                </MsgCnt>
+                <LoaderCnt loader={loading?'flex':'none'}>
+                <Loader 
+                    type="ThreeDots"
+                    color="#555555"
+                    height="70"	
+                    width="100"
+                />   
+                </LoaderCnt>
+
 
                 <FormCnt onSubmit={this.handleSubmitSingUp} method='POST'>
                     <FormText htmlFor='emailSingup'>Email</FormText>
