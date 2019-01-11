@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import facebookIco from '../../img/facebook-ico.png';
-import googleIco from '../../img/google-ico.png';
 import CloseLogIn from './closeLogIn';
-import Loader from 'react-loader-spinner'
+import Loader from 'react-loader-spinner';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
+import { FaFacebookSquare } from 'react-icons/fa';
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Varela+Round');
@@ -38,59 +39,13 @@ const Buttons = styled.div`
     display:flex;
     justify-content: center;
     margin-top: 30px;
+    position: relative;
     @media(max-width: 410px){
         flex-direction: column;
         align-items: center;
     }
 `
 
-const FacebookBtn = styled.button`
-    width: 140px;
-    height: 50px;
-    background-color: #3B5998;
-    border: none;
-    border-radius: 8px;
-    margin-right: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    cursor: pointer;
-    font-family: 'Trebuchet MS';
-    &:hover{
-        background-color: rgb(49, 77, 138);
-    }
-    @media(max-width: 410px){
-        flex-direction: column;
-        align-items: center;
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
-`
-const GoogleBtn = styled.button`
-    width: 140px;
-    height: 50px;
-    background-color: #fff;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-family: 'Varela Round', sans-serif;
-    &:hover{
-        background-color: rgb(242, 244, 247);
-    }
-`
-const BtnTxt = styled.h4`
-    font-weight: 700;
-`
-
-const Ico = styled.img`
-    margin-left: -10px;
-    margin-right: 10px;
-`
 //form
 
 const FormCnt = styled.form`
@@ -224,6 +179,7 @@ const LoaderCnt = styled.div`
     justify-content: center;
 `
 
+
 class LogInSingUp extends Component{
     constructor(props){
         super(props)
@@ -257,7 +213,7 @@ class LogInSingUp extends Component{
     }
 
     formValid = ()=>{
-        const {valEmailSingUp, valPassSingUp, valPass2SingUp, emailExist} = this.state;
+        const {valEmailSingUp, valPassSingUp, valPass2SingUp} = this.state;
 
         const emailTest = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const emailValidation = emailTest.test(String(valEmailSingUp).toLowerCase());
@@ -337,7 +293,6 @@ class LogInSingUp extends Component{
                 SuccessSingUp: json.SuccessSingUp,
                 loading: false
             })
-            console.log('sss')
             }).catch(err => {
 
                 //????????? here the function is performed if the email has been send
@@ -369,6 +324,31 @@ class LogInSingUp extends Component{
         })
     }
 
+    responseFacebook = (response) => {
+        console.log(response);
+      }
+  
+    // responseGoogle = (response) => {
+    //     console.log(response);
+    //   }
+
+    singFb = () =>{
+        return(
+            <>
+                <FacebookLogin
+                    appId="2112647545458936" //APP ID NOT CREATED YET
+                    fields="name, email, picture"
+                    
+                    callback={this.responseFacebook}
+                />
+            </>
+        )
+    }
+
+    fbSingUp = () =>{
+        console.log('clicked')
+    }
+
 render(){
     const {loginPage, inputError, inputErrorText, valEmailSingUp, inputSucces, emailExist, loading} = this.state;
     console.log(emailExist)
@@ -377,12 +357,13 @@ render(){
         <Content>
             <GlobalStyle></GlobalStyle>
             <LogInCnt displayLogin={loginPage?'none':'inline'}>
+
                 <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                 <Tittle>Zaloguj się przez</Tittle>
-                <Buttons>
+                {/* <Buttons>
                     <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
                     <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
-                </Buttons>
+                </Buttons> */}
                 
                 <FormCnt method='POST'>
                     <FormText htmlFor='emailLogin'>Email</FormText>
@@ -395,11 +376,27 @@ render(){
                 <SingUp>Nie posiadasz konta?<CreateAccount onClick={this.logRegBtn}>Zarejestruj się</CreateAccount></SingUp>
             </LogInCnt>
             <SingUpCnt displaySingup={loginPage?'inline':'none'}>
+
                 <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                 <Tittle>Zarejestruj się</Tittle>
                 <Buttons>
-                    <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
-                    <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
+                    <FacebookLogin
+                        appId= "2112647545458936" //APP ID NOT CREATED YET
+                        onClick={this.fbSingUp}
+                        fields= "name, email, picture"
+                        callback= {this.responseFacebook}
+                        cssClass="my-facebook-button-class"
+                        textButton='Facebook'
+                        icon={<FaFacebookSquare className='fb-ico' size={30}/>}
+                    />
+                {/* <GoogleBtn>
+                    <GoogleLogin
+                        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                        buttonText="Login"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                    />
+                </GoogleBtn> */}
                 </Buttons>
                 {/* input alerts */}
                 <MsgCnt visible={loading?'none':'inline'}>
