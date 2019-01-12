@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
 * {
   margin: 0;
   padding: 0;
@@ -902,7 +903,7 @@ Toggle Changes
     height: 50px;
     background-color: #3B5998;
     border: none;
-    border-radius: 8px;
+    border-radius: 3px;
     margin-right: 20px;
     color: #fff;
     cursor: pointer;
@@ -913,6 +914,22 @@ Toggle Changes
 }
 .my-facebook-button-class:hover{
   background-color: rgb(49, 77, 138);
+}
+.my-google-button-class{
+  width: 140px;
+  height: 50px;
+  background-color: #fff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: 'Varela Round', sans-serif;
+}
+.my-google-button-class:hover{
+  background-color: rgb(242, 244, 247);
 }
 .fb-ico{
  position: absolute;

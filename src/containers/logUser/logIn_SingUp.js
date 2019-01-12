@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import { FaFacebookSquare } from 'react-icons/fa';
+import {config} from '../../config/config';
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Varela+Round');
@@ -328,26 +329,14 @@ class LogInSingUp extends Component{
         console.log(response);
       }
   
-    // responseGoogle = (response) => {
-    //     console.log(response);
-    //   }
-
-    singFb = () =>{
-        return(
-            <>
-                <FacebookLogin
-                    appId="2112647545458936" //APP ID NOT CREATED YET
-                    fields="name, email, picture"
-                    
-                    callback={this.responseFacebook}
-                />
-            </>
-        )
-    }
+    responseGoogle = (response) => {
+        console.log(response);
+      }
 
     fbSingUp = () =>{
         console.log('clicked')
     }
+
 
 render(){
     const {loginPage, inputError, inputErrorText, valEmailSingUp, inputSucces, emailExist, loading} = this.state;
@@ -360,10 +349,7 @@ render(){
 
                 <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                 <Tittle>Zaloguj się przez</Tittle>
-                {/* <Buttons>
-                    <FacebookBtn><Ico src={facebookIco}></Ico><BtnTxt>Facebook</BtnTxt></FacebookBtn>
-                    <GoogleBtn><Ico src={googleIco}></Ico><BtnTxt>Google</BtnTxt></GoogleBtn>
-                </Buttons> */}
+                {/* Buttons */}
                 
                 <FormCnt method='POST'>
                     <FormText htmlFor='emailLogin'>Email</FormText>
@@ -376,12 +362,11 @@ render(){
                 <SingUp>Nie posiadasz konta?<CreateAccount onClick={this.logRegBtn}>Zarejestruj się</CreateAccount></SingUp>
             </LogInCnt>
             <SingUpCnt displaySingup={loginPage?'inline':'none'}>
-
                 <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                 <Tittle>Zarejestruj się</Tittle>
                 <Buttons>
                     <FacebookLogin
-                        appId= "2112647545458936" //APP ID NOT CREATED YET
+                        appId= {config.FACEBOOK_APP_ID} //APP ID NOT CREATED YET
                         onClick={this.fbSingUp}
                         fields= "name, email, picture"
                         callback= {this.responseFacebook}
@@ -389,14 +374,13 @@ render(){
                         textButton='Facebook'
                         icon={<FaFacebookSquare className='fb-ico' size={30}/>}
                     />
-                {/* <GoogleBtn>
                     <GoogleLogin
-                        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                        buttonText="Login"
-                        onSuccess={responseGoogle}
-                        onFailure={responseGoogle}
+                        clientId={config.GOOGLE_CLIENT_ID}
+                        buttonText="Google"
+                        className="my-google-button-class"
+                        onSuccess={this.responseGoogle}
+                        onFailure={this.responseGoogle}
                     />
-                </GoogleBtn> */}
                 </Buttons>
                 {/* input alerts */}
                 <MsgCnt visible={loading?'none':'inline'}>
