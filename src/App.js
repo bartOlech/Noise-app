@@ -7,7 +7,7 @@ import BabySleep from './components/babySleep';
 import Sounds from './containers/sounds';
 import muteIco from './img/mute-ico.png';
 import soundIco from './img/sound-ico.png';
-import LogInSingUp from './containers/logUser/logIn_SingUp';
+import LogInSignUp from './containers/logUser/logIn_SignUp';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -121,7 +121,7 @@ class App extends Component {
   logInPage(){
     if(this.state.clickLogIn){
       return(
-        <LogInSingUp closeLogIn={this.closeLogIn}></LogInSingUp>
+        <LogInSignUp closeLogIn={this.closeLogIn}></LogInSignUp>
       )
     }
   }
