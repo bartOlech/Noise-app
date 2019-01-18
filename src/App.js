@@ -8,6 +8,7 @@ import Sounds from './containers/sounds';
 import muteIco from './img/mute-ico.png';
 import soundIco from './img/sound-ico.png';
 import LogInSignUp from './containers/logUser/logIn_SignUp';
+import UserData from './components/userData';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -149,6 +150,10 @@ class App extends Component {
       <img style={babyCntIsClicked?hideEl:null} onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
 
       {this.showWaveImg()}
+
+      {/* user data */}
+      <UserData></UserData>
+      
       <BabySleep ref={this.childBabyBtn}></BabySleep>
       <Sounds ref={this.childMoreSounds}></Sounds>
       <MainContent clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>

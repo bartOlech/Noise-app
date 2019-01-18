@@ -181,6 +181,10 @@ const LoaderCnt = styled.div`
 `
 
 
+const Testt = styled.div`
+    display: ${props => props.visibility};
+`
+
 class LogInSignUp extends Component{
     constructor(props){
         super(props)
@@ -328,6 +332,14 @@ class LogInSignUp extends Component{
             valPass2SignUp: event.currentTarget.value
         })
     }
+    //facebook login
+    logout = () => {
+        this.setState({isAuthenticated: false, token: '', user: null})
+    };
+
+    onFailure = (error) => {
+        alert(error);
+    };
 
     responseFacebook = (response) => {
         const tokenBlob = new Blob([JSON.stringify({access_token: response.accessToken}, null, 2)], {type : 'application/json'});
@@ -337,37 +349,15 @@ class LogInSignUp extends Component{
             mode: 'cors',
             cache: 'default'
         };
-        fetch('/api/authfb', options).then(r => {
+        fetch('/api/facebook', options).then(r => {
             const token = r.headers.get('x-auth-token');
-            console.log('ss')
             r.json().then(user => {
                 if (token) {
                     this.setState({isAuthenticated: true, user, token})
-                    console.log('now')
+                    
                 }
             });
         }).catch(err =>{console.log(err)})
-
-        // const tokenBlob = new Blob([JSON.stringify({access_token: response.accessToken}, null, 2)], {type : 'application/json'});
-        // const options = {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //         },
-        //     body: JSON.stringify({
-        //         msg: this.state.valEmailSignUp
-        //     }),
-        //     mode: 'cors',
-        //     cache: 'default'
-        // };
-        // fetch('/api/auth/facebook', options).then(r => r.json() ).catch(err =>{console.log(err)})
-
-
-            //.then(user => {
-            //     if (token) {
-            //         this.setState({isAuthenticated: true, user: name, token: accessToken})
-            //     }
-            // });
       }
   
     responseGoogle = (response) => {
@@ -378,13 +368,17 @@ class LogInSignUp extends Component{
         console.log('clicked')
     }
 
+   
 
 render(){
-    const {loginPage, inputError, inputErrorText, valEmailSignUp, inputSucces, emailExist, loading} = this.state;
+    const {loginPage, inputError, inputErrorText, valEmailSignUp, inputSucces, emailExist, loading, isAuthenticated} = this.state;
     console.log(emailExist)
     this.logOrReg()
     return( 
         <Content>
+            
+        <Testt visibility={isAuthenticated?'inline':'none'}>teessssssssssss</Testt>
+
             <GlobalStyle></GlobalStyle>
             <LogInCnt displayLogin={loginPage?'none':'inline'}>
 
@@ -423,6 +417,7 @@ render(){
                         onFailure={this.responseGoogle}
                     />
                 </Buttons>
+                {console.log(this.state.isAuthenticated)}
                 {/* input alerts */}
                 <MsgCnt visible={loading?'none':'inline'}>
                     <ErrorInfoCnt error={inputError?'flex':'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
