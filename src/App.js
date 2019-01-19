@@ -9,6 +9,7 @@ import muteIco from './img/mute-ico.png';
 import soundIco from './img/sound-ico.png';
 import LogInSignUp from './containers/logUser/logIn_SignUp';
 import UserData from './components/userData';
+import Cookies from 'js-cookie';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,7 +27,8 @@ class App extends Component {
       muteIsClicked: !false,
       babyCntIsClicked: false, //if is true, hide side elements
       selectedBabyComponent: false, //is true if you'r in baby component then hide side el
-      clickLogIn: false
+      clickLogIn: false,
+      getToken: Cookies.get('auth')
 
     }
     this.childMainCnt = React.createRef();
@@ -143,6 +145,7 @@ class App extends Component {
     const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
     return (
       <div>
+      {console.log(`token: ${this.state.getToken}`)}
       <Favicon url='./img/favicon.ico' />
       {this.logInPage()}
       <Header isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>

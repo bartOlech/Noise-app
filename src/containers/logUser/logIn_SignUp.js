@@ -6,6 +6,7 @@ import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import { FaFacebookSquare } from 'react-icons/fa';
 import {config} from '../../config/config';
+import Cookies from 'js-cookie';
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Varela+Round');
@@ -204,7 +205,8 @@ class LogInSignUp extends Component{
             //Fb Google login
             isAuthenticated: false,
             user: null,
-            token: ''
+            token: '',
+            getToken: Cookies.get('auth')
         }
     }
 
@@ -365,18 +367,17 @@ class LogInSignUp extends Component{
       }
 
     fbSignUp = () =>{
-        console.log('clicked')
+        //console.log('clicked')
     }
 
    
 
 render(){
     const {loginPage, inputError, inputErrorText, valEmailSignUp, inputSucces, emailExist, loading, isAuthenticated} = this.state;
-    console.log(emailExist)
     this.logOrReg()
     return( 
         <Content>
-            
+            {console.log(this.state.getToken)}
         <Testt visibility={isAuthenticated?'inline':'none'}>teessssssssssss</Testt>
 
             <GlobalStyle></GlobalStyle>

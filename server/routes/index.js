@@ -25,6 +25,5 @@ router.post('/signUp',
     signUpController.signUp
 )
 router.get('/signUp', signUpController.signUp)
-//router.post('/authfb', facebookLogIn.fbLogIn)
 
 module.exports = router;

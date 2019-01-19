@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const router = require('./routes/index');
 const cors = require('cors');
 const logger = require('morgan');
+const cookieParser = require('cookie-parser')
 
 
 app.set(path.join(__dirname, 'views'));
@@ -23,6 +24,7 @@ const corsOption = {
 app.use(cors(corsOption));
 
 app.use(logger('dev'));
+app.use(cookieParser())
 
 app.use('/api', router)
 
