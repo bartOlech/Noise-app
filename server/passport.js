@@ -1,6 +1,6 @@
 const passport = require('passport');
 const FacebookTokenStrategy = require('passport-facebook-token');
-const config = require('./config')
+const config = require('./config/config')
 const User = require('./auth/facebook')
 
 module.exports = function () {

@@ -3,7 +3,7 @@ const router = express.Router();
 const signUpController = require('../controllers/signUpController');
 const { generateToken, sendToken } = require('../utils/token.utils');
 const passport = require('passport');
-const config = require('../config');
+const config = require('../config/config');
 const request = require('request');
 require('../passport')();
 
