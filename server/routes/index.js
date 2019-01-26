@@ -6,6 +6,11 @@ const passport = require('passport');
 const config = require('../config/config');
 const request = require('request');
 require('../passport')();
+const expressjwt = require("express-jwt");
+const jwt = require('jsonwebtoken');
+const verifyController = require('../controllers/verifyController');
+
+router.post('/facebookk', verifyController.verifyUser)
 
 router.post('/facebook', 
     passport.authenticate('facebook-token', {session: false}), function(req, res, next) {
@@ -15,7 +20,7 @@ router.post('/facebook',
         req.auth = {
             id: req.user.id
         };
-
+        //res.redirect('/')
         next();
     }, generateToken, sendToken)
     

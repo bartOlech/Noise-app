@@ -28,7 +28,8 @@ class App extends Component {
       babyCntIsClicked: false, //if is true, hide side elements
       selectedBabyComponent: false, //is true if you'r in baby component then hide side el
       clickLogIn: false,
-      getToken: Cookies.get('auth')
+      getToken: Cookies.get('auth'),
+      isLogged: false
 
     }
     this.childMainCnt = React.createRef();
@@ -106,6 +107,9 @@ class App extends Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.showWaveImg.bind(this));
+    if(this.state.getToken){
+      console.log('is true')
+    }
   }
 
   showWaveImg() {
