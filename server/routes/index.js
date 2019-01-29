@@ -6,7 +6,6 @@ const passport = require('passport');
 const config = require('../config/config');
 const request = require('request');
 require('../passport')();
-const expressjwt = require("express-jwt");
 const jwt = require('jsonwebtoken');
 const verifyController = require('../controllers/verifyController');
 

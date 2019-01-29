@@ -6,21 +6,27 @@ const UserCnt = styled.div`
     display: ${props => props.visibility};
 `
 const User = styled.div`
-
+    color: #fff;
+    font-weight: 500;
+    padding-right: 10px;
+`
+const FullName = styled.div`
+    color: #D2CFDE;
+    font-weight: 700;
 `
 
 class UserData extends Component{
     state = {
         logged: true,
-        userName: 'Bart',
         getToken: Cookies.get('auth'),
+        fullName: Cookies.get('user'),
         isAuthenticated: false,
         user: null
     }
 
      componentDidMount() {
          if(this.state.getToken){
-             const tokenBlob = new Blob([JSON.stringify({access_token: this.state.getToken}, null, 2)], {type : 'application/json'});
+            //  const tokenBlob = new Blob([JSON.stringify({access_token: this.state.getToken}, null, 2)], {type : 'application/json'});
         const options = {
             method: 'POST',
             body: JSON.stringify({
@@ -43,11 +49,11 @@ class UserData extends Component{
   }
 
     render(){
-        const {logged, userName, getToken, isAuthenticated} = this.state;
+        const {fullName, getToken, isAuthenticated} = this.state;
         console.log(isAuthenticated)
         return(
-            <UserCnt visibility={getToken?'inline':'none'}>
-                <User>Hello </User>
+            <UserCnt visibility={getToken?'flex':'none'}>
+                <User>Witaj </User><FullName>{fullName}</FullName>
             </UserCnt>
         )
     }

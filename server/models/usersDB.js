@@ -25,7 +25,7 @@ const dataSchema = new Schema({
             id: String,
             token: String
         },
-        select: false
+        //select: false
     }
 })
 

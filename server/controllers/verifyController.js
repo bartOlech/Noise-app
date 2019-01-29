@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const UserData = require('../models/usersDB');
+const express = require('express');
+const app = express();
+var request = require('request');
+
 
 module.exports.verifyUser = (req, res, next) => {
     const userJWT = req.cookies.auth;
@@ -12,14 +16,24 @@ module.exports.verifyUser = (req, res, next) => {
             res.clearCookie('auth')
             res.send(401, 'Invalid or missing authorization token')
         }else{
+           
             mongoose.connect('mongodb://localhost:27017/noiseApp-users', {useNewUrlParser:true});
             mongoose.Promise = global.Promise;
             
             UserData.find({_id: userJWTPayload.id}).then((user)=>{
-            res.cookie('user', user[0].email)
-
-            mongoose.connection.close();
+            res.cookie('user', user[0].fullName)
             
+            mongoose.connection.close();
+
+            //check if the token is valid
+            request.get(`https://graph.facebook.com/me?access_token=${user[0].facebookProvider.token}`, (err, response, body) =>{
+                if(err){
+                    console.log('error')
+                }else{
+                    console.log('work')
+                    console.log(body)
+                }    
+            })
             res.send(user)
             
             //console.log(user[0].email)
