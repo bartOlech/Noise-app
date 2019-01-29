@@ -26,15 +26,17 @@ module.exports.verifyUser = (req, res, next) => {
             mongoose.connection.close();
 
             //check if the token is valid
-            request.get(`https://graph.facebook.com/me?access_token=${user[0].facebookProvider.token}`, (err, response, body) =>{
-                if(err){
+            request.get(`https://graph.facebook.com/me?access_token=${user[0].facebookProvider.token}`, ( err, response, body) =>{
+                if(JSON.parse(body).error){
                     console.log('error')
+                    //res.send(401, 'the token is expired')
+                     res.clearCookie('user') //doesn't work ????
                 }else{
-                    console.log('work')
-                    console.log(body)
+                    console.log('true')
+                    res.send(user)
                 }    
             })
-            res.send(user)
+            
             
             //console.log(user[0].email)
         })
