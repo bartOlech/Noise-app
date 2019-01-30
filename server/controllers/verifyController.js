@@ -2,11 +2,11 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const UserData = require('../models/usersDB');
 const express = require('express');
-const app = express();
 var request = require('request');
 
 
 module.exports.verifyUser = (req, res, next) => {
+    
     const userJWT = req.cookies.auth;
     if(!userJWT){
         res.send(401, 'Invalid or missing authorization token')
@@ -29,8 +29,9 @@ module.exports.verifyUser = (req, res, next) => {
             request.get(`https://graph.facebook.com/me?access_token=${user[0].facebookProvider.token}`, ( err, response, body) =>{
                 if(JSON.parse(body).error){
                     console.log('error')
-                    //res.send(401, 'the token is expired')
-                     res.clearCookie('user') //doesn't work ????
+                    
+                    res.clearCookie('user') //doesn't work ????
+                    res.status(500).json({tokenStatus: "Token is expired"});
                 }else{
                     console.log('true')
                     res.send(user)

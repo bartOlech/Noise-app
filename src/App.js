@@ -108,7 +108,6 @@ class App extends Component {
   componentDidMount() {
     window.addEventListener("resize", this.showWaveImg.bind(this));
     if(this.state.getToken){
-      console.log('is true')
     }
   }
 
@@ -149,7 +148,6 @@ class App extends Component {
     const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
     return (
       <div>
-      {console.log(`token: ${this.state.getToken}`)}
       <Favicon url='./img/favicon.ico' />
       {this.logInPage()}
       <Header isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>

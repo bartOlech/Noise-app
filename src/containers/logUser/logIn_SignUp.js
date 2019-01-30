@@ -377,7 +377,7 @@ render(){
     this.logOrReg()
     return( 
         <Content>
-            {console.log(this.state.getToken)}
+            
         <Testt visibility={isAuthenticated?'inline':'none'}>teessssssssssss</Testt>
 
             <GlobalStyle></GlobalStyle>
@@ -418,7 +418,7 @@ render(){
                         onFailure={this.responseGoogle}
                     />
                 </Buttons>
-                {console.log(this.state.isAuthenticated)}
+                
                 {/* input alerts */}
                 <MsgCnt visible={loading?'none':'inline'}>
                     <ErrorInfoCnt error={inputError?'flex':'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
