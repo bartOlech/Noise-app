@@ -29,12 +29,14 @@ class App extends Component {
       selectedBabyComponent: false, //is true if you'r in baby component then hide side el
       clickLogIn: false,
       getToken: Cookies.get('auth'),
-      isLogged: false
+      isLogged: false,
+      isAuthenticated: false
 
     }
     this.childMainCnt = React.createRef();
     this.childBabyBtn = React.createRef();
     this.childMoreSounds = React.createRef();
+    this.childUserData = React.createRef();
   }
 
   clickLogo = ()=>{
@@ -122,12 +124,20 @@ class App extends Component {
      }
   }
 
- //log-in page
+  //authorization function
+    isAuth = (val) =>{
+      this.setState({
+        isAuthenticated: val
+      })
+      this.childUserData.current.isAuth(this.state.isAuthenticated);
+    }
+
+  //log-in page
 
   logInPage(){
     if(this.state.clickLogIn){
       return(
-        <LogInSignUp closeLogIn={this.closeLogIn}></LogInSignUp>
+        <LogInSignUp isAuth={this.isAuth} closeLogIn={this.closeLogIn}></LogInSignUp>
       )
     }
   }
@@ -157,7 +167,8 @@ class App extends Component {
       {this.showWaveImg()}
 
       {/* user data */}
-      <UserData></UserData>
+      <UserData ref={this.childUserData}></UserData>
+      
       
       <BabySleep ref={this.childBabyBtn}></BabySleep>
       <Sounds ref={this.childMoreSounds}></Sounds>

@@ -85,6 +85,8 @@ class Header extends Component{
     isClickedLogIn = (val)=>{
         this.props.isClickedLogIn(val)
     }
+
+    
     
     render(){
         return(

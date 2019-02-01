@@ -21,7 +21,7 @@ router.post('/facebook',
         };
         //res.redirect('/')
         next();
-    }, generateToken, sendToken)
+    }, generateToken, sendToken, verifyController.verifyUser)
     
 
 router.post('/signUp', 

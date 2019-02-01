@@ -343,6 +343,10 @@ class LogInSignUp extends Component{
         alert(error);
     };
 
+    auth(){
+        this.props.isAuth(this.state.isAuthenticated)
+    }
+
     responseFacebook = (response) => {
         const tokenBlob = new Blob([JSON.stringify({access_token: response.accessToken}, null, 2)], {type : 'application/json'});
         const options = {
@@ -356,7 +360,7 @@ class LogInSignUp extends Component{
             r.json().then(user => {
                 if (token) {
                     this.setState({isAuthenticated: true, user, token})
-                    
+                    this.auth();
                 }
             });
         }).catch(err =>{console.log(err)})

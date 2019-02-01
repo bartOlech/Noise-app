@@ -19,15 +19,14 @@ class UserData extends Component{
     state = {
         logged: true,
         getToken: Cookies.get('auth'),
-        fullName: Cookies.get('user'),
-        isAuthenticated: false,
+        fullName: null,
+        isAuthenticated: true,
         user: null,
         tokenStatus: ''
     }
 
      componentDidMount() {
-         if(this.state.getToken){
-            //  const tokenBlob = new Blob([JSON.stringify({access_token: this.state.getToken}, null, 2)], {type : 'application/json'});
+        if(this.state.getToken){
         const options = {
             method: 'POST',
             body: JSON.stringify({
@@ -42,13 +41,13 @@ class UserData extends Component{
 
         r.json().then(json => {
             this.setState({
-                tokenStatus: json.tokenStatus
+                tokenStatus: json.tokenStatus,
+                fullName: json.fullName
             })
         }).then(user => {
             if (token) {
                 this.setState({
-                    isAuthenticated: true,
-                    user
+                    isAuthenticated: true
                 })
             }
         });
@@ -56,11 +55,18 @@ class UserData extends Component{
          }  
   }
 
+  isAuth(val){
+      this.setState({
+          isAuthenticated: val
+      })
+  }
+
     render(){
         const {fullName, getToken, isAuthenticated} = this.state;
         console.log(`Token status: ${this.state.tokenStatus}`)
+        console.log(this.state.fullName)
         return(
-            <UserCnt visibility={getToken?'flex':'none'}>
+            <UserCnt visibility={isAuthenticated?'flex':'none'}>
                 <User>Witaj </User><FullName>{fullName}</FullName>
             </UserCnt>
         )

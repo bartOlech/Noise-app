@@ -8,20 +8,20 @@ var request = require('request');
 module.exports.verifyUser = (req, res, next) => {
     
     const userJWT = req.cookies.auth;
+    console.log(userJWT)
     if(!userJWT){
         res.send(401, 'Invalid or missing authorization token')
     }else{
         const userJWTPayload = jwt.verify(req.cookies.auth, 'my-secret');
         if (!userJWTPayload) {
             res.clearCookie('auth')
-            res.send(401, 'Invalid or missing authorization token')
+            res.status(401).json({tokenStatus: "Token is wrong"});
         }else{
            
             mongoose.connect('mongodb://localhost:27017/noiseApp-users', {useNewUrlParser:true});
             mongoose.Promise = global.Promise;
             
             UserData.find({_id: userJWTPayload.id}).then((user)=>{
-            res.cookie('user', user[0].fullName)
             
             mongoose.connection.close();
 
@@ -34,12 +34,9 @@ module.exports.verifyUser = (req, res, next) => {
                     res.status(500).json({tokenStatus: "Token is expired"});
                 }else{
                     console.log('true')
-                    res.send(user)
+                    res.status(200).json({fullName: user[0].fullName});
                 }    
             })
-            
-            
-            //console.log(user[0].email)
         })
         }
         
