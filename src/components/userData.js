@@ -21,7 +21,7 @@ class UserData extends Component{
         getToken: Cookies.get('auth'),
         fullName: null,
         isAuthenticated: true,
-        user: null,
+        //user: null,
         tokenStatus: ''
     }
 
@@ -55,16 +55,17 @@ class UserData extends Component{
          }  
   }
 
-  isAuth(val){
+  isAuth(isAuthenticated, fullName){
       this.setState({
-          isAuthenticated: val
+          isAuthenticated,
+          fullName
       })
   }
 
     render(){
         const {fullName, getToken, isAuthenticated} = this.state;
-        console.log(`Token status: ${this.state.tokenStatus}`)
-        console.log(this.state.fullName)
+        //console.log(`Token status: ${this.state.tokenStatus}`)
+        //console.log(this.state.fullName)
         return(
             <UserCnt visibility={isAuthenticated?'flex':'none'}>
                 <User>Witaj </User><FullName>{fullName}</FullName>

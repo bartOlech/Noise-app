@@ -17,7 +17,8 @@ module.exports = {
   sendToken: function(req, res, next) {
       res.setHeader('x-auth-token', req.token);
       res.cookie('auth', req.token);
-      res.status(200).send(JSON.stringify(req.user));
+      //res.status(200).send(JSON.stringify(req.user));
+      res.status(200).json({fullName: req.user.fullName});
       
   }
 };

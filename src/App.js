@@ -125,11 +125,11 @@ class App extends Component {
   }
 
   //authorization function
-    isAuth = (val) =>{
+    isAuth = (isAuthenticated, user) =>{
       this.setState({
-        isAuthenticated: val
+        isAuthenticated
       })
-      this.childUserData.current.isAuth(this.state.isAuthenticated);
+      this.childUserData.current.isAuth(isAuthenticated, user);
     }
 
   //log-in page

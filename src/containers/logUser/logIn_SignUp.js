@@ -344,7 +344,7 @@ class LogInSignUp extends Component{
     };
 
     auth(){
-        this.props.isAuth(this.state.isAuthenticated)
+        this.props.isAuth(this.state.isAuthenticated, this.state.user)
     }
 
     responseFacebook = (response) => {
@@ -359,7 +359,7 @@ class LogInSignUp extends Component{
             const token = r.headers.get('x-auth-token');
             r.json().then(user => {
                 if (token) {
-                    this.setState({isAuthenticated: true, user, token})
+                    this.setState({isAuthenticated: true, user: user.fullName, token})
                     this.auth();
                 }
             });
@@ -381,7 +381,6 @@ render(){
     this.logOrReg()
     return( 
         <Content>
-            
         <Testt visibility={isAuthenticated?'inline':'none'}>teessssssssssss</Testt>
 
             <GlobalStyle></GlobalStyle>
