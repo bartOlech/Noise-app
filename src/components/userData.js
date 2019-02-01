@@ -20,7 +20,7 @@ class UserData extends Component{
         logged: true,
         getToken: Cookies.get('auth'),
         fullName: null,
-        isAuthenticated: true,
+        isAuthenticated: false,
         //user: null,
         tokenStatus: ''
     }
@@ -36,21 +36,14 @@ class UserData extends Component{
             credentials: 'include',
             cache: 'default'
         };
-        fetch('/api/facebookk', options).then(r => {
-        const token = r.headers.get('x-auth-token');
-
-        r.json().then(json => {
+        fetch('/api/facebookk', options).then(res => {
+        res.json().then(json => {
             this.setState({
                 tokenStatus: json.tokenStatus,
-                fullName: json.fullName
+                fullName: json.fullName,
+                isAuthenticated: true
             })
-        }).then(user => {
-            if (token) {
-                this.setState({
-                    isAuthenticated: true
-                })
-            }
-        });
+        })
         }).catch(err =>{console.log(err)})
          }  
   }
@@ -64,8 +57,7 @@ class UserData extends Component{
 
     render(){
         const {fullName, getToken, isAuthenticated} = this.state;
-        //console.log(`Token status: ${this.state.tokenStatus}`)
-        //console.log(this.state.fullName)
+        console.log(isAuthenticated)
         return(
             <UserCnt visibility={isAuthenticated?'flex':'none'}>
                 <User>Witaj </User><FullName>{fullName}</FullName>
