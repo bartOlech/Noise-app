@@ -17,11 +17,9 @@ const FullName = styled.div`
 
 class UserData extends Component{
     state = {
-        logged: true,
         getToken: Cookies.get('auth'),
         fullName: null,
         isAuthenticated: false,
-        //user: null
     }
 
      componentDidMount() {
@@ -61,6 +59,7 @@ class UserData extends Component{
         return(
             <UserCnt visibility={isAuthenticated?'flex':'none'}>
                 <User>Witaj </User><FullName>{fullName}</FullName>
+                {/* here component sign out */}
             </UserCnt>
         )
     }
