@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const UserData = require('../models/usersDB');
 const express = require('express');
-var request = require('request');
+const request = require('request');
+const jwtDecode = require('jwt-decode');
 
 
 module.exports.verifyUser = (req, res, next) => {
@@ -16,8 +17,18 @@ module.exports.verifyUser = (req, res, next) => {
         res.send(401, 'Invalid or missing authorization token')
     } else {
         jwt.verify(req.cookies.auth, 'my-secret', function (err, decoded) {
-            if (err) {
+            if (err) { 
                 //hide user component, show sign up component
+
+                
+
+                //???????????????????????
+                //Gdy token ulegnie przedawnieniu
+                //tutaj użyć właściwość decoded (z nawiasu) aby rozkodować token i dostać ID, i usunąć z bazy
+                //const decoded = jwtDecode(userJWT)
+                //???????????????????????
+
+                res.clearCookie('auth')
                 return res.status(401).json({ err: 'token is expired' });
             } else {
                 const userJWTPayload = jwt.verify(req.cookies.auth, 'my-secret');
@@ -43,9 +54,7 @@ module.exports.verifyUser = (req, res, next) => {
                                     mongoose.connection.close();
                                 })
 
-                                //clear cookie, not done!!!
-
-                                res.clearCookie('user') //doesn't work ????
+                                res.clearCookie('auth')
                                 res.status(500).json({ tokenStatus: "Token is expired" });
                             } else {
                                 mongoose.connection.close();

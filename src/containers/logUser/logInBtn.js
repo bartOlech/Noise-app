@@ -28,11 +28,14 @@ class LogInBtn extends Component{
     logInBtn = ()=>{
         this.props.isClickedLogIn(this.state.isClicked);
     }
+    logOut = () => {
+        console.log('log out')
+    }
 
     render(){
         return(
             <div>
-                <Btn onClick={this.logInBtn}>Zaloguj się</Btn>
+                {this.props.isAuth?<Btn onClick={this.logOut}>Wyloguj</Btn>:<Btn onClick={this.logInBtn}>Zaloguj się</Btn>}
             </div>
         )
     }

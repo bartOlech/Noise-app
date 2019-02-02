@@ -19,7 +19,6 @@ exports.upsertFbUser = (accessToken, refreshToken, profile, cb) =>{
                     token: accessToken
                 }
             });
-
             newUser.save(function(error, savedUser) {
                 if (error) {
                     console.log(error);

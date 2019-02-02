@@ -154,20 +154,26 @@ class App extends Component {
     })
   }
 
+  setAuthValue = (val) => {
+    this.setState({
+      isAuthenticated: val
+    })
+  }
+
   render() {
     const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
     return (
       <div>
       <Favicon url='./img/favicon.ico' />
       {this.logInPage()}
-      <Header isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
+      <Header isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
       {/* sound / mute ico */}
       <img style={babyCntIsClicked?hideEl:null} onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
 
       {this.showWaveImg()}
 
       {/* user data */}
-      <UserData ref={this.childUserData}></UserData>
+      <UserData setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
       
       
       <BabySleep ref={this.childBabyBtn}></BabySleep>

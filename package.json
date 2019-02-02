@@ -13,6 +13,7 @@
     "http-proxy-middleware": "^0.19.1",
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.4.0",
+    "jwt-decode": "^2.2.0",
     "merge": "^1.2.1",
     "mongoose": "^5.4.2",
     "morgan": "^1.9.1",

@@ -40,7 +40,8 @@ class UserData extends Component{
                 fullName: json.fullName,
                 isAuthenticated: true
             })
-            }     
+            }   
+            this.props.setAuthValue(this.state.isAuthenticated)  
         })
         }).catch(err =>{console.log(err)})
          }  
@@ -55,9 +56,8 @@ class UserData extends Component{
 
     render(){
         const {fullName, isAuthenticated} = this.state;
-        console.log(isAuthenticated)
         return(
-            <UserCnt visibility={isAuthenticated?'flex':'none'}>
+            <UserCnt  visibility={isAuthenticated?'flex':'none'}>
                 <User>Witaj </User><FullName>{fullName}</FullName>
                 {/* here component sign out */}
             </UserCnt>
