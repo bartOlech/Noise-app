@@ -58,11 +58,9 @@ class UserData extends Component{
       this.setState({
           isAuthenticated
       })
-      console.log(isAuthenticated)
   }
 
     render(){
-        //console.log(this.state.isAuthenticated)
         const {fullName, isAuthenticated} = this.state;
         return(
             <UserCnt  visibility={isAuthenticated?'flex':'none'}>

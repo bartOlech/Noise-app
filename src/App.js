@@ -168,7 +168,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.isAuthenticated)
     const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
     return (
       <div>

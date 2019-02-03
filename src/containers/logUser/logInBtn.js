@@ -30,6 +30,17 @@ class LogInBtn extends Component{
     }
     logOut = () => {
         this.props.userIsLogOut(false)
+
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({
+                userName: this.state.isClicked
+            }),
+            mode: 'cors',
+            credentials: 'include',
+            cache: 'default'
+        };
+        fetch('/api/facebookLogOut', options).then(res => res.json()).catch(err => console.log(err))
     }
 
     render(){

@@ -8,8 +8,11 @@ const request = require('request');
 require('../passport')();
 const jwt = require('jsonwebtoken');
 const verifyController = require('../controllers/verifyController');
+const fbLogOutController = require('../controllers/facebookLogOutController')
 
 router.post('/facebookk', verifyController.verifyUser)
+
+router.post('/facebookLogOut', fbLogOutController.fbLogOut)
 
 router.post('/facebook', 
     passport.authenticate('facebook-token', {session: false}), function(req, res, next) {
