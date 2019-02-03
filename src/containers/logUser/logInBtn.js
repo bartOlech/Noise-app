@@ -29,7 +29,7 @@ class LogInBtn extends Component{
         this.props.isClickedLogIn(this.state.isClicked);
     }
     logOut = () => {
-        console.log('log out')
+        this.props.userIsLogOut(false)
     }
 
     render(){

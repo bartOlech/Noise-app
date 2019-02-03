@@ -160,20 +160,28 @@ class App extends Component {
     })
   }
 
+  userIsLogOut = (val) =>{
+    this.setState({
+      isAuthenticated: val
+    })
+    this.childUserData.current.userIsLogOut(false);
+  }
+
   render() {
+    console.log(this.state.isAuthenticated)
     const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
     return (
       <div>
       <Favicon url='./img/favicon.ico' />
       {this.logInPage()}
-      <Header isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
+      <Header userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
       {/* sound / mute ico */}
       <img style={babyCntIsClicked?hideEl:null} onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
 
       {this.showWaveImg()}
 
       {/* user data */}
-      <UserData setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
+      <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
       
       
       <BabySleep ref={this.childBabyBtn}></BabySleep>

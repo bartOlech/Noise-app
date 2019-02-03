@@ -86,12 +86,16 @@ class Header extends Component{
     isClickedLogIn = (val)=>{
         this.props.isClickedLogIn(val)
     }
+
+    userIsLogOut = (val) => {
+        this.props.userIsLogOut(val)
+    }
     
     
     render(){
         return(
             <Content>
-                <LogInBtn isAuth={this.props.isAuth} isClickedLogIn={this.isClickedLogIn}></LogInBtn>
+                <LogInBtn userIsLogOut={this.userIsLogOut} isAuth={this.props.isAuth} isClickedLogIn={this.isClickedLogIn}></LogInBtn>
                 <Img onClick={this.clickHeaderLogo} src={mainLogo} alt='logo'></Img>
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
