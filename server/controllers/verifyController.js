@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const UserData = require('../models/usersDB');
-const express = require('express');
 const request = require('request');
 const jwtDecode = require('jwt-decode');
 
@@ -17,16 +16,20 @@ module.exports.verifyUser = (req, res, next) => {
         res.send(401, 'Invalid or missing authorization token')
     } else {
         jwt.verify(req.cookies.auth, 'my-secret', function (err, decoded) {
-            if (err) { 
+            if (err) {
                 //hide user component, show sign up component
 
-                
-
-                //???????????????????????
-                //Gdy token ulegnie przedawnieniu
-                //tutaj użyć właściwość decoded (z nawiasu) aby rozkodować token i dostać ID, i usunąć z bazy
-                //const decoded = jwtDecode(userJWT)
-                //???????????????????????
+                const decodedToken = jwtDecode(userJWT)
+                mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
+                mongoose.Promise = global.Promise;
+                UserData.find({ _id: decodedToken }).then((user) => {
+                    UserData.deleteOne({ _id: user[0]._id }, (err) => {
+                        if (err) {
+                            console.log(err)
+                        }
+                        mongoose.connection.close();
+                    })
+                })
 
                 res.clearCookie('auth')
                 return res.status(401).json({ err: 'token is expired' });
