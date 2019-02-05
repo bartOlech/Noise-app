@@ -15,6 +15,7 @@ module.exports.verifyUser = (req, res, next) => {
     if (!userJWT) {
         //hide user component, show sign up component
         res.send(401, 'Invalid or missing authorization token')
+        
     } else {
         jwt.verify(req.cookies.auth, 'my-secret', function (err, decoded) {
             if (err) {

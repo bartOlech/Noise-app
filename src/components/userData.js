@@ -42,7 +42,7 @@ class UserData extends Component {
                 credentials: 'include',
                 cache: 'default'
             };
-            fetch('/api/facebookk', options).then(res => {
+            fetch('/api/auth', options).then(res => {
                 res.json().then(json => {
                     if (json.fullName) {
                         this.setState({

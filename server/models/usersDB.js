@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const dataSchema = new Schema({
-    email:{
+    email: {
         type: String
     },
-    password:{
+    password: {
         type: String
     },
-    type:{
+    type: {
         type: String
     },
     access_token: {
@@ -21,6 +21,13 @@ const dataSchema = new Schema({
         type: String
     },
     facebookProvider: {
+        type: {
+            id: String,
+            token: String
+        },
+        //select: false
+    },
+    googleProvider: {
         type: {
             id: String,
             token: String
