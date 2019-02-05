@@ -8,7 +8,8 @@ const jwtDecode = require('jwt-decode');
 module.exports.verifyUser = (req, res, next) => {
 
     const userJWT = req.cookies.auth;
-
+ const decodedToken = jwtDecode(userJWT)
+ console.log(decodedToken)
     //If token is expired, renew it(sign out)
 
     if (!userJWT) {

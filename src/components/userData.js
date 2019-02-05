@@ -1,9 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Cookies from 'js-cookie';
+import Loader from 'react-loader-spinner';
 
 const UserCnt = styled.div`
     display: ${props => props.visibility};
+    justify-content: center;
+    margin-top: 5px;
 `
 const User = styled.div`
     color: #fff;
@@ -14,59 +17,78 @@ const FullName = styled.div`
     color: #D2CFDE;
     font-weight: 700;
 `
+const LoaderSection = styled.div`
+    display: ${props => props.visibility};
+    justify-content: center;
+    margin-top: 5px;
+`
 
-class UserData extends Component{
+class UserData extends Component {
     state = {
         getToken: Cookies.get('auth'),
         fullName: null,
         isAuthenticated: false,
+        loaded: false
     }
 
-     componentDidMount() {
-        if(this.state.getToken){
-        const options = {
-            method: 'POST',
-            body: JSON.stringify({
-                userName: this.state.userName
-            }),
-            mode: 'cors',
-            credentials: 'include',
-            cache: 'default'
-        };
-        fetch('/api/facebookk', options).then(res => {
-        res.json().then(json => {
-            if(json.fullName){
-                this.setState({
-                fullName: json.fullName,
-                isAuthenticated: true
-            })
-            }   
-            this.props.setAuthValue(this.state.isAuthenticated)  
+    componentDidMount() {
+        if (this.state.getToken) {
+            const options = {
+                method: 'POST',
+                body: JSON.stringify({
+                    userName: this.state.userName
+                }),
+                mode: 'cors',
+                credentials: 'include',
+                cache: 'default'
+            };
+            fetch('/api/facebookk', options).then(res => {
+                res.json().then(json => {
+                    if (json.fullName) {
+                        this.setState({
+                            fullName: json.fullName,
+                            isAuthenticated: true,
+                            loaded: true
+                        })
+                    }
+                    this.props.setAuthValue(this.state.isAuthenticated)
+                })
+            }).catch(err => { console.log(err) })
+        }
+    }
+
+    isAuth(isAuthenticated, fullName) {
+        this.setState({
+            isAuthenticated,
+            fullName
         })
-        }).catch(err =>{console.log(err)})
-         }  
-  }
+    }
 
-  isAuth(isAuthenticated, fullName){
-      this.setState({
-          isAuthenticated,
-          fullName
-      })
-  }
+    userIsLogOut(isAuthenticated) {
+        this.setState({
+            isAuthenticated
+        })
+    }
 
-  userIsLogOut(isAuthenticated){
-      this.setState({
-          isAuthenticated
-      })
-  }
+    LoaderElement = () => {
+        if (this.state.getToken) {
+            return (
+                <LoaderSection visibility={this.state.loaded ? 'none' : 'flex'}><Loader type="ThreeDots" color="white" height={40} width={40} />
+                </LoaderSection>
+            )
+        }
+    }
 
-    render(){
-        const {fullName, isAuthenticated} = this.state;
-        return(
-            <UserCnt  visibility={isAuthenticated?'flex':'none'}>
-                <User>Witaj </User><FullName>{fullName}</FullName>
-                {/* here component sign out */}
-            </UserCnt>
+    render() {
+        const { fullName, isAuthenticated} = this.state;
+        return (
+            <>
+                {this.LoaderElement()}
+                <UserCnt visibility={isAuthenticated ? 'flex' : 'none'}>
+                    <User>Witaj </User><FullName>{fullName}</FullName>
+                    {/* here component sign out */}
+                </UserCnt>
+            </ >
         )
     }
 }
