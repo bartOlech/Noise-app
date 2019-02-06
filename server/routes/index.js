@@ -7,12 +7,16 @@ const config = require('../config/config');
 const request = require('request');
 require('../passportFb')();
 require('../passportGoogle')();
-const verifyController = require('../controllers/fbVerifyController');
+const verifyController = require('../controllers/verifyController');
 const fbLogOutController = require('../controllers/facebookLogOutController')
+const googleVerifyController = require('../controllers/googleVerifyController');
 
 router.post('/auth', verifyController.verifyUser)
 
+router.post('/googleVerify', googleVerifyController.verify)
+
 router.post('/facebookLogOut', fbLogOutController.fbLogOut)
+
 
 router.post('/facebook',
     passport.authenticate('facebook-token', { session: false }), function (req, res, next) {
@@ -26,8 +30,8 @@ router.post('/facebook',
         next();
     }, generateToken, sendToken, verifyController.verifyUser)
 
-router.route('/google')
-    .post(passport.authenticate('google-token', { session: false }), function (req, res, next) {
+router.post('/google',
+    passport.authenticate('google-token', { session: false }), function (req, res, next) {
         if (!req.user) {
             return res.send(401, 'User Not Authenticated');
         }

@@ -31,29 +31,54 @@ class UserData extends Component {
         loaded: false
     }
 
-    componentDidMount() {
+    // componentDidMount() {
+    //     if (this.state.getToken) {
+    //         const options = {
+    //             method: 'POST',
+    //             body: JSON.stringify({
+    //                 userName: this.state.userName
+    //             }),
+    //             mode: 'cors',
+    //             credentials: 'include',
+    //             cache: 'default'
+    //         };
+    //         fetch('/api/auth', options).then(res => {
+    //             res.json().then(json => {
+    //                 if (json.fullName) {
+    //                     this.setState({
+    //                         fullName: json.fullName,
+    //                         isAuthenticated: true,
+    //                         loaded: true
+    //                     })
+    //                 }
+    //                 this.props.setAuthValue(this.state.isAuthenticated)
+    //             })
+    //         }).catch(err => { console.log(err) })
+    //     }
+    // }
+
+     componentDidMount() {
         if (this.state.getToken) {
             const options = {
                 method: 'POST',
                 body: JSON.stringify({
-                    userName: this.state.userName
+                    user: {
+                        id: null
+                    }
                 }),
                 mode: 'cors',
                 credentials: 'include',
                 cache: 'default'
             };
-            fetch('/api/auth', options).then(res => {
-                res.json().then(json => {
-                    if (json.fullName) {
-                        this.setState({
-                            fullName: json.fullName,
-                            isAuthenticated: true,
-                            loaded: true
-                        })
-                    }
-                    this.props.setAuthValue(this.state.isAuthenticated)
-                })
-            }).catch(err => { console.log(err) })
+            fetch('/api/googleVerify', options).then(r => {
+            const token = r.headers.get('x-auth-token');
+            r.json().then(user => {
+                // if (token) {
+                //     this.setState({isAuthenticated: true, user: user.fullName, token})
+                //     this.auth();
+                // }
+            });
+        }).catch(err =>{console.log(err)})
         }
     }
 

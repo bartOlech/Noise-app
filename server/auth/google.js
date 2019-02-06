@@ -16,6 +16,7 @@ exports.upsertGoogleUser = (accessToken, refreshToken, profile, cb) =>{
                 email: profile.emails[0].value,
                 googleProvider: {
                     id: profile.id,
+                    tokenId: profile.tokenId,
                     token: accessToken
                 }
             });

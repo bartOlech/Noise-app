@@ -7,7 +7,6 @@ const cors = require('cors');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 
-
 app.set(path.join(__dirname, 'views'));
 app.set('view engine', 'pug')
 

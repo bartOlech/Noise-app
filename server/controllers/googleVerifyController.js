@@ -3,24 +3,25 @@ const mongoose = require('mongoose');
 const UserData = require('../models/usersDB');
 const request = require('request');
 const jwtDecode = require('jwt-decode');
+const config = require('../config/config')
+const { OAuth2Client } = require('google-auth-library');
 
 
-module.exports.verifyUser = (req, res, next) => {
+module.exports.verify = (req, res, next) => {
 
     const userJWT = req.cookies.auth;
- const decodedToken = jwtDecode(userJWT)
- console.log(decodedToken)
+    const decodedToken = jwtDecode(userJWT)
+
     //If token is expired, renew it(sign out)
+    console.log('ZACZYNAM ANALIZOWAĆ')
 
     if (!userJWT) {
         //hide user component, show sign up component
         res.send(401, 'Invalid or missing authorization token')
-        
     } else {
         jwt.verify(req.cookies.auth, 'my-secret', function (err, decoded) {
             if (err) {
                 //hide user component, show sign up component
-
                 const decodedToken = jwtDecode(userJWT)
                 mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
                 mongoose.Promise = global.Promise;
@@ -46,26 +47,24 @@ module.exports.verifyUser = (req, res, next) => {
 
                     UserData.find({ _id: userJWTPayload.id }).then((user) => {
 
-                        //check if the token is valid
-                        request.get(`https://graph.facebook.com/me?access_token=${user[0].facebookProvider.token}`, (err, response, body) => {
-                            if (JSON.parse(body).error) {
-                                //hide user component, show sign up component || not done
+                        //tutaj uwierzytelnianie
 
-                                //remove the user from database
-                                UserData.deleteOne({ _id: user[0]._id }, (err) => {
-                                    if (err) {
-                                        console.log(err)
-                                    }
-                                    mongoose.connection.close();
-                                })
+                        const client = new OAuth2Client(config.googleAuth.clientID);
+                        async function verify() {
+                            const ticket = await client.verifyIdToken({
+                                idToken: '***',
+                                audience: config.googleAuth.clientID,
+                            });
+                            const payload = ticket.getPayload();
+                            //console.log(payload)
+                            const userid = payload['sub'];
+                        }
+                        verify().catch(console.error);
 
-                                res.clearCookie('auth')
-                                res.status(500).json({ tokenStatus: "Token is expired" });
-                            } else {
-                                mongoose.connection.close();
-                                res.status(200).json({ fullName: user[0].fullName });
-                            }
-                        })
+
+
+
+
                     })
                 }
             }
