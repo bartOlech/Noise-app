@@ -40,7 +40,7 @@ class LogInBtn extends Component{
             credentials: 'include',
             cache: 'default'
         };
-        fetch('/api/facebookLogOut', options).then(res => res.json()).catch(err => console.log(err))
+        fetch('/api/socialLogOut', options).then(res => res.json()).catch(err => console.log(err))
     }
 
     render(){

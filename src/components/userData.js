@@ -57,7 +57,7 @@ class UserData extends Component {
     //     }
     // }
 
-     componentDidMount() {
+    componentDidMount() {
         if (this.state.getToken) {
             const options = {
                 method: 'POST',
@@ -71,14 +71,18 @@ class UserData extends Component {
                 cache: 'default'
             };
             fetch('/api/googleVerify', options).then(r => {
-            const token = r.headers.get('x-auth-token');
-            r.json().then(user => {
-                // if (token) {
-                //     this.setState({isAuthenticated: true, user: user.fullName, token})
-                //     this.auth();
-                // }
-            });
-        }).catch(err =>{console.log(err)})
+                const token = r.headers.get('x-auth-token');
+                r.json().then(json => {
+                    if (json.fullName) {
+                        this.setState({
+                            fullName: json.fullName,
+                            isAuthenticated: true,
+                            loaded: true
+                        })
+                    }
+                    this.props.setAuthValue(this.state.isAuthenticated)
+                });
+            }).catch(err => { console.log(err) })
         }
     }
 
@@ -105,7 +109,7 @@ class UserData extends Component {
     }
 
     render() {
-        const { fullName, isAuthenticated} = this.state;
+        const { fullName, isAuthenticated } = this.state;
         return (
             <>
                 {this.LoaderElement()}

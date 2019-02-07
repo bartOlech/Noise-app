@@ -15,7 +15,7 @@ router.post('/auth', verifyController.verifyUser)
 
 router.post('/googleVerify', googleVerifyController.verify)
 
-router.post('/facebookLogOut', fbLogOutController.fbLogOut)
+router.post('/socialLogOut', fbLogOutController.fbLogOut)
 
 
 router.post('/facebook',
@@ -35,7 +35,7 @@ router.post('/google',
         if (!req.user) {
             return res.send(401, 'User Not Authenticated');
         }
-        
+
         req.auth = {
             id: req.user.id
         };
