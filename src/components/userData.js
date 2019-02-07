@@ -71,7 +71,6 @@ class UserData extends Component {
                 cache: 'default'
             };
             fetch('/api/googleVerify', options).then(r => {
-                const token = r.headers.get('x-auth-token');
                 r.json().then(json => {
                     if (json.fullName) {
                         this.setState({

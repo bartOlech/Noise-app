@@ -40,6 +40,7 @@ module.exports.verify = (req, res, next) => {
                 const userJWTPayload = jwt.verify(req.cookies.auth, 'my-secret');
                 if (!userJWTPayload) {
                     res.clearCookie('auth')
+                    //Remove from database ??????????????????????????????
                     res.status(401).json({ tokenStatus: "Token is wrong" });
                 } else {
                     mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
@@ -47,7 +48,7 @@ module.exports.verify = (req, res, next) => {
 
                     UserData.findOne({ _id: userJWTPayload.id }).then((user) => {
 
-                        //tutaj uwierzytelnianie
+                        //authentication
                         console.log('!!!!!')
                         const client = new OAuth2Client(config.googleAuth.clientID);
                         async function verify() {
