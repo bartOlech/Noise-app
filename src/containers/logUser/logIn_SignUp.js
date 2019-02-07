@@ -367,8 +367,8 @@ class LogInSignUp extends Component{
       }
   
     responseGoogle = (response) => {
-        console.log(response.tokenId)
-        const tokenBlob = new Blob([JSON.stringify({access_token: response.accessToken, tokenId: response.tokenId}, null, 2)], {type : 'application/json'});
+        console.log(response.profileObj.googleId)
+        const tokenBlob = new Blob([JSON.stringify({access_token: response.accessToken, tokenId: response.tokenId, googleId: response.profileObj.googleId, email: response.profileObj.email}, null, 2)], {type : 'application/json'});
         const options = {
             method: 'POST',
             body: tokenBlob,

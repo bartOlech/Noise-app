@@ -30,11 +30,11 @@ const dataSchema = new Schema({
     googleProvider: {
         type: {
             id: String,
-            tokenId: String,
             token: String
         },
         //select: false
-    }
+    },
+    googleTokenId: String,
 })
 
 

@@ -3,8 +3,8 @@ const router = express.Router();
 const signUpController = require('../controllers/signUpController');
 const { generateToken, sendToken } = require('../utils/token.utils');
 const passport = require('passport');
-const config = require('../config/config');
-const request = require('request');
+const mongoose = require('mongoose');
+const UserData = require('../models/usersDB');
 require('../passportFb')();
 require('../passportGoogle')();
 const verifyController = require('../controllers/verifyController');
@@ -35,9 +35,23 @@ router.post('/google',
         if (!req.user) {
             return res.send(401, 'User Not Authenticated');
         }
+        
         req.auth = {
             id: req.user.id
         };
+
+        mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
+        mongoose.Promise = global.Promise;
+        UserData.findOne({_id: req.user.id}).then((user) => {
+           
+            if (user) {
+                const document = { googleTokenId: req.body.tokenId};
+                UserData.findOneAndUpdate(document).then((user) => {
+                     mongoose.connection.close();
+                }).catch((err) => {console.log(err)})   
+            }
+        })
+
         next();
     }, generateToken, sendToken);
 
