@@ -28,65 +28,64 @@ class UserData extends Component {
         getToken: Cookies.get('auth'),
         fullName: null,
         isAuthenticated: false,
-        loaded: false
+        loaded: false,
+        social: Cookies.get('social')
     }
-
-    // componentDidMount() {
-    //     if (this.state.getToken) {
-    //         const options = {
-    //             method: 'POST',
-    //             body: JSON.stringify({
-    //                 userName: this.state.userName
-    //             }),
-    //             mode: 'cors',
-    //             credentials: 'include',
-    //             cache: 'default'
-    //         };
-    //         fetch('/api/auth', options).then(res => {
-    //             res.json().then(json => {
-    //                 if (json.fullName) {
-    //                     this.setState({
-    //                         fullName: json.fullName,
-    //                         isAuthenticated: true,
-    //                         loaded: true
-    //                     })
-    //                 }
-    //                 this.props.setAuthValue(this.state.isAuthenticated)
-    //             })
-    //         }).catch(err => { console.log(err) })
-    //     }
-    // }
 
     componentDidMount() {
         if (this.state.getToken) {
-            const options = {
-                method: 'POST',
-                body: JSON.stringify({
-                    user: {
-                        id: null
-                    }
-                }),
-                mode: 'cors',
-                credentials: 'include',
-                cache: 'default'
-            };
-            fetch('/api/googleVerify', options).then(r => {
-                r.json().then(json => {
-                    if (json.fullName) {
-                        this.setState({
-                            fullName: json.fullName,
-                            isAuthenticated: true,
-                            loaded: true
-                        })
-                    }
-                    if(json.err){
-                        this.setState({
-                            loaded: true
-                        })
-                    }
-                    this.props.setAuthValue(this.state.isAuthenticated)
-                });
-            }).catch(err => { console.log(err) })
+            if (this.state.social === 'google') {
+                const options = {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        user: {
+                            id: null
+                        }
+                    }),
+                    mode: 'cors',
+                    credentials: 'include',
+                    cache: 'default'
+                };
+                fetch('/api/googleVerify', options).then(r => {
+                    r.json().then(json => {
+                        if (json.fullName) {
+                            this.setState({
+                                fullName: json.fullName,
+                                isAuthenticated: true,
+                                loaded: true
+                            })
+                        }
+                        if (json.err) {
+                            this.setState({
+                                loaded: true
+                            })
+                        }
+                        this.props.setAuthValue(this.state.isAuthenticated)
+                    });
+                }).catch(err => { console.log(err) })
+            } else if (this.state.social === 'facebook') {
+                const options = {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        userName: this.state.userName
+                    }),
+                    mode: 'cors',
+                    credentials: 'include',
+                    cache: 'default'
+                };
+                fetch('/api/auth', options).then(res => {
+                    res.json().then(json => {
+                        if (json.fullName) {
+                            this.setState({
+                                fullName: json.fullName,
+                                isAuthenticated: true,
+                                loaded: true
+                            })
+                        }
+                        this.props.setAuthValue(this.state.isAuthenticated)
+                    })
+                }).catch(err => { console.log(err) })
+            }
         }
     }
 
@@ -114,13 +113,12 @@ class UserData extends Component {
 
     render() {
         const { fullName, isAuthenticated } = this.state;
-        console.log(this.state.loaded)
+        console.log(this.state.social)
         return (
             <>
                 {this.LoaderElement()}
                 <UserCnt visibility={isAuthenticated ? 'flex' : 'none'}>
                     <User>Witaj </User><FullName>{fullName}</FullName>
-                    {/* here component sign out */}
                 </UserCnt>
             </ >
         )
