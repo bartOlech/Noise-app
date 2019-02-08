@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import CloseLogIn from './closeLogIn';
 import Loader from 'react-loader-spinner';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import { FaFacebookSquare } from 'react-icons/fa';
-import {config} from '../../config/config';
+import { config } from '../../config/config';
 import Cookies from 'js-cookie';
 
 const GlobalStyle = createGlobalStyle`
@@ -33,18 +33,19 @@ const Tittle = styled.h2`
     font-size: 1.7em;
     font-family: 'Varela Round', sans-serif;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 30px;
 
 `
 //log in Facebook/Google
 const Buttons = styled.div`
     display:flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 20px;
     position: relative;
     @media(max-width: 410px){
         flex-direction: column;
-        align-items: center;
+        align-items: space-beetween;
+        margin-left: 85px;
     }
 `
 
@@ -180,14 +181,24 @@ const LoaderCnt = styled.div`
     display: ${props => props.loader};
     justify-content: center;
 `
-
-
-const Testt = styled.div`
+const LogInfo = styled.div`
     display: ${props => props.visibility};
+    height: 42px;
+    justify-content: center;
+    background-color: #D4EDDA;
+    position: relative;
+    box-shadow: 0 1px 1px -1px gray;
+`
+const LogInfoText = styled.div`
+    color: #155724;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `
 
-class LogInSignUp extends Component{
-    constructor(props){
+class LogInSignUp extends Component {
+    constructor(props) {
         super(props)
         this.state = {
             loginPage: true,
@@ -210,125 +221,125 @@ class LogInSignUp extends Component{
         }
     }
 
-    closeLogIn = (val)=>{
+    closeLogIn = (val) => {
         this.props.closeLogIn(val)
     }
-    logOrReg = ()=>{
+    logOrReg = () => {
 
     }
-    logRegBtn = ()=>{
-        const {loginPage} = this.state;
+    logRegBtn = () => {
+        const { loginPage } = this.state;
         this.setState({
             loginPage: !loginPage,
         })
     }
 
-    formValid = ()=>{
-        const {valEmailSignUp, valPassSignUp, valPass2SignUp} = this.state;
+    formValid = () => {
+        const { valEmailSignUp, valPassSignUp, valPass2SignUp } = this.state;
 
         const emailTest = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const emailValidation = emailTest.test(String(valEmailSignUp).toLowerCase());
-            if(!emailValidation){
-                if(valPassSignUp !== valPass2SignUp ){
-                    this.setState({
-                        inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się',
-                    })
-                }else{
-                    this.setState({
-                        inputErrorText: 'Podany email jest niepoprawny',
-    
-                    })
-                }
-            }
-            if(valPassSignUp !== valPass2SignUp || valPassSignUp === '' || valPass2SignUp === ''){
-                if(!emailValidation){
-                    if(valPassSignUp === '' && valPass2SignUp === ''){
-                        this.setState({
-                            inputErrorText: 'Podany email jest niepoprawny. Wprowadź hasło'
-                        })
-                    }else{
-                        this.setState({
-                            inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się'
-                        })
-                    }
-                }else{
-                    if(valPassSignUp === '' && valPass2SignUp === ''){
-                        this.setState({
-                            inputErrorText: 'Wpisz hasło'
-                        })
-                    }else{
-                        this.setState({
-                            inputErrorText: 'Hasła różnią się'
-                        })
-                    }
-                }
-            }
-            if(valEmailSignUp !== '' && valPassSignUp !== '' && valPass2SignUp !== '' && emailValidation && valPassSignUp === valPass2SignUp){
+        if (!emailValidation) {
+            if (valPassSignUp !== valPass2SignUp) {
                 this.setState({
-                    correctSignUp: true,
-                    inputError: false,
-                    inputSucces: true,
+                    inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się',
                 })
-            }else{
+            } else {
                 this.setState({
-                    correctSignUp: false,
-                    inputError: true,
-                    inputSucces: false
-                }) 
-            } 
+                    inputErrorText: 'Podany email jest niepoprawny',
+
+                })
+            }
+        }
+        if (valPassSignUp !== valPass2SignUp || valPassSignUp === '' || valPass2SignUp === '') {
+            if (!emailValidation) {
+                if (valPassSignUp === '' && valPass2SignUp === '') {
+                    this.setState({
+                        inputErrorText: 'Podany email jest niepoprawny. Wprowadź hasło'
+                    })
+                } else {
+                    this.setState({
+                        inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się'
+                    })
+                }
+            } else {
+                if (valPassSignUp === '' && valPass2SignUp === '') {
+                    this.setState({
+                        inputErrorText: 'Wpisz hasło'
+                    })
+                } else {
+                    this.setState({
+                        inputErrorText: 'Hasła różnią się'
+                    })
+                }
+            }
+        }
+        if (valEmailSignUp !== '' && valPassSignUp !== '' && valPass2SignUp !== '' && emailValidation && valPassSignUp === valPass2SignUp) {
+            this.setState({
+                correctSignUp: true,
+                inputError: false,
+                inputSucces: true,
+            })
+        } else {
+            this.setState({
+                correctSignUp: false,
+                inputError: true,
+                inputSucces: false
+            })
+        }
     }
 
-    handleSubmitSignUp = (event)=>{
+    handleSubmitSignUp = (event) => {
         event.preventDefault();
         this.setState({
             loading: true
         })
-        const {correctSignUp, valEmailSignUp, valPassSignUp, valPass2SignUp} = this.state;
-    if(correctSignUp){
-        fetch('/api/signUp', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                valEmailSignUp,
-                valPassSignUp,
-                valPass2SignUp
-            })
-        })
-        .then(res =>res.json())
-            .then(json => {
-            //console.log('json', json);
-            this.setState({
-                emailExist: json.mailExist,
-                SuccessSignUp: json.SuccessSignUp,
-                loading: false
-            })
-            }).catch(err => {
-
-                //????????? here the function is performed if the email has been send
-
-                this.setState({
-                    loading: false
+        const { correctSignUp, valEmailSignUp, valPassSignUp, valPass2SignUp } = this.state;
+        if (correctSignUp) {
+            fetch('/api/signUp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    valEmailSignUp,
+                    valPassSignUp,
+                    valPass2SignUp
                 })
-        }) 
-    }  
-}
+            })
+                .then(res => res.json())
+                .then(json => {
+                    //console.log('json', json);
+                    this.setState({
+                        emailExist: json.mailExist,
+                        SuccessSignUp: json.SuccessSignUp,
+                        loading: false
+                    })
+                }).catch(err => {
+
+                    //????????? here the function is performed if the email has been send
+
+                    this.setState({
+                        loading: false
+                    })
+                })
+        }
+    }
 
 
-    inputEmailSignUp = (event)=>{
+    inputEmailSignUp = (event) => {
         event.preventDefault()
         this.setState({
             valEmailSignUp: event.currentTarget.value
         })
     }
-    inputPassSignUp = (event)=>{
+    inputPassSignUp = (event) => {
         event.preventDefault()
         this.setState({
             valPassSignUp: event.currentTarget.value
         })
     }
-    inputPass2SignUp = (event)=>{
+    inputPass2SignUp = (event) => {
         event.preventDefault()
         this.setState({
             valPass2SignUp: event.currentTarget.value
@@ -336,19 +347,19 @@ class LogInSignUp extends Component{
     }
     //facebook login
     logout = () => {
-        this.setState({isAuthenticated: false, token: '', user: null})
+        this.setState({ isAuthenticated: false, token: '', user: null })
     };
 
     onFailure = (error) => {
         alert(error);
     };
 
-    auth(){
+    auth() {
         this.props.isAuth(this.state.isAuthenticated, this.state.user)
     }
 
     responseFacebook = (response) => {
-        const tokenBlob = new Blob([JSON.stringify({access_token: response.accessToken}, null, 2)], {type : 'application/json'});
+        const tokenBlob = new Blob([JSON.stringify({ access_token: response.accessToken }, null, 2)], { type: 'application/json' });
         const options = {
             method: 'POST',
             body: tokenBlob,
@@ -359,16 +370,16 @@ class LogInSignUp extends Component{
             const token = r.headers.get('x-auth-token');
             r.json().then(user => {
                 if (token) {
-                    this.setState({isAuthenticated: true, user: user.fullName, token})
+                    this.setState({ isAuthenticated: true, user: user.fullName, token })
                     this.auth();
                 }
             });
-        }).catch(err =>{console.log(err)})
-      }
-  
+        }).catch(err => { console.log(err) })
+    }
+
     responseGoogle = (response) => {
         console.log(response.profileObj.googleId)
-        const tokenBlob = new Blob([JSON.stringify({access_token: response.accessToken, tokenId: response.tokenId, googleId: response.profileObj.googleId, email: response.profileObj.email}, null, 2)], {type : 'application/json'});
+        const tokenBlob = new Blob([JSON.stringify({ access_token: response.accessToken, tokenId: response.tokenId, googleId: response.profileObj.googleId, email: response.profileObj.email }, null, 2)], { type: 'application/json' });
         const options = {
             method: 'POST',
             body: tokenBlob,
@@ -379,95 +390,99 @@ class LogInSignUp extends Component{
             const token = r.headers.get('x-auth-token');
             r.json().then(user => {
                 if (token) {
-                    this.setState({isAuthenticated: true, user: user.fullName, token})
+                    this.setState({ isAuthenticated: true, user: user.fullName, token })
                     this.auth();
                 }
             });
-        }).catch(err =>{console.log(err)})
-      }
+        }).catch(err => { console.log(err) })
+    }
 
-    fbSignUp = () =>{
+    fbSignUp = () => {
         //console.log('clicked')
     }
 
-   
-
-render(){
-    const {loginPage, inputError, inputErrorText, valEmailSignUp, inputSucces, emailExist, loading, isAuthenticated} = this.state;
-    this.logOrReg()
-    return( 
-        <Content>
-        <Testt visibility={isAuthenticated?'inline':'none'}>teessssssssssss</Testt>
-
-            <GlobalStyle></GlobalStyle>
-            <LogInCnt displayLogin={loginPage?'none':'inline'}>
-
-                <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
-                <Tittle>Zaloguj się przez</Tittle>
-                {/* Buttons */}
-                
-                <FormCnt method='POST'>
-                    <FormText htmlFor='emailLogin'>Email</FormText>
-                    <FormInput type='text' id='emailLogin' name='emailLogin'></FormInput>
-                    <FormText htmlFor='passwordLogin'>Hasło</FormText>
-                    <FormInput type='password' id='passwordLogin' name='passwordLogin'></FormInput>
-                    <ForgotPass>Nie pamiętasz hasła?</ForgotPass>
-                    <SubmitBtn>Zaloguj się</SubmitBtn>
-                </FormCnt>
-                <SignUp>Nie posiadasz konta?<CreateAccount onClick={this.logRegBtn}>Zarejestruj się</CreateAccount></SignUp>
-            </LogInCnt>
-            <SignUpCnt displaySignup={loginPage?'inline':'none'}>
-                <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
-                <Tittle>Zarejestruj się</Tittle>
-                <Buttons>
-                    <FacebookLogin
-                        appId= {config.FACEBOOK_APP_ID} //APP ID NOT CREATED YET
-                        onClick={this.fbSignUp}
-                        fields= "name, email, picture"
-                        callback= {this.responseFacebook}
-                        cssClass="my-facebook-button-class"
-                        textButton='Facebook'
-                        icon={<FaFacebookSquare className='fb-ico' size={30}/>}
-                    />
-                    <GoogleLogin
-                        clientId={config.GOOGLE_CLIENT_ID}
-                        buttonText="Google"
-                        className="my-google-button-class"
-                        onSuccess={this.responseGoogle}
-                        onFailure={this.responseGoogle}
-                    />
-                </Buttons>
-                
-                {/* input alerts */}
-                <MsgCnt visible={loading?'none':'inline'}>
-                    <ErrorInfoCnt error={inputError?'flex':'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
-                    <SuccessInfoCnt success={inputSucces && emailExist === ''?'flex':'none'}><SuccessInfo>Zarejestrowano pomyślnie</SuccessInfo></SuccessInfoCnt>
-
-                    <EmailExist alert={emailExist !== ''?'flex':'none'}><AlertInfo>{emailExist}</AlertInfo></EmailExist>
-                </MsgCnt>
-                <LoaderCnt loader={loading?'flex':'none'}>
-                <Loader 
-                    type="ThreeDots"
-                    color="#555555"
-                    height="70"	
-                    width="100"
-                />   
-                </LoaderCnt>
 
 
-                <FormCnt onSubmit={this.handleSubmitSignUp} method='POST'>
-                    <FormText htmlFor='emailSignup'>Email</FormText>
-                    <FormInput onChange={this.inputEmailSignUp} value={valEmailSignUp} type='text' id='emailSignup' name='emailSignup'></FormInput>
-                    <FormText htmlFor='passwordSignup'>Hasło</FormText>
-                    <FormInput onChange={this.inputPassSignUp} type='password' id='passwordSignup' name='passwordSignup'></FormInput>
-                    <FormText htmlFor='passwordSignup2'>Powtórz hasło</FormText>
-                    <FormInput onChange={this.inputPass2SignUp} type='password' id='passwordSignup2' name='passwordSignup2'></FormInput>
-                    <SubmitBtn onClick={this.formValid}>Zarejestruj się</SubmitBtn>
-                </FormCnt>
-                <SignUp>Posiadasz konto?<CreateAccount onClick={this.logRegBtn}>Zaloguj się</CreateAccount></SignUp>
-            </SignUpCnt>
-        </Content>  
-    )
-}
+    render() {
+        const { loginPage, inputError, inputErrorText, valEmailSignUp, inputSucces, emailExist, loading, isAuthenticated } = this.state;
+        this.logOrReg()
+        return (
+            <Content>
+                <LogInfo visibility={isAuthenticated ? 'flex' : 'none'}>
+                    <LogInfoText>
+                        Zalogowano pomyślnie
+                    </LogInfoText>
+                </LogInfo>
+
+                <GlobalStyle></GlobalStyle>
+                <LogInCnt displayLogin={loginPage ? 'none' : 'inline'}>
+
+                    <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
+                    <Tittle>Zaloguj się przez</Tittle>
+                    {/* Buttons */}
+
+                    <FormCnt method='POST'>
+                        <FormText htmlFor='emailLogin'>Email</FormText>
+                        <FormInput type='text' id='emailLogin' name='emailLogin'></FormInput>
+                        <FormText htmlFor='passwordLogin'>Hasło</FormText>
+                        <FormInput type='password' id='passwordLogin' name='passwordLogin'></FormInput>
+                        <ForgotPass>Nie pamiętasz hasła?</ForgotPass>
+                        <SubmitBtn>Zaloguj się</SubmitBtn>
+                    </FormCnt>
+                    <SignUp>Nie posiadasz konta?<CreateAccount onClick={this.logRegBtn}>Zarejestruj się</CreateAccount></SignUp>
+                </LogInCnt>
+                <SignUpCnt displaySignup={loginPage ? 'inline' : 'none'}>
+                    <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
+                    <Tittle>Zarejestruj się</Tittle>
+                    <Buttons>
+                        <FacebookLogin
+                            appId={config.FACEBOOK_APP_ID} //APP ID NOT CREATED YET
+                            onClick={this.fbSignUp}
+                            fields="name, email, picture"
+                            callback={this.responseFacebook}
+                            cssClass="my-facebook-button-class"
+                            textButton='Facebook'
+                            icon={<FaFacebookSquare className='fb-ico' size={30} />}
+                        />
+                        <GoogleLogin
+                            clientId={config.GOOGLE_CLIENT_ID}
+                            buttonText="Google"
+                            className="my-google-button-class"
+                            onSuccess={this.responseGoogle}
+                            onFailure={this.responseGoogle}
+                        />
+                    </Buttons>
+
+                    {/* input alerts */}
+                    <MsgCnt visible={loading ? 'none' : 'inline'}>
+                        <ErrorInfoCnt error={inputError ? 'flex' : 'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
+                        <SuccessInfoCnt success={inputSucces && emailExist === '' ? 'flex' : 'none'}><SuccessInfo>Zarejestrowano pomyślnie</SuccessInfo></SuccessInfoCnt>
+
+                        <EmailExist alert={emailExist !== '' ? 'flex' : 'none'}><AlertInfo>{emailExist}</AlertInfo></EmailExist>
+                    </MsgCnt>
+                    <LoaderCnt loader={loading ? 'flex' : 'none'}>
+                        <Loader
+                            type="ThreeDots"
+                            color="#555555"
+                            height="70"
+                            width="100"
+                        />
+                    </LoaderCnt>
+
+
+                    <FormCnt onSubmit={this.handleSubmitSignUp} method='POST'>
+                        <FormText htmlFor='emailSignup'>Email</FormText>
+                        <FormInput onChange={this.inputEmailSignUp} value={valEmailSignUp} type='text' id='emailSignup' name='emailSignup'></FormInput>
+                        <FormText htmlFor='passwordSignup'>Hasło</FormText>
+                        <FormInput onChange={this.inputPassSignUp} type='password' id='passwordSignup' name='passwordSignup'></FormInput>
+                        <FormText htmlFor='passwordSignup2'>Powtórz hasło</FormText>
+                        <FormInput onChange={this.inputPass2SignUp} type='password' id='passwordSignup2' name='passwordSignup2'></FormInput>
+                        <SubmitBtn onClick={this.formValid}>Zarejestruj się</SubmitBtn>
+                    </FormCnt>
+                    <SignUp>Posiadasz konto?<CreateAccount onClick={this.logRegBtn}>Zaloguj się</CreateAccount></SignUp>
+                </SignUpCnt>
+            </Content>
+        )
+    }
 }
 export default LogInSignUp;

@@ -906,6 +906,7 @@ Toggle Changes
     border: none;
     border-radius: 3px;
     margin-right: 20px;
+    margin-bottom: 15px;
     color: #fff;
     cursor: pointer;
     font-family: 'Trebuchet MS';
@@ -928,6 +929,7 @@ Toggle Changes
   align-items: center;
   cursor: pointer;
   font-family: 'Varela Round', sans-serif;
+  margin-bottom: 10px;
 }
 .my-google-button-class:hover{
   background-color: rgb(242, 244, 247);
