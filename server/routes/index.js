@@ -27,6 +27,7 @@ router.post('/facebook',
             id: req.user.id
         };
         //res.redirect('/')
+        res.cookie('social', 'facebook')
         next();
     }, generateToken, sendToken, verifyController.verifyUser)
 
@@ -39,7 +40,7 @@ router.post('/google',
         req.auth = {
             id: req.user.id
         };
-
+        res.cookie('social', 'google')
         mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
         mongoose.Promise = global.Promise;
         UserData.findOne({_id: req.user.id}).then((user) => {

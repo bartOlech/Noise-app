@@ -35,41 +35,55 @@ module.exports.verify = (req, res, next) => {
                 })
 
                 res.clearCookie('auth')
+                res.clearCookie('social')
                 return res.status(401).json({ err: 'token is expired' });
             } else {
                 const userJWTPayload = jwt.verify(req.cookies.auth, 'my-secret');
                 if (!userJWTPayload) {
                     res.clearCookie('auth')
+                    res.clearCookie('social')
                     //Remove from database ??????????????????????????????
                     res.status(401).json({ tokenStatus: "Token is wrong" });
                 } else {
+                    //authentication
                     mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
                     mongoose.Promise = global.Promise;
 
                     UserData.findOne({ _id: userJWTPayload.id }).then((user) => {
 
-                        //authentication
-                        console.log('!!!!!')
-                        const client = new OAuth2Client(config.googleAuth.clientID);
-                        async function verify() {
-                            const ticket = await client.verifyIdToken({
-                                idToken: user.googleTokenId,
-                                audience: config.googleAuth.clientID,
-                            });
-                            const payload = ticket.getPayload();
-                            console.log(payload.name)
-                            const userid = payload['sub'];
-                            mongoose.connection.close();
-                            res.status(200).json({ fullName: payload.name });
+                        if (user) {
+                            request.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${user.googleTokenId}`, (err, response, body) => {
+                                if (JSON.parse(body).error) {
+                                    UserData.deleteOne({ _id: user._id }, () => {
+                                        console.log('usunięto użytkownika')
+                                    })
+                                    res.clearCookie('auth')
+                                    res.clearCookie('social')
+                                    return res.status(401).json({ err: 'token is expired' });
+                                } else {
+                                    const client = new OAuth2Client(config.googleAuth.clientID);
+                                    async function verify() {
+                                        const ticket = await client.verifyIdToken({
+                                            idToken: user.googleTokenId,
+                                            audience: config.googleAuth.clientID,
+                                        });
+                                        const payload = ticket.getPayload();
+                                        const userid = payload['sub'];
+                                        mongoose.connection.close();
+                                        res.status(200).json({ fullName: payload.name });
+                                    }
+                                    verify().catch((err) => {
+                                    });
+                                }
+                            })
+                        } else {
+                            res.clearCookie('auth')
+                            res.clearCookie('social')
+                            return res.status(401).json({ err: 'token is expired' });
                         }
-                        verify().catch(console.error);
-                        
-
                     })
                 }
             }
         });
-
-
     }
 }

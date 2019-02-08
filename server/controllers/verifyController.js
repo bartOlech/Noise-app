@@ -34,11 +34,13 @@ module.exports.verifyUser = (req, res, next) => {
                 })
 
                 res.clearCookie('auth')
+                res.clearCookie('social')
                 return res.status(401).json({ err: 'token is expired' });
             } else {
                 const userJWTPayload = jwt.verify(req.cookies.auth, 'my-secret');
                 if (!userJWTPayload) {
                     res.clearCookie('auth')
+                    res.clearCookie('social')
                     //Remove from database ??????????????????????????????
                     res.status(401).json({ tokenStatus: "Token is wrong" });
                 } else {
@@ -60,6 +62,7 @@ module.exports.verifyUser = (req, res, next) => {
                                 })
 
                                 res.clearCookie('auth')
+                                res.clearCookie('social')
                                 res.status(500).json({ tokenStatus: "Token is expired" });
                             } else {
                                 mongoose.connection.close();

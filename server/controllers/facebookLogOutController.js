@@ -20,5 +20,6 @@ module.exports.fbLogOut = (req, res, next) => {
     })
     })
     res.clearCookie('auth')
+    res.clearCookie('social')
     res.status(200).json({ tokenStatus: "the user has been logged out" });
 }
