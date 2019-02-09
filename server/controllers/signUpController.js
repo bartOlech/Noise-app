@@ -16,7 +16,7 @@ exports.checkEmail = (req, res, next) =>{
     UserData.find({'email': newUser.email}).then((users)=>{
     if(users.length > 0){
         console.log('This mail already exists')
-        res.status(400).json({mailExist: "To konto jest już zarejestrowane"});
+        res.status(409).json({mailExist: "To konto jest już zarejestrowane"});
     }else{
         next();
     }
@@ -43,7 +43,7 @@ exports.signUp = (req, res, next) =>{
             newUser.save().then((user)=>{
                 mongoose.connection.close();
                 console.log('success SignUp')
-                res.status(400).json({mailExist: ""});
+                res.status(200).json({mailExist: ""});
             }).catch(err => console.log(err));
             })
         })

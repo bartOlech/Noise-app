@@ -113,7 +113,6 @@ class UserData extends Component {
 
     render() {
         const { fullName, isAuthenticated } = this.state;
-        console.log(this.state.social)
         return (
             <>
                 {this.LoaderElement()}

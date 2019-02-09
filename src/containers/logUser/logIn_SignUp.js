@@ -241,18 +241,14 @@ class LogInSignUp extends Component {
 
     formValid = () => {
         const { valEmailSignUp, valPassSignUp, valPass2SignUp } = this.state;
-        console.log('validation')
         const emailTest = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const emailValidation = emailTest.test(String(valEmailSignUp).toLowerCase());
         if (!emailValidation) {
-            console.log('validation2')
             if (valPassSignUp !== valPass2SignUp) {
-                console.log('validation3')
                 this.setState({
                     inputErrorText: 'Podany email jest niepoprawny. Hasła różnią się',
                 })
             } else {
-                console.log('validation4')
                 this.setState({
                     inputErrorText: 'Podany email jest niepoprawny',
 
@@ -317,7 +313,6 @@ class LogInSignUp extends Component {
             })
                 .then(res => res.json())
                 .then(json => {
-                    //console.log('json', json);
                     this.setState({
                         emailExist: json.mailExist,
                         SuccessSignUp: json.SuccessSignUp,
@@ -390,7 +385,6 @@ class LogInSignUp extends Component {
     }
 
     responseGoogle = (response) => {
-        console.log(response.profileObj.googleId)
         const tokenBlob = new Blob([JSON.stringify({ access_token: response.accessToken, tokenId: response.tokenId, googleId: response.profileObj.googleId, email: response.profileObj.email }, null, 2)], { type: 'application/json' });
         const options = {
             method: 'POST',
@@ -412,8 +406,6 @@ class LogInSignUp extends Component {
     fbSignUp = () => {
         //console.log('clicked')
     }
-
-
 
     render() {
         const { loginPage, inputError, inputErrorText, valEmailSignUp, inputSucces, emailExist, loading, isAuthenticated } = this.state;
@@ -467,7 +459,7 @@ class LogInSignUp extends Component {
                     </Buttons>
 
                     {/* input alerts */}
-                    {console.log(`correct: ${this.state.correctSignUp}`)}
+
                     <MsgCnt visible={loading ? 'none' : 'inline'}>
                         <ErrorInfoCnt error={inputError ? 'flex' : 'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
                         <SuccessInfoCnt success={inputSucces && emailExist === '' ? 'flex' : 'none'}><SuccessInfo>Zarejestrowano pomyślnie</SuccessInfo></SuccessInfoCnt>

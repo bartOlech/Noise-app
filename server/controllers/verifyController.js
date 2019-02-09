@@ -63,7 +63,7 @@ module.exports.verifyUser = (req, res, next) => {
 
                                 res.clearCookie('auth')
                                 res.clearCookie('social')
-                                res.status(500).json({ tokenStatus: "Token is expired" });
+                                res.status(401).json({ tokenStatus: "Token is expired" });
                             } else {
                                 mongoose.connection.close();
                                 res.status(200).json({ fullName: user[0].fullName });
