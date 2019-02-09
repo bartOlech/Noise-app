@@ -23,6 +23,7 @@ const Content = styled.div`
     transform: translate(-50%, -50%);
     border-radius: 8px;
     @media(max-width: 410px){
+        margin-top:20px;
         width: 310px;
         top: 330px;
     }
@@ -195,6 +196,10 @@ const LogInfoText = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    @media(max-width: 410px){
+        left:40%
+    }
+    
 `
 
 class LogInSignUp extends Component {
@@ -408,13 +413,14 @@ class LogInSignUp extends Component {
         this.logOrReg()
         return (
             <Content>
+                <GlobalStyle></GlobalStyle>
                 <LogInfo visibility={isAuthenticated ? 'flex' : 'none'}>
                     <LogInfoText>
                         Zalogowano pomyślnie
                     </LogInfoText>
                 </LogInfo>
 
-                <GlobalStyle></GlobalStyle>
+                
                 <LogInCnt displayLogin={loginPage ? 'none' : 'inline'}>
 
                     <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
