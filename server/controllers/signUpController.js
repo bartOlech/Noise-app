@@ -43,7 +43,7 @@ exports.signUp = (req, res, next) =>{
             newUser.save().then((user)=>{
                 mongoose.connection.close();
                 console.log('success SignUp')
-                res.redirect('/')
+                res.status(400).json({mailExist: ""});
             }).catch(err => console.log(err));
             })
         })
