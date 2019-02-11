@@ -82,6 +82,11 @@ class UserData extends Component {
                                 loaded: true
                             })
                         }
+                        if (json.err) {
+                            this.setState({
+                                loaded: true
+                            })
+                        }
                         this.props.setAuthValue(this.state.isAuthenticated)
                     })
                 }).catch(err => { console.log(err) })

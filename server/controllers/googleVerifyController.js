@@ -9,48 +9,47 @@ const { OAuth2Client } = require('google-auth-library');
 
 module.exports.verify = (req, res, next) => {
 
-    const userJWT = req.cookies.auth;
+    const userJWT = req.cookies.auth
     const decodedToken = jwtDecode(userJWT)
 
     //If token is expired, renew it(sign out)
     console.log('ZACZYNAM ANALIZOWAĆ')
+    
 
     if (!userJWT) {
         //hide user component, show sign up component
         res.send(401, 'Invalid or missing authorization token')
-        console.log('warunek 1')
     } else {
-        jwt.verify(req.cookies.auth, 'my-secret', function (err, decoded) {
+        jwt.verify(userJWT, 'my-secret', function (err, decoded) {
             if (err) {
+                
                 //hide user component, show sign up component
-                console.log('warunek 2')
-                const decodedToken = jwtDecode(userJWT)
+                const decodedToken = req.cookies.auth
                 mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
                 mongoose.Promise = global.Promise;
-                UserData.find({ _id: decodedToken }).then((user) => {
-                    UserData.deleteOne({ _id: user[0]._id }, (err) => {
+                UserData.findById(jwtDecode(decodedToken).id).then((user) => {
+                    if(user){
+                        UserData.deleteOne({_id: jwtDecode(decodedToken).id}, (err) => {
+                        console.log(`The user has been removed`)
                         if (err) {
                             console.log(err)
-                            console.log('warunek 3')
                         }
                         mongoose.connection.close();
                     })
-                })
+                    } 
+                }).catch(err => {console.log(err)})
 
                 res.clearCookie('auth')
                 res.clearCookie('social')
                 return res.status(401).json({ err: 'token is expired' });
             } else {
-                console.log('warunek 4')
                 const userJWTPayload = jwt.verify(req.cookies.auth, 'my-secret');
                 if (!userJWTPayload) {
-                    console.log('warunek 5')
                     res.clearCookie('auth')
                     res.clearCookie('social')
                     //Remove from database ??????????????????????????????
                     res.status(401).json({ tokenStatus: "Token is wrong" });
                 } else {
-                    console.log('warunek 6')
                     //authentication
                     mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
                     mongoose.Promise = global.Promise;
@@ -58,18 +57,15 @@ module.exports.verify = (req, res, next) => {
                     UserData.findOne({ _id: userJWTPayload.id }).then((user) => {
 
                         if (user) {
-                            console.log('warunek 7')
                             request.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${user.googleTokenId}`, (err, response, body) => {
                                 if (JSON.parse(body).error) {
-                                    console.log('warunek 8')
                                     UserData.deleteOne({ _id: user._id }, () => {
-                                        console.log('usunięto użytkownika')
+                                        console.log('The user has been remved')
                                     })
                                     res.clearCookie('auth')
                                     res.clearCookie('social')
                                     return res.status(401).json({ err: 'token is expired' });
                                 } else {
-                                    console.log('warunek 9')
                                     const client = new OAuth2Client(config.googleAuth.clientID);
                                     async function verify() {
                                         const ticket = await client.verifyIdToken({
@@ -86,7 +82,6 @@ module.exports.verify = (req, res, next) => {
                                 }
                             })
                         } else {
-                            console.log('warunek 10')
                             res.clearCookie('auth')
                             res.clearCookie('social')
                             return res.status(401).json({ err: 'token is expired' });

@@ -13,7 +13,7 @@ exports.checkEmail = (req, res, next) =>{
       });
     mongoose.connect('mongodb://localhost:27017/noiseApp-users', {useNewUrlParser:true});
     mongoose.Promise = global.Promise;
-    UserData.find({'email': newUser.email}).then((users)=>{
+    UserData.find({'email': newUser.email}).then((users)=>{ //tutaj nie może być samo email(może korygować z mailem z Facebooka lub Google)
     if(users.length > 0){
         console.log('This mail already exists')
         res.status(409).json({mailExist: "To konto jest już zarejestrowane"});

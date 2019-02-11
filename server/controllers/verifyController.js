@@ -9,7 +9,7 @@ module.exports.verifyUser = (req, res, next) => {
 
     const userJWT = req.cookies.auth;
     const decodedToken = jwtDecode(userJWT)
-    console.log(decodedToken)
+    console.log(decodedToken.id)
     //If token is expired, renew it(sign out)
     console.log('ZACZYNAM ANALIZOWAĆ')
 
@@ -24,7 +24,7 @@ module.exports.verifyUser = (req, res, next) => {
                 const decodedToken = jwtDecode(userJWT)
                 mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
                 mongoose.Promise = global.Promise;
-                UserData.find({ _id: decodedToken }).then((user) => {
+                UserData.find({ _id: decodedToken.id }).then((user) => { //tu dodane .id(wcześniej nie było)
                     UserData.deleteOne({ _id: user[0]._id }, (err) => {
                         if (err) {
                             console.log(err)

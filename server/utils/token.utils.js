@@ -5,7 +5,7 @@ const createToken = function(auth) {
             id: auth.id
         }, 'my-secret',
         {
-            expiresIn: 60000
+            expiresIn: 60 * 60 * 24   // 1 = second
         });
 };
 
