@@ -424,13 +424,13 @@ class LogInSignUp extends Component {
 
                     <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                     <Tittle>Zaloguj się przez</Tittle>
-                    {/* Buttons */}
-
-                    <FormCnt method='POST'>
+            
+                    {/* Login */}
+                    <FormCnt action='./api/loginn' method='POST'>
                         <FormText htmlFor='emailLogin'>Email</FormText>
-                        <FormInput type='text' id='emailLogin' name='emailLogin'></FormInput>
+                        <FormInput type='text' id='emailLogin' name='email'></FormInput>
                         <FormText htmlFor='passwordLogin'>Hasło</FormText>
-                        <FormInput type='password' id='passwordLogin' name='passwordLogin'></FormInput>
+                        <FormInput type='password' id='passwordLogin' name='password'></FormInput>
                         <ForgotPass>Nie pamiętasz hasła?</ForgotPass>
                         <SubmitBtn>Zaloguj się</SubmitBtn>
                     </FormCnt>

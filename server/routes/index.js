@@ -62,4 +62,14 @@ router.post('/signUp',
 )
 router.get('/signUp', signUpController.signUp)
 
+// Login
+router.post('/loginn',
+  passport.authenticate('local'),
+  function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    console.log(req.user)
+    res.redirect('/')
+  });
+
 module.exports = router;

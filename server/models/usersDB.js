@@ -11,6 +11,10 @@ const dataSchema = new Schema({
     type: {
         type: String
     },
+    data: {
+        type: Date,
+        default: Date.now
+    },
     access_token: {
         type: String
     },
