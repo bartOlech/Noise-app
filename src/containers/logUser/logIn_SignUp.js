@@ -222,7 +222,9 @@ class LogInSignUp extends Component {
             isAuthenticated: false,
             user: null,
             token: '',
-            getToken: Cookies.get('auth')
+            getToken: Cookies.get('auth'),
+            valEmailSignIn: '',
+            valPassSignIn: ''
         }
     }
 
@@ -326,10 +328,10 @@ class LogInSignUp extends Component {
                         loading: false
                     })
                 })
-        }else{
+        } else {
             this.setState({
-            loading: false
-        })
+                loading: false
+            })
         }
     }
 
@@ -406,6 +408,44 @@ class LogInSignUp extends Component {
     fbSignUp = () => {
         //console.log('clicked')
     }
+    setEmailVal = (event) => {
+        event.preventDefault();
+        this.setState({
+            valEmailSignIn: event.currentTarget.value
+        })
+    }
+    setPassVal = (event) => {
+        event.preventDefault();
+        this.setState({
+            valPassSignIn: event.currentTarget.value
+        })
+    }
+    handleSignIn = (event) => {
+        event.preventDefault();
+
+        const { valEmailSignIn, valPassSignIn } = this.state;
+
+        fetch('/api/loginn', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: valEmailSignIn,
+                password: valPassSignIn
+            })
+        })
+            .then(res => res.json())
+            .then(json => {
+                if (json.auth) {
+                    this.setState({ isAuthenticated: true, user: json.user})
+                    this.auth();
+                }
+                
+            }).catch((err) => {
+                //this will be executed if email or pass is wrong
+            })
+    }
 
     render() {
         const { loginPage, inputError, inputErrorText, valEmailSignUp, inputSucces, emailExist, loading, isAuthenticated } = this.state;
@@ -419,18 +459,18 @@ class LogInSignUp extends Component {
                     </LogInfoText>
                 </LogInfo>
 
-                
+
                 <LogInCnt displayLogin={loginPage ? 'none' : 'inline'}>
 
                     <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                     <Tittle>Zaloguj się przez</Tittle>
-            
+
                     {/* Login */}
-                    <FormCnt action='./api/loginn' method='POST'>
+                    <FormCnt onSubmit={this.handleSignIn} method='POST'>
                         <FormText htmlFor='emailLogin'>Email</FormText>
-                        <FormInput type='text' id='emailLogin' name='email'></FormInput>
+                        <FormInput onChange={this.setEmailVal} type='text' id='emailLogin' name='email'></FormInput>
                         <FormText htmlFor='passwordLogin'>Hasło</FormText>
-                        <FormInput type='password' id='passwordLogin' name='password'></FormInput>
+                        <FormInput onChange={this.setPassVal} type='password' id='passwordLogin' name='password'></FormInput>
                         <ForgotPass>Nie pamiętasz hasła?</ForgotPass>
                         <SubmitBtn>Zaloguj się</SubmitBtn>
                     </FormCnt>
