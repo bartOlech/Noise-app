@@ -425,7 +425,7 @@ class LogInSignUp extends Component {
 
         const { valEmailSignIn, valPassSignIn } = this.state;
 
-        fetch('/api/loginn', {
+        fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -438,12 +438,21 @@ class LogInSignUp extends Component {
             .then(res => res.json())
             .then(json => {
                 if (json.auth) {
-                    this.setState({ isAuthenticated: true, user: json.user})
+                    this.setState({ isAuthenticated: true, user: json.user, inputError: false, inputErrorText: ''})
                     this.auth();
+                }else if(json.email){
+                    this.setState({
+                        inputError: true,
+                        inputErrorText: 'Nieprawidłowy email'
+                    })
+                }else if(json.password){
+                    this.setState({
+                        inputError: true,
+                        inputErrorText: 'Hasło jest niepoprawne'
+                    })
                 }
-                
             }).catch((err) => {
-                //this will be executed if email or pass is wrong
+                console.log(err)
             })
     }
 
@@ -464,6 +473,9 @@ class LogInSignUp extends Component {
 
                     <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                     <Tittle>Zaloguj się przez</Tittle>
+
+                    {/* Alerts */}
+                    <ErrorInfoCnt error={inputError ? 'flex' : 'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
 
                     {/* Login */}
                     <FormCnt onSubmit={this.handleSignIn} method='POST'>
@@ -515,7 +527,7 @@ class LogInSignUp extends Component {
                         />
                     </LoaderCnt>
 
-
+                    {/* Sign Up */}
                     <FormCnt onSubmit={this.handleSubmitSignUp} method='POST'>
                         <FormText htmlFor='emailSignup'>Email</FormText>
                         <FormInput onChange={this.inputEmailSignUp} value={valEmailSignUp} type='text' id='emailSignup' name='emailSignup'></FormInput>

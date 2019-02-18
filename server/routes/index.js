@@ -63,10 +63,20 @@ router.post('/signUp',
 router.get('/signUp', signUpController.signUp)
 
 // Login
-router.post('/loginn',
-  passport.authenticate('local'),
-  function(req, res) {
-    res.status(302).json({info: 'zalogowano', user: req.user.email, auth: true})
-  })
+
+router.post("/login", function(req, res) {
+      passport.authenticate("local", function(err, user, info) {
+        if (err) {
+          res.status(404).json(err);
+          return;
+        }
+
+        if (user) {
+          res.status(302).json({info: 'zalogowano', user: user.email, auth: true})
+        } else {
+          res.status(401).json(info);
+        }
+      })(req, res);
+    });
 
 module.exports = router;
