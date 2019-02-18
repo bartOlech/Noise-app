@@ -440,14 +440,14 @@ class LogInSignUp extends Component {
             .then(res => res.json())
             .then(json => {
                 if (json.auth) {
-                    this.setState({ isAuthenticated: true, user: json.user, inputError: false, inputErrorText: ''})
+                    this.setState({ isAuthenticated: true, user: json.user, inputError: false, inputErrorText: '' })
                     this.auth();
-                }else if(json.email){
+                } else if (json.email) {
                     this.setState({
                         inputError: true,
                         inputErrorText: 'Nieprawidłowy email'
                     })
-                }else if(json.password){
+                } else if (json.password) {
                     this.setState({
                         inputError: true,
                         inputErrorText: 'Hasło jest niepoprawne'
@@ -456,6 +456,28 @@ class LogInSignUp extends Component {
             }).catch((err) => {
                 console.log(err)
             })
+    }
+    formValidLogin = (event) => {
+
+        const { valEmailSignIn, valPassSignIn } = this.state;
+        const emailTest = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const emailValidation = emailTest.test(String(valEmailSignIn).toLowerCase());
+        if (!emailValidation) {
+            this.setState({
+                inputError: true,
+                inputErrorText: 'Podany email jest niepoprawny',
+            })
+        } else if (valPassSignIn === '') {
+            this.setState({
+                inputError: true,
+                inputErrorText: 'Wprowadź hasło',
+            })
+        } else {
+            this.setState({
+                inputError: false,
+                inputErrorText: '',
+            })
+        }
     }
 
     render() {
@@ -486,7 +508,7 @@ class LogInSignUp extends Component {
                         <FormText htmlFor='passwordLogin'>Hasło</FormText>
                         <FormInput onChange={this.setPassVal} type='password' id='passwordLogin' name='password'></FormInput>
                         <ForgotPass>Nie pamiętasz hasła?</ForgotPass>
-                        <SubmitBtn>Zaloguj się</SubmitBtn>
+                        <SubmitBtn onClick={this.formValidLogin}>Zaloguj się</SubmitBtn>
                     </FormCnt>
                     <SignUp>Nie posiadasz konta?<CreateAccount onClick={this.logRegBtn}>Zarejestruj się</CreateAccount></SignUp>
                 </LogInCnt>
