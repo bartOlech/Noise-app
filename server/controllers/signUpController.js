@@ -41,7 +41,6 @@ exports.signUp = (req, res, next) =>{
             if (err) throw err;
             newUser.password = hash;
             newUser.save().then((user)=>{
-                mongoose.connection.close();
                 console.log('success SignUp')
                 res.status(200).json({mailExist: ""});
             }).catch(err => console.log(err));

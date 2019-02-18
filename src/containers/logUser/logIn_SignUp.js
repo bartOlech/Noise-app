@@ -238,6 +238,8 @@ class LogInSignUp extends Component {
         const { loginPage } = this.state;
         this.setState({
             loginPage: !loginPage,
+            inputErrorText: '',
+            inputError: false
         })
     }
 

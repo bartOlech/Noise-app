@@ -29,7 +29,6 @@ module.exports.verifyUser = (req, res, next) => {
                         if (err) {
                             console.log(err)
                         }
-                        mongoose.connection.close();
                     })
                 })
 
@@ -58,14 +57,12 @@ module.exports.verifyUser = (req, res, next) => {
                                     if (err) {
                                         console.log(err)
                                     }
-                                    mongoose.connection.close();
                                 })
 
                                 res.clearCookie('auth')
                                 res.clearCookie('social')
                                 res.status(401).json({ tokenStatus: "Token is expired" });
                             } else {
-                                mongoose.connection.close();
                                 res.status(200).json({ fullName: user[0].fullName });
                             }
                         })

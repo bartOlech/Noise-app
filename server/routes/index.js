@@ -8,14 +8,15 @@ const UserData = require('../models/usersDB');
 require('../passportFb')();
 require('../passportGoogle')();
 const verifyController = require('../controllers/verifyController');
-const fbLogOutController = require('../controllers/facebookLogOutController')
+const LogOutController = require('../controllers/LogOutController')
 const googleVerifyController = require('../controllers/googleVerifyController');
+const signInController = require('../controllers/signInController')
 
 router.post('/auth', verifyController.verifyUser)
 
 router.post('/googleVerify', googleVerifyController.verify)
 
-router.post('/socialLogOut', fbLogOutController.fbLogOut)
+router.post('/socialLogOut', LogOutController.LogOut)
 
 
 router.post('/facebook',
@@ -64,19 +65,6 @@ router.get('/signUp', signUpController.signUp)
 
 // Login
 
-router.post("/login", function(req, res) {
-      passport.authenticate("local", function(err, user, info) {
-        if (err) {
-          res.status(404).json(err);
-          return;
-        }
-
-        if (user) {
-          res.status(302).json({info: 'zalogowano', user: user.email, auth: true})
-        } else {
-          res.status(401).json(info);
-        }
-      })(req, res);
-    });
+router.post("/login", signInController.signIn) 
 
 module.exports = router;

@@ -34,7 +34,6 @@ module.exports.verify = (req, res, next) => {
                         if (err) {
                             console.log(err)
                         }
-                        mongoose.connection.close();
                     })
                     } 
                 }).catch(err => {console.log(err)})
@@ -74,7 +73,6 @@ module.exports.verify = (req, res, next) => {
                                         });
                                         const payload = ticket.getPayload();
                                         const userid = payload['sub'];
-                                        mongoose.connection.close();
                                         res.status(200).json({ fullName: payload.name });
                                     }
                                     verify().catch((err) => {
