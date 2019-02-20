@@ -26,12 +26,13 @@ exports.checkEmail = (req, res, next) =>{
 exports.signUp = (req, res, next) =>{
     res.header("Access-Control-Allow-Origin", "*");
     const {valEmailSignUp, valPassSignUp} = req.body;
+    
 
     mongoose.connect('mongodb://localhost:27017/noiseApp-users', {useNewUrlParser:true});
       mongoose.Promise = global.Promise;
 
     const newUser = new UserData({
-        email: valEmailSignUp,
+        email: valEmailSignUp.toUpperCase(),
         password: valPassSignUp,
         type: 'usersRegister'
       });

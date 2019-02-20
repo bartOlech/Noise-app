@@ -310,7 +310,7 @@ class LogInSignUp extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    valEmailSignUp,
+                    valEmailSignUp: valEmailSignUp.toUpperCase(),
                     valPassSignUp,
                     valPass2SignUp
                 })
@@ -433,14 +433,14 @@ class LogInSignUp extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: valEmailSignIn,
+                email: valEmailSignIn.toUpperCase(),
                 password: valPassSignIn
             })
         })
             .then(res => res.json())
             .then(json => {
                 if (json.auth) {
-                    this.setState({ isAuthenticated: true, user: json.user, inputError: false, inputErrorText: '' })
+                    this.setState({ isAuthenticated: true, user: json.user.toLowerCase(), inputError: false, inputErrorText: '' })
                     this.auth();
                 } else if (json.email) {
                     this.setState({
