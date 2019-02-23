@@ -22,9 +22,6 @@ const icoSoundStyle = {
     height: '50px',
     marginRight: '-8px'
 }
-const fade = {
-    opacity: '0.1'
-}
 
 class BabySleep extends Component{
     constructor(props){

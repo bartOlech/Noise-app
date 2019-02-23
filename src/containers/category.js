@@ -24,33 +24,46 @@ class Category extends Component{
         }
     }
     chooseCategory = (event)=>{
-        this.props.ctgValue(event.currentTarget.value);
         this.setState({
             visibleContent: false,
             isClickedBtn: true
         })
     }
+
+    // Category buttons
+    natureBtn = (event)=>{
+        this.setState({
+            visibleContent: false,
+            isClickedBtn: true,
+        })
+        this.props.selectCtg(event.currentTarget.value)
+    }
+
+
     resaveViews = ()=>{
         this.setState({
             visibleContent: true,
             isClickedBtn: false
         })
+
     }
 
     render(){
-        
         const {visibleContent, isClickedBtn} = this.state;
         return(
             <BouncyDiv style={isClickedBtn?hideCnt:null} animationVal={visibleContent?bounceAnimation:fadeOutAnimation} displayValue={isClickedBtn?'absolute':'relative'} >
                 <div className='category-content'>
-                    <h3>Wybierz kategorię:</h3>
+                    <h3>Wybierz miejsce:</h3>
                     <div className='content-buttons'>
-                        <button value='learn' className='ctg-btn ctg-btn-1' onClick={this.chooseCategory}><span className='ctg-text'>Nauka</span>
+                        <button value='nature' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>Natura</span>
                         </button>
-                        <button value='relax' className='ctg-btn ctg-btn-2' onClick={this.chooseCategory}><span className='ctg-text'>Relaks</span>
+                        <button value='entertainment' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>Rozrywka</span>
                         </button>
-                        <button value='sleep' className='ctg-btn ctg-btn-3' onClick={this.chooseCategory}><span className='ctg-text'>Sen</span>
+                        <button value='???' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>'???'</span>
                         </button>
+                        <button value='???' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>???</span>
+                        </button>
+                        
                     </div>
                 </div>
             </BouncyDiv>

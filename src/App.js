@@ -34,17 +34,17 @@ class App extends Component {
       isAuthenticated: false
 
     }
-    this.childMainCnt = React.createRef();
     this.childBabyBtn = React.createRef();
     this.childMoreSounds = React.createRef();
     this.childUserData = React.createRef();
+    this.childMainCnt = React.createRef();
   }
 
   clickLogo = ()=>{
-    this.childMainCnt.current.resaveView();
     this.childBabyBtn.current.hideCnt();
     this.childMoreSounds.current.hideCnt();
     this.childMoreSounds.current.resaveView();
+    this.childMainCnt.current.resaveView();
     this.setState({
       babyCntIsClicked: false,
       selectedBabyComponent: false,
@@ -53,8 +53,6 @@ class App extends Component {
   
   showBabySleepCnt = ()=>{
       this.childBabyBtn.current.showBabyCnt();
-
-      this.childMainCnt.current.hideCnt(); 
       this.childMoreSounds.current.hideCnt();
       this.setState({
         menuIsClicked: !this.state.menuIsClicked,
@@ -77,7 +75,6 @@ class App extends Component {
 
   clickMoreSounds = ()=>{
     this.childMoreSounds.current.clickMoreSounds();
-    this.childMainCnt.current.hideCnt();
     this.childBabyBtn.current.hideCnt();
     this.setState({
       menuIsClicked: !this.state.menuIsClicked,
@@ -88,13 +85,11 @@ class App extends Component {
 
   clickSoundMuteIco = ()=>{
     if(this.state.muteIsClicked){
-      this.childMainCnt.current.reduceVolume(0)
       this.childMoreSounds.current.reduceVolume(0);
       this.setState({
         muteIsClicked: false
       })
     }else{
-      this.childMainCnt.current.increaseVolume(100)
       this.childMoreSounds.current.increaseVolume(100);
       this.setState({
         muteIsClicked: true
@@ -163,7 +158,7 @@ class App extends Component {
   }
 
   render() {
-    const{menuIsClicked, muteIsClicked, babyCntIsClicked} = this.state;
+    const{menuIsClicked, muteIsClicked} = this.state;
     return (
       <div>
       <Favicon url='./img/favicon.ico' />
