@@ -2,16 +2,17 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 
 const Btn = styled.button`
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
     width: 100px;
-    height: 36px;
+    height: 40px;
     position: absolute;
     right: 11px;
     top: 10px;
-    border: 2px solid #eee7e7;
-    border-radius: 6px;
-    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    border-radius: 50px;
+    background-color: #045170;
     color: #eee7e7;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Varela Round', sans-serif;
     font-size: .9em;
     cursor: pointer;
 `

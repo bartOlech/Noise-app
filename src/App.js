@@ -13,7 +13,8 @@ import Cookies from 'js-cookie';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: ${props => props.bcg};
+    /* background-color: ${props => props.bcg}; */
+    background: #00A896;
   }
 `
 const hideEl = {

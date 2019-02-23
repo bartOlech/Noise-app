@@ -40,7 +40,7 @@ body{
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  background: #232323;
+  background: #033346;
   border-radius: 3px;
   z-index: 1;
   transform-origin: 4px 0px;
@@ -390,10 +390,10 @@ button:focus { outline: none; }
   margin-bottom: 40px;
   position: relative;
   border-radius: 1.8em 0.6em / 0.6em 1em 3em 1em;
-  border:2px solid #fff;
+  border: none;
   cursor: pointer;
   transition:250ms;
-  background-color:rgb(32, 134, 124);
+  background-color:rgb(34, 121, 112);
 }
 .ctg-btn:hover{
   box-shadow: 2px 4px 8px rgb(3, 109, 109);
