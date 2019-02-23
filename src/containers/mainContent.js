@@ -201,12 +201,6 @@ class MainContent extends Component{
         })
     }
 
-    clickMenu(){
-            this.setState({
-                menuIsClicked: !this.state.menuIsClicked
-            })  
-    }
-
     reduceVolume(){
        this.setState({
            volumeVal: 0

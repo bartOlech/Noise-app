@@ -93,16 +93,6 @@ body{
   padding:5px 0;
   margin-left:35%;
 }
-.menu-line{
-    width:2px;
-    height:63%;
-    background:#fff;
-    position: absolute;
-    top: 49px;
-    left: 140px;
-    border: none;
-    border-radius: 20px;
-}
 
 .menu-toggle input:checked ~ ul{
   transform: none;
@@ -150,7 +140,7 @@ body{
   position: relative;
 }
 .nav-desktop ul li div:hover{
-  color:rgb(225, 239, 255);
+  color:rgb(212, 224, 248);
 }
 @keyframes lineAnimation{
   0% {width:0px; padding:1px}
@@ -955,7 +945,7 @@ Toggle Changes
     margin-left:0;
   }
 } 
-@media screen and (max-width:640px){
+@media screen and (max-width: 700px){
   .sound-mute-ico{
     width: 35px;
     height: 35px;
@@ -968,12 +958,7 @@ Toggle Changes
       display:none;
   }
 } 
-@media screen and (min-width:600px){
-  .menu-line{
-      left:100px;
-  }
-}
-@media screen and (min-width:1000px){
+@media screen and (min-width:700px){
   .nav-desktop{
     right:100px;
   }

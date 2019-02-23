@@ -21,7 +21,7 @@ const Img = styled.img`
     margin-top:-10px;
     cursor: pointer;
 
-    @media (max-width:640px){
+    @media (max-width:700px){
         margin-left: 150px;
     }
     @media (min-width:1000px){
@@ -34,31 +34,14 @@ const Img = styled.img`
         margin-left: 70px;
     }
 `
-const horizontalLine = {
-    display: 'none'
-}
-const horizontalLineVisible = {
-    display: 'block'
-}
 class Header extends Component{
     state = {
-        horizontalLine:'',
         menuIsClicked: !false,
         isChecked: false,
         isClickedLogIn: null,
         isAuthenticated: null
     }
 
-    textOver=(el)=>{
-        this.setState({
-            horizontalLine: el
-        })
-    }
-    textOut=(el)=>{
-        this.setState({
-            horizontalLine: ''
-        })
-    }
     clickHeaderLogo = ()=>{
       this.props.clickHeaderLogo()
     }
@@ -113,15 +96,14 @@ class Header extends Component{
                             <li className=""><div onClick={this.babySleepBtn}>Uśpij dziecko</div></li>
                             <li className=""><div>Sklep</div></li>
                             <li className=""><div onClick={this.clickMoreSounds}>Więcej odgłosów</div></li>
-                            <div className='menu-line'></div>
                         </ul>
                     </div>
                 </nav>
                 <nav className='nav-desktop'>
                     <ul>
-                        <li><div onMouseOut={()=>this.textOut('one')} onMouseOver={()=>this.textOver('one')} onClick={this.babySleepBtn}>Uśpij dziecko<div style={this.state.horizontalLine==='one'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
-                        <li><div onMouseOut={()=>this.textOut('two')} onMouseOver={()=>this.textOver('two')}>Sklep<div style={this.state.horizontalLine==='two'?horizontalLineVisible:horizontalLine}  className='horizontal-line'></div></div></li>
-                        <li><div onMouseOut={()=>this.textOut('three')} onMouseOver={()=>this.textOver('three')} onClick={this.clickMoreSounds}>Więcej odgłosów<div style={this.state.horizontalLine==='three'?horizontalLineVisible:horizontalLine} className='horizontal-line'></div></div></li>
+                        <li><div onClick={this.babySleepBtn}>Uśpij dziecko</div></li>
+                        <li><div>Sklep</div></li>
+                        <li><div onClick={this.clickMoreSounds}>Więcej odgłosów</div></li>
                     </ul>
                 </nav>
             </Content>

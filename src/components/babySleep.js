@@ -36,7 +36,6 @@ class BabySleep extends Component{
             alreadyClickedOn: false,
             alreadyClickedOff: true,
             //play: false,
-            menuBtnIsCheck: false
         }
     }
 
@@ -80,18 +79,14 @@ class BabySleep extends Component{
         )
     }
 
-    fadeView(){
-        this.setState({
-            menuBtnIsCheck: !this.state.menuBtnIsCheck
-        })
-    }
+
 
     render(){
-        const {imgIsVisible, isVisible, menuBtnIsCheck} = this.state;
+        const {imgIsVisible, isVisible} = this.state;
         
         return(
             <div style={isVisible?null:HideStyle}>
-            <div style={menuBtnIsCheck?fade:null}>
+            <div >
                     {/* audio */}
                 {this.playSound()}
 

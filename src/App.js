@@ -53,10 +53,9 @@ class App extends Component {
   
   showBabySleepCnt = ()=>{
       this.childBabyBtn.current.showBabyCnt();
-      this.childBabyBtn.current.fadeView();
+
       this.childMainCnt.current.hideCnt(); 
       this.childMoreSounds.current.hideCnt();
-      this.childMoreSounds.current.fadeView();
       this.setState({
         menuIsClicked: !this.state.menuIsClicked,
         selectedBabyComponent: true,
@@ -65,7 +64,6 @@ class App extends Component {
   }
 
   clickMenu = ()=>{
-    this.childMainCnt.current.clickMenu();
     this.setState({
       menuIsClicked: !this.state.menuIsClicked,
       babyCntIsClicked: !this.state.babyCntIsClicked
@@ -75,16 +73,12 @@ class App extends Component {
       babyCntIsClicked: true //hide side elements
   })
   }
-  this.childBabyBtn.current.fadeView();
-  this.childMoreSounds.current.fadeView();
   }
 
   clickMoreSounds = ()=>{
     this.childMoreSounds.current.clickMoreSounds();
-    this.childMoreSounds.current.fadeView();
     this.childMainCnt.current.hideCnt();
     this.childBabyBtn.current.hideCnt();
-    this.childBabyBtn.current.fadeView();
     this.setState({
       menuIsClicked: !this.state.menuIsClicked,
       babyCntIsClicked: false,
@@ -176,7 +170,7 @@ class App extends Component {
       {this.logInPage()}
       <Header userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
       {/* sound / mute ico */}
-      <img style={babyCntIsClicked?hideEl:null} onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
+      <img  onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
 
       {this.showWaveImg()}
 

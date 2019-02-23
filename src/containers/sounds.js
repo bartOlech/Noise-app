@@ -28,7 +28,6 @@ class Sounds extends Component{
         super(props)
         this.state = {
             cntIsVisible: false,
-            menuBtnIsCheck: false,
             clickedNumberOfButton: null,
             sounds: [],
             curSoundBtnClicked: 0,
@@ -48,11 +47,6 @@ class Sounds extends Component{
         })
     }
 
-    fadeView(){
-        this.setState({
-            menuBtnIsCheck: !this.state.menuBtnIsCheck
-        })
-    }
 
     playBtn = (val)=>{
         const{clickedNumberOfButton} = this.state;
@@ -153,13 +147,13 @@ class Sounds extends Component{
     }
 
     render(){
-        const{cntIsVisible, menuBtnIsCheck} = this.state;
+        const{cntIsVisible} = this.state;
         return(
             <div style={cntIsVisible?null:hideCnt}>
 
             {this.playSound()}
 
-                <div style={menuBtnIsCheck?fade:null}>
+                <div>
                 <div className="wrapperSounds">
                       <button value='0' onClick={this.clickSoundBtn} className='all-sounds-btn'>
                         {this.playBtn('0')}
