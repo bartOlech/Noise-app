@@ -21,11 +21,17 @@ const Img = styled.img`
     margin-top:-10px;
     cursor: pointer;
 
-    @media (max-width:600px){
-        margin-left: 110px;
+    @media (max-width:640px){
+        margin-left: 150px;
     }
     @media (min-width:1000px){
         margin-left: 130px;
+    }
+     @media (max-width:550px){
+        margin-left: 140px;
+    }
+    @media (max-width:395px){
+        margin-left: 70px;
     }
 `
 const horizontalLine = {

@@ -75,15 +75,15 @@ body{
 .menu{
   position: absolute;
   width: 110vw;
+  height: 213px;
   margin: -100px 0 0 -50px;
-  padding: 50px;
-  padding-top: 125px;
+  padding-top: 25px;
   background-image: linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%);
         box-shadow: 2px 2px 15px rgba(0,0,0,.2);
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
+  transform: translate(0, -100%);
   
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
@@ -91,15 +91,17 @@ body{
 .menu li{
   font-size: 1.4em;
   padding:5px 0;
-  margin-left:10%;
+  margin-left:35%;
 }
 .menu-line{
     width:2px;
-    height:44%;
+    height:63%;
     background:#fff;
     position: absolute;
-    top:152px;
-    left:80px;
+    top: 49px;
+    left: 140px;
+    border: none;
+    border-radius: 20px;
 }
 
 .menu-toggle input:checked ~ ul{
@@ -111,14 +113,11 @@ body{
   color: #eee7e7;
   display:block;
   transition: color 0.3s ease;
-  padding:20px;
+  padding:12px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   cursor:pointer;
 
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-}
-.menu li div:hover{
-  color: rgb(72, 172, 172);
 }
 
 /* desktop menu */
@@ -956,7 +955,7 @@ Toggle Changes
     margin-left:0;
   }
 } 
-@media screen and (max-width:600px){
+@media screen and (max-width:640px){
   .sound-mute-ico{
     width: 35px;
     height: 35px;
