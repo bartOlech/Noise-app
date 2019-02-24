@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import trees from '../../img/sounds_ico/trees.png'
 
 const Content = styled.div`
     padding-bottom: 30px;
-    
+    margin-bottom: 25px;
+    width: 102px;
+    height: 102px;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    position: relative;
+
 `
 const Button = styled.button`
     width: 100px;
     height: 100px;
-    background-color: red;
-    
+    background-image: url(${trees});
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
 `
 
 class Forest extends Component {
@@ -25,7 +41,7 @@ class Forest extends Component {
         return (
            <Content>
                <Button>
-                   sdffs
+                 
                </Button>
            </Content>
         )

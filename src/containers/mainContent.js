@@ -9,6 +9,10 @@ import Entertainment from './category/entertainment';
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
 
+const Container = styled.div`
+    
+`
+
 const Content = styled.div`
        display: ${props => props.displayValue};
        flex-direction: column;
@@ -43,7 +47,7 @@ class MainContent extends Component {
         const { mainCntIsVisible, selectedCtg } = this.state;
 
         return (
-            <div>
+            <Container>
                 <Category selectCtg={this.selectCtg} ref={this.child}></Category>
                 
                 <Content displayValue={mainCntIsVisible ? 'flex' : 'none'}>
@@ -54,7 +58,7 @@ class MainContent extends Component {
 
                     </Entertainment>
                 </Content>
-            </div>
+            </Container>
         )
     }
 }
