@@ -493,11 +493,28 @@ class LogInSignUp extends Component {
                 </LogInfo>
 
 
-                <LogInCnt displayLogin={loginPage ? 'none' : 'inline'}>
+                <LogInCnt displayLogin={loginPage ? 'inline' : 'none'}>
 
                     <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                     <Tittle>Zaloguj się przez</Tittle>
-
+                    <Buttons>
+                        <FacebookLogin
+                            appId={config.FACEBOOK_APP_ID} //APP ID NOT CREATED YET
+                            onClick={this.fbSignUp}
+                            fields="name, email, picture"
+                            callback={this.responseFacebook}
+                            cssClass="my-facebook-button-class"
+                            textButton='Facebook'
+                            icon={<FaFacebookSquare className='fb-ico' size={30} />}
+                        />
+                        <GoogleLogin
+                            clientId={config.GOOGLE_CLIENT_ID}
+                            buttonText="Google"
+                            className="my-google-button-class"
+                            onSuccess={this.responseGoogle}
+                            onFailure={this.responseGoogle}
+                        />
+                    </Buttons>
                     {/* Alerts */}
                     <ErrorInfoCnt error={inputError ? 'flex' : 'none'}><ErrorInfo>{inputErrorText}</ErrorInfo></ErrorInfoCnt>
 
@@ -512,7 +529,8 @@ class LogInSignUp extends Component {
                     </FormCnt>
                     <SignUp>Nie posiadasz konta?<CreateAccount onClick={this.logRegBtn}>Zarejestruj się</CreateAccount></SignUp>
                 </LogInCnt>
-                <SignUpCnt displaySignup={loginPage ? 'inline' : 'none'}>
+
+                <SignUpCnt displaySignup={loginPage ? 'none' : 'inline'}>
                     <CloseLogIn closeLogIn={this.closeLogIn}></CloseLogIn>
                     <Tittle>Zarejestruj się</Tittle>
                     <Buttons>

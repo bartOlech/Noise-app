@@ -9,9 +9,6 @@ const hideCnt = {
     display: 'none'
 }
 
-const fade = {
-    opacity: '0.1'
-}
 
 const clickedBtnCircle = {
     strokeDashoffset: 0,

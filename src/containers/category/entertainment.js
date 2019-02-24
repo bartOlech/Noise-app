@@ -18,7 +18,7 @@ class Entertainment extends Component {
     }
 
     render() {
-        const { isVisible } = this.state;
+        //const { isVisible } = this.state;
         return (
            <Content display={this.props.selectedCtg === 'entertainment' ? 'flex' : 'none'}>
                <Game></Game>
