@@ -57,9 +57,9 @@ class Category extends Component{
                     <div className='content-buttons'>
                         <button value='nature' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>Natura</span>
                         </button>
-                        <button value='entertainment' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>Rozrywka</span>
+                        <button value='chill' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>Chill</span>
                         </button>
-                        <button value='???' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>'???'</span>
+                        <button value='jobs' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>Praca</span>
                         </button>
                         <button value='???' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>???</span>
                         </button>

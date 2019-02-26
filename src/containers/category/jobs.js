@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Forest from '../../components/sounds/nature/forest';
+import Example1 from '../../components/sounds/job/example1';
 
 const Content = styled.div`
     display: ${props => props.display};
@@ -9,7 +9,7 @@ const Content = styled.div`
     padding-top: 50px;
 `
 
-class MainContent extends Component {
+class Jobs extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -18,14 +18,14 @@ class MainContent extends Component {
     }
 
     render() {
-
+        //const { isVisible } = this.state;
         return (
-            <Content display={this.props.selectedCtg === 'nature' ? 'flex' : 'none'}>
-                <Forest></Forest>
-                <Forest></Forest>
-                <Forest></Forest>
-            </Content>
+           <Content display={this.props.selectedCtg === 'jobs' ? 'flex' : 'none'}>
+               <Example1></Example1>
+               <Example1></Example1>
+               <Example1></Example1>
+           </Content>
         )
     }
 }
-export default MainContent;
+export default Jobs;

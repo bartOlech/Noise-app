@@ -14,9 +14,6 @@ import Cookies from 'js-cookie';
 const GlobalStyle = createGlobalStyle`
   body {
     background: ${props => props.bcg};
-    /* background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); */
-    /* background: #00A896; */
-    /* background: #EBD178; */
   }
 `
 const hideEl = {
@@ -172,13 +169,18 @@ class App extends Component {
     })
     if(val === 'nature'){
       this.setState({
-        selectedColor: `linear-gradient(to right, #0ba360 0%, #05B57B 100%)`,
+        selectedColor: `linear-gradient(to right, #0ba360 0%, rgb(22, 194, 137) 100%)`,
         selectedHeaderColor: ' linear-gradient(to right, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 33%, rgb(50, 192, 109) 66%, rgb(50, 192, 109) 100%)'
       })
-    }else if(val === 'entertainment'){
+    }else if(val === 'chill'){
       this.setState({
-        selectedColor: `linear-gradient(to right, rgb(224, 195, 66) 0%, rgb(224, 195, 66) 0%, rgb(224, 195, 66) 0%, rgb(230, 202, 77) 33%,rgb(230, 202, 77) 66%, rgb(230, 202, 77) 100%)`,
+        selectedColor: `linear-gradient(to right, #ECC656 0%, #ECC656 100%)`,
         selectedHeaderColor: 'linear-gradient(to right, #dbaa3f 0%, #f1cf5d 100%);'
+      })
+    }else if(val === 'jobs'){
+      this.setState({
+        selectedColor: 'linear-gradient(to right, rgb(10, 135, 163) 0%, rgb(56, 171, 197) 100%)',
+        selectedHeaderColor: 'linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%)'
       })
     }
   }

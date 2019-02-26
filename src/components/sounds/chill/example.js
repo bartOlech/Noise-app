@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import cityscape from '../../img/sounds_ico/cityscape.png';
+import cityscape from '../../../img/sounds_ico/cityscape.png';
 
 const Content = styled.div`
     padding-bottom: 30px;

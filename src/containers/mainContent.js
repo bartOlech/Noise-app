@@ -4,7 +4,8 @@ import '../App.css';
 import Category from './category';
 import { zoomIn } from 'react-animations';
 import Nature from './category/nature';
-import Entertainment from './category/entertainment';
+import Chill from './category/chill';
+import Jobs from './category/jobs';
 
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
@@ -55,9 +56,12 @@ class MainContent extends Component {
                     <Nature selectedCtg={selectedCtg}>
 
                     </Nature>
-                    <Entertainment selectedCtg={selectedCtg}>
+                    <Chill selectedCtg={selectedCtg}>
 
-                    </Entertainment>
+                    </Chill>
+                    <Jobs selectedCtg={selectedCtg}>
+
+                    </Jobs>
                 </Content>
             </Container>
         )

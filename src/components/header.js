@@ -7,7 +7,7 @@ import LogInBtn from '../containers/logUser/logInBtn';
 
 const Content = styled.div`
     width: 100vw;
-    height: 160px;
+    height: 130px;
     background: ${props => props.bck};
     box-shadow: 2px 2px 15px rgba(0,0,0,.2);
     @media (min-width:600px){
@@ -16,8 +16,8 @@ const Content = styled.div`
     } 
 `;
 const Img = styled.img`
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     margin-left:4px;
     margin-top:-10px;
     cursor: pointer;
@@ -87,7 +87,7 @@ class Header extends Component {
         return (
             <Content bck={selectedHeaderColor}>
                 <LogInBtn clickedCategory={clickedCategory}  userIsLogOut={this.userIsLogOut} isAuth={this.props.isAuth} isClickedLogIn={this.isClickedLogIn}></LogInBtn>
-                <Img onClick={this.clickHeaderLogo} src={clickedCategory === 'entertainment'?orangeLogo:mainLogo} alt='logo'></Img>
+                <Img onClick={this.clickHeaderLogo} src={clickedCategory === 'chill'?orangeLogo:mainLogo} alt='logo'></Img>
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
                         <input checked={this.state.isChecked} onClick={this.clickHamMenu} type="checkbox" onChange={this.onChange} />

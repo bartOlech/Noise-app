@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import trees from '../../img/sounds_ico/trees.png'
+import cityscape from '../../../img/sounds_ico/cityscape.png';
 
 const Content = styled.div`
     padding-bottom: 30px;
@@ -16,7 +16,7 @@ const Content = styled.div`
 const Button = styled.button`
     width: 100px;
     height: 100px;
-    background-image: url(${trees});
+    background-image: url(${cityscape});
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
@@ -28,7 +28,7 @@ const Button = styled.button`
     right: 1px;
 `
 
-class Forest extends Component {
+class Example1 extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -47,4 +47,4 @@ class Forest extends Component {
         )
     }
 }
-export default Forest;
+export default Example1;

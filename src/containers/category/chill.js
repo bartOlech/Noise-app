@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Example from '../../components/sounds/example';
+import Example from '../../components/sounds/chill/example';
 
 const Content = styled.div`
     display: ${props => props.display};
@@ -9,7 +9,7 @@ const Content = styled.div`
     padding-top: 50px;
 `
 
-class Entertainment extends Component {
+class Chill extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -20,7 +20,7 @@ class Entertainment extends Component {
     render() {
         //const { isVisible } = this.state;
         return (
-           <Content display={this.props.selectedCtg === 'entertainment' ? 'flex' : 'none'}>
+           <Content display={this.props.selectedCtg === 'chill' ? 'flex' : 'none'}>
                <Example></Example>
                <Example></Example>
                <Example></Example>
@@ -28,4 +28,4 @@ class Entertainment extends Component {
         )
     }
 }
-export default Entertainment;
+export default Chill;
