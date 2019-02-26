@@ -18,8 +18,7 @@ class MainContent extends Component {
     }
 
     render() {
-        //const { isVisible } = this.state;
-        console.log(`value: ${this.props.selectedCtg}`)
+
         return (
             <Content display={this.props.selectedCtg === 'nature' ? 'flex' : 'none'}>
                 <Forest></Forest>

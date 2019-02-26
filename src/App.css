@@ -7,11 +7,12 @@
 }
 body{
   overflow-x: hidden;
+  
 }
 .main-content{
   
-  
 }
+
 /* Phone menu */
 .menu-toggle{
   display: block;
@@ -332,6 +333,15 @@ section{
   stroke-dashoffset: 0;
   opacity: 1;
 }
+
+ /* color login buttons */
+.buttonCnt-dark button{
+  background-color: #045170
+}
+.buttonCnt-orange button{
+  background-color: #EB8965
+}
+
 
 /* btn animation if you click  (!!! sometimes is crashed !!!)*/
 .all-sounds-btn:before {

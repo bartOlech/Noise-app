@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Game from '../../components/sounds/game';
+import Example from '../../components/sounds/example';
 
 const Content = styled.div`
     display: ${props => props.display};
@@ -21,9 +21,9 @@ class Entertainment extends Component {
         //const { isVisible } = this.state;
         return (
            <Content display={this.props.selectedCtg === 'entertainment' ? 'flex' : 'none'}>
-               <Game></Game>
-               <Game></Game>
-               <Game></Game>
+               <Example></Example>
+               <Example></Example>
+               <Example></Example>
            </Content>
         )
     }

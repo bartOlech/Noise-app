@@ -34,6 +34,7 @@ class MainContent extends Component {
             selectedCtg: val,
             mainCntIsVisible: true
         })
+        this.props.selectCtg(val)
     }
 
     resaveView = () => {

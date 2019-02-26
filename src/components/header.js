@@ -1,22 +1,23 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import mainLogo from '../img/logoo.png';
+import orangeLogo from '../img/logo-orange.png';
 import '../App.css';
 import LogInBtn from '../containers/logUser/logInBtn';
 
 const Content = styled.div`
-        width: 100vw;
-        height: 180px;
-        background-image: linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%);
-        box-shadow: 2px 2px 15px rgba(0,0,0,.2);
-        @media (min-width:600px){
-            display:flex;
-            flex-direction:row;
-        } 
-    `;
+    width: 100vw;
+    height: 160px;
+    background: ${props => props.bck};
+    box-shadow: 2px 2px 15px rgba(0,0,0,.2);
+    @media (min-width:600px){
+        display:flex;
+        flex-direction:row;
+    } 
+`;
 const Img = styled.img`
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     margin-left:4px;
     margin-top:-10px;
     cursor: pointer;
@@ -34,7 +35,7 @@ const Img = styled.img`
         margin-left: 70px;
     }
 `
-class Header extends Component{
+class Header extends Component {
     state = {
         menuIsClicked: !false,
         isChecked: false,
@@ -42,53 +43,54 @@ class Header extends Component{
         isAuthenticated: null
     }
 
-    clickHeaderLogo = ()=>{
-      this.props.clickHeaderLogo()
+    clickHeaderLogo = () => {
+        this.props.clickHeaderLogo()
     }
 
-    babySleepBtn = ()=>{
+    babySleepBtn = () => {
         this.props.babySleepBtn()
         this.setState({
             isChecked: false
         })
     }
 
-    clickHamMenu = ()=>{
+    clickHamMenu = () => {
         this.setState({
             isChecked: !this.state.isChecked
         })
         this.props.clickHamburgerMenu()
     }
-    
 
-    onChange = ()=>{
-        
+
+    onChange = () => {
+
     }
 
-    clickMoreSounds = ()=>{
+    clickMoreSounds = () => {
         this.props.clickMoreSounds();
         this.setState({
             isChecked: false
         })
     }
 
-    isClickedLogIn = (val)=>{
+    isClickedLogIn = (val) => {
         this.props.isClickedLogIn(val)
     }
 
     userIsLogOut = (val) => {
         this.props.userIsLogOut(val)
     }
-    
-    
-    render(){
-        return(
-            <Content>
-                <LogInBtn userIsLogOut={this.userIsLogOut} isAuth={this.props.isAuth} isClickedLogIn={this.isClickedLogIn}></LogInBtn>
-                <Img onClick={this.clickHeaderLogo} src={mainLogo} alt='logo'></Img>
+
+
+    render() {
+        const {clickedCategory, selectedHeaderColor} = this.props;
+        return (
+            <Content bck={selectedHeaderColor}>
+                <LogInBtn clickedCategory={clickedCategory}  userIsLogOut={this.userIsLogOut} isAuth={this.props.isAuth} isClickedLogIn={this.isClickedLogIn}></LogInBtn>
+                <Img onClick={this.clickHeaderLogo} src={clickedCategory === 'entertainment'?orangeLogo:mainLogo} alt='logo'></Img>
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
-                        <input checked={this.state.isChecked} onClick={this.clickHamMenu} type="checkbox" onChange={this.onChange}/>
+                        <input checked={this.state.isChecked} onClick={this.clickHamMenu} type="checkbox" onChange={this.onChange} />
                         <span></span>
                         <span></span>
                         <span></span>

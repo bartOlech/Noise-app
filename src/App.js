@@ -13,8 +13,10 @@ import Cookies from 'js-cookie';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    /* background-color: ${props => props.bcg}; */
-    background: #00A896;
+    background: ${props => props.bcg};
+    /* background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); */
+    /* background: #00A896; */
+    /* background: #EBD178; */
   }
 `
 const hideEl = {
@@ -31,8 +33,10 @@ class App extends Component {
       clickLogIn: false,
       getToken: Cookies.get('auth'),
       isLogged: false,
-      isAuthenticated: false
-
+      isAuthenticated: false,
+      selectedColor: '#00A896',
+      selectedHeaderColor: 'linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%)',
+      clickedCategory: null
     }
     this.childBabyBtn = React.createRef();
     this.childMoreSounds = React.createRef();
@@ -48,12 +52,16 @@ class App extends Component {
     this.setState({
       babyCntIsClicked: false,
       selectedBabyComponent: false,
+      selectedColor: '#00A896',
+      selectedHeaderColor: 'linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%)',
+      clickedCategory: null
     })
   }
   
   showBabySleepCnt = ()=>{
       this.childBabyBtn.current.showBabyCnt();
       this.childMoreSounds.current.hideCnt();
+      this.childMainCnt.current.resaveView();
       this.setState({
         menuIsClicked: !this.state.menuIsClicked,
         selectedBabyComponent: true,
@@ -76,6 +84,7 @@ class App extends Component {
   clickMoreSounds = ()=>{
     this.childMoreSounds.current.clickMoreSounds();
     this.childBabyBtn.current.hideCnt();
+    this.childMainCnt.current.resaveView();
     this.setState({
       menuIsClicked: !this.state.menuIsClicked,
       babyCntIsClicked: false,
@@ -157,13 +166,30 @@ class App extends Component {
     this.childUserData.current.userIsLogOut(false);
   }
 
+  selectCtg = (val) => {
+    this.setState({
+      clickedCategory: val
+    })
+    if(val === 'nature'){
+      this.setState({
+        selectedColor: `linear-gradient(to right, #0ba360 0%, #05B57B 100%)`,
+        selectedHeaderColor: ' linear-gradient(to right, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 33%, rgb(50, 192, 109) 66%, rgb(50, 192, 109) 100%)'
+      })
+    }else if(val === 'entertainment'){
+      this.setState({
+        selectedColor: `linear-gradient(to right, rgb(224, 195, 66) 0%, rgb(224, 195, 66) 0%, rgb(224, 195, 66) 0%, rgb(230, 202, 77) 33%,rgb(230, 202, 77) 66%, rgb(230, 202, 77) 100%)`,
+        selectedHeaderColor: 'linear-gradient(to right, #dbaa3f 0%, #f1cf5d 100%);'
+      })
+    }
+  }
+
   render() {
-    const{menuIsClicked, muteIsClicked} = this.state;
+    const{muteIsClicked, selectedColor, selectedHeaderColor, clickedCategory} = this.state;
     return (
       <div>
       <Favicon url='./img/favicon.ico' />
       {this.logInPage()}
-      <Header userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
+      <Header clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} babySleepBtn={this.showBabySleepCnt} clickHeaderLogo={this.clickLogo}></Header>
       {/* sound / mute ico */}
       <img  onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
 
@@ -175,8 +201,8 @@ class App extends Component {
       
       <BabySleep ref={this.childBabyBtn}></BabySleep>
       <Sounds ref={this.childMoreSounds}></Sounds>
-      <MainContent clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
-      <GlobalStyle bcg={menuIsClicked? 'rgb(14, 129, 116)' : '#1D5A68'}></GlobalStyle>
+      <MainContent selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
+      <GlobalStyle bcg={selectedColor}></GlobalStyle>
       
       </div>
     )
