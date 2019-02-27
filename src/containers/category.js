@@ -31,7 +31,7 @@ class Category extends Component{
     }
 
     // Category buttons
-    natureBtn = (event)=>{
+    categoryBtn = (event)=>{
         this.setState({
             visibleContent: false,
             isClickedBtn: true,
@@ -55,13 +55,19 @@ class Category extends Component{
                 <div className='category-content'>
                     <h3>Wybierz miejsce:</h3>
                     <div className='content-buttons'>
-                        <button value='nature' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>Natura</span>
+                        <button value='nature' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Natura</span>
                         </button>
-                        <button value='chill' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>Chill</span>
+                        <button value='chill' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Chill</span>
                         </button>
-                        <button value='jobs' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>Praca</span>
+                        <button value='jobs' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Praca</span>
                         </button>
-                        <button value='???' className='ctg-btn' onClick={this.natureBtn}><span className='ctg-text'>???</span>
+                        <button value='animals' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Zwierzęta</span>
+                        </button>
+                        <button value='culture' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>M. kultury</span>
+                        </button>
+                        <button value='historyPlaces' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>M. historii</span>
+                        </button>
+                        <button value='other' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Inne</span>
                         </button>
                         
                     </div>

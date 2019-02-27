@@ -6,6 +6,10 @@ import { zoomIn } from 'react-animations';
 import Nature from './category/nature';
 import Chill from './category/chill';
 import Jobs from './category/jobs';
+import Animals from './category/animals';
+import CulturePlaces from './category/culture';
+import HistoryPlaces from './category/historyPlaces';
+import Other from './category/other';
 
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
@@ -62,6 +66,18 @@ class MainContent extends Component {
                     <Jobs selectedCtg={selectedCtg}>
 
                     </Jobs>
+                    <Animals selectedCtg={selectedCtg}>
+
+                    </Animals>
+                    <CulturePlaces selectedCtg={selectedCtg}>
+
+                    </CulturePlaces>
+                    <HistoryPlaces selectedCtg={selectedCtg}>
+
+                    </HistoryPlaces>
+                    <Other selectedCtg={selectedCtg}>
+
+                    </Other>
                 </Content>
             </Container>
         )

@@ -87,7 +87,7 @@ class Header extends Component {
         return (
             <Content bck={selectedHeaderColor}>
                 <LogInBtn clickedCategory={clickedCategory}  userIsLogOut={this.userIsLogOut} isAuth={this.props.isAuth} isClickedLogIn={this.isClickedLogIn}></LogInBtn>
-                <Img onClick={this.clickHeaderLogo} src={clickedCategory === 'chill'?orangeLogo:mainLogo} alt='logo'></Img>
+                <Img onClick={this.clickHeaderLogo} src={clickedCategory === 'chill' || clickedCategory === 'culture' || clickedCategory === 'historyPlaces'?orangeLogo:mainLogo} alt='logo'></Img>
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
                         <input checked={this.state.isChecked} onClick={this.clickHamMenu} type="checkbox" onChange={this.onChange} />

@@ -10,6 +10,7 @@ import soundIco from './img/sound-ico.png';
 import LogInSignUp from './containers/logUser/logIn_SignUp';
 import UserData from './components/userData';
 import Cookies from 'js-cookie';
+import * as backgroundColors from './components/backgroundColors';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -19,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
 const hideEl = {
   display: 'none'
 }
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -32,7 +34,7 @@ class App extends Component {
       isLogged: false,
       isAuthenticated: false,
       selectedColor: '#00A896',
-      selectedHeaderColor: 'linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%)',
+      selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null
     }
     this.childBabyBtn = React.createRef();
@@ -50,7 +52,7 @@ class App extends Component {
       babyCntIsClicked: false,
       selectedBabyComponent: false,
       selectedColor: '#00A896',
-      selectedHeaderColor: 'linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%)',
+      selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null
     })
   }
@@ -169,18 +171,42 @@ class App extends Component {
     })
     if(val === 'nature'){
       this.setState({
-        selectedColor: `linear-gradient(to right, #0ba360 0%, rgb(22, 194, 137) 100%)`,
-        selectedHeaderColor: ' linear-gradient(to right, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 33%, rgb(50, 192, 109) 66%, rgb(50, 192, 109) 100%)'
+        selectedColor: backgroundColors.mainBck.green,
+        selectedHeaderColor: backgroundColors.headerBck.green
       })
     }else if(val === 'chill'){
       this.setState({
-        selectedColor: `linear-gradient(to right, #ECC656 0%, #ECC656 100%)`,
-        selectedHeaderColor: 'linear-gradient(to right, #dbaa3f 0%, #f1cf5d 100%);'
+        selectedColor: backgroundColors.mainBck.orange,
+        selectedHeaderColor: backgroundColors.headerBck.orange
       })
     }else if(val === 'jobs'){
       this.setState({
-        selectedColor: 'linear-gradient(to right, rgb(10, 135, 163) 0%, rgb(56, 171, 197) 100%)',
-        selectedHeaderColor: 'linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%)'
+        selectedColor: backgroundColors.mainBck.blue,
+        selectedHeaderColor: backgroundColors.headerBck.blue
+      })
+    }
+    else if(val === 'animals'){
+      this.setState({
+        
+        selectedHeaderColor: backgroundColors.headerBck.blue
+      })
+    }
+    else if(val === 'culture'){
+      this.setState({
+        selectedColor: backgroundColors.mainBck.orange,
+        selectedHeaderColor: backgroundColors.headerBck.orange
+      })
+    }
+    else if(val === 'historyPlaces'){
+      this.setState({
+        selectedColor: backgroundColors.mainBck.lightBrown,
+        selectedHeaderColor: backgroundColors.headerBck.warmOrange
+      })
+    }
+    else if(val === 'other'){
+      this.setState({
+        selectedColor: backgroundColors.mainBck.blue,
+        selectedHeaderColor: backgroundColors.headerBck.blue
       })
     }
   }

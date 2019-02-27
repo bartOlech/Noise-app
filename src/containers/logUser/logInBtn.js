@@ -48,7 +48,7 @@ class LogInBtn extends Component{
         const {clickedCategory} = this.props;
 
         return(
-            <div className={clickedCategory === 'chill'?'buttonCnt-orange button':'buttonCnt-dark button'}>
+            <div className={clickedCategory === 'chill' || clickedCategory === 'culture' || clickedCategory === 'historyPlaces'?'buttonCnt-orange button':'buttonCnt-dark button'}>
                 {this.props.isAuth?<Btn onClick={this.logOut}>Wyloguj</Btn>:<Btn  onClick={this.logInBtn}>Zaloguj się</Btn>}
             </div>
         )
