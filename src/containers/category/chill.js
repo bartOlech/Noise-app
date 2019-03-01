@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Example from '../../components/sounds/chill/example';
+import SoundsTemplate from '../../components/sounds/soundsTemplate';
+import cityScape from '../../img/sounds_ico/cityscape.png';
 
 const Content = styled.div`
     display: ${props => props.display};
@@ -17,14 +18,18 @@ class Chill extends Component {
         }
     }
 
+    clickIco = (val) => {
+        console.log(val)
+    }
+
     render() {
         //const { isVisible } = this.state;
         return (
-           <Content display={this.props.selectedCtg === 'chill' ? 'flex' : 'none'}>
-               <Example></Example>
-               <Example></Example>
-               <Example></Example>
-           </Content>
+            <Content display={this.props.selectedCtg === 'chill' ? 'flex' : 'none'}>
+                <SoundsTemplate icoValue='example' clickIco={this.clickIco} ico={cityScape}></SoundsTemplate>
+                <SoundsTemplate icoValue='example' clickIco={this.clickIco} ico={cityScape}></SoundsTemplate>
+                <SoundsTemplate icoValue='woexamplelf' clickIco={this.clickIco} ico={cityScape}></SoundsTemplate>
+            </Content>
         )
     }
 }

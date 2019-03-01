@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Example1 from '../../components/sounds/job/example1';
+import SoundsTemplate from '../../components/sounds/soundsTemplate';
+import cityScape from '../../img/sounds_ico/cityscape.png';
 
 const Content = styled.div`
     display: ${props => props.display};
@@ -17,14 +18,18 @@ class Jobs extends Component {
         }
     }
 
+    clickIco = (val) => {
+        console.log(val)
+    }
+
     render() {
         //const { isVisible } = this.state;
         return (
-           <Content display={this.props.selectedCtg === 'jobs' ? 'flex' : 'none'}>
-               <Example1></Example1>
-               <Example1></Example1>
-               <Example1></Example1>
-           </Content>
+            <Content display={this.props.selectedCtg === 'jobs' ? 'flex' : 'none'}>
+                <SoundsTemplate icoValue='job' clickIco={this.clickIco} ico={cityScape}></SoundsTemplate>
+                <SoundsTemplate icoValue='job' clickIco={this.clickIco} ico={cityScape}></SoundsTemplate>
+                <SoundsTemplate icoValue='job' clickIco={this.clickIco} ico={cityScape}></SoundsTemplate>
+            </Content>
         )
     }
 }

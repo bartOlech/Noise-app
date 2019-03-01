@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Wolf from '../../components/sounds/animals/wolf';
+import SoundsTemplate from '../../components/sounds/soundsTemplate';
+import cityScape from '../../img/sounds_ico/cityscape.png';
 
 const Content = styled.div`
     display: ${props => props.display};
@@ -17,13 +18,17 @@ class Animals extends Component {
         }
     }
 
+    clickIco = (val) => {
+        console.log(val)
+    }
+
     render() {
         //const { isVisible } = this.state;
         return (
            <Content display={this.props.selectedCtg === 'animals' ? 'flex' : 'none'}>
-               <Wolf></Wolf>
-               <Wolf></Wolf>
-               <Wolf></Wolf>
+                <SoundsTemplate icoValue='wolf' clickIco={this.clickIco} ico={cityScape}></SoundsTemplate>
+                <SoundsTemplate  icoValue='wolf' clickIco={this.clickIco} ico={cityScape}></SoundsTemplate>
+                <SoundsTemplate  icoValue='wolf' clickIco={this.clickIco} ico={cityScape}></SoundsTemplate>
            </Content>
         )
     }

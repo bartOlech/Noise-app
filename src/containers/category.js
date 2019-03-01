@@ -53,7 +53,7 @@ class Category extends Component{
         return(
             <BouncyDiv style={isClickedBtn?hideCnt:null} animationVal={visibleContent?bounceAnimation:fadeOutAnimation} displayValue={isClickedBtn?'absolute':'relative'} >
                 <div className='category-content'>
-                    <h3>Wybierz miejsce:</h3>
+                    <h3>Wybierz kategorię:</h3>
                     <div className='content-buttons'>
                         <button value='nature' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Natura</span>
                         </button>
