@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-
 
 
 function Template(props) {
@@ -29,20 +28,26 @@ function Template(props) {
     position: absolute;
     bottom: 1px;
     right: 1px;
-     
-    &:active{
-        filter: blur(1px);
-    }`
+    filter: ${props => props.blur};
+    `
 
     const clickIco = (e) => {
+        // if(blur === 'blur(1px)'){
+        //     setBlur('blur(0)')
+        // }else{
+        //     setBlur('blur(1px)')
+        // }
         props.clickIco(e.currentTarget.value)
+        
+        
     }
 
-
+    
     return (
+
         <Content>
-            <Button value={props.icoValue} onClick={clickIco}>
-               
+            <Button blur={props.blur} value={props.icoValue} onClick={clickIco}>
+
             </Button>
         </Content>
     )
