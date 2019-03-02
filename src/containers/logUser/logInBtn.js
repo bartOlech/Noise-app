@@ -15,6 +15,7 @@ const Btn = styled.button`
     font-family: 'Varela Round', sans-serif;
     font-size: .9em;
     cursor: pointer;
+    outline: none;
 `
 
 class LogInBtn extends Component{

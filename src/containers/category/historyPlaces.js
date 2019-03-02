@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import SoundsTemplate from '../../components/sounds/soundsTemplate';
 import cityScape from '../../img/sounds_ico/cityscape.png';
-
-const Content = styled.div`
-    display: ${props => props.display};
-    flex-direction: column;
-    align-items: center;
-    padding-top: 50px;
-`
+import Content from './CategoryContentStyle';
 
 class HistoryPlaces extends Component {
     constructor(props) {

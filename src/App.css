@@ -228,6 +228,7 @@ section{
   cursor: pointer;
   transition:250ms;
   background-color:rgb(34, 121, 112);
+  outline: none;
 }
 .ctg-btn:hover{
   box-shadow: 2px 4px 8px rgb(3, 109, 109);
