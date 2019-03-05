@@ -31,7 +31,6 @@ function Template(props) {
         cursor: pointer;
         opacity: .8;
         outline:none;
-        animation: ${props => props.rotate};
        
     `
     const Button = styled.button`
@@ -63,7 +62,7 @@ function Template(props) {
             <Button title={props.tittle} blur={props.blur} value={props.icoValue} onClick={clickIco}>
 
             </Button>
-            <Button2 playIco={props.playIco === 'on'?playIconNavy:playIco}  onClick={clickIco} value={props.icoValue} title={props.tittle}></Button2>
+            <Button2 playIco={props.playIco === 'on' ? playIconNavy : playIco} onClick={clickIco} value={props.icoValue} title={props.tittle}></Button2>
         </Content>
     )
 }

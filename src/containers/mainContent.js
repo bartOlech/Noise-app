@@ -33,6 +33,12 @@ class MainContent extends Component {
         }
         this.child = React.createRef();
         this.nature = React.createRef();
+        this.animals = React.createRef();
+        this.chill = React.createRef();
+        this.culture = React.createRef();
+        this.historyPlaces = React.createRef();
+        this.jobs = React.createRef();
+        this.other = React.createRef();
     }
 
     selectCtg = (val) => {
@@ -49,6 +55,12 @@ class MainContent extends Component {
         })
         this.child.current.resaveViews();
         this.nature.current.resaveViews();
+        this.animals.current.resaveViews();
+        this.chill.current.resaveViews();
+        this.culture.current.resaveViews();
+        this.historyPlaces.current.resaveViews();
+        this.jobs.current.resaveViews();
+        this.other.current.resaveViews();
     }
 
     render() {
@@ -62,22 +74,22 @@ class MainContent extends Component {
                     <Nature ref={this.nature} selectedCtg={selectedCtg}>
 
                     </Nature>
-                    <Chill selectedCtg={selectedCtg}>
+                    <Chill ref={this.chill} selectedCtg={selectedCtg}>
 
                     </Chill>
-                    <Jobs selectedCtg={selectedCtg}>
+                    <Jobs ref={this.jobs} selectedCtg={selectedCtg}>
 
                     </Jobs>
-                    <Animals selectedCtg={selectedCtg}>
+                    <Animals ref={this.animals} selectedCtg={selectedCtg}>
 
                     </Animals>
-                    <CulturePlaces selectedCtg={selectedCtg}>
+                    <CulturePlaces ref={this.culture} selectedCtg={selectedCtg}>
 
                     </CulturePlaces>
-                    <HistoryPlaces selectedCtg={selectedCtg}>
+                    <HistoryPlaces ref={this.historyPlaces} selectedCtg={selectedCtg}>
 
                     </HistoryPlaces>
-                    <Other selectedCtg={selectedCtg}>
+                    <Other ref={this.other} selectedCtg={selectedCtg}>
 
                     </Other>
                 </Content>
