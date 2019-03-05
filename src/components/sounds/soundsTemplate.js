@@ -16,7 +16,6 @@ function Template(props) {
         border: none;
         border-radius: 50%;
         position: relative;
-
 `
     const Button2 = styled.option`
         width: 50px;
@@ -33,12 +32,7 @@ function Template(props) {
         opacity: .8;
         outline:none;
         animation: ${props => props.rotate};
-       @keyframes spin {
-            50%  {
-                -webkit-transform: rotateY(90deg); transform:rotateY(90deg);
-            }
-        }
-        @keyframes rotate { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+       
     `
     const Button = styled.button`
         width: 100px;
@@ -69,7 +63,7 @@ function Template(props) {
             <Button title={props.tittle} blur={props.blur} value={props.icoValue} onClick={clickIco}>
 
             </Button>
-            <Button2 playIco={props.playIco === 'on'?playIconNavy:playIco} rotate={props.rotate} onClick={clickIco} value={props.icoValue} title={props.tittle}></Button2>
+            <Button2 playIco={props.playIco === 'on'?playIconNavy:playIco}  onClick={clickIco} value={props.icoValue} title={props.tittle}></Button2>
         </Content>
     )
 }

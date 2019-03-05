@@ -32,6 +32,7 @@ class MainContent extends Component {
             mainCntIsVisible: false,
         }
         this.child = React.createRef();
+        this.nature = React.createRef();
     }
 
     selectCtg = (val) => {
@@ -47,6 +48,7 @@ class MainContent extends Component {
             mainCntIsVisible: false,
         })
         this.child.current.resaveViews();
+        this.nature.current.resaveViews();
     }
 
     render() {
@@ -57,7 +59,7 @@ class MainContent extends Component {
                 <Category selectCtg={this.selectCtg} ref={this.child}></Category>
                 
                 <Content displayValue={mainCntIsVisible ? 'flex' : 'none'}>
-                    <Nature selectedCtg={selectedCtg}>
+                    <Nature ref={this.nature} selectedCtg={selectedCtg}>
 
                     </Nature>
                     <Chill selectedCtg={selectedCtg}>
