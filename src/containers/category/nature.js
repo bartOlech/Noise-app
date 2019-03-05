@@ -4,8 +4,10 @@ import SoundsTemplate from '../../components/sounds/soundsTemplate';
 import trees from '../../img/sounds_ico/trees.png';
 import forest from '../../img/sounds_ico/forest.png';
 import Content from './CategoryContentStyle';
-import Sound from 'react-sound';
-import fire from '../../sounds/fire.mp3'
+// import Sound from 'react-sound';
+// import fire from '../../sounds/fire.mp3'
+// import piano from '../../sounds/piano.mp3'
+// import rain from '../../sounds/rain.mp3'
 
 class MainContent extends Component {
     constructor(props) {
@@ -17,13 +19,15 @@ class MainContent extends Component {
             blurOn: 'blur(2px)',
             clickedIco: '',
             clicked: false,
-            playSound: false
+            playSound: false,
+            currentSound: null
         }
     }
 
     resaveViews = () => {
         this.setState({
-            clickedBtn: ''
+            clickedBtn: '',
+            playSound: false
         })
     }
 
@@ -51,26 +55,45 @@ class MainContent extends Component {
         this.setState({
             clickedBtn: val
         })
+
+        this.props.setSounds(val, clickedBtn, clicked)
+
+        // if (val === 'forest') {
+        //     this.setState({
+        //         currentSound: piano
+        //     })
+        // } else if (val === 'trees') {
+        //     this.setState({
+        //         currentSound: rain
+        //     })
+        // }
+        // else if (val === 'forest2') {
+        //     this.setState({
+        //         currentSound: fire
+        //     })
+        // }
+
     }
 
-    playSound() {
-        const {playSound} = this.state;
-        return (
-            <Sound
-                url={fire}
-                playStatus={!playSound ? Sound.status.STOPPED:Sound.status.PLAYING}
-                loop={true}
-            //volume={volumeVal}
-            />
-        )
-    }
+    // playSound() {
+    //     const { playSound, currentSound } = this.state;
+    //     return (
+    //         <Sound
+    //             url={currentSound}
+    //             playStatus={!playSound ? Sound.status.STOPPED : Sound.status.PLAYING}
+    //             loop={true}
+    //         //volume={volumeVal}
+    //         />
+    //     )
+    // }
 
     render() {
         const { blurOff, blurOn, clickedBtn, clickedIco } = this.state;
         return (
             <Content display={this.props.selectedCtg === 'nature' ? 'flex' : 'none'}>
+
                 {/* function that turn on the sound */}
-                {this.playSound()}
+                {/* {this.playSound()} */}
 
 
                 <SoundsTemplate playIco={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'off' : 'on'} tittle='forest' blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} icoValue='forest' clickIco={this.clickIco} ico={trees}></SoundsTemplate>

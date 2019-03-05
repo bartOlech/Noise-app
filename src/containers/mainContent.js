@@ -10,6 +10,10 @@ import Animals from './category/animals';
 import CulturePlaces from './category/culture';
 import HistoryPlaces from './category/historyPlaces';
 import Other from './category/other';
+import Sound from 'react-sound';
+import rain from '../sounds/rain.mp3'
+import fire from '../sounds/fire.mp3'
+import piano from '../sounds/piano.mp3'
 
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
@@ -30,6 +34,8 @@ class MainContent extends Component {
         this.state = {
             selectedCtg: '',
             mainCntIsVisible: false,
+            currentSound: '',
+            playSound: false
         }
         this.child = React.createRef();
         this.nature = React.createRef();
@@ -63,15 +69,67 @@ class MainContent extends Component {
         this.other.current.resaveViews();
     }
 
+    setSounds = (val, clickedBtn, clicked) => {
+        this.setState({
+            buttonValue: val
+        })
+        if (val === clickedBtn && !clicked) {
+            this.setState({
+                playSound: false
+            })
+        } else {
+            this.setState({
+                playSound: true
+            })
+        }
+
+        // select current sound
+        if (val === 'forest') {
+            this.setState({
+                currentSound: rain
+            })
+        } else if (val === 'trees') {
+            this.setState({
+                currentSound: piano
+            })
+        }
+        else if (val === 'forest2') {
+            this.setState({
+                currentSound: fire
+            })
+        }
+
+    }
+
+    playSound() {
+        const { playSound, currentSound } = this.state;
+        return (
+            <div>
+                <Sound
+                    url={currentSound}
+                    playStatus={!playSound ? Sound.status.STOPPED : Sound.status.PLAYING}
+                    loop={true}
+                //volume={volumeVal}
+                />
+
+            </div>
+
+
+        )
+    }
+
     render() {
         const { mainCntIsVisible, selectedCtg } = this.state;
-
         return (
             <Container>
+
+                {/* function that turn on the sound */}
+                {this.playSound()}
+
                 <Category selectCtg={this.selectCtg} ref={this.child}></Category>
-                
+
                 <Content displayValue={mainCntIsVisible ? 'flex' : 'none'}>
-                    <Nature ref={this.nature} selectedCtg={selectedCtg}>
+                    <Nature setSounds={this.setSounds} ref={this.nature} selectedCtg={selectedCtg}>
 
                     </Nature>
                     <Chill ref={this.chill} selectedCtg={selectedCtg}>
