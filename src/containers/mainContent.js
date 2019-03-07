@@ -11,9 +11,7 @@ import CulturePlaces from './category/culture';
 import HistoryPlaces from './category/historyPlaces';
 import Other from './category/other';
 import Sound from 'react-sound';
-import rain from '../sounds/rain.mp3'
-import fire from '../sounds/fire.mp3'
-import piano from '../sounds/piano.mp3'
+import SoundData from '../components/soundsData';
 
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
@@ -82,23 +80,14 @@ class MainContent extends Component {
                 playSound: true
             })
         }
+        
+       // select current sound
+        const filtered = SoundData.filter(item => item.value === val)
+        console.log(filtered[0].path)
 
-        // select current sound
-        if (val === 'forest') {
-            this.setState({
-                currentSound: rain
+        this.setState({
+                currentSound: filtered[0].path
             })
-        } else if (val === 'trees') {
-            this.setState({
-                currentSound: piano
-            })
-        }
-        else if (val === 'forest2') {
-            this.setState({
-                currentSound: fire
-            })
-        }
-
     }
 
     playSound() {
