@@ -91,13 +91,15 @@ class Header extends Component {
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
                         <input checked={this.state.isChecked} onClick={this.clickHamMenu} type="checkbox" onChange={this.onChange} />
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span className='span-1'></span>
+                        <span className='span-2'></span>
+                        <span className='span-3'></span>
                         <ul className="menu">
-                            <li className=""><div onClick={this.babySleepBtn}>Uśpij dziecko</div></li>
-                            <li className=""><div>Sklep</div></li>
-                            <li className=""><div onClick={this.clickMoreSounds}>Więcej odgłosów</div></li>
+                            <li className="menu-menu"><div onClick={this.babySleepBtn}>Menu</div></li>
+                            <li className="menu-profile"><div>Profil</div></li>
+                            <li className="menu-best-rated"><div onClick={this.clickMoreSounds}>Najlepiej oceniane</div></li>
+                            <li className="menu-mobile-v"><div onClick={this.clickMoreSounds}>Wersja mobilna</div></li>
+                            <li className="menu-settings"><div onClick={this.clickMoreSounds}>Ustawienia</div></li>
                         </ul>
                     </div>
                 </nav>

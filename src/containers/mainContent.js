@@ -56,6 +56,7 @@ class MainContent extends Component {
     resaveView = () => {
         this.setState({
             mainCntIsVisible: false,
+            playSound: false
         })
         this.child.current.resaveViews();
         this.nature.current.resaveViews();
@@ -83,7 +84,6 @@ class MainContent extends Component {
         
        // select current sound
         const filtered = SoundData.filter(item => item.value === val)
-        console.log(filtered[0].path)
 
         this.setState({
                 currentSound: filtered[0].path

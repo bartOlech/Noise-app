@@ -3,6 +3,7 @@ import '../App.css';
 import styled, { keyframes } from 'styled-components';
 import { bounceInLeft, fadeOut } from 'react-animations';
 
+
 const bounceAnimation = keyframes`${bounceInLeft}`;
 let fadeOutAnimation = keyframes`${fadeOut}`;
  
@@ -13,7 +14,6 @@ const BouncyDiv = styled.div`
 const hideCnt = {
     marginLeft: '-3000px'
 }
-
 
 class Category extends Component{
     constructor(props){
