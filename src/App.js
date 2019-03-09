@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Header from './components/header';
 import Favicon from 'react-favicon';
 import MainContent from './containers/mainContent';
@@ -8,12 +8,49 @@ import LogInSignUp from './containers/logUser/logIn_SignUp';
 import UserData from './components/userData';
 import Cookies from 'js-cookie';
 import * as backgroundColors from './components/backgroundColors';
+import FavouriteIco from './img/user-ico/heart.png';
+import SettingsIco from './img/menu_ico/settings.png';
+import VolControlIco from './img/user-ico/sound-ico.png';
 
 const GlobalStyle = createGlobalStyle`
   body {
     background: ${props => props.bcg};
   }
 `
+const UserCnt = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  
+`
+const TestDiv = styled.div`
+  color: #fff;
+  margin-right: 10px;
+  margin-top: 5px;
+`
+const Favourite = styled.div`
+  background-image: url(${FavouriteIco});
+  top: 195px;
+`
+const Settings = styled.div`
+  background-image: url(${SettingsIco});
+  top: 260px;
+`
+const VolControl = styled.div`
+  background-image: url(${VolControlIco});
+  top: 325px;
+`
+
+const userIcoStyle = {
+  width: '33px',
+  height: '33px',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  cursor: 'pointer',
+  position: 'absolute',
+  right: '10px',
+  zIndex: 2
+}
 
 class App extends Component {
   constructor(props){
@@ -148,6 +185,10 @@ class App extends Component {
     }
   }
 
+  click = () => {
+    console.log('click')
+  }
+
   render() {
     const{selectedColor, selectedHeaderColor, clickedCategory} = this.state;
     return (
@@ -157,7 +198,14 @@ class App extends Component {
       <Header clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} clickHeaderLogo={this.clickLogo}></Header>
 
       {/* user data */}
-      <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
+      <UserCnt>
+        <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
+        <TestDiv>Test Div Test Div Test div</TestDiv>
+        <Favourite style={userIcoStyle} ></Favourite>
+        <Settings style={userIcoStyle} onClick={this.click}></Settings>
+        <VolControl style={userIcoStyle} tittle='volume control'></VolControl>
+      </UserCnt>
+      
       
       <Sounds ref={this.childMoreSounds}></Sounds>
       <MainContent selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
