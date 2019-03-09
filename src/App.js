@@ -4,8 +4,6 @@ import Header from './components/header';
 import Favicon from 'react-favicon';
 import MainContent from './containers/mainContent';
 import Sounds from './containers/sounds';
-import muteIco from './img/mute-ico.png';
-import soundIco from './img/sound-ico.png';
 import LogInSignUp from './containers/logUser/logIn_SignUp';
 import UserData from './components/userData';
 import Cookies from 'js-cookie';
@@ -59,20 +57,6 @@ class App extends Component {
     this.setState({
       menuIsClicked: !this.state.menuIsClicked,
   })
-  }
-
-  clickSoundMuteIco = ()=>{
-    if(this.state.muteIsClicked){
-      this.childMoreSounds.current.reduceVolume(0);
-      this.setState({
-        muteIsClicked: false
-      })
-    }else{
-      this.childMoreSounds.current.increaseVolume(100);
-      this.setState({
-        muteIsClicked: true
-      })
-    }
   }
 
   //authorization function
@@ -165,14 +149,12 @@ class App extends Component {
   }
 
   render() {
-    const{muteIsClicked, selectedColor, selectedHeaderColor, clickedCategory} = this.state;
+    const{selectedColor, selectedHeaderColor, clickedCategory} = this.state;
     return (
       <div>
       <Favicon url='./img/favicon.ico' />
       {this.logInPage()}
       <Header clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} clickHeaderLogo={this.clickLogo}></Header>
-      {/* sound / mute ico */}
-      <img  onClick={this.clickSoundMuteIco} className='sound-mute-ico' src={muteIsClicked?soundIco:muteIco} alt='sound ico'></img>
 
       {/* user data */}
       <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>

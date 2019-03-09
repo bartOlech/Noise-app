@@ -88,19 +88,20 @@ class Header extends Component {
                         <span className='span-2'></span>
                         <span className='span-3'></span>
                         <ul className="menu">
-                            <li className="menu-menu"><div>Menu</div></li>
-                            <li className="menu-profile"><div>Profil</div></li>
-                            <li className="menu-best-rated"><div onClick={this.clickMoreSounds}>Najlepiej oceniane</div></li>
-                            <li className="menu-mobile-v"><div onClick={this.clickMoreSounds}>Wersja mobilna</div></li>
-                            <li className="menu-settings"><div onClick={this.clickMoreSounds}>Ustawienia</div></li>
+                            <li className="menu-menu"><div className='menu-ico'></div><div>Menu</div></li>
+                            <li className="menu-profile"><div className='profile-ico menu-ico'></div><div>Profil</div></li>
+                            <li className="menu-best-rated"><div className='rated-ico menu-ico'></div><div onClick={this.clickMoreSounds}>Najlepiej oceniane</div></li>
+                            <li className="menu-mobile-v"><div className='mobile-ico menu-ico'></div><div onClick={this.clickMoreSounds}>Wersja mobilna</div></li>
+                            <li className="menu-settings"><div className='settings-ico menu-ico'></div><div onClick={this.clickMoreSounds}>Ustawienia</div></li>
                         </ul>
                     </div>
                 </nav>
                 <nav className='nav-desktop'>
                     <ul>
-                        <li><div>Uśpij dziecko</div></li>
-                        <li><div>Sklep</div></li>
-                        <li><div onClick={this.clickMoreSounds}>Więcej odgłosów</div></li>
+                        <li><div>Profil</div></li>
+                        <li><div>Najlepiej oceniane</div></li>
+                        <li><div >Wersja mobilna</div></li>
+                        <li><div >Ustawienia</div></li>
                     </ul>
                 </nav>
             </Content>
