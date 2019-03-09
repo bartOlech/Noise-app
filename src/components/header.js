@@ -47,13 +47,6 @@ class Header extends Component {
         this.props.clickHeaderLogo()
     }
 
-    babySleepBtn = () => {
-        this.props.babySleepBtn()
-        this.setState({
-            isChecked: false
-        })
-    }
-
     clickHamMenu = () => {
         this.setState({
             isChecked: !this.state.isChecked
@@ -95,7 +88,7 @@ class Header extends Component {
                         <span className='span-2'></span>
                         <span className='span-3'></span>
                         <ul className="menu">
-                            <li className="menu-menu"><div onClick={this.babySleepBtn}>Menu</div></li>
+                            <li className="menu-menu"><div>Menu</div></li>
                             <li className="menu-profile"><div>Profil</div></li>
                             <li className="menu-best-rated"><div onClick={this.clickMoreSounds}>Najlepiej oceniane</div></li>
                             <li className="menu-mobile-v"><div onClick={this.clickMoreSounds}>Wersja mobilna</div></li>
@@ -105,7 +98,7 @@ class Header extends Component {
                 </nav>
                 <nav className='nav-desktop'>
                     <ul>
-                        <li><div onClick={this.babySleepBtn}>Uśpij dziecko</div></li>
+                        <li><div>Uśpij dziecko</div></li>
                         <li><div>Sklep</div></li>
                         <li><div onClick={this.clickMoreSounds}>Więcej odgłosów</div></li>
                     </ul>
