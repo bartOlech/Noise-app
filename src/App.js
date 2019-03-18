@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 import * as backgroundColors from './components/backgroundColors';
 import FavouriteIco from './img/user-ico/heart.png';
 import SettingsIco from './img/menu_ico/settings.png';
-import VolControlIco from './img/user-ico/sound-ico.png';
+import SoundSlider from './components/soundSlider';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -24,7 +24,8 @@ const UserCnt = styled.div`
   
 `
 const TestDiv = styled.div`
-  color: #fff;
+  color: #F5F7EF;
+  font-weight: 500;
   margin-right: 10px;
   margin-top: 5px;
 `
@@ -35,10 +36,6 @@ const Favourite = styled.div`
 const Settings = styled.div`
   background-image: url(${SettingsIco});
   top: 260px;
-`
-const VolControl = styled.div`
-  background-image: url(${VolControlIco});
-  top: 325px;
 `
 
 const userIcoStyle = {
@@ -66,14 +63,14 @@ class App extends Component {
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null
     }
-    this.childMoreSounds = React.createRef();
+    // this.childMoreSounds = React.createRef();
     this.childUserData = React.createRef();
     this.childMainCnt = React.createRef();
   }
 
   clickLogo = ()=>{
-    this.childMoreSounds.current.hideCnt();
-    this.childMoreSounds.current.resaveView();
+    // this.childMoreSounds.current.hideCnt();
+    // this.childMoreSounds.current.resaveView();
     this.childMainCnt.current.resaveView();
     this.setState({
       selectedColor: '#00A896',
@@ -200,14 +197,14 @@ class App extends Component {
       {/* user data */}
       <UserCnt>
         <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
-        <TestDiv>Test Div Test Div Test div</TestDiv>
+        <TestDiv>Example user</TestDiv>
         <Favourite style={userIcoStyle} ></Favourite>
         <Settings style={userIcoStyle} onClick={this.click}></Settings>
-        <VolControl style={userIcoStyle} tittle='volume control'></VolControl>
+        <SoundSlider></SoundSlider>
       </UserCnt>
       
       
-      <Sounds ref={this.childMoreSounds}></Sounds>
+      {/* <Sounds ref={this.childMoreSounds}></Sounds> */}
       <MainContent selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
       <GlobalStyle bcg={selectedColor}></GlobalStyle>
       
