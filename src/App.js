@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Header from './components/header';
 import Favicon from 'react-favicon';
 import MainContent from './containers/mainContent';
-import Sounds from './containers/sounds';
+// npm i rc-tooltip
 import LogInSignUp from './containers/logUser/logIn_SignUp';
 import UserData from './components/userData';
 import Cookies from 'js-cookie';
@@ -61,7 +61,7 @@ class App extends Component {
       isAuthenticated: false,
       selectedColor: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
-      clickedCategory: null
+      clickedCategory: null,
     }
     // this.childMoreSounds = React.createRef();
     this.childUserData = React.createRef();
@@ -202,8 +202,7 @@ class App extends Component {
         <Settings style={userIcoStyle} onClick={this.click}></Settings>
         <SoundSlider></SoundSlider>
       </UserCnt>
-      
-      
+
       {/* <Sounds ref={this.childMoreSounds}></Sounds> */}
       <MainContent selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
       <GlobalStyle bcg={selectedColor}></GlobalStyle>
