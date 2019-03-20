@@ -62,6 +62,10 @@ class App extends Component {
       selectedColor: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
+
+      // dispatch to sounSLider
+      playSound: false,
+      currentSound: ''
     }
     // this.childMoreSounds = React.createRef();
     this.childUserData = React.createRef();
@@ -182,12 +186,20 @@ class App extends Component {
     }
   }
 
-  click = () => {
+  settingsHandle = () => {
     console.log('click')
   }
 
+  setSoundValue = (playSound, currentSound) => {
+    this.setState({
+      playSound,
+      currentSound
+    })
+  }
+
   render() {
-    const{selectedColor, selectedHeaderColor, clickedCategory} = this.state;
+    
+    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound} = this.state;
     return (
       <div>
       <Favicon url='./img/favicon.ico' />
@@ -199,12 +211,12 @@ class App extends Component {
         <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
         <TestDiv>Example user</TestDiv>
         <Favourite style={userIcoStyle} ></Favourite>
-        <Settings style={userIcoStyle} onClick={this.click}></Settings>
-        <SoundSlider></SoundSlider>
+        <Settings style={userIcoStyle} onClick={this.settingsHandle}></Settings>
+        <SoundSlider playSound={playSound} currentSound={currentSound}></SoundSlider>
       </UserCnt>
-
+{console.log()}
       {/* <Sounds ref={this.childMoreSounds}></Sounds> */}
-      <MainContent selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
+      <MainContent setSoundValue={this.setSoundValue} selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
       <GlobalStyle bcg={selectedColor}></GlobalStyle>
       
       </div>

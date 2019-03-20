@@ -1,8 +1,9 @@
-import React, { useState, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import VolControlIco from '../img/user-ico/sound-ico.png';
 import MuteIco from '../img/mute-ico.png';
 import Slider from 'react-input-slider';
+import Sound from 'react-sound';
 
 const userIcoStyle = {
     width: '33px',
@@ -46,30 +47,62 @@ const VolSection = styled.div`
 
 `
 
-function SoundSlider (props) {
-    const [sliderY, setSliderY] = useState({ y: 50 });
-    const [sliderIsVisible, setSliderVisibility] = useState({ visible: false})
+class SoundSlider extends Component {
+    state = {
+        sliderY: 50,
+        sliderIsVisible: false
+    }
 
-    const {y} = sliderY
-    return(
-        
-        <Content>
-            <VolSection style={userIcoStyle}>
-                <VolControl image={y === 0 ? MuteIco : VolControlIco} style={userIcoStyle} onClick={() => setSliderVisibility({ visible: !sliderIsVisible.visible})}>
-                
-                </VolControl>
-                <Fragment>
-                    <Slider 
-                    axis="y" 
-                    y={y}
-                    onChange={({ y }) => setSliderY(sliderY => ({ ...sliderY, y }))} 
-                    styles={sliderStyle}
-                    style={sliderIsVisible.visible ? null : hideSlider}
-                    />
-                </Fragment>
-            </VolSection> 
-        </Content>
-    )
+    setVisibilitySlider = () => {
+        this.setState({
+            sliderIsVisible: !this.state.sliderIsVisible
+        })
+    }
+
+    sliderHandle = ({y}) => {
+        this.setState({
+            sliderY: {y}
+        })
+    }
+
+    playSound() {
+        const {currentSound, playSound} = this.props;
+        return (
+            <div>
+                <Sound
+                    url={currentSound}
+                    playStatus={!playSound ? Sound.status.STOPPED : Sound.status.PLAYING}
+                    loop={true}
+                    volume={this.state.sliderY.y}
+                />
+            </div>
+        )
+    }
+   
+    render() {
+        const {sliderY, sliderIsVisible} = this.state;
+        const {y} = sliderY
+        return(
+            <Content>
+                {/* function that turn on the sound */}
+                {this.playSound()}
+
+                <VolSection style={userIcoStyle}>
+                    <VolControl image={y === 0 ? MuteIco : VolControlIco} style={userIcoStyle} onClick={this.setVisibilitySlider}>
+                    </VolControl>
+                    <Fragment>
+                        <Slider 
+                        axis="y" 
+                        y={y}
+                        onChange={this.sliderHandle} 
+                        styles={sliderStyle}
+                        style={sliderIsVisible ? null : hideSlider}
+                        />
+                    </Fragment>
+                </VolSection> 
+            </Content>
+        )
+    }
 }
 
 export default SoundSlider;

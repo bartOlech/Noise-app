@@ -10,7 +10,7 @@ import Animals from './category/animals';
 import CulturePlaces from './category/culture';
 import HistoryPlaces from './category/historyPlaces';
 import Other from './category/other';
-import Sound from 'react-sound';
+// import Sound from 'react-sound';
 import SoundData from '../components/soundsData';
 
 
@@ -26,6 +26,7 @@ const Content = styled.div`
        align-items: center; 
        animation: 700ms forwards ${fadeInLeftAnimation};
     `;
+
 class MainContent extends Component {
     constructor(props) {
         super(props)
@@ -33,7 +34,7 @@ class MainContent extends Component {
             selectedCtg: '',
             mainCntIsVisible: false,
             currentSound: '',
-            playSound: false
+            playSound: false,
         }
         this.child = React.createRef();
         this.nature = React.createRef();
@@ -69,6 +70,7 @@ class MainContent extends Component {
     }
 
     setSounds = (val, clickedBtn, clicked) => {
+
         this.setState({
             buttonValue: val
         })
@@ -84,36 +86,20 @@ class MainContent extends Component {
         
        // select current sound
         const filtered = SoundData.filter(item => item.value === val)
-
+        
+        // set a current sound & send function values to soundSlider component
         this.setState({
                 currentSound: filtered[0].path
+            }, () => {
+                const { playSound, currentSound } = this.state;
+                this.props.setSoundValue(playSound, currentSound)
             })
-    }
-
-    playSound() {
-        const { playSound, currentSound } = this.state;
-        return (
-            <div>
-                <Sound
-                    url={currentSound}
-                    playStatus={!playSound ? Sound.status.STOPPED : Sound.status.PLAYING}
-                    loop={true}
-                //volume={volumeVal}
-                />
-
-            </div>
-
-
-        )
-    }
-
+    }    
     render() {
         const { mainCntIsVisible, selectedCtg } = this.state;
         return (
             <Container>
-
-                {/* function that turn on the sound */}
-                {this.playSound()}
+               
 
                 <Category selectCtg={this.selectCtg} ref={this.child}></Category>
 
