@@ -7,7 +7,7 @@ import LogInBtn from '../containers/logUser/logInBtn';
 
 const Content = styled.div`
     width: 100vw;
-    height: 130px;
+    height: 95px;
     background: ${props => props.bck};
     box-shadow: 2px 2px 15px rgba(0,0,0,.2);
     @media (min-width:600px){
@@ -15,11 +15,11 @@ const Content = styled.div`
         flex-direction:row;
     } 
 `;
-const Img = styled.img`
-    width: 150px;
-    height: 150px;
-    margin-left:4px;
-    margin-top:-10px;
+const Logo = styled.img`
+    width: 100px;
+    height: 100px;
+    margin-left: 4px;
+    margin-top: -6px;
     cursor: pointer;
 
     @media (max-width:700px){
@@ -32,7 +32,7 @@ const Img = styled.img`
         margin-left: 140px;
     }
     @media (max-width:395px){
-        margin-left: 70px;
+        margin-left: 85px;
     }
 `
 class Header extends Component {
@@ -80,7 +80,7 @@ class Header extends Component {
         return (
             <Content bck={selectedHeaderColor}>
                 <LogInBtn clickedCategory={clickedCategory}  userIsLogOut={this.userIsLogOut} isAuth={this.props.isAuth} isClickedLogIn={this.isClickedLogIn}></LogInBtn>
-                <Img onClick={this.clickHeaderLogo} src={clickedCategory === 'chill' || clickedCategory === 'culture' || clickedCategory === 'historyPlaces'?orangeLogo:mainLogo} alt='logo'></Img>
+                <Logo onClick={this.clickHeaderLogo} src={clickedCategory === 'chill' || clickedCategory === 'culture' || clickedCategory === 'historyPlaces'?orangeLogo:mainLogo} alt='logo'></Logo>
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
                         <input checked={this.state.isChecked} onClick={this.clickHamMenu} type="checkbox" onChange={this.onChange} />

@@ -16,11 +16,13 @@ const User = styled.div`
 const FullName = styled.div`
     color: #D2CFDE;
     font-weight: 700;
+    padding-right: 10px;
 `
 const LoaderSection = styled.div`
     display: ${props => props.visibility};
     justify-content: center;
-    margin-top: 5px;
+    margin-top: 0;
+    margin-right: 60px;
 `
 
 class UserData extends Component {

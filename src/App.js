@@ -23,12 +23,6 @@ const UserCnt = styled.div`
   align-items: flex-end;
   
 `
-const TestDiv = styled.div`
-  color: #F5F7EF;
-  font-weight: 500;
-  margin-right: 10px;
-  margin-top: 5px;
-`
 const Favourite = styled.div`
   background-image: url(${FavouriteIco});
   top: 195px;
@@ -79,7 +73,8 @@ class App extends Component {
     this.setState({
       selectedColor: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
-      clickedCategory: null
+      clickedCategory: null,
+      playSound: false
     })
   }
 
@@ -209,7 +204,6 @@ class App extends Component {
       {/* user data */}
       <UserCnt>
         <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
-        <TestDiv>Example user</TestDiv>
         <Favourite style={userIcoStyle} ></Favourite>
         <Settings style={userIcoStyle} onClick={this.settingsHandle}></Settings>
         <SoundSlider playSound={playSound} currentSound={currentSound}></SoundSlider>
