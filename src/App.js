@@ -11,10 +11,13 @@ import * as backgroundColors from './components/backgroundColors';
 import FavouriteIco from './img/user-ico/heart.png';
 import SettingsIco from './img/menu_ico/settings.png';
 import SoundSlider from './components/soundSlider';
+import Settings from './containers/settings/settingsContainer';
 
 const GlobalStyle = createGlobalStyle`
   body {
     background: ${props => props.bcg};
+    height: 100%;
+    position: relative;
   }
 `
 const UserCnt = styled.div`
@@ -27,7 +30,7 @@ const Favourite = styled.div`
   background-image: url(${FavouriteIco});
   top: 195px;
 `
-const Settings = styled.div`
+const SettingsSection = styled.div`
   background-image: url(${SettingsIco});
   top: 260px;
 `
@@ -197,22 +200,25 @@ class App extends Component {
     const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound} = this.state;
     return (
       <div>
-      <Favicon url='./img/favicon.ico' />
-      {this.logInPage()}
-      <Header clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} clickHeaderLogo={this.clickLogo}></Header>
+        {/* settings component */}
+        <Settings></Settings>
 
-      {/* user data */}
-      <UserCnt>
-        <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
-        <Favourite style={userIcoStyle} ></Favourite>
-        <Settings style={userIcoStyle} onClick={this.settingsHandle}></Settings>
-        <SoundSlider playSound={playSound} currentSound={currentSound}></SoundSlider>
-      </UserCnt>
-{console.log()}
-      {/* <Sounds ref={this.childMoreSounds}></Sounds> */}
-      <MainContent setSoundValue={this.setSoundValue} selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
-      <GlobalStyle bcg={selectedColor}></GlobalStyle>
-      
+        <Favicon url='./img/favicon.ico' />
+        {this.logInPage()}
+        {/* header section */}
+        <Header clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} clickHeaderLogo={this.clickLogo}></Header>
+
+        {/* user data */}
+        <UserCnt>
+          <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
+          <Favourite style={userIcoStyle} ></Favourite>
+          <SettingsSection style={userIcoStyle} onClick={this.settingsHandle}></SettingsSection>
+          <SoundSlider playSound={playSound} currentSound={currentSound}></SoundSlider>
+        </UserCnt>
+
+        {/* <Sounds ref={this.childMoreSounds}></Sounds> */}
+        <MainContent setSoundValue={this.setSoundValue} selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
+        <GlobalStyle bcg={selectedColor}></GlobalStyle>
       </div>
     )
   }
