@@ -59,6 +59,7 @@ class App extends Component {
       selectedColor: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
+      settingsComVisibility: false,
 
       // dispatch to sounSLider
       playSound: false,
@@ -185,7 +186,9 @@ class App extends Component {
   }
 
   settingsHandle = () => {
-    console.log('click')
+    this.setState({
+      settingsComVisibility: true
+    })
   }
 
   setSoundValue = (playSound, currentSound) => {
@@ -195,13 +198,19 @@ class App extends Component {
     })
   }
 
+  hideSettings = () => {
+    this.setState({
+      settingsComVisibility: false
+    })
+  }
+
   render() {
     
-    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound} = this.state;
+    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, settingsComVisibility} = this.state;
     return (
       <div>
         {/* settings component */}
-        <Settings></Settings>
+        <Settings isVisible={settingsComVisibility} hideSettings={this.hideSettings}></Settings>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}

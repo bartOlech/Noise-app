@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 import ReturnToMenu from '../../components/returnToMenu';
 import '../../cssFonts/fonts.css';
@@ -7,8 +7,6 @@ import ArrowIco from '../../img/user-ico/back-ico.png';
 import SelectIcoGreen from '../../img/user-ico/checked.png';
 import SelectIcoGrey from '../../img/user-ico/checked-false.png';
 
-function Settings(props) {
-
     // Header
     const Content = styled.div`
         background-color: #2A3350;
@@ -16,6 +14,12 @@ function Settings(props) {
         z-index: 5;
         width: 100vw;
         height: 100%;
+        display: ${props => props.visibility};
+        animation: anime .8s;
+        @keyframes anime{
+            0%{opacity: 0}
+            100%{opacity: 1}
+        }
     `
     const ReturnToMenuCnt = styled.div`
         width: 100vw;
@@ -28,7 +32,7 @@ function Settings(props) {
         font-family: 'Varela Round', sans-serif;
         color: #E8ECEF;
         margin: 17px 0 0 -158px;
-      
+
     `
     const SettingsIcoCnt = styled.div`
         background: url(${SettingsIco});
@@ -103,7 +107,7 @@ function Settings(props) {
         margin-left: 20px;
         position: absolute;
     `
-    
+
     // checkbox
     const MainStgBtnLabel = styled.label`
         position: relative;
@@ -157,8 +161,8 @@ function Settings(props) {
         display: inline-block;
     ` 
     const MainSectionSettingsBtn = styled.input`
-    display: none;
-    &:checked {
+        display: none;
+        &:checked {
         + {
             ${MainStgBtnLabel} {
                 ${MainStgBtnSpanOn} {
@@ -177,7 +181,7 @@ function Settings(props) {
                 }
             }
         }
-    }
+        }
     `
     // Select language
     const SelectLngCnt = styled.div`
@@ -200,7 +204,7 @@ function Settings(props) {
         background-size: cover;
         transform: rotate(180deg);
     `
-// Select language buttons
+    // Select language buttons
     const SelectLanguage = styled.div`
         display: ${props => props.displayLang};
         flex-direction: column;
@@ -208,13 +212,19 @@ function Settings(props) {
         bottom: -102px;
         right: 0;
         cursor: pointer;
+        animation: anime 1s;
+        @keyframes anime {
+            0%{opacity: 0;}
+            100%{opacity: 1;}
+        }
     `
     const SelectLanguageBox1 = styled.div`
-         width: 140px;
+        width: 140px;
         height: 50px;
         background-color: #394166;
         display: flex;
         align-items: center;
+        animation: none;
     `
     const SelectLanguageBox2 = styled.div`
         width: 140px;
@@ -224,7 +234,9 @@ function Settings(props) {
         border-bottom-right-radius: 15px; 
         display: flex;
         align-items: center;
+        animation: none;
     `
+
     const SelectLanguageBoxText = styled.h3`
         font-family: 'Varela Round', sans-serif;
         font-size: 1.1em;
@@ -241,67 +253,117 @@ function Settings(props) {
         right: 10px;
     `
 
-    const selectLanguage = () => {
-        console.log('click')
+class Settings extends Component {
+    constructor() {
+        super();
+        this.state = { 
+            contentIsVisible: true,
+            language: 'PL',
+            languageIsVisible: false,
+            timerState: true,
+            nightModeState: false
+        };
+      }
+
+    // functions
+
+    // language functions
+    selectLanguage = () => {
+        this.setState({
+            languageIsVisible: !this.state.languageIsVisible
+        })
+    }
+    setPlLang = () => {
+        this.setState({
+            language: 'PL'
+        })
+    }
+    setEnLang = () => {
+        this.setState({
+            language: 'EN'
+        })
     }
 
-    return (
-        <Content>
-            <ReturnToMenuCnt>
-                <SettingIcoTextCnt>
-                    <ReturnToMenu></ReturnToMenu>
-                    <ReturnToMenuText>Ustawienia</ReturnToMenuText>
-                </SettingIcoTextCnt>     
-                <SettingsIcoCnt></SettingsIcoCnt>
-            </ReturnToMenuCnt>
-            <MainSectionSettings>
-                {/* Night mode button */}
-                <NightMode>
-                    <MainSectionSettingsText>Tryb Nocny</MainSectionSettingsText>
-                    <MainSectionSettingsBtn type='checkbox' id="checkbox-1" />
+    // timer functions
+    handleTimer = () => {
+        this.setState({
+            nightModeState: !this.state.nightModeState
+        })
+    }
+
+    // Night mode functions
+    handleNightMode = () => {
+        this.setState({
+            timerState: !this.state.timerState
+        })
+    }
+
+    // hide settings component
+    hideSettings = () => {
+        this.props.hideSettings()
+    }
+
+    render() {
+        const {language, languageIsVisible, timerState, nightModeState} = this.state;
+        return (
+            <Content visibility={this.props.isVisible?'inline':'none'}>
+                <ReturnToMenuCnt>
+                    <SettingIcoTextCnt>
+                        <ReturnToMenu hideSettings={this.hideSettings}></ReturnToMenu>
+                        <ReturnToMenuText>Ustawienia</ReturnToMenuText>
+                    </SettingIcoTextCnt>     
+                    <SettingsIcoCnt></SettingsIcoCnt>
+                </ReturnToMenuCnt>
+                <MainSectionSettings>
+                    {/* Night mode button */}
+                    <NightMode>
+                        <MainSectionSettingsText>Tryb Nocny</MainSectionSettingsText>
+                        <MainSectionSettingsBtn defaultChecked={nightModeState} onChange={this.handleNightMode} type='checkbox' id="checkbox-1" />
                         <MainStgBtnLabel htmlFor='checkbox-1'>
                             <MainStgBtnSpanOn></MainStgBtnSpanOn>
                             <MainStgBtnSpanOff></MainStgBtnSpanOff>
                         </MainStgBtnLabel>
-                    
-                </NightMode>
-                <HrLine></HrLine>
-                {/* Timer button */}
-                <Timer>
-                <MainSectionSettingsText>Timer</MainSectionSettingsText>
-                    <MainSectionSettingsBtn type='checkbox' id="checkbox-2" />
-                        <MainStgBtnLabel htmlFor='checkbox-2'>
-                            <MainStgBtnSpanOn></MainStgBtnSpanOn>
-                            <MainStgBtnSpanOff></MainStgBtnSpanOff>
-                        </MainStgBtnLabel>
-                </Timer>
-                <HrLine></HrLine>
-                {/* Language button */}
-                <Language rightRadious='0'> 
-                <MainSectionSettingsText>Język:</MainSectionSettingsText>
-                <SelectLngCnt onClick={selectLanguage}>
-                    <SelectLng>
-                        Polski
-                    </SelectLng>
-                    <LanguageIco></LanguageIco>
-                </SelectLngCnt>
-                </Language>
-                {/* Select language buttons */}
-                <HrLine></HrLine>
-                <SelectLanguage displayLang='flex'>
-                    <SelectLanguageBox1>
-                        <SelectLanguageBoxText>Polski</SelectLanguageBoxText>
-                        <SelectLanguageIco selectIco={SelectIcoGreen}></SelectLanguageIco>
-                    </SelectLanguageBox1>
+                        
+                    </NightMode>
                     <HrLine></HrLine>
-                    <SelectLanguageBox2>
-                        <SelectLanguageBoxText>Angielski</SelectLanguageBoxText>
-                        <SelectLanguageIco selectIco={SelectIcoGrey}></SelectLanguageIco>
-                    </SelectLanguageBox2>
-                </SelectLanguage>
-            </MainSectionSettings>
-            
-        </Content>
-    )
+                    {/* Timer button */}
+                    <Timer>
+                    <MainSectionSettingsText>Timer</MainSectionSettingsText>
+                        <MainSectionSettingsBtn defaultChecked={timerState} onChange={this.handleTimer} type='checkbox' id="checkbox-2" />
+                            <MainStgBtnLabel htmlFor='checkbox-2'>
+                                <MainStgBtnSpanOn></MainStgBtnSpanOn>
+                                <MainStgBtnSpanOff></MainStgBtnSpanOff>
+                            </MainStgBtnLabel>
+                    </Timer>
+                    <HrLine></HrLine>
+                    {/* Language button */}
+                    <Language rightRadious={languageIsVisible?'0':'15px'}> 
+                    <MainSectionSettingsText>Język:</MainSectionSettingsText>
+                    <SelectLngCnt onClick={this.selectLanguage}>
+                        <SelectLng>
+                            Polski
+                        </SelectLng>
+                        <LanguageIco></LanguageIco>
+                    </SelectLngCnt>
+                    </Language>
+                    {/* Select language buttons */}
+                    <HrLine></HrLine>
+                    <SelectLanguage displayLang={languageIsVisible?'flex':'none'}>
+                        <SelectLanguageBox1 onClick={this.setPlLang}>
+                            <SelectLanguageBoxText>Polski</SelectLanguageBoxText>
+                            <SelectLanguageIco selectIco={language === 'PL'?SelectIcoGreen:SelectIcoGrey}></SelectLanguageIco>
+                        </SelectLanguageBox1>
+                        <HrLine></HrLine>
+                        <SelectLanguageBox2 onClick={this.setEnLang}>
+                            <SelectLanguageBoxText>Angielski</SelectLanguageBoxText>
+                            <SelectLanguageIco selectIco={language === 'EN'?SelectIcoGreen:SelectIcoGrey}></SelectLanguageIco>
+                        </SelectLanguageBox2>
+                    </SelectLanguage>
+                </MainSectionSettings>
+                
+            </Content>
+        )
+    }
+    
 }
 export default Settings;

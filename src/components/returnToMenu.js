@@ -17,10 +17,15 @@ function ReturnToMenu(props) {
         border: none;
         margin-top: 10px;
         cursor: pointer;
+        outline:0;
     `
+
+    const hideSettings = () => {
+        props.hideSettings()
+    }
     return (
         <Content>
-            <Button>
+            <Button onClick={hideSettings}>
                 
             </Button>
         </Content>
