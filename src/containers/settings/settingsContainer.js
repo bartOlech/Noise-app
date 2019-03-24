@@ -6,6 +6,7 @@ import SettingsIco from '../../img/menu_ico/settings.png';
 import ArrowIco from '../../img/user-ico/back-ico.png';
 import SelectIcoGreen from '../../img/user-ico/checked.png';
 import SelectIcoGrey from '../../img/user-ico/checked-false.png';
+import UserDataSettings from '../settings/userDataSettings';
 
     // Header
     const Content = styled.div`
@@ -61,10 +62,12 @@ import SelectIcoGrey from '../../img/user-ico/checked-false.png';
         display: flex;
         flex-direction: column;
         align-items: center;
-        position: relative;
         top: 0;
-        left: 0;
-        transform: translate(15%, 55%);
+        margin-left: -63px;
+        transform: translate(30vw, 55%);
+        @media (min-width: 543px){
+            transform: translate(40vw, 55%);
+        }
     `
     const NightMode = styled.div`
         width: 100%;
@@ -307,6 +310,7 @@ class Settings extends Component {
         const {language, languageIsVisible, timerState, nightModeState} = this.state;
         return (
             <Content visibility={this.props.isVisible?'inline':'none'}>
+            {/* header */}
                 <ReturnToMenuCnt>
                     <SettingIcoTextCnt>
                         <ReturnToMenu hideSettings={this.hideSettings}></ReturnToMenu>
@@ -314,6 +318,8 @@ class Settings extends Component {
                     </SettingIcoTextCnt>     
                     <SettingsIcoCnt></SettingsIcoCnt>
                 </ReturnToMenuCnt>
+                {/* User data settings */}
+                <UserDataSettings></UserDataSettings>
                 <MainSectionSettings>
                     {/* Night mode button */}
                     <NightMode>
@@ -360,7 +366,6 @@ class Settings extends Component {
                         </SelectLanguageBox2>
                     </SelectLanguage>
                 </MainSectionSettings>
-                
             </Content>
         )
     }
