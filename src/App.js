@@ -13,6 +13,7 @@ import SettingsIco from './img/menu_ico/settings.png';
 import SoundSlider from './components/soundSlider';
 import Settings from './containers/settings/settingsContainer';
 import UserSettings from './containers/settings/userSettings';
+import ChangePassword from './containers/settings/changePassCnt';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -60,8 +61,11 @@ class App extends Component {
       selectedColor: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
+      
+      // settings states
       SettingsCntVisibility: false,
       SettingsUserVisibility: false,
+      SettingsChangePassVisibility: true,
 
       // dispatch to sounSLider
       playSound: false,
@@ -205,7 +209,8 @@ class App extends Component {
   hideSettings = () => {
     this.setState({
       SettingsCntVisibility: false,
-      SettingsUserVisibility: false
+      SettingsUserVisibility: false,
+      SettingsChangePassVisibility: false,
     })
   }
 
@@ -216,16 +221,24 @@ class App extends Component {
       SettingsUserVisibility: true
     })
   }
+  // show ChangePassword component
+  showChangePassSection = () => {
+    this.setState({
+      SettingsChangePassVisibility: true,
+    })
+  }
 
   render() {
     
-    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility} = this.state;
+    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility, SettingsChangePassVisibility} = this.state;
     return (
       <div>
         {/* settings component */}
         <Settings goToUserSettings={this.goToUserSettings} isVisible={SettingsCntVisibility} hideSettings={this.hideSettings}></Settings>
         {/* user settings component */}
-        <UserSettings ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility}></UserSettings>
+        <UserSettings showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility}></UserSettings>
+        {/* Change password component */}
+        <ChangePassword SettingsChangePassVisibility={SettingsChangePassVisibility} hideSettings={this.hideSettings}></ChangePassword>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}

@@ -11,10 +11,16 @@ function ChangePassword (props) {
     `
     const Text = styled.h6`
         color: grey;
+        cursor: pointer;
     `
+
+    // change password function
+    const changePass = () => {
+        props.showChangePassSection()
+    }
     return(
         <Content>
-            <Text>Zmień hasło</Text>
+            <Text onClick={changePass}>Zmień hasło</Text>
         </Content>
     )
 }

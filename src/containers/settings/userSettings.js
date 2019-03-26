@@ -5,7 +5,7 @@ import '../../cssFonts/fonts.css';
 import UserIco from '../../img/user-ico/avatar.png';
 import UserBoxComponent from './UserBoxComponent';
 import RemoveAccount from './removeAccount';
-import ChangePassword from './changePassword';
+import ChangePassword from './changePasswordBtn';
 import Cookies from 'js-cookie';
 
     // Header
@@ -283,12 +283,17 @@ class UserSettings extends Component {
         }
     }
 
+    // Get user value
     isAuth(isAuthenticated, fullName) {
         this.setState({
             isAuthenticated,
             fullName,
             email: fullName
         })
+    }
+    // show ChangePassword component
+    showChangePassSection = () => {
+        this.props.showChangePassSection()
     }
 
     render() {
@@ -322,12 +327,8 @@ class UserSettings extends Component {
                         <LabelForm htmlFor='user-pass'>Hasło</LabelForm>
                         <InputForm id='user-pass' type='pasword'></InputForm> 
                         {/* Change password */}
-                    <ChangePassword></ChangePassword>      
-                    </FormUser>
-
-                    
-                    
-                    
+                    <ChangePassword showChangePassSection={this.showChangePassSection}></ChangePassword>      
+                    </FormUser>    
                 </MainSectionSettings>
                 {/* Remove account */}
                 <RemoveAccount></RemoveAccount>
