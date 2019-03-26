@@ -74,7 +74,12 @@ class Header extends Component {
         this.props.userIsLogOut(val)
     }
 
-
+    menuUserBtn = () => {
+        this.props.menuUserBtn()
+    }
+    menuSettingsBtn = () => {
+        this.props.menuSettingsBtn()
+    }
     render() {
         const {clickedCategory, selectedHeaderColor} = this.props;
         return (
@@ -89,10 +94,10 @@ class Header extends Component {
                         <span className='span-3'></span>
                         <ul className="menu">
                             <li className="menu-menu"><div className='menu-ico'></div><div>Menu</div></li>
-                            <li className="menu-profile"><div className='profile-ico menu-ico'></div><div>Profil</div></li>
+                            <li onClick={this.menuUserBtn} className="menu-profile"><div className='profile-ico menu-ico'></div><div>Profil</div></li>
                             <li className="menu-best-rated"><div className='rated-ico menu-ico'></div><div onClick={this.clickMoreSounds}>Najlepiej oceniane</div></li>
                             <li className="menu-mobile-v"><div className='mobile-ico menu-ico'></div><div onClick={this.clickMoreSounds}>Wersja mobilna</div></li>
-                            <li className="menu-settings"><div className='settings-ico menu-ico'></div><div onClick={this.clickMoreSounds}>Ustawienia</div></li>
+                            <li onClick={this.menuSettingsBtn} className="menu-settings"><div className='settings-ico menu-ico'></div><div >Ustawienia</div></li>
                         </ul>
                     </div>
                 </nav>

@@ -61,11 +61,11 @@ class App extends Component {
       selectedColor: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
-      
+
       // settings states
       SettingsCntVisibility: false,
       SettingsUserVisibility: false,
-      SettingsChangePassVisibility: true,
+      SettingsChangePassVisibility: false,
 
       // dispatch to sounSLider
       playSound: false,
@@ -90,14 +90,6 @@ class App extends Component {
   }
 
   clickMenu = ()=>{
-    this.setState({
-      menuIsClicked: !this.state.menuIsClicked,
-  })
-  }
-
-  clickMoreSounds = ()=>{
-    this.childMoreSounds.current.clickMoreSounds();
-    this.childMainCnt.current.resaveView();
     this.setState({
       menuIsClicked: !this.state.menuIsClicked,
   })
@@ -215,10 +207,10 @@ class App extends Component {
   }
 
   // Go to user settings
-  goToUserSettings = () => {
+  showUserSettings = () => {
     this.setState({
       SettingsCntVisibility: false,
-      SettingsUserVisibility: true
+      SettingsUserVisibility: true,
     })
   }
   // show ChangePassword component
@@ -234,7 +226,7 @@ class App extends Component {
     return (
       <div>
         {/* settings component */}
-        <Settings goToUserSettings={this.goToUserSettings} isVisible={SettingsCntVisibility} hideSettings={this.hideSettings}></Settings>
+        <Settings showUserSettings={this.showUserSettings} isVisible={SettingsCntVisibility} hideSettings={this.hideSettings}></Settings>
         {/* user settings component */}
         <UserSettings showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility}></UserSettings>
         {/* Change password component */}
@@ -243,7 +235,7 @@ class App extends Component {
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}
         {/* header section */}
-        <Header clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} clickHeaderLogo={this.clickLogo}></Header>
+        <Header menuSettingsBtn={this.settingsHandle} menuUserBtn={this.showUserSettings} clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} clickHeaderLogo={this.clickLogo}></Header>
 
         {/* user data */}
         <UserCnt>

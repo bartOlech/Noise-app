@@ -307,7 +307,7 @@ class Settings extends Component {
     }
     // Hide main settings, show user settings
     goToUserSettings = () => {
-        this.props.goToUserSettings()
+        this.props.showUserSettings()
     }
 
 

@@ -18,7 +18,7 @@ body{
   position: absolute;
   top: 22px;
   left: 23px;
-  z-index: 2;
+  z-index: 3;
   -webkit-user-select: none;
 }
 
@@ -84,8 +84,8 @@ body{
 .menu{
   position: absolute;
   width: 110vw;
-  height: 200vw;
-  max-height: 750px;
+  height: 210vw;
+  max-height: 1000px;
   margin: -100px 0 0 -50px;
   padding-top: 50px;
   background-color: #2A3350;
