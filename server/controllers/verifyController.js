@@ -63,7 +63,10 @@ module.exports.verifyUser = (req, res, next) => {
                                 res.clearCookie('social')
                                 res.status(401).json({ tokenStatus: "Token is expired" });
                             } else {
-                                res.status(200).json({ fullName: user[0].fullName });
+                                res.status(200).json({ 
+                                    fullName: user[0].fullName,
+                                    email: user[0].email
+                                });
                             }
                         })
                     })

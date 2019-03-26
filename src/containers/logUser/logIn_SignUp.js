@@ -8,199 +8,199 @@ import { FaFacebookSquare } from 'react-icons/fa';
 import { config } from '../../config/config';
 import Cookies from 'js-cookie';
 
-const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css?family=Varela+Round');
-`
+    const GlobalStyle = createGlobalStyle`
+        @import url('https://fonts.googleapis.com/css?family=Varela+Round');
+    `
 
-const Content = styled.div`
-    width: 340px;
-    min-height: 600px;
-    background-color: #f1f6fc;
-    position: absolute;
-    z-index: 7;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 8px;
-    @media(max-width: 410px){
-        margin-top:20px;
-        width: 310px;
-        top: 330px;
-    }
-`
+    const Content = styled.div`
+        width: 340px;
+        min-height: 600px;
+        background-color: #f1f6fc;
+        position: absolute;
+        z-index: 7;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 8px;
+        @media(max-width: 410px){
+            margin-top:20px;
+            width: 310px;
+            top: 330px;
+        }
+    `
 
-const Tittle = styled.h2`
-    color: #555555;
-    font-size: 1.7em;
-    font-family: 'Varela Round', sans-serif;
-    text-align: center;
-    margin-top: 30px;
+    const Tittle = styled.h2`
+        color: #555555;
+        font-size: 1.7em;
+        font-family: 'Varela Round', sans-serif;
+        text-align: center;
+        margin-top: 30px;
 
-`
-//log in Facebook/Google
-const Buttons = styled.div`
-    display:flex;
-    justify-content: center;
-    margin-top: 20px;
-    position: relative;
-    @media(max-width: 410px){
-        flex-direction: column;
-        align-items: space-beetween;
-        margin-left: 85px;
-    }
-`
-
-//form
-
-const FormCnt = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 25px;
-`
-const FormText = styled.label`
-    font-family: 'Varela Round', sans-serif;
-    font-size: 1.1em;
-    margin-bottom: 15px;
-`
-const FormInput = styled.input`
-    width: 300px;
-    height: 40px;
-    background-color: #F7F7F7;
-    border-radius: 8px;
-    border: none;
-    box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2);
-    margin-bottom: 15px;
-    @media(max-width: 410px){
-        width: 200px;
-    }
-`
-
-const ForgotPass = styled.a`
-    color: #555555;
-    cursor: pointer;
-    text-decoration: underline;
-    margin-top: -10px;
-`
-
-const SubmitBtn = styled.button`
-    width: 300px;
-    height: 40px;
-    background-color: #333333;
-    margin-top: 30px;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 1.04em;
-    cursor: pointer;
-    &:hover{
-        background-color: #272727;
-    }
-    @media(max-width: 410px){
-        width: 200px;
-    }
-`
-
-const SignUp = styled.div`
-    color: #555555;
-    text-align: center;
-    margin-top: 40px;
-    @media(max-width: 410px){
+    `
+    //log in Facebook/Google
+    const Buttons = styled.div`
+        display:flex;
+        justify-content: center;
         margin-top: 20px;
-        margin-bottom: 25px;
-    }
-`
+        position: relative;
+        @media(max-width: 410px){
+            flex-direction: column;
+            align-items: space-beetween;
+            margin-left: 85px;
+        }
+    `
 
-const CreateAccount = styled.a`
-    cursor: pointer;
-    text-decoration: underline;
-    padding-left: 5px;
-`
+    //form
 
-const LogInCnt = styled.div`
-    display: ${props => props.displayLogin};
-`
-const SignUpCnt = styled.div`
-    display: ${props => props.displaySignup};
-`
-const ErrorInfoCnt = styled.div`
-    display: flex; 
-    justify-content: center;
-    display: ${props => props.error};
-`
+    const FormCnt = styled.form`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 25px;
+    `
+    const FormText = styled.label`
+        font-family: 'Varela Round', sans-serif;
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    `
+    const FormInput = styled.input`
+        width: 300px;
+        height: 40px;
+        background-color: #F7F7F7;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2);
+        margin-bottom: 15px;
+        @media(max-width: 410px){
+            width: 200px;
+        }
+    `
 
-const ErrorInfo = styled.div`
-    width: 280px;
-    min-height: 32px;
-    background-color: #d9534f;
-    text-align: center;
-    color: #fff;
-    padding-top: 3px;
-    margin-top: 10px;
-    border-radius: 5px;
-`
+    const ForgotPass = styled.a`
+        color: #555555;
+        cursor: pointer;
+        text-decoration: underline;
+        margin-top: -10px;
+    `
 
-const SuccessInfoCnt = styled.div`
-    display: flex; 
-    justify-content: center;
-    display: ${props => props.success};
-`
+    const SubmitBtn = styled.button`
+        width: 300px;
+        height: 40px;
+        background-color: #333333;
+        margin-top: 30px;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-family: 'Varela Round', sans-serif;
+        font-size: 1.04em;
+        cursor: pointer;
+        &:hover{
+            background-color: #272727;
+        }
+        @media(max-width: 410px){
+            width: 200px;
+        }
+    `
 
-const SuccessInfo = styled.div`
-    width: 280px;
-    min-height: 32px;
-    background-color: #5cb85c;
-    text-align: center;
-    color: #fff;
-    padding-top: 3px;
-    margin-top: 10px;
-    border-radius: 5px;
-`
+    const SignUp = styled.div`
+        color: #555555;
+        text-align: center;
+        margin-top: 40px;
+        @media(max-width: 410px){
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+    `
 
-const AlertInfo = styled.div`
-    width: 280px;
-    min-height: 32px;
-    background-color: #ffc107;
-    text-align: center;
-    color: #fff;
-    padding-top: 3px;
-    margin-top: 10px;
-    border-radius: 5px;
-`
+    const CreateAccount = styled.a`
+        cursor: pointer;
+        text-decoration: underline;
+        padding-left: 5px;
+    `
 
-const EmailExist = styled.div`
-    display: flex; 
-    justify-content: center;
-    display: ${props => props.alert};
-`
+    const LogInCnt = styled.div`
+        display: ${props => props.displayLogin};
+    `
+    const SignUpCnt = styled.div`
+        display: ${props => props.displaySignup};
+    `
+    const ErrorInfoCnt = styled.div`
+        display: flex; 
+        justify-content: center;
+        display: ${props => props.error};
+    `
 
-const MsgCnt = styled.div`
-    display: ${props => props.visible};
-`
-const LoaderCnt = styled.div`
-    display: ${props => props.loader};
-    justify-content: center;
-`
-const LogInfo = styled.div`
-    display: ${props => props.visibility};
-    height: 42px;
-    justify-content: center;
-    background-color: #D4EDDA;
-    position: relative;
-    box-shadow: 0 1px 1px -1px gray;
-`
-const LogInfoText = styled.div`
-    color: #155724;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    @media(max-width: 410px){
-        left:40%
-    }
-    
-`
+    const ErrorInfo = styled.div`
+        width: 280px;
+        min-height: 32px;
+        background-color: #d9534f;
+        text-align: center;
+        color: #fff;
+        padding-top: 3px;
+        margin-top: 10px;
+        border-radius: 5px;
+    `
+
+    const SuccessInfoCnt = styled.div`
+        display: flex; 
+        justify-content: center;
+        display: ${props => props.success};
+    `
+
+    const SuccessInfo = styled.div`
+        width: 280px;
+        min-height: 32px;
+        background-color: #5cb85c;
+        text-align: center;
+        color: #fff;
+        padding-top: 3px;
+        margin-top: 10px;
+        border-radius: 5px;
+    `
+
+    const AlertInfo = styled.div`
+        width: 280px;
+        min-height: 32px;
+        background-color: #ffc107;
+        text-align: center;
+        color: #fff;
+        padding-top: 3px;
+        margin-top: 10px;
+        border-radius: 5px;
+    `
+
+    const EmailExist = styled.div`
+        display: flex; 
+        justify-content: center;
+        display: ${props => props.alert};
+    `
+
+    const MsgCnt = styled.div`
+        display: ${props => props.visible};
+    `
+    const LoaderCnt = styled.div`
+        display: ${props => props.loader};
+        justify-content: center;
+    `
+    const LogInfo = styled.div`
+        display: ${props => props.visibility};
+        height: 42px;
+        justify-content: center;
+        background-color: #D4EDDA;
+        position: relative;
+        box-shadow: 0 1px 1px -1px gray;
+    `
+    const LogInfoText = styled.div`
+        color: #155724;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @media(max-width: 410px){
+            left:40%
+        }
+        
+    `
 
 class LogInSignUp extends Component {
     constructor(props) {
@@ -366,7 +366,8 @@ class LogInSignUp extends Component {
     };
 
     auth() {
-        this.props.isAuth(this.state.isAuthenticated, this.state.user)
+        const {isAuthenticated, user} = this.state;
+        this.props.isAuth(isAuthenticated, user)
     }
 
     responseFacebook = (response) => {

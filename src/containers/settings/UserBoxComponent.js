@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import UserImg from '../../img/user-ico/user.png'
+import UserImg from '../../img/user-ico/user.png';
+import '../../cssFonts/fonts.css';
 
 function UserDataSettings(props) {
 
     const Content = styled.div`
         min-height: 186px;
-        margin-top: 70px;
-        @media (min-width: 543px){
-            transform: translate(10vw, 15%);
-        }
-        @media (min-width: 943px){
-            transform: translate(calc(8vw + 10px), 15%);
-        }
-
+        margin-top: 45px;
+            @media (min-width: 543px){
+                transform: translate(10vw, 0%);
+            }
+            @media (min-width: 943px){
+                transform: translate(calc(8vw + 10px), 0%);
+            }
     `
     const UserThumbnail = styled.div`
         width: 130px;
@@ -32,7 +32,7 @@ function UserDataSettings(props) {
             transform: translate(31vw, 55%);
         }
         @media (max-width: 350px){
-            transform: translate(27vw, 55%);
+            transform: translate(31vw, 55%);
         }
     `
     const UserIco = styled.div`
@@ -45,10 +45,16 @@ function UserDataSettings(props) {
     `
     const UserText = styled.h4` 
         color: #fff;
+        font-family: 'Varela Round', sans-serif;
     `
+    // Hide main settings, show user settings
+    const goToUserSettings = () => {
+        props.goToUserSettings()
+    }
+
     return(
         <Content>
-            <UserThumbnail><UserIco></UserIco><UserText>Konto / zaloguj</UserText></UserThumbnail>
+            <UserThumbnail onClick={goToUserSettings}><UserIco></UserIco><UserText>Konto</UserText></UserThumbnail>
         </Content>
     )
 }

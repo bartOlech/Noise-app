@@ -1,0 +1,339 @@
+import React, {Component} from 'react';
+import styled from 'styled-components';
+import ReturnToMenu from '../../components/returnToMenu';
+import '../../cssFonts/fonts.css';
+import UserIco from '../../img/user-ico/avatar.png';
+import UserBoxComponent from './UserBoxComponent';
+import RemoveAccount from './removeAccount';
+import ChangePassword from './changePassword';
+import Cookies from 'js-cookie';
+
+    // Header
+    const Content = styled.div`
+        background-color: #2A3350;
+        position: absolute;
+        z-index: 5;
+        width: 100vw;
+        height: 100%;
+        display: ${props => props.visibility};
+    `
+    const ReturnToMenuCnt = styled.div`
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        position: relative;
+    `
+    const ReturnToMenuText = styled.h2`
+        font-family: 'Varela Round', sans-serif;
+        color: #E8ECEF;
+        margin: 17px 0 0 -158px;
+
+    `
+    const SettingsIcoCnt = styled.div`
+        background: url(${UserIco});
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        margin-top: 5px;
+        position: absolute;
+        right: 25px;
+        top: 10px;
+    `
+    const SettingIcoTextCnt = styled.div`
+        position: absolute;
+        left: 0;
+        top: 10px;
+        display: flex;
+        justify-content: flex-start;
+    `
+
+    // Main settings
+    const MainSectionSettings = styled.div`
+        width: 70vw;
+        max-width: 300px;
+        min-height: 186px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top: 0;
+        margin-left: -63px;
+        transform: translate(30vw, 55%);
+        @media (min-width: 543px){
+            transform: translate(40vw, 55%);
+        }
+    `
+    const Newsletter = styled.div`
+        width: 100%;
+        height: 30px;
+        max-width: 250px;
+        margin-top: -35px;
+        margin-bottom: 20px;
+        background-color: #394166;
+        border-radius: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    `
+    // Main settings content
+    const MainSectionSettingsText = styled.h3`
+        font-family: 'Varela Round', sans-serif;
+        color: #E8ECEF;
+        margin-left: 20px;
+        position: absolute;
+    `
+
+    // checkbox
+    const MainStgBtnLabel = styled.label`
+        position: relative;
+        display: inline-block;
+        min-width: 112px;
+        cursor: pointer;
+        font-weight: 500;
+        text-align: left;
+        margin-left: 75%;
+        padding: 16px 0 16px 44px;
+        &:before {
+            content: "";
+            position: absolute;
+            margin: 0;
+            outline: 0;
+            top: 50%;
+            -ms-transform: translate(0, -50%);
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            left: 1px;
+            width: 36px;
+            height: 14px;
+            background-color: #9E9E9E;
+            border-radius: 8px;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            margin: 0;
+            outline: 0;
+            top: 50%;
+            -ms-transform: translate(0, -50%);
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #FAFAFA;
+            border-radius: 50%;
+            box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.084);
+        }
+    `
+    const MainStgBtnSpanOn = styled.span`
+        display: none;
+    `
+    const MainStgBtnSpanOff = styled.span`
+        display: inline-block;
+    ` 
+    const MainSectionSettingsBtn = styled.input`
+        display: none;
+        &:checked {
+        + {
+            ${MainStgBtnLabel} {
+                ${MainStgBtnSpanOn} {
+                    display: inline-block;
+                }
+                ${MainStgBtnSpanOff} {
+                    display: none;
+                }
+                &:before {
+                    background-color: #61C394;
+                }
+                &:after {
+                    -ms-transform: translate(80%, -50%);
+                    -webkit-transform: translate(80%, -50%);
+                    transform: translate(90%, -50%);
+                }
+            }
+        }
+        }
+    `
+    // User form section
+    const FormUser = styled.form`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    
+    `
+    const InputForm = styled.input`
+        width: 110%;
+        height: 30px;
+        background-color: #CCD5DC;
+        border: none;
+        border-radius: 7px;
+        ::placeholder{
+            padding-left: 10px;
+        }
+        
+    `
+    const LabelForm = styled.label`
+         color: #E8ECEF;
+         font-family: 'Varela Round', sans-serif;
+         margin-bottom: 10px;
+         margin-top: 13px;
+    `
+
+class UserSettings extends Component {
+    constructor() {
+        super();
+        this.state = { 
+            SettingsUserVisibility: false,
+            newsletterState: false,
+            social: Cookies.get('social'),
+            getToken: Cookies.get('auth'),
+            fullName: '',
+            email: '',
+            isAuthenticated: false,
+            loaded: false
+        };
+      }
+
+    // functions
+
+    // Newsletter functions
+    handleNewsletter = () => {
+        this.setState({
+            newsletterState: !this.state.newsletterState
+        })
+    }
+
+    // hide settings component
+    hideSettings = () => {
+        this.props.hideSettings()
+    }
+
+    goToUserSettings = () => {
+      console.log('here implement sign in')
+    }
+
+    componentDidMount() {
+        console.log(this.state.getToken)
+        if (this.state.getToken) {
+            if (this.state.social === 'google') {
+                const options = {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        user: {
+                            id: null
+                        }
+                    }),
+                    mode: 'cors',
+                    credentials: 'include',
+                    cache: 'default'
+                };
+                fetch('/api/googleVerify', options).then(r => {
+                    r.json().then(json => {
+                        if (json.fullName) {
+                            this.setState({
+                                fullName: json.fullName,
+                                email: json.email,
+                                isAuthenticated: true,
+                                loaded: true
+                            })
+                        }
+                        if (json.err) {
+                            this.setState({
+                                loaded: true
+                            })
+                        }
+                        // this.props.setAuthValue(this.state.isAuthenticated)
+                    });
+                }).catch(err => { console.log(err) })
+            } else if (this.state.social === 'facebook') {
+                const options = {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        userName: this.state.userName
+                    }),
+                    mode: 'cors',
+                    credentials: 'include',
+                    cache: 'default'
+                };
+                fetch('/api/auth', options).then(res => {
+                    res.json().then(json => {
+                        if (json.fullName) {
+                            this.setState({
+                                fullName: json.fullName,
+                                isAuthenticated: true,
+                                email: json.email,
+                                loaded: true
+                            })
+                        }
+                        if (json.err) {
+                            this.setState({
+                                loaded: true
+                            })
+                        }
+                        // this.props.setAuthValue(this.state.isAuthenticated)
+                    })
+                }).catch(err => { console.log(err) })
+            }
+        }
+    }
+
+    isAuth(isAuthenticated, fullName) {
+        this.setState({
+            isAuthenticated,
+            fullName,
+            email: fullName
+        })
+    }
+
+    render() {
+        const { newsletterState, fullName, email } = this.state;
+        return (
+            <Content visibility={this.props.SettingsUserVisibility?'inline':'none'}>
+            {/* header */}
+                <ReturnToMenuCnt>
+                    <SettingIcoTextCnt>
+                        <ReturnToMenu hideSettings={this.hideSettings}></ReturnToMenu>
+                        <ReturnToMenuText>{fullName === ''?'Konto':fullName}</ReturnToMenuText>
+                    </SettingIcoTextCnt>     
+                    <SettingsIcoCnt></SettingsIcoCnt>
+                </ReturnToMenuCnt>
+                {/* User data settings */}
+                <UserBoxComponent goToUserSettings={this.goToUserSettings}></UserBoxComponent>
+                <MainSectionSettings>
+                    {/* Night mode button */}
+                    <Newsletter>
+                        <MainSectionSettingsText>Newsletter</MainSectionSettingsText>
+                        <MainSectionSettingsBtn defaultChecked={newsletterState} onChange={this.handleNewsletter} type='checkbox' id="checkbox-3" />
+                        <MainStgBtnLabel htmlFor='checkbox-3'>
+                            <MainStgBtnSpanOn></MainStgBtnSpanOn>
+                            <MainStgBtnSpanOff></MainStgBtnSpanOff>
+                        </MainStgBtnLabel>
+                    </Newsletter>
+                    <FormUser>
+                        <LabelForm htmlFor='user-email'>Email</LabelForm>
+                        <InputForm placeholder={email} id='user-email' type='text'></InputForm>
+                        
+                        <LabelForm htmlFor='user-pass'>Hasło</LabelForm>
+                        <InputForm id='user-pass' type='pasword'></InputForm> 
+                        {/* Change password */}
+                    <ChangePassword></ChangePassword>      
+                    </FormUser>
+
+                    
+                    
+                    
+                </MainSectionSettings>
+                {/* Remove account */}
+                <RemoveAccount></RemoveAccount>
+            </Content>
+        )
+    }
+    
+}
+export default UserSettings;

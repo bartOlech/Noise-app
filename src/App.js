@@ -12,6 +12,7 @@ import FavouriteIco from './img/user-ico/heart.png';
 import SettingsIco from './img/menu_ico/settings.png';
 import SoundSlider from './components/soundSlider';
 import Settings from './containers/settings/settingsContainer';
+import UserSettings from './containers/settings/userSettings';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -20,31 +21,31 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
   }
 `
-const UserCnt = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  const UserCnt = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   
-`
-const Favourite = styled.div`
-  background-image: url(${FavouriteIco});
-  top: 195px;
-`
-const SettingsSection = styled.div`
-  background-image: url(${SettingsIco});
-  top: 260px;
-`
+  `
+  const Favourite = styled.div`
+    background-image: url(${FavouriteIco});
+    top: 195px;
+  `
+  const SettingsSection = styled.div`
+    background-image: url(${SettingsIco});
+    top: 260px;
+  `
 
-const userIcoStyle = {
-  width: '33px',
-  height: '33px',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover',
-  cursor: 'pointer',
-  position: 'absolute',
-  right: '10px',
-  zIndex: 2
-}
+  const userIcoStyle = {
+    width: '33px',
+    height: '33px',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    cursor: 'pointer',
+    position: 'absolute',
+    right: '10px',
+    zIndex: 2
+  }
 
 class App extends Component {
   constructor(props){
@@ -59,7 +60,8 @@ class App extends Component {
       selectedColor: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
-      SettingsCntVisibility: true,
+      SettingsCntVisibility: false,
+      SettingsUserVisibility: false,
 
       // dispatch to sounSLider
       playSound: false,
@@ -68,6 +70,7 @@ class App extends Component {
     // this.childMoreSounds = React.createRef();
     this.childUserData = React.createRef();
     this.childMainCnt = React.createRef();
+    this.childUserSettings = React.createRef();
   }
 
   clickLogo = ()=>{
@@ -102,6 +105,7 @@ class App extends Component {
         isAuthenticated
       })
       this.childUserData.current.isAuth(isAuthenticated, user);
+      this.childUserSettings.current.isAuth(isAuthenticated, user);
     }
 
   //log-in page
@@ -197,20 +201,31 @@ class App extends Component {
       currentSound
     })
   }
-
+  // Hide settings Component
   hideSettings = () => {
     this.setState({
-      SettingsCntVisibility: false
+      SettingsCntVisibility: false,
+      SettingsUserVisibility: false
+    })
+  }
+
+  // Go to user settings
+  goToUserSettings = () => {
+    this.setState({
+      SettingsCntVisibility: false,
+      SettingsUserVisibility: true
     })
   }
 
   render() {
     
-    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility} = this.state;
+    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility} = this.state;
     return (
       <div>
         {/* settings component */}
-        <Settings isVisible={SettingsCntVisibility} hideSettings={this.hideSettings}></Settings>
+        <Settings goToUserSettings={this.goToUserSettings} isVisible={SettingsCntVisibility} hideSettings={this.hideSettings}></Settings>
+        {/* user settings component */}
+        <UserSettings ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility}></UserSettings>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}

@@ -6,7 +6,7 @@ import SettingsIco from '../../img/menu_ico/settings.png';
 import ArrowIco from '../../img/user-ico/back-ico.png';
 import SelectIcoGreen from '../../img/user-ico/checked.png';
 import SelectIcoGrey from '../../img/user-ico/checked-false.png';
-import UserDataSettings from '../settings/userDataSettings';
+import UserBoxComponent from './UserBoxComponent';
 
     // Header
     const Content = styled.div`
@@ -290,14 +290,14 @@ class Settings extends Component {
     // timer functions
     handleTimer = () => {
         this.setState({
-            nightModeState: !this.state.nightModeState
+            timerState: !this.state.timerState
         })
     }
 
     // Night mode functions
     handleNightMode = () => {
         this.setState({
-            timerState: !this.state.timerState
+            nightModeState: !this.state.nightModeState
         })
     }
 
@@ -305,6 +305,12 @@ class Settings extends Component {
     hideSettings = () => {
         this.props.hideSettings()
     }
+    // Hide main settings, show user settings
+    goToUserSettings = () => {
+        this.props.goToUserSettings()
+    }
+
+
 
     render() {
         const {language, languageIsVisible, timerState, nightModeState} = this.state;
@@ -319,7 +325,7 @@ class Settings extends Component {
                     <SettingsIcoCnt></SettingsIcoCnt>
                 </ReturnToMenuCnt>
                 {/* User data settings */}
-                <UserDataSettings></UserDataSettings>
+                <UserBoxComponent goToUserSettings={this.goToUserSettings}></UserBoxComponent>
                 <MainSectionSettings>
                     {/* Night mode button */}
                     <NightMode>

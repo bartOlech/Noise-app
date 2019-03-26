@@ -13,9 +13,7 @@ module.exports.verify = (req, res, next) => {
     const decodedToken = jwtDecode(userJWT)
 
     //If token is expired, renew it(sign out)
-    console.log('ZACZYNAM ANALIZOWAĆ')
     
-
     if (!userJWT) {
         //hide user component, show sign up component
         res.send(401, 'Invalid or missing authorization token')
@@ -73,7 +71,10 @@ module.exports.verify = (req, res, next) => {
                                         });
                                         const payload = ticket.getPayload();
                                         const userid = payload['sub'];
-                                        res.status(200).json({ fullName: payload.name });
+                                        res.status(200).json({ 
+                                            fullName: payload.name,
+                                            email:  payload.email
+                                        });
                                     }
                                     verify().catch((err) => {
                                     });

@@ -3,35 +3,35 @@ import styled from 'styled-components';
 import Cookies from 'js-cookie';
 import Loader from 'react-loader-spinner';
 
-const UserCnt = styled.div`
-    display: ${props => props.visibility};
-    justify-content: center;
-    margin-top: 5px;
-`
-const User = styled.div`
-    color: #fff;
-    font-weight: 500;
-    padding-right: 10px;
-`
-const FullName = styled.div`
-    color: #D2CFDE;
-    font-weight: 700;
-    padding-right: 10px;
-`
-const LoaderSection = styled.div`
-    display: ${props => props.visibility};
-    justify-content: center;
-    margin-top: 0;
-    margin-right: 60px;
-`
+    const UserCnt = styled.div`
+        display: ${props => props.visibility};
+        justify-content: center;
+        margin-top: 5px;
+    `
+    const User = styled.div`
+        color: #fff;
+        font-weight: 500;
+        padding-right: 10px;
+    `
+    const FullName = styled.div`
+        color: #D2CFDE;
+        font-weight: 700;
+        padding-right: 10px;
+    `
+    const LoaderSection = styled.div`
+        display: ${props => props.visibility};
+        justify-content: center;
+        margin-top: 0;
+        margin-right: 60px;
+    `
 
 class UserData extends Component {
     state = {
         getToken: Cookies.get('auth'),
+        social: Cookies.get('social'),
         fullName: null,
         isAuthenticated: false,
-        loaded: false,
-        social: Cookies.get('social')
+        loaded: false    
     }
 
     componentDidMount() {
