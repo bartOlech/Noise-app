@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
 const UserData = require('../models/usersDB');
 const request = require('request');
 const jwtDecode = require('jwt-decode');
@@ -22,8 +21,6 @@ module.exports.verifyUser = (req, res, next) => {
             if (err) {
                 //hide user component, show sign up component
                 const decodedToken = jwtDecode(userJWT)
-                mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
-                mongoose.Promise = global.Promise;
                 UserData.find({ _id: decodedToken.id }).then((user) => { //tu dodane .id(wcześniej nie było)
                     UserData.deleteOne({ _id: user[0]._id }, (err) => {
                         if (err) {
@@ -43,8 +40,6 @@ module.exports.verifyUser = (req, res, next) => {
                     //Remove from database ??????????????????????????????
                     res.status(401).json({ tokenStatus: "Token is wrong" });
                 } else {
-                    mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
-                    mongoose.Promise = global.Promise;
 
                     UserData.find({ _id: userJWTPayload.id }).then((user) => {
 

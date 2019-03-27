@@ -29,9 +29,6 @@ class UserData extends Component {
     state = {
         getToken: Cookies.get('auth'),
         social: Cookies.get('social'),
-        fullName: null,
-        email: null,
-        isAuthenticated: false,
         loaded: false    
     }
 
@@ -53,10 +50,7 @@ class UserData extends Component {
                     r.json().then(json => {
                         if (json.fullName) {
                             this.setState({
-                                fullName: json.fullName,
-                                isAuthenticated: true,
                                 loaded: true,
-                                email: json.email
                             })
                         }
                         if (json.err) {
@@ -64,7 +58,7 @@ class UserData extends Component {
                                 loaded: true
                             })
                         }
-                        this.props.setAuthValue(this.state.isAuthenticated, this.state.fullName, this.state.email)
+                        this.props.setAuthValue(true, json.fullName, json.email)
                     });
                 }).catch(err => { console.log(err) })
             } else if (this.state.social === 'facebook') {
@@ -81,10 +75,7 @@ class UserData extends Component {
                     res.json().then(json => {
                         if (json.fullName) {
                             this.setState({
-                                fullName: json.fullName,
-                                isAuthenticated: true,
                                 loaded: true,
-                                email: json.email
                             })
                         }
                         if (json.err) {
@@ -92,24 +83,11 @@ class UserData extends Component {
                                 loaded: true
                             })
                         }
-                        this.props.setAuthValue(this.state.isAuthenticated, this.state.fullName, this.state.email)
+                        this.props.setAuthValue(true, json.fullName, json.email)
                     })
                 }).catch(err => { console.log(err) })
             }
         }
-    }
-
-    isAuth(isAuthenticated, fullName) {
-        this.setState({
-            isAuthenticated,
-            fullName
-        })
-    }
-
-    userIsLogOut(isAuthenticated) {
-        this.setState({
-            isAuthenticated
-        })
     }
 
     LoaderElement = () => {
@@ -122,12 +100,11 @@ class UserData extends Component {
     }
 
     render() {
-        const { fullName, isAuthenticated } = this.state;
         return (
             <>
                 {this.LoaderElement()}
-                <UserCnt visibility={isAuthenticated ? 'flex' : 'none'}>
-                    <User>Witaj </User><FullName>{fullName}</FullName>
+                <UserCnt visibility={this.props.isAuth ? 'flex' : 'none'}>
+                    <User>Witaj </User><FullName>{this.props.fullName}</FullName>
                 </UserCnt>
             </ >
         )

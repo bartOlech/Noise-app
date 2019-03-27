@@ -66,7 +66,7 @@ class App extends Component {
 
       // settings states
       SettingsCntVisibility: false,
-      SettingsUserVisibility: true,
+      SettingsUserVisibility: false,
       SettingsChangePassVisibility: false,
 
       // dispatch to sounSLider
@@ -104,8 +104,7 @@ class App extends Component {
         fullName: user,
         userEmail: email
       })
-      this.childUserData.current.isAuth(isAuthenticated, user);
-      this.childUserSettings.current.isAuth(isAuthenticated, user);
+
     }
 
   //log-in page
@@ -142,9 +141,15 @@ class App extends Component {
     this.setState({
       isAuthenticated: val
     })
-    this.childUserData.current.userIsLogOut(false);
+  }
+   // Change the isAuthenticated state to false if user has been removed
+   authAfterDeleteUser = (val) => {
+    this.setState({
+      isAuthenticated: val
+    })
   }
 
+  // Select category section
   selectCtg = (val) => {
     this.setState({
       clickedCategory: val
@@ -191,12 +196,13 @@ class App extends Component {
     }
   }
 
+  // 
+  // Setting section
   settingsHandle = () => {
     this.setState({
       SettingsCntVisibility: true
     })
   }
-
   setSoundValue = (playSound, currentSound) => {
     this.setState({
       playSound,
@@ -211,7 +217,6 @@ class App extends Component {
       SettingsChangePassVisibility: false,
     })
   }
-
   // Go to user settings
   showUserSettings = () => {
     this.setState({
@@ -226,6 +231,8 @@ class App extends Component {
     })
   }
 
+ 
+
   render() {
     
     const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility, SettingsChangePassVisibility, isAuthenticated, fullName, userEmail} = this.state;
@@ -235,7 +242,7 @@ class App extends Component {
         {console.log(fullName)}
         <Settings showUserSettings={this.showUserSettings} isVisible={SettingsCntVisibility} hideSettings={this.hideSettings}></Settings>
         {/* user settings component */}
-        <UserSettings isAuth={isAuthenticated} showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility } fullName={fullName} userEmail={userEmail}></UserSettings>
+        <UserSettings authAfterDeleteUser={this.authAfterDeleteUser} isAuth={isAuthenticated} showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility } fullName={fullName} userEmail={userEmail}></UserSettings>
         {/* Change password component */}
         <ChangePassword SettingsChangePassVisibility={SettingsChangePassVisibility} hideSettings={this.hideSettings}></ChangePassword>
 
@@ -246,7 +253,7 @@ class App extends Component {
 
         {/* user data */}
         <UserCnt>
-          <UserData userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
+          <UserData fullName={fullName} isAuth={isAuthenticated} userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
           <Favourite style={userIcoStyle} ></Favourite>
           <SettingsSection style={userIcoStyle} onClick={this.settingsHandle}></SettingsSection>
           <SoundSlider playSound={playSound} currentSound={currentSound}></SoundSlider>

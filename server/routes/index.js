@@ -11,7 +11,7 @@ const verifyController = require('../controllers/verifyController');
 const logOutController = require('../controllers/LogOutController')
 const googleVerifyController = require('../controllers/googleVerifyController');
 const signInController = require('../controllers/signInController');
-const removeUserController = require('../controllers/removeUser');
+const removeUserController = require('../controllers/removeUserController');
 
 router.post('/auth', verifyController.verifyUser)
 
@@ -45,14 +45,12 @@ router.post('/google',
             id: req.user.id
         };
         res.cookie('social', 'google')
-        mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true });
-        mongoose.Promise = global.Promise;
         UserData.findOne({_id: req.user.id}).then((user) => {
            
             if (user) {
                 const document = { googleTokenId: req.body.tokenId};
                 UserData.findOneAndUpdate(document).then((user) => {
-                     mongoose.connection.close();
+                    
                 }).catch((err) => {console.log(err)})   
             }
         })

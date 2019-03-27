@@ -272,7 +272,7 @@ class UserSettings extends Component {
             newsletterState: false,
             social: Cookies.get('social'),
             getToken: Cookies.get('auth'),
-            loaded: false
+            loaded: false,
         };
       }
 
@@ -294,19 +294,36 @@ class UserSettings extends Component {
       console.log('here implement sign in')
     }
 
-    // Get user value
-    isAuth(isAuthenticated, fullName) {
-        this.setState({
-            auth: isAuthenticated,
-        })
-    }
+
     // show ChangePassword component
     showChangePassSection = () => {
         this.props.showChangePassSection()
     }
+
+    // fetch remove user
+    removeFromDB = () => {
+        console.log(this.state.social)
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                social: 'this.state.social',
+                email: this.props.userEmail
+            }),
+            mode: 'cors',
+            credentials: 'include',
+            cache: 'default'
+        };
+        fetch('/api/removeUser', options).then(res => res.json()).then(json => {
+            this.props.authAfterDeleteUser(json.isAuth)
+        }).catch(err => console.log(err))
+    }
+
     // remove account function
     removeAccount = () => {
-        console.log('aa')
+        this.removeFromDB()
     }
 
     // Remove account 
