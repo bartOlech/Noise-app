@@ -222,6 +222,7 @@ class LogInSignUp extends Component {
             isAuthenticated: false,
             user: null,
             token: '',
+            emailFromDB: '',
             getToken: Cookies.get('auth'),
             valEmailSignIn: '',
             valPassSignIn: ''
@@ -366,8 +367,9 @@ class LogInSignUp extends Component {
     };
 
     auth() {
-        const {isAuthenticated, user} = this.state;
-        this.props.isAuth(isAuthenticated, user)
+        
+        const {isAuthenticated, user, emailFromDB} = this.state;
+        this.props.isAuth(isAuthenticated, user, emailFromDB)
     }
 
     responseFacebook = (response) => {
@@ -382,7 +384,12 @@ class LogInSignUp extends Component {
             const token = r.headers.get('x-auth-token');
             r.json().then(user => {
                 if (token) {
-                    this.setState({ isAuthenticated: true, user: user.fullName, token })
+                    this.setState({ 
+                        isAuthenticated: true, 
+                        user: user.fullName, 
+                        token,
+                        emailFromDB:  user.email
+                    })
                     this.auth();
                 }
             });
@@ -401,7 +408,12 @@ class LogInSignUp extends Component {
             const token = r.headers.get('x-auth-token');
             r.json().then(user => {
                 if (token) {
-                    this.setState({ isAuthenticated: true, user: user.fullName, token })
+                    this.setState({ 
+                        isAuthenticated: true,
+                         user: user.fullName, 
+                         token,
+                         emailFromDB:  user.email 
+                        })
                     this.auth();
                 }
             });
@@ -441,7 +453,13 @@ class LogInSignUp extends Component {
             .then(res => res.json())
             .then(json => {
                 if (json.auth) {
-                    this.setState({ isAuthenticated: true, user: json.user.toLowerCase(), inputError: false, inputErrorText: '' })
+                    this.setState({
+                        isAuthenticated: true,
+                        user: json.user.toLowerCase(), 
+                        inputError: false,
+                        inputErrorText: '',
+                        emailFromDB: valEmailSignIn
+                         })
                     this.auth();
                 } else if (json.email) {
                     this.setState({

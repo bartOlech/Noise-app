@@ -10,13 +10,16 @@ require('../passportGoogle')();
 const verifyController = require('../controllers/verifyController');
 const logOutController = require('../controllers/LogOutController')
 const googleVerifyController = require('../controllers/googleVerifyController');
-const signInController = require('../controllers/signInController')
+const signInController = require('../controllers/signInController');
+const removeUserController = require('../controllers/removeUser');
 
 router.post('/auth', verifyController.verifyUser)
 
 router.post('/googleVerify', googleVerifyController.verify)
 
 router.post('/socialLogOut', logOutController.LogOut)
+
+router.post('/removeUser', removeUserController.removeUser)
 
 
 router.post('/facebook',

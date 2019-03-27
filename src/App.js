@@ -58,13 +58,15 @@ class App extends Component {
       getToken: Cookies.get('auth'),
       isLogged: false,
       isAuthenticated: false,
+      fullName: '',
+      userEmail: '',
       selectedColor: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
 
       // settings states
       SettingsCntVisibility: false,
-      SettingsUserVisibility: false,
+      SettingsUserVisibility: true,
       SettingsChangePassVisibility: false,
 
       // dispatch to sounSLider
@@ -96,9 +98,11 @@ class App extends Component {
   }
 
   //authorization function
-    isAuth = (isAuthenticated, user) =>{
+    isAuth = (isAuthenticated, user, email) =>{
       this.setState({
-        isAuthenticated
+        isAuthenticated,
+        fullName: user,
+        userEmail: email
       })
       this.childUserData.current.isAuth(isAuthenticated, user);
       this.childUserSettings.current.isAuth(isAuthenticated, user);
@@ -126,9 +130,11 @@ class App extends Component {
     })
   }
 
-  setAuthValue = (val) => {
+  setAuthValue = (isAuth, fullName, email) => {
     this.setState({
-      isAuthenticated: val
+      isAuthenticated: isAuth,
+      fullName,
+      userEmail: email
     })
   }
 
@@ -222,20 +228,21 @@ class App extends Component {
 
   render() {
     
-    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility, SettingsChangePassVisibility} = this.state;
+    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility, SettingsChangePassVisibility, isAuthenticated, fullName, userEmail} = this.state;
     return (
       <div>
         {/* settings component */}
+        {console.log(fullName)}
         <Settings showUserSettings={this.showUserSettings} isVisible={SettingsCntVisibility} hideSettings={this.hideSettings}></Settings>
         {/* user settings component */}
-        <UserSettings showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility}></UserSettings>
+        <UserSettings isAuth={isAuthenticated} showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility } fullName={fullName} userEmail={userEmail}></UserSettings>
         {/* Change password component */}
         <ChangePassword SettingsChangePassVisibility={SettingsChangePassVisibility} hideSettings={this.hideSettings}></ChangePassword>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}
         {/* header section */}
-        <Header menuSettingsBtn={this.settingsHandle} menuUserBtn={this.showUserSettings} clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={this.state.isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} clickHeaderLogo={this.clickLogo}></Header>
+        <Header menuSettingsBtn={this.settingsHandle} menuUserBtn={this.showUserSettings} clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} clickHeaderLogo={this.clickLogo}></Header>
 
         {/* user data */}
         <UserCnt>
@@ -244,7 +251,6 @@ class App extends Component {
           <SettingsSection style={userIcoStyle} onClick={this.settingsHandle}></SettingsSection>
           <SoundSlider playSound={playSound} currentSound={currentSound}></SoundSlider>
         </UserCnt>
-
         {/* <Sounds ref={this.childMoreSounds}></Sounds> */}
         <MainContent setSoundValue={this.setSoundValue} selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
         <GlobalStyle bcg={selectedColor}></GlobalStyle>

@@ -23,13 +23,17 @@ function RemoveAccount (props) {
             margin-top: 190px;
         }
     `
+    const removeAccountHandle = () => {
+        props.removeAccountHandle()
+    }
     const Text = styled.h4`
         color: red;
         font-family: 'Varela Round', sans-serif;
+        cursor: pointer;
     `
     return(
         <Content>
-            <Text>Usuń konto</Text>
+            <Text onClick={removeAccountHandle}>Usuń konto</Text>
         </Content>
     )
 }

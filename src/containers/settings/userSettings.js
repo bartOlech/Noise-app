@@ -7,6 +7,35 @@ import UserBoxComponent from './UserBoxComponent';
 import RemoveAccount from './removeAccount';
 import ChangePassword from './changePasswordBtn';
 import Cookies from 'js-cookie';
+import AlertCircleIco from '../../img/user-ico/alert-circle.png'
+
+// react notification
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
+import { Bounce } from 'react-toastify';
+import { css } from 'glamor';
+
+// confirm alert
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
+    
+
+    // toast template
+    const toastTemplate = (notification) => {
+        toast(notification, {
+            className: css({
+                background: '#1A497F'
+            }),
+            bodyClassName: css({
+                textAlign: 'center',
+                color: '#F1F1F2'
+              }),
+            progressClassName: css({
+                background: 'rgba(2,2,2,0)'           
+              }),
+            position: toast.POSITION.TOP_CENTER
+            });
+    }
 
     // Header
     const Content = styled.div`
@@ -185,6 +214,56 @@ import Cookies from 'js-cookie';
          margin-top: 13px;
     `
 
+    // UI for confirm alert
+    const ContentUI = styled.div`
+        width: 70vw;
+        max-width: 400px;
+        height: 200px;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+    `
+    const ContentUIBtnBox = styled.div`
+        display: flex;
+    `
+    const ContentUIBtn = styled.button`
+        width: 70px;
+        height: 30px;
+        background-color: #F15E5E;
+        margin: 0 20px 0 20px;
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        transition: .3s;
+        cursor: pointer;
+        outline: 0;
+        &:hover{
+            background-color: #FD4444;
+        }
+        &:first-child{
+            background-color: #B7B1CB;
+            &:hover{
+                background-color: #9895A5;
+            }
+        }
+    `
+    const ContentUIAlertCircle = styled.div`
+        background: url(${AlertCircleIco});
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+    `
+    const ContentUIText = styled.h3`
+        color: #63637C;
+        font-family: 'Varela Round', sans-serif;
+        margin: 35px 0 35px 0;
+        text-align: center;
+    `
+
 class UserSettings extends Component {
     constructor() {
         super();
@@ -193,9 +272,6 @@ class UserSettings extends Component {
             newsletterState: false,
             social: Cookies.get('social'),
             getToken: Cookies.get('auth'),
-            fullName: '',
-            email: '',
-            isAuthenticated: false,
             loaded: false
         };
       }
@@ -218,93 +294,56 @@ class UserSettings extends Component {
       console.log('here implement sign in')
     }
 
-    componentDidMount() {
-        console.log(this.state.getToken)
-        if (this.state.getToken) {
-            if (this.state.social === 'google') {
-                const options = {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        user: {
-                            id: null
-                        }
-                    }),
-                    mode: 'cors',
-                    credentials: 'include',
-                    cache: 'default'
-                };
-                fetch('/api/googleVerify', options).then(r => {
-                    r.json().then(json => {
-                        if (json.fullName) {
-                            this.setState({
-                                fullName: json.fullName,
-                                email: json.email,
-                                isAuthenticated: true,
-                                loaded: true
-                            })
-                        }
-                        if (json.err) {
-                            this.setState({
-                                loaded: true
-                            })
-                        }
-                        // this.props.setAuthValue(this.state.isAuthenticated)
-                    });
-                }).catch(err => { console.log(err) })
-            } else if (this.state.social === 'facebook') {
-                const options = {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        userName: this.state.userName
-                    }),
-                    mode: 'cors',
-                    credentials: 'include',
-                    cache: 'default'
-                };
-                fetch('/api/auth', options).then(res => {
-                    res.json().then(json => {
-                        if (json.fullName) {
-                            this.setState({
-                                fullName: json.fullName,
-                                isAuthenticated: true,
-                                email: json.email,
-                                loaded: true
-                            })
-                        }
-                        if (json.err) {
-                            this.setState({
-                                loaded: true
-                            })
-                        }
-                        // this.props.setAuthValue(this.state.isAuthenticated)
-                    })
-                }).catch(err => { console.log(err) })
-            }
-        }
-    }
-
     // Get user value
     isAuth(isAuthenticated, fullName) {
         this.setState({
-            isAuthenticated,
-            fullName,
-            email: fullName
+            auth: isAuthenticated,
         })
     }
     // show ChangePassword component
     showChangePassSection = () => {
         this.props.showChangePassSection()
     }
+    // remove account function
+    removeAccount = () => {
+        console.log('aa')
+    }
+
+    // Remove account 
+    removeAccountHandle = () => {
+        if(!this.props.isAuth){
+            toastTemplate('Nie jesteś zalogowany!')
+        }else {
+            confirmAlert({
+                customUI: ({ onClose }) => 
+                <ContentUI>
+                    <ContentUIAlertCircle></ContentUIAlertCircle>
+                    <ContentUIText>Czy na pewno chcesz usunąć konto?</ContentUIText>
+                    <ContentUIBtnBox>
+                        <ContentUIBtn onClick={() => {
+                            onClose();
+                            }}>Nie
+                        </ContentUIBtn>
+                        <ContentUIBtn onClick={() => {
+                            onClose();
+                            this.removeAccount() 
+                        }}>Tak</ContentUIBtn>
+                    </ContentUIBtnBox>
+                </ContentUI>
+              });
+        }
+        
+    }
 
     render() {
-        const { newsletterState, fullName, email } = this.state;
+        const { newsletterState } = this.state;
         return (
             <Content visibility={this.props.SettingsUserVisibility?'inline':'none'}>
             {/* header */}
                 <ReturnToMenuCnt>
                     <SettingIcoTextCnt>
                         <ReturnToMenu hideSettings={this.hideSettings}></ReturnToMenu>
-                        <ReturnToMenuText>{fullName === ''?'Konto':fullName}</ReturnToMenuText>
+                        <ReturnToMenuText>{!this.props.isAuth?'Konto':this.props.fullName}</ReturnToMenuText>
                     </SettingIcoTextCnt>     
                     <SettingsIcoCnt></SettingsIcoCnt>
                 </ReturnToMenuCnt>
@@ -322,7 +361,7 @@ class UserSettings extends Component {
                     </Newsletter>
                     <FormUser>
                         <LabelForm htmlFor='user-email'>Email</LabelForm>
-                        <InputForm placeholder={email} id='user-email' type='text'></InputForm>
+                        <InputForm placeholder={this.props.isAuth?this.props.userEmail:''} id='user-email' type='text'></InputForm>
                         
                         <LabelForm htmlFor='user-pass'>Hasło</LabelForm>
                         <InputForm id='user-pass' type='pasword'></InputForm> 
@@ -331,7 +370,8 @@ class UserSettings extends Component {
                     </FormUser>    
                 </MainSectionSettings>
                 {/* Remove account */}
-                <RemoveAccount></RemoveAccount>
+                <RemoveAccount removeAccountHandle={this.removeAccountHandle}></RemoveAccount>
+                <ToastContainer transition={Bounce}/>
             </Content>
         )
     }

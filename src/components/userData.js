@@ -30,6 +30,7 @@ class UserData extends Component {
         getToken: Cookies.get('auth'),
         social: Cookies.get('social'),
         fullName: null,
+        email: null,
         isAuthenticated: false,
         loaded: false    
     }
@@ -54,7 +55,8 @@ class UserData extends Component {
                             this.setState({
                                 fullName: json.fullName,
                                 isAuthenticated: true,
-                                loaded: true
+                                loaded: true,
+                                email: json.email
                             })
                         }
                         if (json.err) {
@@ -62,7 +64,7 @@ class UserData extends Component {
                                 loaded: true
                             })
                         }
-                        this.props.setAuthValue(this.state.isAuthenticated)
+                        this.props.setAuthValue(this.state.isAuthenticated, this.state.fullName, this.state.email)
                     });
                 }).catch(err => { console.log(err) })
             } else if (this.state.social === 'facebook') {
@@ -81,7 +83,8 @@ class UserData extends Component {
                             this.setState({
                                 fullName: json.fullName,
                                 isAuthenticated: true,
-                                loaded: true
+                                loaded: true,
+                                email: json.email
                             })
                         }
                         if (json.err) {
@@ -89,7 +92,7 @@ class UserData extends Component {
                                 loaded: true
                             })
                         }
-                        this.props.setAuthValue(this.state.isAuthenticated)
+                        this.props.setAuthValue(this.state.isAuthenticated, this.state.fullName, this.state.email)
                     })
                 }).catch(err => { console.log(err) })
             }
