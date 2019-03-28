@@ -3,6 +3,29 @@ import styled from 'styled-components';
 import ReturnToMenu from '../../components/returnToMenu';
 import '../../cssFonts/fonts.css';
 import LockIco from '../../img/user-ico/lock.png';
+// react notification
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
+import { Bounce } from 'react-toastify';
+import { css } from 'glamor';
+import Cookies from 'js-cookie';
+
+// toast template
+const toastTemplate = (notification) => {
+    toast(notification, {
+        className: css({
+            background: '#1A497F'
+        }),
+        bodyClassName: css({
+            textAlign: 'center',
+            color: '#F1F1F2'
+          }),
+        progressClassName: css({
+            background: 'rgba(2,2,2,0)'           
+          }),
+        position: toast.POSITION.TOP_CENTER
+        });
+}
 
     // Header
     const Content = styled.div`
@@ -59,6 +82,7 @@ import LockIco from '../../img/user-ico/lock.png';
         background-color: #CCD5DC;
         border: none;
         border-radius: 7px;
+        outline: 0;
         ::placeholder{
             padding-left: 10px;
         }
@@ -82,28 +106,88 @@ import LockIco from '../../img/user-ico/lock.png';
         border-radius: 7px;
         cursor: pointer;
         transition: .4s;
+        outline: 0;
         &:hover{
             background-color: #CA231A;
         }
+    `
+    // hr line
+    const Hr = styled.div`
+        display: ${props => props.displayHr};
+        height: 2px;
+        width: 63%;
+        max-width: 205px;
+        background-color: #F23026; 
+        margin-top: -1px;
+        opacity: .8;
+    `
+    // Alert section
+    const Alert = styled.div`
+        width: 70%;
+        max-width: 220px;
+        height: 40px;
+        background-color: #E57373;
+        border-radius: 7px;
+        display: ${props => props.displayAlert}; 
+        justify-content: center;
+        align-items: center;
+    `
+    const AlertText = styled.h4`
+        color: #DBDFE4;
+        font-family: 'Varela Round', sans-serif;
     `
 
 class ChangePassword extends Component {
     constructor() {
         super();
         this.state = { 
-           
+            pass1value: '',
+            pass2value: '',
+            differentPass: false,
+            social: Cookies.get('social'),
         };
       }
 
     // functions
 
-    // hide settings component
+    // set password value 
+    handlePass1 = (e) => {
+        this.setState({
+            pass1value: e.currentTarget.value
+        })
+    }
+    handlePass2 = (e) => {
+        this.setState({
+            pass2value: e.currentTarget.value
+        })
+    }
+
     hideSettings = () => {
         this.props.hideSettings()
     }
 
+    // change password function
+    changePass = (e) => {
+        e.preventDefault()
+        const { pass1value, pass2value, social } = this.state;
+        if(social === undefined){
+            if(pass1value === pass2value){
+                this.setState({
+                    differentPass: false
+                })
+                alert(this.props.email)
+                // here fetch
+            }else{
+                this.setState({
+                    differentPass: true
+                })
+            }
+        }
+    }
+
 
     render() {
+        const { differentPass } = this.state;
         return (
             <Content visibility={this.props.SettingsChangePassVisibility?'inline':'none'}>
             {/* header */}
@@ -115,12 +199,14 @@ class ChangePassword extends Component {
                     <SettingsIcoCnt></SettingsIcoCnt>
                 </ReturnToMenuCnt>
                 <FormUser>
-                        <LabelForm htmlFor='current-pass'>Obecne hasło:</LabelForm>
-                        <InputForm placeholder='...' id='current-pass' type='password'></InputForm>
-                        
-                        <LabelForm htmlFor='new-pass'>Nowe hasło:</LabelForm>
-                        <InputForm placeholder='...' id='new-pass' type='pasword'></InputForm>   
-                        <Button>Zmień hasło</Button>   
+                        <Alert displayAlert={differentPass?'flex':'none'}><AlertText>Hasła różnią się!</AlertText></Alert>
+                        <LabelForm htmlFor='current-pass'>Nowe hasło:</LabelForm>
+                        <InputForm onChange={this.handlePass1} placeholder='...' id='current-pass' type='password'></InputForm>
+                        <Hr displayHr={differentPass?'inline':'none'}></Hr>
+                        <LabelForm htmlFor='new-pass'>Powtórz hasło:</LabelForm>
+                        <InputForm onChange={this.handlePass2} placeholder='...' id='new-pass' type='password'></InputForm> 
+                        <Hr displayHr={differentPass?'inline':'none'}></Hr>
+                        <Button onClick={this.changePass}>Zmień hasło</Button>   
                     </FormUser>
             </Content>
         )

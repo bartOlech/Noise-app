@@ -202,6 +202,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
         background-color: #CCD5DC;
         border: none;
         border-radius: 7px;
+        outline: 0;
         ::placeholder{
             padding-left: 10px;
         }
@@ -297,12 +298,18 @@ class UserSettings extends Component {
 
     // show ChangePassword component
     showChangePassSection = () => {
-        this.props.showChangePassSection()
+        const { social } = this.state;
+        if(!this.props.isAuth){
+            toastTemplate('Nie jesteś zalogowany!')
+        }else if(social === 'facebook' || social === 'google') {
+            toastTemplate('Ten rodzaj konta nie posiada hasła!')
+        }else {
+            this.props.showChangePassSection()
+        } 
     }
 
     // fetch remove user
     removeFromDB = () => {
-        console.log(this.state.social)
         const options = {
             method: 'POST',
             headers: {
@@ -324,6 +331,7 @@ class UserSettings extends Component {
     // remove account function
     removeAccount = () => {
         this.removeFromDB()
+        toastTemplate('Konto zostało usunięte')
     }
 
     // Remove account 

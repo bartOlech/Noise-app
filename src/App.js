@@ -66,7 +66,7 @@ class App extends Component {
 
       // settings states
       SettingsCntVisibility: false,
-      SettingsUserVisibility: false,
+      SettingsUserVisibility: true,
       SettingsChangePassVisibility: false,
 
       // dispatch to sounSLider
@@ -239,12 +239,11 @@ class App extends Component {
     return (
       <div>
         {/* settings component */}
-        {console.log(fullName)}
         <Settings showUserSettings={this.showUserSettings} isVisible={SettingsCntVisibility} hideSettings={this.hideSettings}></Settings>
         {/* user settings component */}
         <UserSettings authAfterDeleteUser={this.authAfterDeleteUser} isAuth={isAuthenticated} showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility } fullName={fullName} userEmail={userEmail}></UserSettings>
         {/* Change password component */}
-        <ChangePassword SettingsChangePassVisibility={SettingsChangePassVisibility} hideSettings={this.hideSettings}></ChangePassword>
+        <ChangePassword email={userEmail} SettingsChangePassVisibility={SettingsChangePassVisibility} hideSettings={this.hideSettings}></ChangePassword>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}
