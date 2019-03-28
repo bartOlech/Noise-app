@@ -19,7 +19,7 @@ function ChangePassword (props) {
     // change password function
     const changePass = () => {
         if(social === 'facebook' || social === 'google'){
-          
+          //here a notification about type of account
         }else{
             props.showChangePassSection()
         }

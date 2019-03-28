@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import playIco from '../../img/play.png'
 import playIconNavy from '../../img/play2.png'
-
+import LikeIco from '../../img/like.png';
 
 
 function Template(props) {
@@ -16,7 +16,7 @@ function Template(props) {
         border: none;
         border-radius: 50%;
         position: relative;
-`
+    `
     const Button2 = styled.option`
         width: 50px;
         height: 50px;
@@ -49,7 +49,26 @@ function Template(props) {
         filter: ${props => props.blur};
         outline:none;
         box-shadow: 0 2px 3px #ccc;
-        
+    `
+    // Rate ico
+    const RateIcoSection = styled.div`
+        display: ${props => props.displayRateIco};
+        width: 33px;
+        height: 33px;
+        background: url(${LikeIco});
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: -44px;
+        top: 26px;
+        cursor: pointer;
+        outline: 0;
+        transition: 1s;
+        &:first-child{
+            left: -44px;
+            top: 42px;
+            transform: rotate(180deg);
+        }
     `
 
     const clickIco = (e) => {
@@ -59,9 +78,9 @@ function Template(props) {
     return (
 
         <Content>
-            <Button title={props.tittle} blur={props.blur} value={props.icoValue} onClick={clickIco}>
+            <RateIcoSection displayRateIco={props.displayRate}></RateIcoSection><Button title={props.tittle} blur={props.blur} value={props.icoValue} onClick={clickIco}>
 
-            </Button>
+            </Button> <RateIcoSection displayRateIco={props.displayRate}></RateIcoSection>
             <Button2 playIco={props.playIco === 'on' ? playIconNavy : playIco} onClick={clickIco} value={props.icoValue} title={props.tittle}></Button2>
         </Content>
     )

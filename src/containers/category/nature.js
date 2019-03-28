@@ -56,9 +56,9 @@ class MainContent extends Component {
         const { blurOff, blurOn, clickedBtn, clickedIco } = this.state;
         return (
             <Content display={this.props.selectedCtg === 'nature' ? 'flex' : 'none'}>
-                <SoundsTemplate playIco={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'off' : 'on'} tittle='forest' blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} icoValue='forest' clickIco={this.clickIco} ico={trees}></SoundsTemplate>
-                <SoundsTemplate playIco={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'off' : 'on'} tittle='trees' blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} icoValue='trees' clickIco={this.clickIco} ico={forest}></SoundsTemplate>
-                <SoundsTemplate playIco={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'off' : 'on'} tittle='forest2' blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} icoValue='forest2' clickIco={this.clickIco} ico={trees}></SoundsTemplate>
+                <SoundsTemplate displayRate={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'none' : 'inline'} playIco={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'off' : 'on'} tittle='forest' blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} icoValue='forest' clickIco={this.clickIco} ico={trees}></SoundsTemplate>
+                <SoundsTemplate displayRate={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'none' : 'inline'} playIco={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'off' : 'on'} tittle='trees' blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} icoValue='trees' clickIco={this.clickIco} ico={forest}></SoundsTemplate>
+                <SoundsTemplate displayRate={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'none' : 'inline'} playIco={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'off' : 'on'} tittle='forest2' blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} icoValue='forest2' clickIco={this.clickIco} ico={trees}></SoundsTemplate>
             </Content>
         )
     }

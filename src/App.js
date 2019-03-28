@@ -66,7 +66,7 @@ class App extends Component {
 
       // settings states
       SettingsCntVisibility: false,
-      SettingsUserVisibility: true,
+      SettingsUserVisibility: false,
       SettingsChangePassVisibility: false,
 
       // dispatch to sounSLider
