@@ -243,7 +243,7 @@ class App extends Component {
         {/* user settings component */}
         <UserSettings authAfterDeleteUser={this.authAfterDeleteUser} isAuth={isAuthenticated} showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility } fullName={fullName} userEmail={userEmail}></UserSettings>
         {/* Change password component */}
-        <ChangePassword email={userEmail} SettingsChangePassVisibility={SettingsChangePassVisibility} hideSettings={this.hideSettings}></ChangePassword>
+        <ChangePassword userIsLogOut={this.userIsLogOut} email={userEmail} SettingsChangePassVisibility={SettingsChangePassVisibility} hideSettings={this.hideSettings}></ChangePassword>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}

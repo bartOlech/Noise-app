@@ -10,7 +10,11 @@ exports.checkEmail = (req, res, next) =>{
         password: valPassSignUp,
         type: 'usersRegister'
       });
-    UserData.find({'email': newUser.email}).then((users)=>{ //tutaj nie może być samo email(może korygować z mailem z Facebooka lub Google)
+    const options = {
+        email: newUser.email,
+        type: newUser.type
+      }
+    UserData.find(options).then((users)=>{
     if(users.length > 0){
         console.log('This mail already exists')
         res.status(409).json({mailExist: "To konto jest już zarejestrowane"});

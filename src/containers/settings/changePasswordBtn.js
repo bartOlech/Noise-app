@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import Cookies from 'js-cookie';
 
 function ChangePassword (props) {
+    const social = Cookies.get('social');
 
     const Content = styled.div`
         width: 100%;
@@ -16,12 +18,19 @@ function ChangePassword (props) {
 
     // change password function
     const changePass = () => {
-        props.showChangePassSection()
+        if(social === 'facebook' || social === 'google'){
+          
+        }else{
+            props.showChangePassSection()
+        }
     }
     return(
+        <div>
         <Content>
             <Text onClick={changePass}>Zmień hasło</Text>
         </Content>
+        </div>
+        
     )
 }
 

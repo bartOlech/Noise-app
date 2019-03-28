@@ -357,7 +357,6 @@ class UserSettings extends Component {
                 </ContentUI>
               });
         }
-        
     }
 
     render() {

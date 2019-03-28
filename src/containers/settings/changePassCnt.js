@@ -6,16 +6,16 @@ import LockIco from '../../img/user-ico/lock.png';
 // react notification
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
-import { Bounce } from 'react-toastify';
 import { css } from 'glamor';
 import Cookies from 'js-cookie';
 
 // toast template
-const toastTemplate = (notification) => {
+const toastTemplate = (notification, delay) => {
     toast(notification, {
         className: css({
             background: '#1A497F'
         }),
+        delay,
         bodyClassName: css({
             textAlign: 'center',
             color: '#F1F1F2'
@@ -126,7 +126,7 @@ const toastTemplate = (notification) => {
         width: 70%;
         max-width: 220px;
         height: 40px;
-        background-color: #E57373;
+        background-color: #E34E46;
         border-radius: 7px;
         display: ${props => props.displayAlert}; 
         justify-content: center;
@@ -175,8 +175,24 @@ class ChangePassword extends Component {
                 this.setState({
                     differentPass: false
                 })
-                alert(this.props.email)
-                // here fetch
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        password: pass1value,
+                        email: this.props.email
+                    }),
+                    'mode': 'cors',
+                    'cashe': 'default'
+                };
+                fetch('/api/changePassword', options).then(res => res.json()).then(json => {
+                    toastTemplate('Hasło zostało zmienione', 0)
+                    this.props.userIsLogOut(false)
+                }).then(() => {
+                    toastTemplate('zaloguj się ponownie', 1000)
+                }).catch(err => {console.log(err)})
             }else{
                 this.setState({
                     differentPass: true
@@ -206,7 +222,8 @@ class ChangePassword extends Component {
                         <LabelForm htmlFor='new-pass'>Powtórz hasło:</LabelForm>
                         <InputForm onChange={this.handlePass2} placeholder='...' id='new-pass' type='password'></InputForm> 
                         <Hr displayHr={differentPass?'inline':'none'}></Hr>
-                        <Button onClick={this.changePass}>Zmień hasło</Button>   
+                        <Button onClick={this.changePass}>Zmień hasło</Button> 
+                        <ToastContainer></ToastContainer>
                     </FormUser>
             </Content>
         )

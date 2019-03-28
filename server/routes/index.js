@@ -3,7 +3,6 @@ const router = express.Router();
 const signUpController = require('../controllers/signUpController');
 const { generateToken, sendToken } = require('../utils/token.utils');
 const passport = require('passport');
-const mongoose = require('mongoose');
 const UserData = require('../models/usersDB');
 require('../passportFb')();
 require('../passportGoogle')();
@@ -12,6 +11,12 @@ const logOutController = require('../controllers/LogOutController')
 const googleVerifyController = require('../controllers/googleVerifyController');
 const signInController = require('../controllers/signInController');
 const removeUserController = require('../controllers/removeUserController');
+const changePassword = require('../controllers/changePasswordController');
+
+router.post('/changePassword', 
+    changePassword.changePassword,
+    logOutController.LogOut 
+    )
 
 router.post('/auth', verifyController.verifyUser)
 
