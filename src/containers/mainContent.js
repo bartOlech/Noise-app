@@ -104,7 +104,7 @@ class MainContent extends Component {
                 <Category selectCtg={this.selectCtg} ref={this.child}></Category>
 
                 <Content displayValue={mainCntIsVisible ? 'flex' : 'none'}>
-                    <Nature setSounds={this.setSounds} ref={this.nature} selectedCtg={selectedCtg}>
+                    <Nature isAuth={this.props.isAuth} setSounds={this.setSounds} ref={this.nature} selectedCtg={selectedCtg}>
 
                     </Nature>
                     <Chill ref={this.chill} selectedCtg={selectedCtg}>

@@ -104,7 +104,6 @@ class App extends Component {
         fullName: user,
         userEmail: email
       })
-
     }
 
   //log-in page
@@ -258,7 +257,7 @@ class App extends Component {
           <SoundSlider playSound={playSound} currentSound={currentSound}></SoundSlider>
         </UserCnt>
         {/* <Sounds ref={this.childMoreSounds}></Sounds> */}
-        <MainContent setSoundValue={this.setSoundValue} selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
+        <MainContent isAuth={isAuthenticated} setSoundValue={this.setSoundValue} selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
         <GlobalStyle bcg={selectedColor}></GlobalStyle>
       </div>
     )

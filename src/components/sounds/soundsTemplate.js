@@ -1,11 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-import playIco from '../../img/play.png'
-import playIconNavy from '../../img/play2.png'
+import playIco from '../../img/play.png';
+import playIconNavy from '../../img/play2.png';
 import LikeIco from '../../img/like.png';
+
+// react notification
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
+import { Bounce } from 'react-toastify';
+import { css } from 'glamor';
 
 
 function Template(props) {
+      // toast template
+      const toastTemplate = (notification) => {
+        toast(notification, {
+            className: css({
+                background: '#0D54A5'
+            }),
+            bodyClassName: css({
+                textAlign: 'center',
+                color: '#F1F1F2'
+              }),
+            progressClassName: css({
+                background: 'rgba(2,2,2,0)'           
+              }),
+            position: toast.POSITION.TOP_CENTER
+            });
+    }
 
     const Content = styled.div`
         padding-bottom: 30px;
@@ -53,6 +75,7 @@ function Template(props) {
     // Rate ico
     const RateIcoSection = styled.div`
         display: ${props => props.displayRateIco};
+        opacity: ${props => props.opacityIco};
         width: 33px;
         height: 33px;
         background: url(${LikeIco});
@@ -74,13 +97,29 @@ function Template(props) {
     const clickIco = (e) => {
         props.clickIco(e.currentTarget.value)
     }
+    // rate the sound negatively
+    const rateNegatively = () => {
+        if(props.isAuth){
+
+        }else{
+            toastTemplate('Nie jesteś zalogowany!')
+        }
+    }
+    const ratePositive = () => {
+        if(props.isAuth){
+
+        }else{
+            toastTemplate('Nie jesteś zalogowany!')
+        }
+    }
 
     return (
 
         <Content>
-            <RateIcoSection displayRateIco={props.displayRate}></RateIcoSection><Button title={props.tittle} blur={props.blur} value={props.icoValue} onClick={clickIco}>
+            <RateIcoSection opacityIco={props.isAuth?'1':'.6'} onClick={rateNegatively} displayRateIco={props.displayRate}></RateIcoSection><Button title={props.tittle} blur={props.blur} value={props.icoValue} onClick={clickIco}>
 
-            </Button> <RateIcoSection displayRateIco={props.displayRate}></RateIcoSection>
+            </Button> <RateIcoSection opacityIco={props.isAuth?'1':'.6'} onClick={ratePositive} displayRateIco={props.displayRate}></RateIcoSection>
+            <ToastContainer transition={Bounce}/>
             <Button2 playIco={props.playIco === 'on' ? playIconNavy : playIco} onClick={clickIco} value={props.icoValue} title={props.tittle}></Button2>
         </Content>
     )
