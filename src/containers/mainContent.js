@@ -10,9 +10,6 @@ import Animals from './category/animals';
 import CulturePlaces from './category/culture';
 import HistoryPlaces from './category/historyPlaces';
 import Other from './category/other';
-// import Sound from 'react-sound';
-import SoundData from '../components/soundsData';
-
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
 
@@ -33,7 +30,7 @@ class MainContent extends Component {
         this.state = {
             selectedCtg: '',
             mainCntIsVisible: false,
-            currentSound: '',
+            currentSound: null,
             playSound: false,
         }
         this.child = React.createRef();
@@ -83,13 +80,10 @@ class MainContent extends Component {
                 playSound: true
             })
         }
-        
-       // select current sound
-        const filtered = SoundData.filter(item => item.value === val)
-        
+             
         // set a current sound & send function values to soundSlider component
         this.setState({
-                currentSound: filtered[0].path
+                currentSound: `http://localhost:8080/api/sounds:${val}`
             }, () => {
                 const { playSound, currentSound } = this.state;
                 this.props.setSoundValue(playSound, currentSound)

@@ -12,11 +12,14 @@ const googleVerifyController = require('../controllers/googleVerifyController');
 const signInController = require('../controllers/signInController');
 const removeUserController = require('../controllers/removeUserController');
 const changePassword = require('../controllers/changePasswordController');
+const setSoundController = require('../controllers/setSoundController');
 
 router.post('/changePassword', 
     changePassword.changePassword,
     logOutController.LogOut 
     )
+
+router.get('/sounds:trees', setSoundController.setSounds)
 
 router.post('/auth', verifyController.verifyUser)
 
