@@ -288,7 +288,7 @@ class UserSettings extends Component {
 
     // hide settings component
     hideSettings = () => {
-        this.props.hideSettings()
+        this.props.hideIcoCnt()
     }
 
     goToUserSettings = () => {

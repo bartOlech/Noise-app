@@ -1,9 +1,9 @@
 const fs = require('fs');
 
 module.exports.setSounds = (req, res) => {
-    const soundd = req.params.trees.substr(1)
+    const sound = req.params.trees.substr(1)
     
-    const path = `./sounds/${soundd}.mp3`;
+    const path = `./sounds/${sound}.mp3`;
     const stat = fs.statSync(path)
     const fileSize = stat.size
     const range = req.headers.range

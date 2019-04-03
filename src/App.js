@@ -14,6 +14,7 @@ import SoundSlider from './components/soundSlider';
 import Settings from './containers/settings/settingsContainer';
 import UserSettings from './containers/settings/userSettings';
 import ChangePassword from './containers/settings/changePassCnt';
+import Favourites from './containers/favourites/favourites';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -63,6 +64,9 @@ class App extends Component {
       selectedColor: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
+
+      // favourites component
+      showFavourites: true,
 
       // settings states
       SettingsCntVisibility: false,
@@ -209,11 +213,12 @@ class App extends Component {
     })
   }
   // Hide settings Component
-  hideSettings = () => {
+  hideIcoCnt = () => {
     this.setState({
       SettingsCntVisibility: false,
       SettingsUserVisibility: false,
       SettingsChangePassVisibility: false,
+      showFavourites: false,
     })
   }
   // Go to user settings
@@ -230,19 +235,27 @@ class App extends Component {
     })
   }
 
+  // Show the favourite content
+  favouriteHandle = () => {
+    this.setState({
+      showFavourites: true
+    })
+  }
  
 
   render() {
     
-    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility, SettingsChangePassVisibility, isAuthenticated, fullName, userEmail} = this.state;
+    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility, SettingsChangePassVisibility, isAuthenticated, fullName, userEmail, showFavourites} = this.state;
     return (
       <div>
         {/* settings component */}
-        <Settings showUserSettings={this.showUserSettings} isVisible={SettingsCntVisibility} hideSettings={this.hideSettings}></Settings>
+        <Settings showUserSettings={this.showUserSettings} isVisible={SettingsCntVisibility} hideIcoCnt={this.hideIcoCnt}></Settings>
         {/* user settings component */}
-        <UserSettings authAfterDeleteUser={this.authAfterDeleteUser} isAuth={isAuthenticated} showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideSettings={this.hideSettings} SettingsUserVisibility={SettingsUserVisibility } fullName={fullName} userEmail={userEmail}></UserSettings>
+        <UserSettings authAfterDeleteUser={this.authAfterDeleteUser} isAuth={isAuthenticated} showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideIcoCnt={this.hideIcoCnt} SettingsUserVisibility={SettingsUserVisibility } fullName={fullName} userEmail={userEmail}></UserSettings>
         {/* Change password component */}
-        <ChangePassword userIsLogOut={this.userIsLogOut} email={userEmail} SettingsChangePassVisibility={SettingsChangePassVisibility} hideSettings={this.hideSettings}></ChangePassword>
+        <ChangePassword userIsLogOut={this.userIsLogOut} email={userEmail} SettingsChangePassVisibility={SettingsChangePassVisibility} hideIcoCnt={this.hideIcoCnt}></ChangePassword>
+        {/* Favourites */}
+        <Favourites hideFavourite={this.hideIcoCnt} showFavourites={showFavourites}></Favourites>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}
@@ -252,7 +265,7 @@ class App extends Component {
         {/* user data */}
         <UserCnt>
           <UserData fullName={fullName} isAuth={isAuthenticated} userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
-          <Favourite style={userIcoStyle} ></Favourite>
+          <Favourite onClick={this.favouriteHandle} style={userIcoStyle} ></Favourite>
           <SettingsSection style={userIcoStyle} onClick={this.settingsHandle}></SettingsSection>
           <SoundSlider playSound={playSound} currentSound={currentSound}></SoundSlider>
         </UserCnt>
