@@ -8,6 +8,7 @@ module.exports.signIn = (req, res, next) => {
         }
 
         if (user) {
+            res.cookie('registerUser', user.email);
             res.status(302).json({ info: 'zalogowano', user: user.email, auth: true })
         } else {
             res.status(401).json(info);

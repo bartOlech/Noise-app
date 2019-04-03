@@ -1,7 +1,7 @@
 const UserData = require('../models/usersDB');
 const bcrypt = require('bcryptjs');
 
-exports.checkEmail = (req, res, next) =>{
+exports.checkEmail = (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     const {valEmailSignUp, valPassSignUp} = req.body;
 

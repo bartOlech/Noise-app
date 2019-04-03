@@ -66,7 +66,7 @@ class App extends Component {
       clickedCategory: null,
 
       // favourites component
-      showFavourites: true,
+      showFavourites: false,
 
       // settings states
       SettingsCntVisibility: false,

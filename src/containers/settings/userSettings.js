@@ -316,7 +316,6 @@ class UserSettings extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                social: 'this.state.social',
                 email: this.props.userEmail
             }),
             mode: 'cors',

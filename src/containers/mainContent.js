@@ -88,7 +88,7 @@ class MainContent extends Component {
                 const { playSound, currentSound } = this.state;
                 this.props.setSoundValue(playSound, currentSound)
                 if(currentSound){
-                    console.log('aaa')
+
                 }
                 
             })

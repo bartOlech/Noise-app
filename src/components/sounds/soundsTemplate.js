@@ -97,24 +97,57 @@ function Template(props) {
     const clickIco = (e) => {
         props.clickIco(e.currentTarget.value)
     }
-    // rate the sound negatively
-    const rateNegatively = () => {
-        if(props.isAuth){
 
+    // Add a sound to favourite
+    const ratePositive = () => {
+        if(props.isAuth){
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    soundName: props.tittle
+                }),
+                mode: 'cors',
+                credentials: 'include',
+                cache: 'default'
+            };
+            fetch('/api/setFavourite', options).then(res => res.json()).then(json => {
+    
+            }).catch(err => console.log(err))
+            
         }else{
             toastTemplate('Nie jesteś zalogowany!')
         }
     }
-    const ratePositive = () => {
-        if(props.isAuth){
 
+    // remove a sound to favourite
+    const rateNegatively = () => {
+        if(props.isAuth){
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    soundName: props.tittle
+                }),
+                mode: 'cors',
+                credentials: 'include',
+                cache: 'default'
+            };
+            fetch('/api/removeFromFavourite', options).then(res => res.json()).then(json => {
+    
+            }).catch(err => console.log(err))
+            
         }else{
             toastTemplate('Nie jesteś zalogowany!')
         }
     }
 
     return (
-
+    
         <Content>
             <RateIcoSection opacityIco={props.isAuth?'1':'.6'} onClick={rateNegatively} displayRateIco={props.displayRate}></RateIcoSection><Button title={props.tittle} blur={props.blur} value={props.icoValue} onClick={clickIco}>
 

@@ -14,10 +14,11 @@ module.exports.LogOut = (req, res, next) => {
             //     if (err) {
             //         console.log(err)
             //     }
-                console.log('user has benn removed')
+                console.log('user has benn removed || no')
             // })
         })
         res.clearCookie('auth')
+        res.clearCookie('registerUser')
         res.clearCookie('social')
         res.status(200).json({ tokenStatus: "the user has been logged out" });
     } else {
