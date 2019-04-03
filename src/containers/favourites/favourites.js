@@ -64,7 +64,7 @@ const HeartIco = styled.div`
     `
     //Sounds section
 const SoundsBtnSection = styled.div`
-    display: flex;
+    display: ${props => props.displayFavourite};
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
@@ -108,19 +108,37 @@ const PlaySound = styled.button`
     margin-right: 6px;
     outline: 0;
     cursor: pointer;
-`
+    `
+// unathorized info text
+const AuthInfoText = styled.h2`
+    display: ${props => props.isAuth};
+    color: #E8ECEF;
+    padding-top: 30px;
+    font-family: 'Varela Round', sans-serif;
+    `
 class Favourites extends Component {
     state = {
-
+        favouriteSounds: []
     }
 
     hideContent = () => {
         this.props.hideFavourite()
     }
 
+    componentDidMount() {
+        fetch('/api/getFavouritesSounds')
+        .then(res => res.json())
+        .then(json => {
+            this.setState({
+                favouriteSounds: json.favouriteSounds
+            })
+        })
+    }
+
     render() {
         return (
             <Content displayContent={this.props.showFavourites?'flex':'none'}>
+            {console.log(this.state.favouriteSounds)}
                 <Header>
                     <ReturnToMenu hideSettings={this.hideContent}>
                     </ReturnToMenu>
@@ -128,7 +146,7 @@ class Favourites extends Component {
                 </Header>
                 <MainSection>
                     <HeartSection><HeartIco></HeartIco></HeartSection>
-                    <SoundsBtnSection>
+                    <SoundsBtnSection displayFavourite={this.props.isAuth?'flex':'none'}>
                         <SoundBtn>
                             <RemoveSound>
 
@@ -141,6 +159,9 @@ class Favourites extends Component {
                             </PlaySound>
                         </SoundBtn>
                     </SoundsBtnSection>
+                    <AuthInfoText isAuth={this.props.isAuth?'none':'flex'}>
+                        Nie jesteś zalogowany
+                    </AuthInfoText>
                 </MainSection>
                 
             </Content>

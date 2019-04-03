@@ -255,7 +255,7 @@ class App extends Component {
         {/* Change password component */}
         <ChangePassword userIsLogOut={this.userIsLogOut} email={userEmail} SettingsChangePassVisibility={SettingsChangePassVisibility} hideIcoCnt={this.hideIcoCnt}></ChangePassword>
         {/* Favourites */}
-        <Favourites hideFavourite={this.hideIcoCnt} showFavourites={showFavourites}></Favourites>
+        <Favourites isAuth={isAuthenticated} hideFavourite={this.hideIcoCnt} showFavourites={showFavourites}></Favourites>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}

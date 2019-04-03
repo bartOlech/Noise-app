@@ -28,6 +28,7 @@ module.exports.setFavourite = (req, res, next) => {
             if (filterArr.length > 0) {
                 console.log('It is already exist')
                 console.log(filterArr)
+                res.sendStatus(204)
             } else {
                 UserData.updateOne(document, {
                     $push: {
@@ -36,6 +37,7 @@ module.exports.setFavourite = (req, res, next) => {
                 }).then(data => {
                     console.log('The Sound has been added')
                 })
+                res.sendStatus(200)
             }
         })
     } else {
@@ -50,6 +52,7 @@ module.exports.setFavourite = (req, res, next) => {
             if (filterArr.length > 0) {
                 console.log('It is already exist')
                 console.log(filterArr)
+                res.sendStatus(204)
             } else {
                 UserData.findOneAndUpdate(document, {
                     $push: {
@@ -58,6 +61,7 @@ module.exports.setFavourite = (req, res, next) => {
                 }).then(data => {
                     console.log('The Sound has been added')
                 })
+                res.sendStatus(200)
             }
         })
     }

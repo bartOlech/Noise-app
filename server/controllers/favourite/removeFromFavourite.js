@@ -34,8 +34,10 @@ module.exports.removeFavourite = (req, res, next) => {
                 UserData.updateOne( document, { $pullAll: {favourite: soundNameInArr } } ).then(console.log('The sound has been removed')).catch(err => {
                     console.log(err)
                 })
+                res.sendStatus(200)
             } else {
                 console.log('The sound does not exist in the database')
+                res.sendStatus(204)
             }
         })
     } else {
@@ -52,8 +54,10 @@ module.exports.removeFavourite = (req, res, next) => {
                 UserData.updateOne( document, { $pullAll: {favourite: soundNameInArr } } ).then(console.log('The sound has been removed')).catch(err => {
                     console.log(err)
                 })
+                res.sendStatus(200)
             } else {
                 console.log('The sound does not exist in the database')
+                res.sendStatus(204)
             }
         })
     }

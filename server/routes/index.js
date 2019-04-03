@@ -13,13 +13,21 @@ const signInController = require('../controllers/signInController');
 const removeUserController = require('../controllers/removeUserController');
 const changePassword = require('../controllers/changePasswordController');
 const setSoundController = require('../controllers/setSoundController');
+
+// favourites sounds
 const setFavouriteSound = require('../controllers/favourite/setFavouriteSound');
 const removeFromFavourites = require('../controllers/favourite/removeFromFavourite');
+const getFavourite = require('../controllers/favourite/getFavourite');
 
-// add your favourite sound in database
-router.post('/setFavourite', setFavouriteSound.setFavourite);
-// remove your favourite sound from database
+
+// add your favourite sound in the database
+router.post('/setFavourite', setFavouriteSound.setFavourite)
+
+// remove your favourite sound from the database
 router.post('/removeFromFavourite', removeFromFavourites.removeFavourite)
+
+// get a favourite sounds from database
+router.get('/getFavouritesSounds', getFavourite.getFavourite)
 
 router.post('/changePassword', 
     changePassword.changePassword,

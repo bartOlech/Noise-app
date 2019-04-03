@@ -10,7 +10,6 @@ module.exports.verifyUser = (req, res, next) => {
     const decodedToken = jwtDecode(userJWT)
     console.log(decodedToken.id)
     //If token is expired, renew it(sign out)
-    console.log('ZACZYNAM ANALIZOWAĆ')
 
     if (!userJWT) {
         //hide user component, show sign up component

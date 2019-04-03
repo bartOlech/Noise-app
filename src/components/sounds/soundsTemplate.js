@@ -12,6 +12,7 @@ import { css } from 'glamor';
 
 
 function Template(props) {
+
       // toast template
       const toastTemplate = (notification) => {
         toast(notification, {
@@ -110,12 +111,13 @@ function Template(props) {
                     soundName: props.tittle
                 }),
                 mode: 'cors',
-                credentials: 'include',
-                cache: 'default'
             };
             fetch('/api/setFavourite', options).then(res => res.json()).then(json => {
-    
-            }).catch(err => console.log(err))
+                
+            }).catch(err => {
+                console.log(err)
+               
+            })
             
         }else{
             toastTemplate('Nie jesteś zalogowany!')
@@ -134,8 +136,6 @@ function Template(props) {
                     soundName: props.tittle
                 }),
                 mode: 'cors',
-                credentials: 'include',
-                cache: 'default'
             };
             fetch('/api/removeFromFavourite', options).then(res => res.json()).then(json => {
     
@@ -150,8 +150,9 @@ function Template(props) {
     
         <Content>
             <RateIcoSection opacityIco={props.isAuth?'1':'.6'} onClick={rateNegatively} displayRateIco={props.displayRate}></RateIcoSection><Button title={props.tittle} blur={props.blur} value={props.icoValue} onClick={clickIco}>
+            
 
-            </Button> <RateIcoSection opacityIco={props.isAuth?'1':'.6'} onClick={ratePositive} displayRateIco={props.displayRate}></RateIcoSection>
+            </Button> <RateIcoSection opacityIco={props.isAuth?'1':'.6'} onClick={ratePositive} displayRateIco={props.displayRate}> </RateIcoSection>
             <ToastContainer transition={Bounce}/>
             <Button2 playIco={props.playIco === 'on' ? playIconNavy : playIco} onClick={clickIco} value={props.icoValue} title={props.tittle}></Button2>
         </Content>
