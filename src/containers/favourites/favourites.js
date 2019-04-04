@@ -79,6 +79,7 @@ const SoundBtn = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
     `
     // Remove sound
 const RemoveSound = styled.button`
@@ -115,10 +116,19 @@ const AuthInfoText = styled.h2`
     color: #E8ECEF;
     padding-top: 30px;
     font-family: 'Varela Round', sans-serif;
+    text-align: center;
+    `
+const EmptyArrayText = styled.h2`
+    display: ${props => props.display};
+    color: #E8ECEF;
+    padding-top: 30px;
+    font-family: 'Varela Round', sans-serif;
+    text-align: center;
     `
 class Favourites extends Component {
     state = {
-        favouriteSounds: []
+        favouriteSounds: [],
+        a: 'd'
     }
 
     hideContent = () => {
@@ -135,10 +145,22 @@ class Favourites extends Component {
         })
     }
 
+    // remove a favourite element
+    removeEl = (index) => {
+        console.log('click')
+        console.log(index)
+        console.log(this.state.favouriteSounds)
+        
+       this.state.favouriteSounds.splice(index, 1)
+       this.setState({
+        a: 'sa'
+    })
+    }
+
     render() {
+        const {favouriteSounds} = this.state;
         return (
             <Content displayContent={this.props.showFavourites?'flex':'none'}>
-            {console.log(this.state.favouriteSounds)}
                 <Header>
                     <ReturnToMenu hideSettings={this.hideContent}>
                     </ReturnToMenu>
@@ -147,17 +169,23 @@ class Favourites extends Component {
                 <MainSection>
                     <HeartSection><HeartIco></HeartIco></HeartSection>
                     <SoundsBtnSection displayFavourite={this.props.isAuth?'flex':'none'}>
-                        <SoundBtn>
-                            <RemoveSound>
+                            {favouriteSounds.map((el, index) => {
+                                return(
+                                    <SoundBtn key={index}>
+                                        <RemoveSound onClick={() => this.removeEl(index)}>
 
-                            </RemoveSound>
-                            <TextSound>
-                                Example sound
-                            </TextSound>
-                            <PlaySound>
+                                        </RemoveSound>
+                                        <TextSound>
+                                        {el}
+                                            
+                                        </TextSound>
+                                        <PlaySound>
 
-                            </PlaySound>
-                        </SoundBtn>
+                                        </PlaySound>
+                                    </SoundBtn>
+                                )   
+                            })}
+                            <EmptyArrayText display={favouriteSounds.length === 0?'inline':'none'}>Nie posiadasz ulubionych dzwięków</EmptyArrayText>
                     </SoundsBtnSection>
                     <AuthInfoText isAuth={this.props.isAuth?'none':'flex'}>
                         Nie jesteś zalogowany

@@ -23,7 +23,6 @@ module.exports.LogOut = (req, res, next) => {
         res.status(200).json({ tokenStatus: "the user has been logged out" });
     } else {
         res.status(200).json({ tokenStatus: "the user has been logged out" });
-        res.clearCookie('registerUser')
     }
 
 }
