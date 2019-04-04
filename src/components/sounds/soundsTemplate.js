@@ -113,10 +113,10 @@ function Template(props) {
                 mode: 'cors',
             };
             fetch('/api/setFavourite', options).then(res => res.json()).then(json => {
+
                 
             }).catch(err => {
                 console.log(err)
-               
             })
             
         }else{

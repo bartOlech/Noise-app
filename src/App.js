@@ -67,6 +67,8 @@ class App extends Component {
 
       // favourites component
       showFavourites: false,
+      loadedFavEl: false,
+      favouriteSounds: [],
 
       // settings states
       SettingsCntVisibility: false,
@@ -238,14 +240,34 @@ class App extends Component {
   // Show the favourite content
   favouriteHandle = () => {
     this.setState({
+      loadedFavEl: false
+  })
+    fetch('/api/getFavouritesSounds')
+        .then(res => res.json())
+        .then(json => {
+            this.setState({
+                favouriteSounds: json.favouriteSounds,
+                loadedFavEl: true
+            })
+        })
+
+    this.setState({
       showFavourites: true
     })
   }
+
+  // remove a favourite element
+  removeFavEl = (index, el) => {
+    this.state.favouriteSounds.splice(index, 1)
+    this.setState({
+     sampleText: 'b'
+ })
+}
  
 
   render() {
     
-    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility, SettingsChangePassVisibility, isAuthenticated, fullName, userEmail, showFavourites} = this.state;
+    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility, SettingsChangePassVisibility, isAuthenticated, fullName, userEmail, showFavourites, favouriteSounds, loadedFavEl} = this.state;
     return (
       <div>
         {/* settings component */}
@@ -255,7 +277,7 @@ class App extends Component {
         {/* Change password component */}
         <ChangePassword userIsLogOut={this.userIsLogOut} email={userEmail} SettingsChangePassVisibility={SettingsChangePassVisibility} hideIcoCnt={this.hideIcoCnt}></ChangePassword>
         {/* Favourites */}
-        <Favourites isAuth={isAuthenticated} hideFavourite={this.hideIcoCnt} showFavourites={showFavourites}></Favourites>
+        <Favourites loadedFavEl={loadedFavEl} removeFavEl={this.removeFavEl} favouriteSounds={favouriteSounds} isAuth={isAuthenticated} hideFavourite={this.hideIcoCnt} showFavourites={showFavourites}></Favourites>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}

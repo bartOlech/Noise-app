@@ -6,6 +6,9 @@ import HeartIcon from '../../img/user-ico/heart2.png';
 import RemoveIcon from '../../img/user-ico/remove-ico.png';
 import PlayIcon from '../../img/user-ico/play-button.png';
 
+// loader
+import Loader from 'react-loader-spinner';
+
 const Content = styled.div`
     background-color: #2A0E22;
     width: 100vw;
@@ -125,9 +128,19 @@ const EmptyArrayText = styled.h2`
     font-family: 'Varela Round', sans-serif;
     text-align: center;
     `
+    // loader
+const LoaderCnt = styled.div`
+    display: ${props => props.display};
+    justify-content: center;
+    margin-top: 65px;
+`
+const LoaderSection = styled.div`
+    display: ${props => props.display};
+    justify-content: center;
+    `
 class Favourites extends Component {
     state = {
-        favouriteSounds: [],
+        favouriteSounds: this.props.favouriteSounds,
         sampleText: 'a'
     }
 
@@ -136,26 +149,13 @@ class Favourites extends Component {
     }
 
     componentDidMount() {
-        fetch('/api/getFavouritesSounds')
-        .then(res => res.json())
-        .then(json => {
-            this.setState({
-                favouriteSounds: json.favouriteSounds
-            })
-        })
+        
     }
 
     // remove a favourite element
     removeEl = (index, el) => {
-        console.log(el)
-        console.log(index)
-        console.log(this.state.favouriteSounds)
-        
-       this.state.favouriteSounds.splice(index, 1)
-       this.setState({
-        a: 'b'
-    })
-    
+        this.props.removeFavEl(index, el)
+
     // Remove a sound from database
     const options = {
         method: 'POST',
@@ -168,12 +168,11 @@ class Favourites extends Component {
         mode: 'cors',
     };
     fetch('/api/removeFromFavourite', options).then(res => res.json()).then(json => {
-
+        
     }).catch(err => console.log(err))
     }
 
     render() {
-        const {favouriteSounds} = this.state;
         return (
             <Content displayContent={this.props.showFavourites?'flex':'none'}>
                 <Header>
@@ -183,8 +182,19 @@ class Favourites extends Component {
                 </Header>
                 <MainSection>
                     <HeartSection><HeartIco></HeartIco></HeartSection>
+                    <LoaderSection display={this.props.isAuth  ? 'flex' : 'none'}>
+                        <LoaderCnt display={this.props.loadedFavEl  ? 'none' : 'flex'}>
+                            <Loader
+                                type="ThreeDots"
+                                color="#555555"
+                                height="70"
+                                width="100"
+                            />
+                        </LoaderCnt>
+                    </LoaderSection>
+                    
                     <SoundsBtnSection displayFavourite={this.props.isAuth?'flex':'none'}>
-                            {favouriteSounds.map((el, index) => {
+                            {this.props.favouriteSounds.map((el, index) => {
                                 return(
                                     <SoundBtn key={index}>
                                         <RemoveSound onClick={() => this.removeEl(index, el)}>
@@ -199,7 +209,7 @@ class Favourites extends Component {
                                     </SoundBtn>
                                 )   
                             })}
-                            <EmptyArrayText display={favouriteSounds.length === 0?'inline':'none'}>Nie posiadasz ulubionych dzwięków</EmptyArrayText>
+                            <EmptyArrayText display={this.props.favouriteSounds.length === 0 && this.props.loadedFavEl?'inline':'none'}>Nie posiadasz ulubionych dzwięków</EmptyArrayText>
                     </SoundsBtnSection>
                     <AuthInfoText isAuth={this.props.isAuth?'none':'flex'}>
                         Nie jesteś zalogowany
