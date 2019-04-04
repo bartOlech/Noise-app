@@ -128,7 +128,7 @@ const EmptyArrayText = styled.h2`
 class Favourites extends Component {
     state = {
         favouriteSounds: [],
-        a: 'd'
+        sampleText: 'a'
     }
 
     hideContent = () => {
@@ -146,15 +146,30 @@ class Favourites extends Component {
     }
 
     // remove a favourite element
-    removeEl = (index) => {
-        console.log('click')
+    removeEl = (index, el) => {
+        console.log(el)
         console.log(index)
         console.log(this.state.favouriteSounds)
         
        this.state.favouriteSounds.splice(index, 1)
        this.setState({
-        a: 'sa'
+        a: 'b'
     })
+    
+    // Remove a sound from database
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            soundName: el
+        }),
+        mode: 'cors',
+    };
+    fetch('/api/removeFromFavourite', options).then(res => res.json()).then(json => {
+
+    }).catch(err => console.log(err))
     }
 
     render() {
@@ -172,12 +187,11 @@ class Favourites extends Component {
                             {favouriteSounds.map((el, index) => {
                                 return(
                                     <SoundBtn key={index}>
-                                        <RemoveSound onClick={() => this.removeEl(index)}>
+                                        <RemoveSound onClick={() => this.removeEl(index, el)}>
 
                                         </RemoveSound>
                                         <TextSound>
-                                        {el}
-                                            
+                                        {el}  
                                         </TextSound>
                                         <PlaySound>
 
