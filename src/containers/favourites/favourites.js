@@ -5,6 +5,7 @@ import '../../cssFonts/fonts.css';
 import HeartIcon from '../../img/user-ico/heart2.png';
 import RemoveIcon from '../../img/user-ico/remove-ico.png';
 import PlayIcon from '../../img/user-ico/play-button.png';
+import '../../App.css';
 
 // loader
 import Loader from 'react-loader-spinner';
@@ -138,10 +139,12 @@ const LoaderSection = styled.div`
     display: ${props => props.display};
     justify-content: center;
     `
+
 class Favourites extends Component {
     state = {
         favouriteSounds: this.props.favouriteSounds,
-        sampleText: 'a'
+        sampleText: 'a',
+        playSound: false
     }
 
     hideContent = () => {
@@ -172,9 +175,19 @@ class Favourites extends Component {
     }).catch(err => console.log(err))
     }
 
+    // Play a sound from the favourite component
+    playSoundFromFavourite = (index, el) => {
+        this.setState({
+            playSound: !this.state.playSound
+        }, () => {
+            this.props.playSoundFromFavourite(index, this.state.playSound)
+        }) 
+    }
+
     render() {
         return (
             <Content displayContent={this.props.showFavourites?'flex':'none'}>
+            
                 <Header>
                     <ReturnToMenu hideSettings={this.hideContent}>
                     </ReturnToMenu>
@@ -186,7 +199,7 @@ class Favourites extends Component {
                         <LoaderCnt display={this.props.loadedFavEl  ? 'none' : 'flex'}>
                             <Loader
                                 type="ThreeDots"
-                                color="#555555"
+                                color="#E8ECEF" 
                                 height="70"
                                 width="100"
                             />
@@ -203,7 +216,7 @@ class Favourites extends Component {
                                         <TextSound>
                                         {el}  
                                         </TextSound>
-                                        <PlaySound>
+                                        <PlaySound onClick={() => this.playSoundFromFavourite(index, el)}>
 
                                         </PlaySound>
                                     </SoundBtn>

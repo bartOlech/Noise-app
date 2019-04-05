@@ -10,7 +10,6 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { Bounce } from 'react-toastify';
 import { css } from 'glamor';
 
-
 function Template(props) {
 
       // toast template
@@ -92,6 +91,14 @@ function Template(props) {
             left: -44px;
             top: 42px;
             transform: rotate(180deg);
+        }
+        &:active{
+            animation: clickAnimation .5s;
+        }
+        @keyframes clickAnimation {
+            0%{width: 33px; height: 33px;}
+            50%{width: 36px; height: 36px;}
+            100%{width: 33px; height: 33px;}
         }
     `
 

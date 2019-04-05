@@ -260,9 +260,21 @@ class App extends Component {
   removeFavEl = (index, el) => {
     this.state.favouriteSounds.splice(index, 1)
     this.setState({
-     sampleText: 'b'
+     sampleText: 'b',
+     playSound: false
  })
 }
+
+  // Play a sound from the favourite component
+  playSoundFromFavourite = (index, playSound) => {
+    const { favouriteSounds } = this.state;
+    this.setState({
+      currentSound: `http://localhost:8080/api/sounds:${favouriteSounds[index]}`,
+      playSound
+    }, () => {
+      console.log(this.state.currentSound)
+    })
+  }
  
 
   render() {
@@ -277,7 +289,7 @@ class App extends Component {
         {/* Change password component */}
         <ChangePassword userIsLogOut={this.userIsLogOut} email={userEmail} SettingsChangePassVisibility={SettingsChangePassVisibility} hideIcoCnt={this.hideIcoCnt}></ChangePassword>
         {/* Favourites */}
-        <Favourites loadedFavEl={loadedFavEl} removeFavEl={this.removeFavEl} favouriteSounds={favouriteSounds} isAuth={isAuthenticated} hideFavourite={this.hideIcoCnt} showFavourites={showFavourites}></Favourites>
+        <Favourites playSoundFromFavourite={this.playSoundFromFavourite} loadedFavEl={loadedFavEl} removeFavEl={this.removeFavEl} favouriteSounds={favouriteSounds} isAuth={isAuthenticated} hideFavourite={this.hideIcoCnt} showFavourites={showFavourites}></Favourites>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}
