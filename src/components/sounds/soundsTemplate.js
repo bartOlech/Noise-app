@@ -31,13 +31,25 @@ function Template(props) {
 
     const Content = styled.div`
         padding-bottom: 30px;
-        margin-bottom: 25px;
         width: 102px;
         height: 102px;
         background-color: #fff;
         border: none;
         border-radius: 50%;
         position: relative;
+        margin-top: 35px;
+        @media (max-width: 540px) {
+            margin-bottom: 25px;
+            &:first-child{
+                margin-top: 0;
+            }
+        }
+        @media (min-width: 540px) {
+            margin-left: 80px;
+            margin-right: 80px;
+            margin-bottom: 85px;
+            
+        }
     `
     const Button2 = styled.option`
         width: 50px;
@@ -156,12 +168,29 @@ function Template(props) {
     return (
     
         <Content>
-            <RateIcoSection opacityIco={props.isAuth?'1':'.6'} onClick={rateNegatively} displayRateIco={props.displayRate}></RateIcoSection><Button title={props.tittle} blur={props.blur} value={props.icoValue} onClick={clickIco}>
-            
-
-            </Button> <RateIcoSection opacityIco={props.isAuth?'1':'.6'} onClick={ratePositive} displayRateIco={props.displayRate}> </RateIcoSection>
+            <RateIcoSection 
+                opacityIco={props.isAuth?'1':'.6'} 
+                onClick={rateNegatively} 
+                displayRateIco={props.displayRate}>
+            </RateIcoSection>
+            <Button 
+                title={props.tittle} 
+                blur={props.blur} 
+                value={props.icoValue} 
+                onClick={clickIco}>
+            </Button> 
+            <RateIcoSection 
+                opacityIco={props.isAuth?'1':'.6'} 
+                onClick={ratePositive} 
+                displayRateIco={props.displayRate}> 
+            </RateIcoSection>
             <ToastContainer transition={Bounce}/>
-            <Button2 playIco={props.playIco === 'on' ? playIconNavy : playIco} onClick={clickIco} value={props.icoValue} title={props.tittle}></Button2>
+            <Button2 
+                playIco={props.playIco === 'on' ? playIconNavy : playIco} 
+                onClick={clickIco} 
+                value={props.icoValue} 
+                title={props.tittle}>
+            </Button2>
         </Content>
     )
 }

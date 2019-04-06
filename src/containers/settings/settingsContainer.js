@@ -16,11 +16,6 @@ import UserBoxComponent from './UserBoxComponent';
         width: 100vw;
         height: 100%;
         display: ${props => props.visibility};
-        animation: anime .8s;
-        @keyframes anime{
-            0%{opacity: 0}
-            100%{opacity: 1}
-        }
     `
     const ReturnToMenuCnt = styled.div`
         width: 100vw;

@@ -10,12 +10,15 @@ const Btn = styled.button`
     top: 10px;
     border: none;
     border-radius: 50px;
-    /* background-color: #045170; */
     color: #eee7e7;
     font-family: 'Varela Round', sans-serif;
     font-size: .9em;
     cursor: pointer;
     outline: none;
+    @media (min-width: 400px) {
+        right: 20px;
+        top: 14px;
+    }
 `
 
 class LogInBtn extends Component{
@@ -49,7 +52,8 @@ class LogInBtn extends Component{
         const {clickedCategory} = this.props;
 
         return(
-            <div className={clickedCategory === 'chill' || clickedCategory === 'culture' || clickedCategory === 'historyPlaces'?'buttonCnt-orange button':'buttonCnt-dark button'}>
+            <div 
+            className={clickedCategory === 'chill' || clickedCategory === 'culture' || clickedCategory === 'places'?'buttonCnt-orange button':'buttonCnt-dark button'}>
                 {this.props.isAuth?<Btn onClick={this.logOut}>Wyloguj</Btn>:<Btn  onClick={this.logInBtn}>Zaloguj się</Btn>}
             </div>
         )

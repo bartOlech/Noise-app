@@ -79,15 +79,12 @@ class App extends Component {
       playSound: false,
       currentSound: ''
     }
-    // this.childMoreSounds = React.createRef();
-    this.childUserData = React.createRef();
+
     this.childMainCnt = React.createRef();
     this.childUserSettings = React.createRef();
   }
 
   clickLogo = ()=>{
-    // this.childMoreSounds.current.hideCnt();
-    // this.childMoreSounds.current.resaveView();
     this.childMainCnt.current.resaveView();
     this.setState({
       selectedColor: '#00A896',
@@ -181,16 +178,10 @@ class App extends Component {
         selectedHeaderColor: backgroundColors.headerBck.blue
       })
     }
-    else if(val === 'culture'){
+    else if(val === 'places'){
       this.setState({
         selectedColor: backgroundColors.mainBck.orange,
         selectedHeaderColor: backgroundColors.headerBck.orange
-      })
-    }
-    else if(val === 'historyPlaces'){
-      this.setState({
-        selectedColor: backgroundColors.mainBck.lightBrown,
-        selectedHeaderColor: backgroundColors.headerBck.warmOrange
       })
     }
     else if(val === 'other'){
@@ -199,11 +190,24 @@ class App extends Component {
         selectedHeaderColor: backgroundColors.headerBck.blue
       })
     }
+    else if(val === 'favourite'){
+      this.setState({
+        selectedColor: backgroundColors.mainBck.favouritesColor,
+        selectedHeaderColor: backgroundColors.headerBck.blue
+      })
+    }
+    else if(val === 'settings'){
+      this.setState({
+        selectedColor: backgroundColors.mainBck.settingsColor,
+        selectedHeaderColor: backgroundColors.headerBck.blue
+      })
+    }
   }
 
   // 
   // Setting section
   settingsHandle = () => {
+    this.selectCtg('settings')
     this.setState({
       SettingsCntVisibility: true
     })
@@ -216,15 +220,21 @@ class App extends Component {
   }
   // Hide settings Component
   hideIcoCnt = () => {
+    this.childMainCnt.current.resaveView();
     this.setState({
       SettingsCntVisibility: false,
       SettingsUserVisibility: false,
       SettingsChangePassVisibility: false,
       showFavourites: false,
+      playSound: false,
+      selectedColor: '#00A896',
+      selectedHeaderColor: backgroundColors.headerBck.blue,
+      clickedCategory: null,
     })
   }
   // Go to user settings
   showUserSettings = () => {
+    this.selectCtg('settings')
     this.setState({
       SettingsCntVisibility: false,
       SettingsUserVisibility: true,
@@ -232,6 +242,7 @@ class App extends Component {
   }
   // show ChangePassword component
   showChangePassSection = () => {
+    this.selectCtg('settings')
     this.setState({
       SettingsChangePassVisibility: true,
     })
@@ -239,6 +250,7 @@ class App extends Component {
 
   // Show the favourite content
   favouriteHandle = () => {
+    this.selectCtg('favourite')
     this.setState({
       loadedFavEl: false
   })
@@ -275,36 +287,109 @@ class App extends Component {
       console.log(this.state.currentSound)
     })
   }
+  
  
 
   render() {
     
-    const{selectedColor, selectedHeaderColor, clickedCategory, playSound, currentSound, SettingsCntVisibility, SettingsUserVisibility, SettingsChangePassVisibility, isAuthenticated, fullName, userEmail, showFavourites, favouriteSounds, loadedFavEl} = this.state;
+    const{
+      selectedColor, 
+      selectedHeaderColor, 
+      clickedCategory, 
+      playSound, 
+      currentSound, 
+      SettingsCntVisibility, 
+      SettingsUserVisibility, 
+      SettingsChangePassVisibility, 
+      isAuthenticated, 
+      fullName, 
+      userEmail, 
+      showFavourites, 
+      favouriteSounds, 
+      loadedFavEl} = this.state;
     return (
       <div>
         {/* settings component */}
-        <Settings showUserSettings={this.showUserSettings} isVisible={SettingsCntVisibility} hideIcoCnt={this.hideIcoCnt}></Settings>
+        <Settings 
+          showUserSettings={this.showUserSettings} 
+          isVisible={SettingsCntVisibility} 
+          hideIcoCnt={this.hideIcoCnt}>
+        </Settings>
         {/* user settings component */}
-        <UserSettings authAfterDeleteUser={this.authAfterDeleteUser} isAuth={isAuthenticated} showChangePassSection={this.showChangePassSection} ref={this.childUserSettings} hideIcoCnt={this.hideIcoCnt} SettingsUserVisibility={SettingsUserVisibility } fullName={fullName} userEmail={userEmail}></UserSettings>
+        <UserSettings 
+          authAfterDeleteUser={this.authAfterDeleteUser} 
+          isAuth={isAuthenticated} 
+          showChangePassSection={this.showChangePassSection} 
+          ref={this.childUserSettings} 
+          hideIcoCnt={this.hideIcoCnt} 
+          SettingsUserVisibility={SettingsUserVisibility } 
+          fullName={fullName} 
+          userEmail={userEmail}>
+        </UserSettings>
         {/* Change password component */}
-        <ChangePassword userIsLogOut={this.userIsLogOut} email={userEmail} SettingsChangePassVisibility={SettingsChangePassVisibility} hideIcoCnt={this.hideIcoCnt}></ChangePassword>
+        <ChangePassword 
+          userIsLogOut={this.userIsLogOut} 
+          email={userEmail} 
+          SettingsChangePassVisibility={SettingsChangePassVisibility} 
+          hideIcoCnt={this.hideIcoCnt}
+          >
+        </ChangePassword>
         {/* Favourites */}
-        <Favourites playSoundFromFavourite={this.playSoundFromFavourite} loadedFavEl={loadedFavEl} removeFavEl={this.removeFavEl} favouriteSounds={favouriteSounds} isAuth={isAuthenticated} hideFavourite={this.hideIcoCnt} showFavourites={showFavourites}></Favourites>
+        <Favourites 
+          playSoundFromFavourite={this.playSoundFromFavourite} 
+          loadedFavEl={loadedFavEl} 
+          removeFavEl={this.removeFavEl} 
+          favouriteSounds={favouriteSounds} 
+          isAuth={isAuthenticated} 
+          hideFavourite={this.hideIcoCnt} 
+          showFavourites={showFavourites}>
+        </Favourites>
 
         <Favicon url='./img/favicon.ico' />
         {this.logInPage()}
         {/* header section */}
-        <Header menuSettingsBtn={this.settingsHandle} menuUserBtn={this.showUserSettings} clickedCategory={clickedCategory} selectedHeaderColor={selectedHeaderColor} userIsLogOut={this.userIsLogOut} isAuth={isAuthenticated} isClickedLogIn={this.isClickedLogIn} clickMoreSounds={this.clickMoreSounds} clickHamburgerMenu={this.clickMenu} clickHeaderLogo={this.clickLogo}></Header>
+        <Header 
+          menuSettingsBtn={this.settingsHandle} 
+          menuUserBtn={this.showUserSettings} 
+          clickedCategory={clickedCategory} 
+          selectedHeaderColor={selectedHeaderColor} 
+          userIsLogOut={this.userIsLogOut} 
+          isAuth={isAuthenticated} 
+          isClickedLogIn={this.isClickedLogIn} 
+          FavouriteSection={this.favouriteHandle} 
+          clickHamburgerMenu={this.clickMenu} 
+          clickHeaderLogo={this.clickLogo}>
+        </Header>
 
         {/* user data */}
         <UserCnt>
-          <UserData fullName={fullName} isAuth={isAuthenticated} userLogOut={this.userLogOut} setAuthValue={this.setAuthValue} ref={this.childUserData}></UserData>
-          <Favourite onClick={this.favouriteHandle} style={userIcoStyle} ></Favourite>
-          <SettingsSection style={userIcoStyle} onClick={this.settingsHandle}></SettingsSection>
-          <SoundSlider playSound={playSound} currentSound={currentSound}></SoundSlider>
+          <UserData 
+            fullName={fullName} 
+            isAuth={isAuthenticated} 
+            userLogOut={this.userLogOut} 
+            setAuthValue={this.setAuthValue} 
+            ref={this.childUserData}>
+          </UserData>
+          <Favourite 
+            onClick={this.favouriteHandle} 
+            style={userIcoStyle} >
+          </Favourite>
+          <SettingsSection 
+            style={userIcoStyle} 
+            onClick={this.settingsHandle}>
+          </SettingsSection>
+          <SoundSlider 
+            playSound={playSound} 
+            currentSound={currentSound}>
+          </SoundSlider>
         </UserCnt>
-        {/* <Sounds ref={this.childMoreSounds}></Sounds> */}
-        <MainContent isAuth={isAuthenticated} setSoundValue={this.setSoundValue} selectCtg={this.selectCtg} clickCnt={this.clickCnt} ref={this.childMainCnt}></MainContent>
+        <MainContent 
+          isAuth={isAuthenticated} 
+          setSoundValue={this.setSoundValue} 
+          selectCtg={this.selectCtg} 
+          clickCnt={this.clickCnt} 
+          ref={this.childMainCnt}>
+        </MainContent>
         <GlobalStyle bcg={selectedColor}></GlobalStyle>
       </div>
     )

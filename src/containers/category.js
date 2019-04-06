@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import '../App.css';
 import styled, { keyframes } from 'styled-components';
-import { bounceInLeft, fadeOut } from 'react-animations';
+import { fadeIn, fadeOut } from 'react-animations';
 
 
-const bounceAnimation = keyframes`${bounceInLeft}`;
+const bounceAnimation = keyframes`${fadeIn}`;
 let fadeOutAnimation = keyframes`${fadeOut}`;
  
 const BouncyDiv = styled.div`
@@ -59,17 +59,13 @@ class Category extends Component{
                         </button>
                         <button value='chill' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Chill</span>
                         </button>
-                        <button value='jobs' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Praca</span>
-                        </button>
                         <button value='animals' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Zwierzęta</span>
                         </button>
-                        <button value='culture' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>M. kultury</span>
-                        </button>
-                        <button value='historyPlaces' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>M. historii</span>
-                        </button>
-                        <button value='other' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Inne</span>
+                        <button value='places' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Miejsca</span>
                         </button>
                         
+                        <button value='other' className='ctg-btn' onClick={this.categoryBtn}><span className='ctg-text'>Inne</span>
+                        </button>                       
                     </div>
                 </div>
             </BouncyDiv>

@@ -14,7 +14,7 @@ import Loader from 'react-loader-spinner';
         padding-right: 10px;
     `
     const FullName = styled.div`
-        color: #D2CFDE;
+        color: #ECECEC;
         font-weight: 700;
         padding-right: 10px;
     `
@@ -93,7 +93,13 @@ class UserData extends Component {
     LoaderElement = () => {
         if (this.state.getToken) {
             return (
-                <LoaderSection visibility={this.state.loaded ? 'none' : 'flex'}><Loader type="ThreeDots" color="white" height={40} width={40} />
+                <LoaderSection 
+                    visibility={this.state.loaded ? 'none' : 'flex'}>
+                    <Loader 
+                    type="ThreeDots" 
+                    color="white" 
+                    height={40} 
+                    width={40} />
                 </LoaderSection>
             )
         }
@@ -104,7 +110,7 @@ class UserData extends Component {
             <>
                 {this.LoaderElement()}
                 <UserCnt visibility={this.props.isAuth ? 'flex' : 'none'}>
-                    <User>Witaj </User><FullName>{this.props.fullName}</FullName>
+                    <User></User><FullName>{this.props.fullName}</FullName>
                 </UserCnt>
             </ >
         )

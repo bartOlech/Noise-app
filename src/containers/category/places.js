@@ -4,7 +4,7 @@ import trees from '../../img/sounds_ico/trees.png';
 import forest from '../../img/sounds_ico/forest.png';
 import Content from './CategoryContentStyle';
 
-class Chill extends Component {
+class Places extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -52,8 +52,8 @@ class Chill extends Component {
     render() {
         const { blurOff, blurOn, clickedBtn, clickedIco } = this.state;
         return (
-            <Content display={this.props.selectedCtg === 'chill' ? 'flex' : 'none'}>
-               <SoundsTemplate 
+            <Content display={this.props.selectedCtg === 'places' ? 'flex' : 'none'}>
+                <SoundsTemplate 
                     isAuth={this.props.isAuth} 
                     displayRate={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'none' : 'inline'} 
                     playIco={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'off' : 'on'} 
@@ -122,4 +122,4 @@ class Chill extends Component {
         )
     }
 }
-export default Chill;
+export default Places;

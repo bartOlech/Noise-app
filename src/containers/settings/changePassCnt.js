@@ -163,7 +163,7 @@ class ChangePassword extends Component {
     }
 
     hideSettings = () => {
-        this.props.hideSettings()
+        this.props.hideIcoCnt()
     }
 
     // change password function

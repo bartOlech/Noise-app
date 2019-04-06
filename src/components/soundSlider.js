@@ -90,7 +90,10 @@ class SoundSlider extends Component {
                 {this.playSound()}
 
                 <VolSection style={userIcoStyle}>
-                    <VolControl image={y === 0 ? MuteIco : VolControlIco} style={userIcoStyle} onClick={this.setVisibilitySlider}>
+                    <VolControl 
+                        image={y === 0 ? MuteIco : VolControlIco} 
+                        style={userIcoStyle} 
+                        onClick={this.setVisibilitySlider}>
                     </VolControl>
                     <Fragment>
                         <Slider 

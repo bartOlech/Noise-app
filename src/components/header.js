@@ -20,19 +20,17 @@ const Logo = styled.img`
     height: 100px;
     margin-left: 4px;
     margin-top: -6px;
+    margin-left: 85px;
     cursor: pointer;
 
-    @media (max-width:700px){
+    @media (min-width:700px){
         margin-left: 150px;
     }
     @media (min-width:1000px){
         margin-left: 130px;
     }
-     @media (max-width:550px){
+     @media (min-width:550px){
         margin-left: 140px;
-    }
-    @media (max-width:395px){
-        margin-left: 85px;
     }
 `
 class Header extends Component {
@@ -59,8 +57,8 @@ class Header extends Component {
 
     }
 
-    clickMoreSounds = () => {
-        this.props.clickMoreSounds();
+    FavouriteSection = () => {
+        this.props.FavouriteSection();
         this.setState({
             isChecked: false
         })
@@ -84,8 +82,17 @@ class Header extends Component {
         const {clickedCategory, selectedHeaderColor} = this.props;
         return (
             <Content bck={selectedHeaderColor}>
-                <LogInBtn clickedCategory={clickedCategory}  userIsLogOut={this.userIsLogOut} isAuth={this.props.isAuth} isClickedLogIn={this.isClickedLogIn}></LogInBtn>
-                <Logo onClick={this.clickHeaderLogo} src={clickedCategory === 'chill' || clickedCategory === 'culture' || clickedCategory === 'historyPlaces'?orangeLogo:mainLogo} alt='logo'></Logo>
+                <LogInBtn 
+                    clickedCategory={clickedCategory}  
+                    userIsLogOut={this.userIsLogOut} 
+                    isAuth={this.props.isAuth} 
+                    isClickedLogIn={this.isClickedLogIn}>
+                </LogInBtn>
+                <Logo 
+                    onClick={this.clickHeaderLogo} 
+                    src={clickedCategory === 'chill' || clickedCategory === 'places'?orangeLogo:mainLogo} 
+                    alt='logo'>
+                </Logo>
                 <nav className='nav-phone'>
                     <div className="menu-toggle">
                         <input checked={this.state.isChecked} onClick={this.clickHamMenu} type="checkbox" onChange={this.onChange} />
@@ -95,19 +102,11 @@ class Header extends Component {
                         <ul className="menu">
                             <li className="menu-menu"><div className='menu-ico'></div><div>Menu</div></li>
                             <li onClick={this.menuUserBtn} className="menu-profile"><div className='profile-ico menu-ico'></div><div>Profil</div></li>
-                            <li className="menu-best-rated"><div className='rated-ico menu-ico'></div><div onClick={this.clickMoreSounds}>Najlepiej oceniane</div></li>
-                            <li className="menu-mobile-v"><div className='mobile-ico menu-ico'></div><div onClick={this.clickMoreSounds}>Wersja mobilna</div></li>
+                            <li className="menu-best-rated"><div className='rated-ico menu-ico'></div><div onClick={this.FavouriteSection}>Najlepiej oceniane</div></li>
+                            <li className="menu-mobile-v"><div className='mobile-ico menu-ico'></div><div onClick={this.clickMoreSounds} style={{color: 'grey'}}>Wersja mobilna</div></li>
                             <li onClick={this.menuSettingsBtn} className="menu-settings"><div className='settings-ico menu-ico'></div><div >Ustawienia</div></li>
                         </ul>
                     </div>
-                </nav>
-                <nav className='nav-desktop'>
-                    <ul>
-                        <li><div>Profil</div></li>
-                        <li><div>Najlepiej oceniane</div></li>
-                        <li><div >Wersja mobilna</div></li>
-                        <li><div >Ustawienia</div></li>
-                    </ul>
                 </nav>
             </Content>
         )

@@ -222,7 +222,10 @@ class Favourites extends Component {
                                     </SoundBtn>
                                 )   
                             })}
-                            <EmptyArrayText display={this.props.favouriteSounds.length === 0 && this.props.loadedFavEl?'inline':'none'}>Nie posiadasz ulubionych dzwięków</EmptyArrayText>
+                            <EmptyArrayText 
+                                display={this.props.favouriteSounds.length === 0 && this.props.loadedFavEl?'inline':'none'}>
+                                Nie posiadasz ulubionych dzwięków
+                            </EmptyArrayText>
                     </SoundsBtnSection>
                     <AuthInfoText isAuth={this.props.isAuth?'none':'flex'}>
                         Nie jesteś zalogowany

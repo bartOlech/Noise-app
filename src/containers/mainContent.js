@@ -5,10 +5,8 @@ import Category from './category';
 import { zoomIn } from 'react-animations';
 import Nature from './category/nature';
 import Chill from './category/chill';
-import Jobs from './category/jobs';
 import Animals from './category/animals';
-import CulturePlaces from './category/culture';
-import HistoryPlaces from './category/historyPlaces';
+import Places from './category/places';
 import Other from './category/other';
 
 const fadeInLeftAnimation = keyframes`${zoomIn}`;
@@ -37,9 +35,7 @@ class MainContent extends Component {
         this.nature = React.createRef();
         this.animals = React.createRef();
         this.chill = React.createRef();
-        this.culture = React.createRef();
-        this.historyPlaces = React.createRef();
-        this.jobs = React.createRef();
+        this.places = React.createRef();
         this.other = React.createRef();
     }
 
@@ -60,13 +56,18 @@ class MainContent extends Component {
         this.nature.current.resaveViews();
         this.animals.current.resaveViews();
         this.chill.current.resaveViews();
-        this.culture.current.resaveViews();
-        this.historyPlaces.current.resaveViews();
-        this.jobs.current.resaveViews();
+        this.places.current.resaveViews();
         this.other.current.resaveViews();
     }
 
     setSounds = (val, clickedBtn, clicked) => {
+        // set a current sound & send function values to soundSlider component
+        this.setState({
+            currentSound: `http://localhost:8080/api/sounds:${val}`
+        }, () => {
+            const { playSound, currentSound } = this.state;
+            this.props.setSoundValue(playSound, currentSound)
+        })
 
         this.setState({
             buttonValue: val
@@ -81,17 +82,7 @@ class MainContent extends Component {
             })
         }
              
-        // set a current sound & send function values to soundSlider component
-        this.setState({
-                currentSound: `http://localhost:8080/api/sounds:${val}`
-            }, () => {
-                const { playSound, currentSound } = this.state;
-                this.props.setSoundValue(playSound, currentSound)
-                if(currentSound){
-
-                }
-                
-            })
+        
     }    
     render() {
         const { mainCntIsVisible, selectedCtg } = this.state;
@@ -105,22 +96,16 @@ class MainContent extends Component {
                     <Nature isAuth={this.props.isAuth} setSounds={this.setSounds} ref={this.nature} selectedCtg={selectedCtg}>
 
                     </Nature>
-                    <Chill ref={this.chill} selectedCtg={selectedCtg}>
+                    <Chill isAuth={this.props.isAuth} setSounds={this.setSounds} ref={this.chill} selectedCtg={selectedCtg}>
 
                     </Chill>
-                    <Jobs ref={this.jobs} selectedCtg={selectedCtg}>
-
-                    </Jobs>
-                    <Animals ref={this.animals} selectedCtg={selectedCtg}>
+                    <Animals isAuth={this.props.isAuth} setSounds={this.setSounds} ref={this.animals} selectedCtg={selectedCtg}>
 
                     </Animals>
-                    <CulturePlaces ref={this.culture} selectedCtg={selectedCtg}>
+                    <Places isAuth={this.props.isAuth} setSounds={this.setSounds} ref={this.places} selectedCtg={selectedCtg}>
 
-                    </CulturePlaces>
-                    <HistoryPlaces ref={this.historyPlaces} selectedCtg={selectedCtg}>
-
-                    </HistoryPlaces>
-                    <Other ref={this.other} selectedCtg={selectedCtg}>
+                    </Places>
+                    <Other isAuth={this.props.isAuth} setSounds={this.setSounds} ref={this.other} selectedCtg={selectedCtg}>
 
                     </Other>
                 </Content>

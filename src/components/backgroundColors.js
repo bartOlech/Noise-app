@@ -12,7 +12,9 @@ const mainBck = {
     warmOrange: 'linear-gradient(to right, #ECC656 0%, #ECC656 100%)',
     green: 'linear-gradient(to right, #0ba360 0%, rgb(22, 194, 137) 100%)',
     orange: 'linear-gradient(to right, #E8933A 0%, rgb(241, 157, 66) 100%)',
-    lightBrown: 'linear-gradient(to right, #C19F3A 0%, #C9A63C 100%)'
+    lightBrown: 'linear-gradient(to right, #C19F3A 0%, #C9A63C 100%)',
+    favouritesColor: '#2A0E22',
+    settingsColor: '#2A3350'
 }
 
 export {headerBck, mainBck}

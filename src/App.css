@@ -9,10 +9,6 @@ body{
   overflow-x: hidden;
   
 }
-.main-content{
-  
-}
-
 /* Phone menu */
 .menu-toggle{
   position: absolute;
@@ -84,11 +80,11 @@ body{
 .menu{
   position: absolute;
   width: 110vw;
-  height: 210vw;
+  height: 260vw;
   max-height: 1000px;
   margin: -100px 0 0 -50px;
   padding-top: 50px;
-  background-color: #2A3350;
+  background-color: #2E394B;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
@@ -100,7 +96,7 @@ body{
 .menu li{
   font-size: 1.4em;
   padding:5px 0;
-  width: 97vw;
+  width: 95vw;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   margin-left: 30px;
@@ -168,68 +164,6 @@ body{
   padding:12px;
   font-family: 'Varela Round', sans-serif;
   cursor:pointer;
-}
-
-/* desktop menu */
-
-.nav-desktop{
-  margin-top:55px;
-  margin-left:-40px;
-  position: absolute;
-  right:40px;
-}
-.nav-desktop ul{
-  display:flex;
-}
-.nav-desktop ul li{
-  margin-left:30px;
-  list-style:none;
-  display:block;
-}
-.nav-desktop ul li div{
-  color:#fff;
-  font-size:1.1em;
-  font-family:'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-weight:400;
-  cursor:pointer;
-  display:block;
-  transition: color 0.3s ease;
-  padding:1px 12px 1px 12px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  letter-spacing: 1.2px;
-  position: relative;
-}
-.nav-desktop ul li div:hover{
-  color:rgb(212, 224, 248);
-}
-@keyframes lineAnimation{
-  0% {width:0px; padding:1px}
-  100% {width:100%;}
-}
-.horizontal-line{
-  box-sizing: border-box;
-  width:100%;
-  height:1px;
-  background-color:#fff;
-  margin-top:3px;
-  display:none;
-  position: absolute;
-  animation: lineAnimation 500ms;
-  background:rgb(225, 239, 255);
-}
-section{
-  width: 600px;
-  max-height: 100px;
-  position: absolute;
-}
-.sound-mute-ico{
-  position: absolute;
-  top: 207px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  z-index: 1;
 }
 
 /* category content */
@@ -313,105 +247,12 @@ section{
   transition: all ease 0.1s;
 }
 
-/* play-ico in button */
-
-.circle {
-  stroke: #0E8174;
-  stroke-dasharray: 650;
-  stroke-dashoffset: 650;
-  transition: all 0.5s ease-in-out;
-  opacity: 0.3;
-}
-.internal-sounds-playIcoBtn{
-  position: relative;
-  margin-right: -2px;
-}
-.sounds-playIcoBtn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 45px;
-  display: inline-block;
-  transition: all 0.5s ease;
-  background-color: #fff;
-}
-.sounds-playIcoBtn .triangle {
-  transition: all 0.7s ease-in-out;
-  stroke-dasharray: 240;
-  stroke-dashoffset: 480;
-  stroke: #000;
-  transform: translateY(0);
-}
-.all-sounds-btn:hover .triangle {
-  stroke-dashoffset: 0;
-  opacity: 1;
-  stroke: rgb(14, 77, 92);
-  animation: nudge 0.7s ease-in-out;
-}
-.all-sounds-btn:hover .circle {
-  stroke-dashoffset: 0;
-  opacity: 1;
-}
-
  /* color login buttons */
 .buttonCnt-dark button{
   background-color: #045170
 }
 .buttonCnt-orange button{
   background-color: rgb(228, 97, 57);
-}
-
-
-/* btn animation if you click  (!!! sometimes is crashed !!!)*/
-.all-sounds-btn:before {
-  content: '';
-  background-color: aliceblue;
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: scale(0.001, 0.001);
-  opacity: .1;
-}
-.all-sounds-btn:focus:before{
-  animation: effect_dylan 0.7s ease-out;
-}
-
-@keyframes effect_dylan {
-  50% {
-    transform: scale(1.2, 1.2);
-    opacity: 0;
-  }
-  99% {
-    transform: scale(0.001, 0.001);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(0.001, 0.001);
-    opacity: 1;
-  }
-}
-/* end of btn animation */
-
-
-@keyframes nudge {
-  0% {
-    transform: translateX(0);
-  }
-  30% {
-    transform: translateX(-5px);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-  70% {
-    transform: translateX(-2px);
-  }
-  100% {
-    transform: translateX(0);
-  }
 }
 
 /* facebook cnt */
@@ -460,7 +301,15 @@ section{
     margin-left: 0;
   }
 }
+@media (min-width:500px){
+  .menu li{
+    width: 96vw;
+  }
+}
 @media (min-width:600px){
+  .menu li{
+    width: 97vw;
+  }
   .music-btn-list{
     margin-top:50px;
     display: block;
@@ -481,17 +330,5 @@ section{
   .nav-phone{
       display:inline;
   }
-  .nav-desktop{
-      display:none;
-  }
 } 
-@media screen and (min-width:700px){
-  .nav-desktop{
-    right:100px;
-  }
-  .sound-mute-ico{
-    position: absolute;
-    top: 207px;
-    left: 195px;
-  }
-}
+

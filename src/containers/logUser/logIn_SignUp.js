@@ -397,7 +397,12 @@ class LogInSignUp extends Component {
     }
 
     responseGoogle = (response) => {
-        const tokenBlob = new Blob([JSON.stringify({ access_token: response.accessToken, tokenId: response.tokenId, googleId: response.profileObj.googleId, email: response.profileObj.email }, null, 2)], { type: 'application/json' });
+        const tokenBlob = new Blob([JSON.stringify({ 
+            access_token: response.accessToken, 
+            tokenId: response.tokenId, 
+            googleId: response.profileObj.googleId, 
+            email: response.profileObj.email }, null, 2)], 
+            { type: 'application/json' });
         const options = {
             method: 'POST',
             body: tokenBlob,
@@ -500,7 +505,15 @@ class LogInSignUp extends Component {
     }
 
     render() {
-        const { loginPage, inputError, inputErrorText, valEmailSignUp, inputSucces, emailExist, loading, isAuthenticated } = this.state;
+        const { 
+            loginPage, 
+            inputError, 
+            inputErrorText, 
+            valEmailSignUp, 
+            inputSucces, 
+            emailExist, 
+            loading, 
+            isAuthenticated } = this.state;
         this.logOrReg()
         return (
             <Content>
@@ -591,9 +604,20 @@ class LogInSignUp extends Component {
                     {/* Sign Up */}
                     <FormCnt onSubmit={this.handleSubmitSignUp} method='POST'>
                         <FormText htmlFor='emailSignup'>Email</FormText>
-                        <FormInput onChange={this.inputEmailSignUp} value={valEmailSignUp} type='text' id='emailSignup' name='emailSignup'></FormInput>
+                        <FormInput 
+                            onChange={this.inputEmailSignUp} 
+                            value={valEmailSignUp} 
+                            type='text' 
+                            id='emailSignup' 
+                            name='emailSignup'>
+                        </FormInput>
                         <FormText htmlFor='passwordSignup'>Hasło</FormText>
-                        <FormInput onChange={this.inputPassSignUp} type='password' id='passwordSignup' name='passwordSignup'></FormInput>
+                        <FormInput 
+                            onChange={this.inputPassSignUp} 
+                            type='password' 
+                            id='passwordSignup' 
+                            name='passwordSignup'>
+                        </FormInput>
                         <FormText htmlFor='passwordSignup2'>Powtórz hasło</FormText>
                         <FormInput onChange={this.inputPass2SignUp} type='password' id='passwordSignup2' name='passwordSignup2'></FormInput>
                         <SubmitBtn onClick={this.formValid}>Zarejestruj się</SubmitBtn>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import styled from 'styled-components';
 import SoundsTemplate from '../../components/sounds/soundsTemplate';
 import trees from '../../img/sounds_ico/trees.png';
 import forest from '../../img/sounds_ico/forest.png';
@@ -14,46 +13,111 @@ class Other extends Component {
             blurOff: 'blur(0)',
             blurOn: 'blur(2px)',
             clickedIco: '',
-            clicked: false
+            clicked: false,
         }
     }
 
     resaveViews = () => {
         this.setState({
-            clickedBtn: ''
+            clickedBtn: '',
         })
     }
 
     clickIco = (val) => {
-
         // Set blur ico
-        const {clickedBtn, clicked} = this.state;
+        const { clickedBtn, clicked } = this.state;
 
         if (val === clickedBtn && !clicked) {
             this.setState({
                 clickedIco: val,
-                clicked: true
+                clicked: true,
             })
         } else {
             this.setState({
                 clickedIco: '',
-                clicked: false
+                clicked: false,
             })
         }
 
         //get a value from clicked button
         this.setState({
             clickedBtn: val
+        }, () => {
+            this.props.setSounds(val, clickedBtn, clicked)
         })
     }
+
+
 
     render() {
         const { blurOff, blurOn, clickedBtn, clickedIco } = this.state;
         return (
             <Content display={this.props.selectedCtg === 'other' ? 'flex' : 'none'}>
-                <SoundsTemplate playIco={clickedBtn !== 'other' || clickedIco === 'other' ? 'off' : 'on'} tittle='other' blur={clickedBtn !== 'other' || clickedIco === 'other' ? blurOff : blurOn} icoValue='other' clickIco={this.clickIco} ico={trees}></SoundsTemplate>
-                <SoundsTemplate playIco={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'off' : 'on'} tittle='trees' blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} icoValue='trees' clickIco={this.clickIco} ico={forest}></SoundsTemplate>
-                <SoundsTemplate playIco={clickedBtn !== 'other2' || clickedIco === 'other2' ? 'off' : 'on'} tittle='other2' blur={clickedBtn !== 'other2' || clickedIco === 'other2' ? blurOff : blurOn} icoValue='other2' clickIco={this.clickIco} ico={trees}></SoundsTemplate>
+                <SoundsTemplate 
+                    isAuth={this.props.isAuth} 
+                    displayRate={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'off' : 'on'} 
+                    tittle='forest' 
+                    blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} 
+                    icoValue='forest' 
+                    clickIco={this.clickIco} 
+                    ico={trees}>
+                </SoundsTemplate>
+
+                <SoundsTemplate 
+                    isAuth={this.props.isAuth} 
+                    displayRate={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'off' : 'on'} 
+                    tittle='trees' 
+                    blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} 
+                    icoValue='trees' 
+                    clickIco={this.clickIco} 
+                    ico={forest}>
+                </SoundsTemplate>
+
+                <SoundsTemplate 
+                    isAuth={this.props.isAuth} 
+                    displayRate={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'off' : 'on'} 
+                    tittle='forest2' 
+                    blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} 
+                    icoValue='forest2' 
+                    clickIco={this.clickIco} 
+                    ico={trees}>
+                </SoundsTemplate>
+
+                <SoundsTemplate 
+                    isAuth={this.props.isAuth} 
+                    displayRate={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'off' : 'on'} 
+                    tittle='forest3' 
+                    blur={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? blurOff : blurOn} 
+                    icoValue='forest3' 
+                    clickIco={this.clickIco} 
+                    ico={trees}>
+                </SoundsTemplate>
+
+                <SoundsTemplate 
+                    isAuth={this.props.isAuth} 
+                    displayRate={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'off' : 'on'} 
+                    tittle='forest4' 
+                    blur={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? blurOff : blurOn} 
+                    icoValue='forest4' 
+                    clickIco={this.clickIco} 
+                    ico={trees}>
+                </SoundsTemplate>
+
+                <SoundsTemplate 
+                    isAuth={this.props.isAuth} 
+                    displayRate={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'off' : 'on'} 
+                    tittle='forest5' 
+                    blur={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? blurOff : blurOn} 
+                    icoValue='forest5' 
+                    clickIco={this.clickIco} 
+                    ico={trees}>
+                </SoundsTemplate>
             </Content>
         )
     }
