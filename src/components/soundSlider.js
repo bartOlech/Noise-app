@@ -72,7 +72,7 @@ class SoundSlider extends Component {
         return (
             <div>
                 <Sound
-                    url={currentSound}
+                    url={currentSound || ''}
                     playStatus={!playSound ? Sound.status.STOPPED : Sound.status.PLAYING}
                     loop={true}
                     volume={sliderY.y === undefined?50:this.state.sliderY.y}

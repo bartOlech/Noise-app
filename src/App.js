@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './components/header';
 import Favicon from 'react-favicon';
 import MainContent from './containers/mainContent';
-// npm i rc-tooltip
-import LogInSignUp from './containers/logUser/logIn_SignUp';
+// import LogInSignUp from './containers/logUser/logIn_SignUp';
 import UserData from './components/userData';
 import Cookies from 'js-cookie';
 import * as backgroundColors from './components/backgroundColors';
@@ -15,6 +14,9 @@ import Settings from './containers/settings/settingsContainer';
 import UserSettings from './containers/settings/userSettings';
 import ChangePassword from './containers/settings/changePassCnt';
 import Favourites from './containers/favourites/favourites';
+
+// LogIn / SignUp component
+const LogInSignUp = lazy(() => import('./containers/logUser/logIn_SignUp'))
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -114,7 +116,9 @@ class App extends Component {
   logInPage(){
     if(this.state.clickLogIn){
       return(
-        <LogInSignUp isAuth={this.isAuth} closeLogIn={this.closeLogIn}></LogInSignUp>
+        <Suspense fallback={<div>Loading...</div>}>
+          <LogInSignUp isAuth={this.isAuth} closeLogIn={this.closeLogIn}></LogInSignUp>
+        </Suspense> 
       )
     }
   }
@@ -165,11 +169,6 @@ class App extends Component {
       this.setState({
         selectedColor: backgroundColors.mainBck.orange,
         selectedHeaderColor: backgroundColors.headerBck.orange
-      })
-    }else if(val === 'jobs'){
-      this.setState({
-        selectedColor: backgroundColors.mainBck.blue,
-        selectedHeaderColor: backgroundColors.headerBck.blue
       })
     }
     else if(val === 'animals'){
