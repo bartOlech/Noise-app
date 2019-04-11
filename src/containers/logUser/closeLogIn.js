@@ -16,15 +16,9 @@ const CloseBtn = styled.img`
 `
 
 class CloseLogIn extends Component{
-    // state = {
-    //     closeBtnIsClicked: false
-    // }
-    constructor(props){
-        super(props)
-        this.state = {
+    state = {
             closeBtnIsClicked: false
         }
-    }
 
     closeLogIn = ()=>{
         this.props.closeLogIn(this.state.closeBtnIsClicked);

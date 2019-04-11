@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { Bounce } from 'react-toastify';
 import { css } from 'glamor';
 
-function Template(props) {
+const Template = (props) => {
 
       // toast template
       const toastTemplate = (notification) => {

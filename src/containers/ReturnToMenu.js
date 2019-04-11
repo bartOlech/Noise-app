@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import BackIco from '../img/user-ico/back-ico.png'
+import BackIco from '../img/user-ico/back-ico.png';
 
 function ReturnToMenu(props) {
 

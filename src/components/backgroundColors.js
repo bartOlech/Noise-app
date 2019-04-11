@@ -2,9 +2,7 @@ const headerBck = {
     blue: 'linear-gradient(to right, #0a7f99 0%, #0a7f99 0%, #0a7f99 0%, #257e92 33%, #0697b8 66%, #0697b8 100%)',
     warmOrange: 'linear-gradient(to right, #c79a38 0%, #dbb947 100%)',
     green: 'linear-gradient(to right, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 0%, rgb(45, 163, 96) 33%, rgb(50, 192, 109) 66%, rgb(50, 192, 109) 100%)',
-    orange: 'linear-gradient(to right, #db973f 0%, #f1a55d 100%)',
-    
-    
+    orange: 'linear-gradient(to right, #db973f 0%, #f1a55d 100%)', 
 }
 
 const mainBck = {

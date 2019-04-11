@@ -22,13 +22,9 @@ const Btn = styled.button`
 `
 
 class LogInBtn extends Component{
-
-    constructor(props){
-        super(props)
-        this.state = {
+    state = {
             isClicked: !false
         }
-    }
 
     logInBtn = ()=>{
         this.props.isClickedLogIn(this.state.isClicked);

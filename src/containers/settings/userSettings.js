@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import ReturnToMenu from '../../components/returnToMenu';
+import ReturnToMenu from '../ReturnToMenu';
 import '../../cssFonts/fonts.css';
 import UserIco from '../../img/user-ico/avatar.png';
 import UserBoxComponent from './UserBoxComponent';
@@ -41,6 +41,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
     const Content = styled.div`
         background-color: #2A3350;
         position: absolute;
+        left: 0;
+        top: 0;
         z-index: 5;
         width: 100vw;
         height: 100%;

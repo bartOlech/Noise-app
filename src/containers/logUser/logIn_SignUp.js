@@ -6,7 +6,6 @@ import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import { FaFacebookSquare } from 'react-icons/fa';
 import { config } from '../../config/config';
-import Cookies from 'js-cookie';
 
     const GlobalStyle = createGlobalStyle`
         @import url('https://fonts.googleapis.com/css?family=Varela+Round');
@@ -22,11 +21,7 @@ import Cookies from 'js-cookie';
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 8px;
-        @media(max-width: 410px){
-            margin-top:20px;
-            width: 310px;
-            top: 330px;
-        }
+        top: 330px;
     `
 
     const Tittle = styled.h2`
@@ -210,25 +205,23 @@ class LogInSignUp extends Component {
             valEmailSignUp: '',
             valPassSignUp: '',
             valPass2SignUp: '',
-            correctSignUp: false, //było true, ????
+            correctSignUp: false, 
             inputError: false,
             inputSucces: false,
-            inputErrorEmailText: '',
-            inputErrorPassText: '',
             emailExist: '',
             loading: false,
             SuccessSignUp: '',
-            //Fb Google login
+            //Fb & Google login
             isAuthenticated: false,
             user: null,
             token: '',
             emailFromDB: '',
-            getToken: Cookies.get('auth'),
             valEmailSignIn: '',
             valPassSignIn: ''
         }
     }
-
+    
+    // close LogContainer
     closeLogIn = (val) => {
         this.props.closeLogIn(val)
     }

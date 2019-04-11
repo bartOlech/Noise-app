@@ -5,9 +5,7 @@ import forest from '../../img/sounds_ico/forest.png';
 import Content from './CategoryContentStyle';
 
 class Other extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
+    state = {
             isVisible: false,
             clickedBtn: '',
             blurOff: 'blur(0)',
@@ -15,7 +13,6 @@ class Other extends Component {
             clickedIco: '',
             clicked: false,
         }
-    }
 
     resaveViews = () => {
         this.setState({
@@ -47,12 +44,11 @@ class Other extends Component {
         })
     }
 
-
-
-    render() {
+    content = () => {
         const { blurOff, blurOn, clickedBtn, clickedIco } = this.state;
-        return (
-            <Content display={this.props.selectedCtg === 'other' ? 'flex' : 'none'}>
+        if(this.props.selectedCtg === 'other'){
+            return(
+                <Content display={this.props.selectedCtg === 'other' ? 'flex' : 'none'}>
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
                     displayRate={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'none' : 'inline'} 
@@ -119,6 +115,15 @@ class Other extends Component {
                     ico={trees}>
                 </SoundsTemplate>
             </Content>
+            )
+        }
+    }
+
+    render() {
+        return (
+           <div>
+               {this.content()}
+           </div>
         )
     }
 }

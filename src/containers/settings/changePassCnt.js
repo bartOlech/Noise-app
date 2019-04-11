@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import ReturnToMenu from '../../components/returnToMenu';
+import ReturnToMenu from '../ReturnToMenu';
 import '../../cssFonts/fonts.css';
 import LockIco from '../../img/user-ico/lock.png';
 // react notification
@@ -31,6 +31,8 @@ const toastTemplate = (notification, delay) => {
     const Content = styled.div`
         background-color: #2A3350;
         position: absolute;
+        left: 0;
+        top: 0;
         z-index: 5;
         width: 100vw;
         height: 100%;
@@ -175,6 +177,10 @@ class ChangePassword extends Component {
                 this.setState({
                     differentPass: false
                 })
+
+                // log out user
+                this.props.userIsLogOut()
+                
                 const options = {
                     method: 'POST',
                     headers: {
@@ -189,7 +195,6 @@ class ChangePassword extends Component {
                 };
                 fetch('/api/changePassword', options).then(res => res.json()).then(json => {
                     toastTemplate('Hasło zostało zmienione', 0)
-                    this.props.userIsLogOut(false)
                 }).then(() => {
                     toastTemplate('zaloguj się ponownie', 1000)
                 }).catch(err => {console.log(err)})

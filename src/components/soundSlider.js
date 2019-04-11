@@ -39,7 +39,7 @@ const hideSlider = {
 const VolControl = styled.div`
   background-image: url(${props => props.image});
   top: 325px;
-`
+    `
 
 const Content = styled.div`
 `
@@ -50,7 +50,9 @@ const VolSection = styled.div`
 class SoundSlider extends Component {
     state = {
         sliderY: 50,
-        sliderIsVisible: false
+        sliderIsVisible: false,
+        currentSound: '',
+        playSound: false
     }
 
     setVisibilitySlider = () => {
@@ -65,15 +67,24 @@ class SoundSlider extends Component {
         })
     }
 
+    // set the sounds to be played
+    setSound(currentSound, playSound) {
+        this.setState({
+            currentSound,
+            playSound
+        }, () => {
+            console.log(this.state.currentSound)
+        })
+    }
+
     playSound() {
-        const {currentSound, playSound} = this.props;
         const {sliderY} = this.state;
         
         return (
             <div>
                 <Sound
-                    url={currentSound || ''}
-                    playStatus={!playSound ? Sound.status.STOPPED : Sound.status.PLAYING}
+                    url={this.state.currentSound || ''}
+                    playStatus={!this.state.playSound ? Sound.status.STOPPED : Sound.status.PLAYING}
                     loop={true}
                     volume={sliderY.y === undefined?50:this.state.sliderY.y}
                 />

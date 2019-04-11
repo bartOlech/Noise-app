@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import ReturnToMenu from '../../components/returnToMenu';
+import ReturnToMenu from '../ReturnToMenu';
 import '../../cssFonts/fonts.css';
 import HeartIcon from '../../img/user-ico/heart2.png';
 import RemoveIcon from '../../img/user-ico/remove-ico.png';
@@ -15,6 +15,8 @@ const Content = styled.div`
     width: 100vw;
     height: 100%;
     position: absolute;
+    left: 0;
+    top: 0;
     z-index: 4;
     display: ${props => props.displayContent};
     flex-direction: column;
@@ -134,7 +136,7 @@ const LoaderCnt = styled.div`
     display: ${props => props.display};
     justify-content: center;
     margin-top: 65px;
-`
+    `
 const LoaderSection = styled.div`
     display: ${props => props.display};
     justify-content: center;
@@ -148,7 +150,7 @@ class Favourites extends Component {
     }
 
     hideContent = () => {
-        this.props.hideFavourite()
+        this.props.hideContent()
     }
 
     componentDidMount() {
@@ -186,7 +188,7 @@ class Favourites extends Component {
 
     render() {
         return (
-            <Content displayContent={this.props.showFavourites?'flex':'none'}>
+            <Content displayContent={this.props.favouritesSectionIsVisible?'flex':'none'}>
             
                 <Header>
                     <ReturnToMenu hideSettings={this.hideContent}>
@@ -196,7 +198,7 @@ class Favourites extends Component {
                 <MainSection>
                     <HeartSection><HeartIco></HeartIco></HeartSection>
                     <LoaderSection display={this.props.isAuth  ? 'flex' : 'none'}>
-                        <LoaderCnt display={this.props.loadedFavEl  ? 'none' : 'flex'}>
+                        <LoaderCnt display={this.props.loadedFavouritesEl  ? 'none' : 'flex'}>
                             <Loader
                                 type="ThreeDots"
                                 color="#E8ECEF" 
@@ -223,7 +225,7 @@ class Favourites extends Component {
                                 )   
                             })}
                             <EmptyArrayText 
-                                display={this.props.favouriteSounds.length === 0 && this.props.loadedFavEl?'inline':'none'}>
+                                display={this.props.favouriteSounds.length === 0 && this.props.loadedFavouritesEl?'inline':'none'}>
                                 Nie posiadasz ulubionych dzwięków
                             </EmptyArrayText>
                     </SoundsBtnSection>

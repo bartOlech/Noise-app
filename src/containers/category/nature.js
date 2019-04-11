@@ -5,9 +5,7 @@ import forest from '../../img/sounds_ico/forest.png';
 import Content from './CategoryContentStyle';
 
 class Nature extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
+    state = {
             isVisible: false,
             clickedBtn: '',
             blurOff: 'blur(0)',
@@ -15,7 +13,6 @@ class Nature extends Component {
             clickedIco: '',
             clicked: false,
         }
-    }
 
     resaveViews = () => {
         this.setState({
@@ -49,12 +46,11 @@ class Nature extends Component {
 
     }
 
-
-
-    render() {
+    content = () => {
         const { blurOff, blurOn, clickedBtn, clickedIco } = this.state;
-        return (
-            <Content display={this.props.selectedCtg === 'nature' ? 'flex' : 'none'}>
+        if(this.props.selectedCtg === 'nature'){
+            return(
+                <Content display={this.props.selectedCtg === 'nature' ? 'flex' : 'none'}>
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
                     displayRate={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'none' : 'inline'} 
@@ -65,7 +61,7 @@ class Nature extends Component {
                     clickIco={this.clickIco} 
                     ico={trees}>
                 </SoundsTemplate>
-
+    
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
                     displayRate={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'none' : 'inline'} 
@@ -76,7 +72,7 @@ class Nature extends Component {
                     clickIco={this.clickIco} 
                     ico={forest}>
                 </SoundsTemplate>
-
+    
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
                     displayRate={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'none' : 'inline'} 
@@ -87,7 +83,7 @@ class Nature extends Component {
                     clickIco={this.clickIco} 
                     ico={trees}>
                 </SoundsTemplate>
-
+    
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
                     displayRate={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'none' : 'inline'} 
@@ -98,7 +94,7 @@ class Nature extends Component {
                     clickIco={this.clickIco} 
                     ico={trees}>
                 </SoundsTemplate>
-
+    
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
                     displayRate={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'none' : 'inline'} 
@@ -109,7 +105,7 @@ class Nature extends Component {
                     clickIco={this.clickIco} 
                     ico={trees}>
                 </SoundsTemplate>
-
+    
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
                     displayRate={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'none' : 'inline'} 
@@ -121,6 +117,16 @@ class Nature extends Component {
                     ico={trees}>
                 </SoundsTemplate>
             </Content>
+            )
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                {this.content()}
+            </div>
+           
         )
     }
 }
