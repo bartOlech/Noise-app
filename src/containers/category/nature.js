@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import SoundsTemplate from '../../components/sounds/soundsTemplate';
-import trees from '../../img/sounds_ico/trees.png';
-import forest from '../../img/sounds_ico/forest.png';
+import SoundsTemplate from '../../components/soundsTemplate';
+import blizzard from '../../img/sounds_ico/nature/blizzard.png';
+import forest from '../../img/sounds_ico/nature/forest.png';
+import forestAtNight from '../../img/sounds_ico/nature/forest_at_night.png';
+import thunderstorm from '../../img/sounds_ico/nature/thunderstorm.png';
+import waterfall from '../../img/sounds_ico/nature/waterfall.png';
+import waves from '../../img/sounds_ico/nature/waves.png';
 import Content from './CategoryContentStyle';
 
 class Nature extends Component {
@@ -59,7 +63,7 @@ class Nature extends Component {
                     blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} 
                     icoValue='forest' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={blizzard}>
                 </SoundsTemplate>
     
                 <SoundsTemplate 
@@ -81,7 +85,7 @@ class Nature extends Component {
                     blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} 
                     icoValue='forest2' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={forestAtNight}>
                 </SoundsTemplate>
     
                 <SoundsTemplate 
@@ -92,7 +96,7 @@ class Nature extends Component {
                     blur={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? blurOff : blurOn} 
                     icoValue='forest3' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={thunderstorm}>
                 </SoundsTemplate>
     
                 <SoundsTemplate 
@@ -103,7 +107,7 @@ class Nature extends Component {
                     blur={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? blurOff : blurOn} 
                     icoValue='forest4' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={waterfall}>
                 </SoundsTemplate>
     
                 <SoundsTemplate 
@@ -114,7 +118,7 @@ class Nature extends Component {
                     blur={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? blurOff : blurOn} 
                     icoValue='forest5' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={waves}>
                 </SoundsTemplate>
             </Content>
             )

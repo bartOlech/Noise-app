@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import SoundsTemplate from '../../components/sounds/soundsTemplate';
-import trees from '../../img/sounds_ico/trees.png';
-import forest from '../../img/sounds_ico/forest.png';
+import SoundsTemplate from '../../components/soundsTemplate';
+import coins from '../../img/sounds_ico/other/coins.png';
+import penWritting from '../../img/sounds_ico/other/pen_writting.png';
+import popcorn from '../../img/sounds_ico/other/popcorn.png';
+import typing from '../../img/sounds_ico/other/typing.png';
+import cutting from '../../img/sounds_ico/other/cutting.png';
+import walkInSnow from '../../img/sounds_ico/other/walk_in_snow.png';
 import Content from './CategoryContentStyle';
 
 class Other extends Component {
@@ -57,7 +61,7 @@ class Other extends Component {
                     blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} 
                     icoValue='forest' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={coins}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
@@ -68,7 +72,7 @@ class Other extends Component {
                     blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} 
                     icoValue='trees' 
                     clickIco={this.clickIco} 
-                    ico={forest}>
+                    ico={penWritting}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
@@ -79,7 +83,7 @@ class Other extends Component {
                     blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} 
                     icoValue='forest2' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={popcorn}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
@@ -90,7 +94,7 @@ class Other extends Component {
                     blur={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? blurOff : blurOn} 
                     icoValue='forest3' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={typing}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
@@ -101,7 +105,7 @@ class Other extends Component {
                     blur={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? blurOff : blurOn} 
                     icoValue='forest4' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={cutting}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
@@ -112,7 +116,7 @@ class Other extends Component {
                     blur={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? blurOff : blurOn} 
                     icoValue='forest5' 
                     clickIco={this.clickIco} 
-                    ico={trees}>
+                    ico={walkInSnow}>
                 </SoundsTemplate>
             </Content>
             )

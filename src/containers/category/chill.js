@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import SoundsTemplate from '../../components/sounds/soundsTemplate';
-import trees from '../../img/sounds_ico/trees.png';
-import forest from '../../img/sounds_ico/forest.png';
+import SoundsTemplate from '../../components/soundsTemplate';
+import birds from '../../img/sounds_ico/chill/birds.png';
+import purring from '../../img/sounds_ico/chill/purring.png';
+import fire from '../../img/sounds_ico/chill/fire.png';
+import rain from '../../img/sounds_ico/chill/rain.png';
+import river from '../../img/sounds_ico/chill/river.png';
+import tap from '../../img/sounds_ico/chill/tap.png';
 import Content from './CategoryContentStyle';
 
 class Chill extends Component {
@@ -57,7 +61,7 @@ class Chill extends Component {
                         blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} 
                         icoValue='trees' 
                         clickIco={this.clickIco} 
-                        ico={trees}>
+                        ico={birds}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
@@ -68,7 +72,7 @@ class Chill extends Component {
                         blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} 
                         icoValue='forest' 
                         clickIco={this.clickIco} 
-                        ico={forest}>
+                        ico={purring}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
@@ -79,7 +83,7 @@ class Chill extends Component {
                         blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} 
                         icoValue='forest2' 
                         clickIco={this.clickIco} 
-                        ico={trees}>
+                        ico={fire}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
@@ -90,7 +94,7 @@ class Chill extends Component {
                         blur={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? blurOff : blurOn} 
                         icoValue='forest3' 
                         clickIco={this.clickIco} 
-                        ico={trees}>
+                        ico={rain}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
@@ -101,7 +105,7 @@ class Chill extends Component {
                         blur={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? blurOff : blurOn} 
                         icoValue='forest4' 
                         clickIco={this.clickIco} 
-                        ico={trees}>
+                        ico={river}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
@@ -112,7 +116,7 @@ class Chill extends Component {
                         blur={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? blurOff : blurOn} 
                         icoValue='forest5' 
                         clickIco={this.clickIco} 
-                        ico={trees}>
+                        ico={tap}>
                     </SoundsTemplate>
                 </Content>
             )
