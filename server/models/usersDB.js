@@ -14,6 +14,9 @@ const dataSchema = new Schema({
     favourite: {
         type: Array
     },
+    favouritePl: {
+        type: Array
+    },
     data: {
         type: Date,
         default: Date.now

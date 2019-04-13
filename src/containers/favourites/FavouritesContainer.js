@@ -27,6 +27,7 @@ class FavouritesContainer extends Component {
             .then(json => {
                 this.setState({
                     favouriteSounds: json.favouriteSounds,
+                    favouriteSoundsPl: json.favouriteSoundsPl,
                     loadedFavouritesEl: true
                 })
             })       
@@ -51,6 +52,7 @@ class FavouritesContainer extends Component {
     // remove a favourite element
     removeFavEl = (index, el) => {
         // this.props.removeFavEl(index, el)
+        this.state.favouriteSoundsPl.splice(index, 1)
         this.state.favouriteSounds.splice(index, 1)
         this.setState({
         sampleText: 'b',
@@ -72,6 +74,7 @@ class FavouritesContainer extends Component {
             favouritesSectionIsVisible,
             favouriteSounds,
             loadedFavouritesEl,
+            favouriteSoundsPl
          } = this.state;
         return(
             <Content>
@@ -87,6 +90,7 @@ class FavouritesContainer extends Component {
                     isAuth={this.props.isAuth}
                     hideContent={this.hideContent}
                     favouriteSounds={favouriteSounds}
+                    favouriteSoundsPl={favouriteSoundsPl}
                     loadedFavouritesEl={loadedFavouritesEl}
                     removeFavEl={this.removeFavEl}
                 ></Favourites>

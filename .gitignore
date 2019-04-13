@@ -2,6 +2,7 @@
 
 # dependencies
 /server/config
+/server/sounds
 /node_modules
 /.pnp
 .pnp.js

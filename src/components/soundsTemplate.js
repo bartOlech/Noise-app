@@ -127,7 +127,8 @@ const Template = (props) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    soundName: props.tittle
+                    soundName: props.icoValue,
+                    soundNamePl: props.tittle
                 }),
                 mode: 'cors',
             };

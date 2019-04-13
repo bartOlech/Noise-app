@@ -55,66 +55,66 @@ class Other extends Component {
                 <Content display={this.props.selectedCtg === 'other' ? 'flex' : 'none'}>
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'off' : 'on'} 
-                    tittle='forest' 
-                    blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} 
-                    icoValue='forest' 
+                    displayRate={clickedBtn !== 'coins' || clickedIco === 'coins' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'coins' || clickedIco === 'coins' ? 'off' : 'on'} 
+                    tittle='Monety' 
+                    blur={clickedBtn !== 'coins' || clickedIco === 'coins' ? blurOff : blurOn} 
+                    icoValue='coins' 
                     clickIco={this.clickIco} 
                     ico={coins}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'off' : 'on'} 
-                    tittle='trees' 
-                    blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} 
-                    icoValue='trees' 
+                    displayRate={clickedBtn !== 'pen_writing' || clickedIco === 'pen_writing' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'pen_writing' || clickedIco === 'pen_writing' ? 'off' : 'on'} 
+                    tittle='Pisanie książki' 
+                    blur={clickedBtn !== 'pen_writing' || clickedIco === 'pen_writing' ? blurOff : blurOn} 
+                    icoValue='pen_writing' 
                     clickIco={this.clickIco} 
                     ico={penWritting}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'off' : 'on'} 
-                    tittle='forest2' 
-                    blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} 
-                    icoValue='forest2' 
+                    displayRate={clickedBtn !== 'popcorn' || clickedIco === 'popcorn' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'popcorn' || clickedIco === 'popcorn' ? 'off' : 'on'} 
+                    tittle='Popcorn' 
+                    blur={clickedBtn !== 'popcorn' || clickedIco === 'popcorn' ? blurOff : blurOn} 
+                    icoValue='popcorn' 
                     clickIco={this.clickIco} 
                     ico={popcorn}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'off' : 'on'} 
-                    tittle='forest3' 
-                    blur={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? blurOff : blurOn} 
-                    icoValue='forest3' 
+                    displayRate={clickedBtn !== 'typing' || clickedIco === 'typing' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'typing' || clickedIco === 'typing' ? 'off' : 'on'} 
+                    tittle='Pisanie na klawiaturze' 
+                    blur={clickedBtn !== 'typing' || clickedIco === 'typing' ? blurOff : blurOn} 
+                    icoValue='typing' 
                     clickIco={this.clickIco} 
                     ico={typing}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'off' : 'on'} 
-                    tittle='forest4' 
-                    blur={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? blurOff : blurOn} 
-                    icoValue='forest4' 
+                    displayRate={clickedBtn !== 'vegetables_cutting' || clickedIco === 'vegetables_cutting' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'vegetables_cutting' || clickedIco === 'vegetables_cutting' ? 'off' : 'on'} 
+                    tittle='Krojenie warzyw' 
+                    blur={clickedBtn !== 'vegetables_cutting' || clickedIco === 'vegetables_cutting' ? blurOff : blurOn} 
+                    icoValue='vegetables_cutting' 
                     clickIco={this.clickIco} 
                     ico={cutting}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'off' : 'on'} 
-                    tittle='forest5' 
-                    blur={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? blurOff : blurOn} 
-                    icoValue='forest5' 
+                    displayRate={clickedBtn !== 'walk_in_snow' || clickedIco === 'walk_in_snow' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'walk_in_snow' || clickedIco === 'walk_in_snow' ? 'off' : 'on'} 
+                    tittle='Spacer po śniegu' 
+                    blur={clickedBtn !== 'walk_in_snow' || clickedIco === 'walk_in_snow' ? blurOff : blurOn} 
+                    icoValue='walk_in_snow' 
                     clickIco={this.clickIco} 
                     ico={walkInSnow}>
                 </SoundsTemplate>

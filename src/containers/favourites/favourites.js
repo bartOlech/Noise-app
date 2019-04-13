@@ -145,7 +145,6 @@ const LoaderSection = styled.div`
 class Favourites extends Component {
     state = {
         favouriteSounds: this.props.favouriteSounds,
-        sampleText: 'a',
         playSound: false
     }
 
@@ -159,8 +158,6 @@ class Favourites extends Component {
 
     // remove a favourite element
     removeEl = (index, el) => {
-        this.props.removeFavEl(index, el)
-
     // Remove a sound from database
     const options = {
         method: 'POST',
@@ -168,13 +165,15 @@ class Favourites extends Component {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            soundName: el
+            soundName: el,
+            soundNamePl: this.props.favouriteSoundsPl[index]
         }),
         mode: 'cors',
     };
     fetch('/api/removeFromFavourite', options).then(res => res.json()).then(json => {
         
     }).catch(err => console.log(err))
+    this.props.removeFavEl(index, el)
     }
 
     // Play a sound from the favourite component
@@ -216,7 +215,7 @@ class Favourites extends Component {
 
                                         </RemoveSound>
                                         <TextSound>
-                                        {el}  
+                                        {this.props.favouriteSoundsPl[index]}  
                                         </TextSound>
                                         <PlaySound onClick={() => this.playSoundFromFavourite(index, el)}>
 

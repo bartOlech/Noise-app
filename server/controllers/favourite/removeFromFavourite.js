@@ -8,10 +8,11 @@ module.exports.removeFavourite = (req, res, next) => {
     const { social, registerUser } = req.cookies;
 
     // retrieve a sound name from client
-    const soundName = req.body.soundName
+    const { soundName, soundNamePl } = req.body;
 
     // add a sound to the array
     const soundNameInArr = [req.body.soundName]
+    const soundNamePlInArr = [req.body.soundNamePl]
 
     mongoose.connect('mongodb://localhost:27017/noiseApp-users', {
         useNewUrlParser: true
@@ -31,7 +32,12 @@ module.exports.removeFavourite = (req, res, next) => {
         }).then(data => {
             const filterArr = data.favourite.filter(el => el === soundName)
             if (filterArr.length > 0) {
-                UserData.updateOne( document, { $pullAll: {favourite: soundNameInArr } } ).then(console.log('The sound has been removed')).catch(err => {
+                UserData.updateOne( document, { $pullAll: {
+                    favourite: soundNameInArr,
+                    favouritePl: soundNamePlInArr 
+                } } )
+                .then(console.log('The sound has been removed'))
+                .catch(err => {
                     console.log(err)
                 })
                 res.sendStatus(200)
@@ -51,7 +57,12 @@ module.exports.removeFavourite = (req, res, next) => {
         }).then(data => {
             const filterArr = data.favourite.filter(el => el === soundName)
             if (filterArr.length > 0) {
-                UserData.updateOne( document, { $pullAll: {favourite: soundNameInArr } } ).then(console.log('The sound has been removed')).catch(err => {
+                UserData.updateOne( document, { $pullAll: {
+                    favourite: soundNameInArr,
+                    favouritePl: soundNamePlInArr
+                } } )
+                .then(console.log('The sound has been removed'))
+                .catch(err => {
                     console.log(err)
                 })
                 res.sendStatus(200)

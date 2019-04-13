@@ -55,66 +55,66 @@ class Animals extends Component {
                 <Content display={this.props.selectedCtg === 'animals' ? 'flex' : 'none'}>
                 <SoundsTemplate 
                      isAuth={this.props.isAuth} 
-                     displayRate={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'none' : 'inline'} 
-                     playIco={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'off' : 'on'} 
-                     tittle='forest' 
-                     blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} 
-                     icoValue='forest' 
+                     displayRate={clickedBtn !== 'bee' || clickedIco === 'bee' ? 'none' : 'inline'} 
+                     playIco={clickedBtn !== 'bee' || clickedIco === 'bee' ? 'off' : 'on'} 
+                     tittle='Pszczoła' 
+                     blur={clickedBtn !== 'bee' || clickedIco === 'bee' ? blurOff : blurOn} 
+                     icoValue='bee' 
                      clickIco={this.clickIco} 
                      ico={bee}>
                  </SoundsTemplate>
  
                  <SoundsTemplate 
                      isAuth={this.props.isAuth} 
-                     displayRate={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'none' : 'inline'} 
-                     playIco={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'off' : 'on'} 
-                     tittle='trees' 
-                     blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} 
-                     icoValue='trees' 
+                     displayRate={clickedBtn !== 'dog' || clickedIco === 'dog' ? 'none' : 'inline'} 
+                     playIco={clickedBtn !== 'dog' || clickedIco === 'dog' ? 'off' : 'on'} 
+                     tittle='Pies' 
+                     blur={clickedBtn !== 'dog' || clickedIco === 'dog' ? blurOff : blurOn} 
+                     icoValue='dog' 
                      clickIco={this.clickIco} 
                      ico={dog}>
                  </SoundsTemplate>
  
                  <SoundsTemplate 
                      isAuth={this.props.isAuth} 
-                     displayRate={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'none' : 'inline'} 
-                     playIco={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'off' : 'on'} 
-                     tittle='forest2' 
-                     blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} 
-                     icoValue='forest2' 
+                     displayRate={clickedBtn !== 'dolphin' || clickedIco === 'dolphin' ? 'none' : 'inline'} 
+                     playIco={clickedBtn !== 'dolphin' || clickedIco === 'dolphin' ? 'off' : 'on'} 
+                     tittle='Delfin' 
+                     blur={clickedBtn !== 'dolphin' || clickedIco === 'dolphin' ? blurOff : blurOn} 
+                     icoValue='dolphin' 
                      clickIco={this.clickIco} 
                      ico={dolphin}>
                  </SoundsTemplate>
  
                  <SoundsTemplate 
                      isAuth={this.props.isAuth} 
-                     displayRate={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'none' : 'inline'} 
-                     playIco={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'off' : 'on'} 
-                     tittle='forest3' 
-                     blur={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? blurOff : blurOn} 
-                     icoValue='forest3' 
+                     displayRate={clickedBtn !== 'farm_animal' || clickedIco === 'farm_animal' ? 'none' : 'inline'} 
+                     playIco={clickedBtn !== 'farm_animal' || clickedIco === 'farm_animal' ? 'off' : 'on'} 
+                     tittle='Wiejska farma' 
+                     blur={clickedBtn !== 'farm_animal' || clickedIco === 'farm_animal' ? blurOff : blurOn} 
+                     icoValue='farm_animal' 
                      clickIco={this.clickIco} 
                      ico={farmAnimals}>
                  </SoundsTemplate>
  
                  <SoundsTemplate 
                      isAuth={this.props.isAuth} 
-                     displayRate={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'none' : 'inline'} 
-                     playIco={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'off' : 'on'} 
-                     tittle='forest4' 
-                     blur={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? blurOff : blurOn} 
-                     icoValue='forest4' 
+                     displayRate={clickedBtn !== 'sheep' || clickedIco === 'sheep' ? 'none' : 'inline'} 
+                     playIco={clickedBtn !== 'sheep' || clickedIco === 'sheep' ? 'off' : 'on'} 
+                     tittle='Owca' 
+                     blur={clickedBtn !== 'sheep' || clickedIco === 'sheep' ? blurOff : blurOn} 
+                     icoValue='sheep' 
                      clickIco={this.clickIco} 
                      ico={sheep}>
                  </SoundsTemplate>
  
                  <SoundsTemplate 
                      isAuth={this.props.isAuth} 
-                     displayRate={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'none' : 'inline'} 
-                     playIco={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'off' : 'on'} 
-                     tittle='forest5' 
-                     blur={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? blurOff : blurOn} 
-                     icoValue='forest5' 
+                     displayRate={clickedBtn !== 'wolves' || clickedIco === 'wolves' ? 'none' : 'inline'} 
+                     playIco={clickedBtn !== 'wolves' || clickedIco === 'wolves' ? 'off' : 'on'} 
+                     tittle='Wilk' 
+                     blur={clickedBtn !== 'wolves' || clickedIco === 'wolves' ? blurOff : blurOn} 
+                     icoValue='wolves' 
                      clickIco={this.clickIco} 
                      ico={wolf}>
                  </SoundsTemplate>

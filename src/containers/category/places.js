@@ -55,66 +55,66 @@ class Places extends Component {
                 <Content display={this.props.selectedCtg === 'places' ? 'flex' : 'none'}>
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'off' : 'on'} 
-                    tittle='forest' 
-                    blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} 
-                    icoValue='forest' 
+                    displayRate={clickedBtn !== 'amusement_park' || clickedIco === 'amusement_park' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'amusement_park' || clickedIco === 'amusement_park' ? 'off' : 'on'} 
+                    tittle='Wesołe miasteczko' 
+                    blur={clickedBtn !== 'amusement_park' || clickedIco === 'amusement_park' ? blurOff : blurOn} 
+                    icoValue='amusement_park' 
                     clickIco={this.clickIco} 
                     ico={amusementPark}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'off' : 'on'} 
-                    tittle='trees' 
-                    blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} 
-                    icoValue='trees' 
+                    displayRate={clickedBtn !== 'casino' || clickedIco === 'casino' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'casino' || clickedIco === 'casino' ? 'off' : 'on'} 
+                    tittle='Kasyno' 
+                    blur={clickedBtn !== 'casino' || clickedIco === 'casino' ? blurOff : blurOn} 
+                    icoValue='casino' 
                     clickIco={this.clickIco} 
                     ico={casino}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'off' : 'on'} 
-                    tittle='forest2' 
-                    blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} 
-                    icoValue='forest2' 
+                    displayRate={clickedBtn !== 'city' || clickedIco === 'city' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'city' || clickedIco === 'city' ? 'off' : 'on'} 
+                    tittle='Miasto' 
+                    blur={clickedBtn !== 'city' || clickedIco === 'city' ? blurOff : blurOn} 
+                    icoValue='city' 
                     clickIco={this.clickIco} 
                     ico={city}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'off' : 'on'} 
-                    tittle='forest3' 
-                    blur={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? blurOff : blurOn} 
-                    icoValue='forest3' 
+                    displayRate={clickedBtn !== 'market' || clickedIco === 'market' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'market' || clickedIco === 'market' ? 'off' : 'on'} 
+                    tittle='Miejski targ' 
+                    blur={clickedBtn !== 'market' || clickedIco === 'market' ? blurOff : blurOn} 
+                    icoValue='market' 
                     clickIco={this.clickIco} 
                     ico={market}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'off' : 'on'} 
-                    tittle='forest4' 
-                    blur={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? blurOff : blurOn} 
-                    icoValue='forest4' 
+                    displayRate={clickedBtn !== 'pub' || clickedIco === 'pub' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'pub' || clickedIco === 'pub' ? 'off' : 'on'} 
+                    tittle='Pub' 
+                    blur={clickedBtn !== 'pub' || clickedIco === 'pub' ? blurOff : blurOn} 
+                    icoValue='pub' 
                     clickIco={this.clickIco} 
                     ico={pub}>
                 </SoundsTemplate>
 
                 <SoundsTemplate 
                     isAuth={this.props.isAuth} 
-                    displayRate={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'none' : 'inline'} 
-                    playIco={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'off' : 'on'} 
-                    tittle='forest5' 
-                    blur={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? blurOff : blurOn} 
-                    icoValue='forest5' 
+                    displayRate={clickedBtn !== 'stadium' || clickedIco === 'stadium' ? 'none' : 'inline'} 
+                    playIco={clickedBtn !== 'stadium' || clickedIco === 'stadium' ? 'off' : 'on'} 
+                    tittle='Stadion piłkarski' 
+                    blur={clickedBtn !== 'stadium' || clickedIco === 'stadium' ? blurOff : blurOn} 
+                    icoValue='stadium' 
                     clickIco={this.clickIco} 
                     ico={stadium}>
                 </SoundsTemplate>

@@ -55,66 +55,66 @@ class Chill extends Component {
                 <Content display={this.props.selectedCtg === 'chill' ? 'flex' : 'none'}>
                     <SoundsTemplate 
                         isAuth={this.props.isAuth} 
-                        displayRate={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'none' : 'inline'} 
-                        playIco={clickedBtn !== 'trees' || clickedIco === 'trees' ? 'off' : 'on'} 
-                        tittle='trees' 
-                        blur={clickedBtn !== 'trees' || clickedIco === 'trees' ? blurOff : blurOn} 
-                        icoValue='trees' 
+                        displayRate={clickedBtn !== 'birds' || clickedIco === 'birds' ? 'none' : 'inline'} 
+                        playIco={clickedBtn !== 'birds' || clickedIco === 'birds' ? 'off' : 'on'} 
+                        tittle='Ptaki o poranku' 
+                        blur={clickedBtn !== 'birds' || clickedIco === 'birds' ? blurOff : blurOn} 
+                        icoValue='birds' 
                         clickIco={this.clickIco} 
                         ico={birds}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
                         isAuth={this.props.isAuth} 
-                        displayRate={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'none' : 'inline'} 
-                        playIco={clickedBtn !== 'forest' || clickedIco === 'forest' ? 'off' : 'on'} 
-                        tittle='forest' 
-                        blur={clickedBtn !== 'forest' || clickedIco === 'forest' ? blurOff : blurOn} 
-                        icoValue='forest' 
+                        displayRate={clickedBtn !== 'cat_purring' || clickedIco === 'cat_purring' ? 'none' : 'inline'} 
+                        playIco={clickedBtn !== 'cat_purring' || clickedIco === 'cat_purring' ? 'off' : 'on'} 
+                        tittle='Mruczenie kota' 
+                        blur={clickedBtn !== 'cat_purring' || clickedIco === 'cat_purring' ? blurOff : blurOn} 
+                        icoValue='cat_purring' 
                         clickIco={this.clickIco} 
                         ico={purring}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
                         isAuth={this.props.isAuth} 
-                        displayRate={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'none' : 'inline'} 
-                        playIco={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? 'off' : 'on'} 
-                        tittle='forest2' 
-                        blur={clickedBtn !== 'forest2' || clickedIco === 'forest2' ? blurOff : blurOn} 
-                        icoValue='forest2' 
+                        displayRate={clickedBtn !== 'fire' || clickedIco === 'fire' ? 'none' : 'inline'} 
+                        playIco={clickedBtn !== 'fire' || clickedIco === 'fire' ? 'off' : 'on'} 
+                        tittle='Ognisko' 
+                        blur={clickedBtn !== 'fire' || clickedIco === 'fire' ? blurOff : blurOn} 
+                        icoValue='fire' 
                         clickIco={this.clickIco} 
                         ico={fire}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
                         isAuth={this.props.isAuth} 
-                        displayRate={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'none' : 'inline'} 
-                        playIco={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? 'off' : 'on'} 
-                        tittle='forest3' 
-                        blur={clickedBtn !== 'forest3' || clickedIco === 'forest3' ? blurOff : blurOn} 
-                        icoValue='forest3' 
+                        displayRate={clickedBtn !== 'gutter' || clickedIco === 'gutter' ? 'none' : 'inline'} 
+                        playIco={clickedBtn !== 'gutter' || clickedIco === 'gutter' ? 'off' : 'on'} 
+                        tittle='Miejska rynna' 
+                        blur={clickedBtn !== 'gutter' || clickedIco === 'gutter' ? blurOff : blurOn} 
+                        icoValue='gutter' 
                         clickIco={this.clickIco} 
                         ico={rain}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
                         isAuth={this.props.isAuth} 
-                        displayRate={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'none' : 'inline'} 
-                        playIco={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? 'off' : 'on'} 
-                        tittle='forest4' 
-                        blur={clickedBtn !== 'forest4' || clickedIco === 'forest4' ? blurOff : blurOn} 
-                        icoValue='forest4' 
+                        displayRate={clickedBtn !== 'river' || clickedIco === 'river' ? 'none' : 'inline'} 
+                        playIco={clickedBtn !== 'river' || clickedIco === 'river' ? 'off' : 'on'} 
+                        tittle='Rzeka' 
+                        blur={clickedBtn !== 'river' || clickedIco === 'river' ? blurOff : blurOn} 
+                        icoValue='river' 
                         clickIco={this.clickIco} 
                         ico={river}>
                     </SoundsTemplate>
 
                     <SoundsTemplate 
                         isAuth={this.props.isAuth} 
-                        displayRate={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'none' : 'inline'} 
-                        playIco={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? 'off' : 'on'} 
-                        tittle='forest5' 
-                        blur={clickedBtn !== 'forest5' || clickedIco === 'forest5' ? blurOff : blurOn} 
-                        icoValue='forest5' 
+                        displayRate={clickedBtn !== 'water_faucet' || clickedIco === 'water_faucet' ? 'none' : 'inline'} 
+                        playIco={clickedBtn !== 'water_faucet' || clickedIco === 'water_faucet' ? 'off' : 'on'} 
+                        tittle='Woda z kranu' 
+                        blur={clickedBtn !== 'water_faucet' || clickedIco === 'water_faucet' ? blurOff : blurOn} 
+                        icoValue='water_faucet' 
                         clickIco={this.clickIco} 
                         ico={tap}>
                     </SoundsTemplate>

@@ -21,7 +21,8 @@ module.exports.getFavourite = (req, res) => {
             _id: userJWTPayload.id
         }).then(data => {
             res.status(200).json({
-                favouriteSounds: data.favourite
+                favouriteSounds: data.favourite,
+                favouriteSoundsPl: data.favouritePl
             })
         })
     } else {
@@ -29,7 +30,8 @@ module.exports.getFavourite = (req, res) => {
             email: registerUser
         }).then(data => {
             res.status(200).json({
-                favouriteSounds: data.favourite
+                favouriteSounds: data.favourite,
+                favouriteSoundsPl: data.favouritePl
             })
         })
     }

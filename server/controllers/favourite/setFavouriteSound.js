@@ -6,7 +6,7 @@ module.exports.setFavourite = (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
 
     const { social, registerUser } = req.cookies;
-    const soundName = req.body.soundName
+    const { soundName, soundNamePl } = req.body;
 
     mongoose.connect('mongodb://localhost:27017/noiseApp-users', {
         useNewUrlParser: true
@@ -32,7 +32,8 @@ module.exports.setFavourite = (req, res, next) => {
             } else {
                 UserData.updateOne(document, {
                     $push: {
-                        favourite: soundName
+                        favourite: soundName,
+                        favouritePl: soundNamePl
                     }
                 }).then(data => {
                     console.log('The Sound has been added')
@@ -56,7 +57,8 @@ module.exports.setFavourite = (req, res, next) => {
             } else {
                 UserData.findOneAndUpdate(document, {
                     $push: {
-                        favourite: soundName
+                        favourite: soundName,
+                        favouritePl: soundNamePl
                     }
                 }).then(data => {
                     console.log('The Sound has been added')
