@@ -7,7 +7,6 @@ const { OAuth2Client } = require('google-auth-library');
 
 
 module.exports.verify = (req, res, next) => {
-
     const userJWT = req.cookies.auth
     const decodedToken = jwtDecode(userJWT)
 

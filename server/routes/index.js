@@ -63,17 +63,21 @@ router.post('/google',
         if (!req.user) {
             return res.send(401, 'User Not Authenticated');
         }
-
+        // console.log(`user: ${req.user}`)
         req.auth = {
             id: req.user.id
         };
         res.cookie('social', 'google')
         UserData.findOne({_id: req.user.id}).then((user) => {
-           
+        //    console.log(`user id: ${req.user.id}`)
+
             if (user) {
-                const document = { googleTokenId: req.body.tokenId};
-                UserData.findOneAndUpdate(document).then((user) => {
-                    
+                const document = { _id: req.user.id};
+                //  console.log(`userrrrrrrrrrrrr:  ${req.body.tokenId}`)
+                UserData.findOneAndUpdate(document, {
+                    googleTokenId: req.body.tokenId
+                }).then((user) => {
+                    // console.log(`user in database: ${user}`)
                 }).catch((err) => {console.log(err)})   
             }
         })
