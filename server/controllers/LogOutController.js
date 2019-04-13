@@ -14,7 +14,7 @@ module.exports.LogOut = (req, res, next) => {
             //     if (err) {
             //         console.log(err)
             //     }
-                console.log('user has benn removed || no')
+                // console.log('user has benn removed || no')
             // })
         })
         res.clearCookie('auth')

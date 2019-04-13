@@ -46,7 +46,7 @@ module.exports.verifyUser = (req, res, next) => {
                         request.get(`https://graph.facebook.com/me?access_token=${user[0].facebookProvider.token}`, (err, response, body) => {
                             if (JSON.parse(body).error) {
                                 //hide user component, show sign up component || not done
-                                //remove the user from database
+                                //remove the user from database || don't do this!!! Fix it!
                                 UserData.deleteOne({ _id: user[0]._id }, (err) => {
                                     if (err) {
                                         console.log(err)
