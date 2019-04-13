@@ -19,7 +19,6 @@ module.exports.verify = (req, res, next) => {
     } else {
         jwt.verify(userJWT, 'my-secret', function (err, decoded) {
             if (err) {
-                
                 //hide user component, show sign up component
                 const decodedToken = req.cookies.auth
                 UserData.findById(jwtDecode(decodedToken).id).then((user) => {
@@ -52,7 +51,7 @@ module.exports.verify = (req, res, next) => {
                             request.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${user.googleTokenId}`, (err, response, body) => {
                                 if (JSON.parse(body).error) {
                                     UserData.deleteOne({ _id: user._id }, () => {
-                                        console.log('The user has been remved')
+                                        console.log('The user has been removed')
                                     })
                                     res.clearCookie('auth')
                                     res.clearCookie('social')
