@@ -22,6 +22,9 @@ module.exports.LogOut = (req, res, next) => {
         res.clearCookie('social')
         res.status(200).json({ tokenStatus: "the user has been logged out" });
     } else {
+        res.clearCookie('auth')
+        res.clearCookie('registerUser')
+        res.clearCookie('social')
         res.status(200).json({ tokenStatus: "the user has been logged out" });
     }
 
