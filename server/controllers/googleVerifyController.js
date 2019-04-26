@@ -22,12 +22,12 @@ module.exports.verify = (req, res, next) => {
                 const decodedToken = req.cookies.auth
                 UserData.findById(jwtDecode(decodedToken).id).then((user) => {
                     if(user){
-                        UserData.deleteOne({_id: jwtDecode(decodedToken).id}, (err) => {
-                        console.log(`The user has been removed`)
-                        if (err) {
-                            console.log(err)
-                        }
-                    })
+                        // UserData.deleteOne({_id: jwtDecode(decodedToken).id}, (err) => {
+                        // console.log(`The user has been removed`)
+                    //     if (err) {
+                    //         console.log(err)
+                    //     }
+                    // })
                     } 
                 }).catch(err => {console.log(err)})
 

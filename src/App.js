@@ -36,6 +36,7 @@ class App extends Component {
       backgroundColorApp: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
+      sliderSoundActiveColor: '#227970',
 
       // dispatch to sounSLider
       playSound: false,
@@ -92,30 +93,33 @@ class App extends Component {
     if(val === 'nature'){
       this.setState({
         backgroundColorApp: backgroundColors.mainBck.green,
-        selectedHeaderColor: backgroundColors.headerBck.green
+        selectedHeaderColor: backgroundColors.headerBck.green,
+        sliderSoundActiveColor: '#227970'  
       })
     }else if(val === 'chill' || val === 'places'){
       this.setState({
         backgroundColorApp: backgroundColors.mainBck.orange,
-        selectedHeaderColor: backgroundColors.headerBck.orange
+        selectedHeaderColor: backgroundColors.headerBck.orange,
+        sliderSoundActiveColor: '#E46139',
       })
     }
     else if(val === 'other' || val === 'animals'){
       this.setState({
         backgroundColorApp: backgroundColors.mainBck.blue,
-        selectedHeaderColor: backgroundColors.headerBck.blue
+        selectedHeaderColor: backgroundColors.headerBck.blue,
+        sliderSoundActiveColor: '#227970',
       })
     }
     else if(val === 'favourites'){
       this.setState({
         backgroundColorApp: backgroundColors.mainBck.favouritesColor,
-        selectedHeaderColor: backgroundColors.headerBck.blue
+        selectedHeaderColor: backgroundColors.headerBck.blue,
       })
     }
     else if(val === 'settings'){
       this.setState({
         backgroundColorApp: backgroundColors.mainBck.settingsColor,
-        selectedHeaderColor: backgroundColors.headerBck.blue
+        selectedHeaderColor: backgroundColors.headerBck.blue,
       })
     }
   }
@@ -154,7 +158,8 @@ class App extends Component {
       currentSound, 
       isAuthenticated, 
       fullName, 
-      userEmail, } = this.state;
+      userEmail,
+      sliderSoundActiveColor } = this.state;
     return (
       <div>
         
@@ -217,6 +222,7 @@ class App extends Component {
             playSound={playSound} 
             currentSound={currentSound}
             ref={this.childSoundSlider}
+            sliderSoundActiveColor={sliderSoundActiveColor}
             >
           </SoundSlider>
         </UserCnt>

@@ -13,7 +13,6 @@ exports.upsertFbUser = (accessToken, refreshToken, profile, cb) =>{
     }, function(err, user) {
         // no user was found, lets create a new one
         if (!user) {
-
             //Generate Long-Lived Access Token
             request.post(`https://graph.facebook.com/v2.10/oauth/access_token?grant_type=fb_exchange_token&client_id=${config.facebookAuth.clientID}&client_secret=${config.facebookAuth.clientSecret}&fb_exchange_token=${accessToken}`, (err, response, body) => {
 

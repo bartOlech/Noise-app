@@ -16,7 +16,7 @@ const Template = (props) => {
       const toastTemplate = (notification) => {
         toast(notification, {
             className: css({
-                background: '#0D54A5'
+                background: '#045170',
             }),
             bodyClassName: css({
                 textAlign: 'center',

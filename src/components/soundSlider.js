@@ -16,21 +16,6 @@ const userIcoStyle = {
     zIndex: 2,
     top: '162px'
   }
-const sliderStyle = {
-    track: {
-        backgroundColor: '#D9DEE5',
-        position: 'absolute',
-        top: '205px',
-        left: '7px'
-      },
-      active: {
-        backgroundColor: '#227970'
-      },
-      thumb: {
-        width: 14,
-        height: 14
-      }
-}
 const hideSlider = {
     display: 'none'
 }
@@ -111,7 +96,21 @@ class SoundSlider extends Component {
                         axis="y" 
                         y={y}
                         onChange={this.sliderHandle} 
-                        styles={sliderStyle}
+                        styles={{
+                            track: {
+                                backgroundColor: '#D9DEE5',
+                                position: 'absolute',
+                                top: '205px',
+                                left: '7px'
+                              },
+                              active: {
+                                backgroundColor: this.props.sliderSoundActiveColor
+                              },
+                              thumb: {
+                                width: 14,
+                                height: 14
+                              }
+                        }}
                         style={sliderIsVisible ? null : hideSlider}
                         />
                     </Fragment>
