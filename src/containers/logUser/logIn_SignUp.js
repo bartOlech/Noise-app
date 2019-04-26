@@ -390,7 +390,6 @@ class LogInSignUp extends Component {
     }
 
     responseGoogle = (response) => {
-        console.log(response)
         const tokenBlob = new Blob([JSON.stringify({ 
             access_token: response.accessToken, 
             tokenId: response.tokenId, 

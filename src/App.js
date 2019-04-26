@@ -37,6 +37,7 @@ class App extends Component {
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
       sliderSoundActiveColor: '#227970',
+      width: window.innerWidth,
 
       // dispatch to sounSLider
       playSound: false,
@@ -149,7 +150,6 @@ class App extends Component {
   }
 
   render() {
-    
     const{
       backgroundColorApp, 
       selectedHeaderColor, 
@@ -160,6 +160,14 @@ class App extends Component {
       fullName, 
       userEmail,
       sliderSoundActiveColor } = this.state;
+
+      // shorten the text if is desktop width
+    let substringFullName = fullName
+    
+    if(this.state.width <= 500){
+      substringFullName = `${fullName.substring(0,15)}...`
+    }
+
     return (
       <div>
         
@@ -211,7 +219,7 @@ class App extends Component {
             userEmail={userEmail}
             user={this.userIsLogOut}
             userIsLogOut={this.userIsLogOut}
-            fullName={fullName}
+            fullName={substringFullName}
             ref={this.childUserSettings}
             setBackground={this.setBackground}
             resaveView={this.clickHeaderLogo}

@@ -268,16 +268,13 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
     `
 
 class UserSettings extends Component {
-    constructor() {
-        super();
-        this.state = { 
+        state = { 
             SettingsUserVisibility: false,
             newsletterState: false,
             social: Cookies.get('social'),
             getToken: Cookies.get('auth'),
             loaded: false,
         };
-      }
 
     // functions
 
@@ -368,7 +365,7 @@ class UserSettings extends Component {
                 <ReturnToMenuCnt>
                     <SettingIcoTextCnt>
                         <ReturnToMenu hideSettings={this.hideSettings}></ReturnToMenu>
-                        <ReturnToMenuText>{!this.props.isAuth?'Konto':`${this.props.fullName.substring(0,15)}...`}</ReturnToMenuText>
+                        <ReturnToMenuText>{!this.props.isAuth?'Konto':this.props.fullName}</ReturnToMenuText>
                     </SettingIcoTextCnt>     
                     <SettingsIcoCnt></SettingsIcoCnt>
                 </ReturnToMenuCnt>
