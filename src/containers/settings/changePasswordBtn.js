@@ -27,7 +27,7 @@ function ChangePassword (props) {
     return(
         <div>
         <Content>
-            <Text onClick={changePass}>Zmień hasło Nie działa powiadomieni</Text>
+            <Text onClick={changePass}>Zmień hasło</Text>
         </Content>
         </div>
         

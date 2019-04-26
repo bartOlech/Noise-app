@@ -368,7 +368,7 @@ class UserSettings extends Component {
                 <ReturnToMenuCnt>
                     <SettingIcoTextCnt>
                         <ReturnToMenu hideSettings={this.hideSettings}></ReturnToMenu>
-                        <ReturnToMenuText>{!this.props.isAuth?'Konto':this.props.fullName}</ReturnToMenuText>
+                        <ReturnToMenuText>{!this.props.isAuth?'Konto':`${this.props.fullName.substring(0,15)}...`}</ReturnToMenuText>
                     </SettingIcoTextCnt>     
                     <SettingsIcoCnt></SettingsIcoCnt>
                 </ReturnToMenuCnt>
