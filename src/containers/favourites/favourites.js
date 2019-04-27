@@ -158,6 +158,7 @@ class Favourites extends Component {
 
     // remove a favourite element
     removeEl = (index, el) => {
+        console.log(el)
     // Remove a sound from database
     const options = {
         method: 'POST',

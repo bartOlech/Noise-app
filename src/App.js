@@ -56,6 +56,7 @@ class App extends Component {
       backgroundColorApp: '#00A896',
       selectedHeaderColor: backgroundColors.headerBck.blue,
       clickedCategory: null,
+      sliderSoundActiveColor: '#227970',
     })
   }
 
@@ -170,8 +171,6 @@ class App extends Component {
 
     return (
       <div>
-        
-
         <Favicon url='./img/favicon.ico' />
 
         {/* Login section */}
