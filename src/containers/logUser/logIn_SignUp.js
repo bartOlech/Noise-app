@@ -182,6 +182,8 @@ import { config } from '../../config/config';
         height: 42px;
         justify-content: center;
         background-color: #D4EDDA;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
         position: relative;
         box-shadow: 0 1px 1px -1px gray;
     `
@@ -194,7 +196,11 @@ import { config } from '../../config/config';
         @media(max-width: 410px){
             left:40%
         }
-        
+    `
+    const LogInfoTextShutDown = styled.div`
+        color: #155724;
+        text-align: center;
+        padding-top: 1px;
     `
 
 class LogInSignUp extends Component {
@@ -217,13 +223,14 @@ class LogInSignUp extends Component {
             token: '',
             emailFromDB: '',
             valEmailSignIn: '',
-            valPassSignIn: ''
+            valPassSignIn: '',
         }
     }
     
     // close LogContainer
     closeLogIn = (val) => {
         this.props.closeLogIn(val)
+        console.log(val)
     }
     logOrReg = () => {
 
@@ -384,6 +391,9 @@ class LogInSignUp extends Component {
                         emailFromDB:  user.email
                     })
                     this.auth();
+                    setTimeout(() => {
+                        this.props.closeLogIn(false)
+                    }, 5000)
                 }
             });
         }).catch(err => { console.log(err) })
@@ -413,6 +423,9 @@ class LogInSignUp extends Component {
                          emailFromDB:  user.email 
                         })
                     this.auth();
+                    setTimeout(() => {
+                        this.props.closeLogIn(false)
+                    }, 5000)
                 }
             });
         }).catch(err => { console.log(err) })
@@ -459,6 +472,10 @@ class LogInSignUp extends Component {
                         emailFromDB: valEmailSignIn
                          })
                     this.auth();
+                    setTimeout(() => {
+                        this.props.closeLogIn(false)
+                    }, 5000)
+                    
                 } else if (json.email) {
                     this.setState({
                         inputError: true,
@@ -513,7 +530,10 @@ class LogInSignUp extends Component {
                 <GlobalStyle></GlobalStyle>
                 <LogInfo visibility={isAuthenticated ? 'flex' : 'none'}>
                     <LogInfoText>
-                        Zalogowano pomyślnie
+                        Zalogowano pomyślnie. 
+                        <LogInfoTextShutDown>
+                            Zamykanie za 5s.
+                        </LogInfoTextShutDown>
                     </LogInfoText>
                 </LogInfo>
 

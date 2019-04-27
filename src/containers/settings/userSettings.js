@@ -110,7 +110,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
     // Main settings content
     const MainSectionSettingsText = styled.h3`
         font-family: 'Varela Round', sans-serif;
-        color: #E8ECEF;
+        color: grey;
         margin-left: 20px;
         position: absolute;
     `

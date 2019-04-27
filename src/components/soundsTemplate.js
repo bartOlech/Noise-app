@@ -171,7 +171,9 @@ const Template = (props) => {
             <RateIcoSection 
                 opacityIco={props.isAuth?'1':'.6'} 
                 onClick={rateNegatively} 
-                displayRateIco={props.displayRate}>
+                displayRateIco={props.displayRate}
+                title='Usuń z ulubionych'
+                >
             </RateIcoSection>
             <Button 
                 title={props.tittle} 
@@ -182,7 +184,8 @@ const Template = (props) => {
             <RateIcoSection 
                 opacityIco={props.isAuth?'1':'.6'} 
                 onClick={ratePositive} 
-                displayRateIco={props.displayRate}> 
+                displayRateIco={props.displayRate}
+                title='Dodaj do ulubionych'> 
             </RateIcoSection>
             <ToastContainer transition={Bounce}/>
             <Button2 

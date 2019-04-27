@@ -103,7 +103,7 @@ import UserBoxComponent from './UserBoxComponent';
     const MainSectionSettingsText = styled.h3`
         font-family: 'Varela Round', sans-serif;
         font-weight: 600;
-        color: #E8ECEF;
+        color: grey;
         margin-left: 20px;
         position: absolute;
     `
@@ -252,6 +252,14 @@ import UserBoxComponent from './UserBoxComponent';
         position: absolute;
         right: 10px;
     `
+    const InfoLegend = styled.span`
+        color: #C1BFC5;
+        font-family: 'Varela Round', sans-serif;
+        padding-top: 20px;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+    `
 
 class Settings extends Component {
     constructor() {
@@ -326,7 +334,7 @@ class Settings extends Component {
                 <MainSectionSettings>
                     {/* Night mode button */}
                     <NightMode>
-                        <MainSectionSettingsText>Tryb Nocny</MainSectionSettingsText>
+                        <MainSectionSettingsText>Tryb Nocny <sup style={{color: '#fff'}}>*</sup></MainSectionSettingsText>
                         <MainSectionSettingsBtn defaultChecked={nightModeState} onChange={this.handleNightMode} type='checkbox' id="checkbox-1" />
                         <MainStgBtnLabel htmlFor='checkbox-1'>
                             <MainStgBtnSpanOn></MainStgBtnSpanOn>
@@ -337,7 +345,7 @@ class Settings extends Component {
                     <HrLine></HrLine>
                     {/* Timer button */}
                     <Timer>
-                    <MainSectionSettingsText>Timer</MainSectionSettingsText>
+                    <MainSectionSettingsText>Timer <sup style={{color: '#fff'}}>*</sup></MainSectionSettingsText>
                         <MainSectionSettingsBtn defaultChecked={timerState} onChange={this.handleTimer} type='checkbox' id="checkbox-2" />
                             <MainStgBtnLabel htmlFor='checkbox-2'>
                                 <MainStgBtnSpanOn></MainStgBtnSpanOn>
@@ -347,7 +355,7 @@ class Settings extends Component {
                     <HrLine></HrLine>
                     {/* Language button */}
                     <Language rightRadious={languageIsVisible?'0':'15px'}> 
-                    <MainSectionSettingsText>Język:</MainSectionSettingsText>
+                    <MainSectionSettingsText>Język: <sup style={{color: '#fff'}}>*</sup></MainSectionSettingsText>
                     <SelectLngCnt onClick={this.selectLanguage}>
                         <SelectLng>
                             Polski
@@ -369,6 +377,7 @@ class Settings extends Component {
                         </SelectLanguageBox2>
                     </SelectLanguage>
                 </MainSectionSettings>
+                <InfoLegend>* W budowie</InfoLegend>
             </Content>
         )
     }
