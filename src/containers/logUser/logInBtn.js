@@ -41,7 +41,7 @@ class LogInBtn extends Component{
             credentials: 'include',
             cache: 'default'
         };
-        fetch('/api/socialLogOut', options).then(res => res.json()).catch(err => console.log(err))
+        fetch('https://noizze.pl/noizzeserver/socialLogOut', options).then(res => res.json()).catch(err => console.log(err))
     }
 
     render(){

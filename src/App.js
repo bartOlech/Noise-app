@@ -132,7 +132,7 @@ class App extends Component {
 
   // Play a sound from the favourite component
   playSoundFromFavourite = (favouriteSounds, playSound) => {
-    const currentSound = `http://localhost:8080/api/sounds:${favouriteSounds}`;
+    const currentSound = `https://noizze.pl/noizzeserver/sounds:${favouriteSounds}`;
     this.childSoundSlider.current.setSound(currentSound, playSound);
   }
 

@@ -321,7 +321,7 @@ class UserSettings extends Component {
             credentials: 'include',
             cache: 'default'
         };
-        fetch('/api/removeUser', options).then(res => res.json()).then(json => {
+        fetch('https://noizze.pl/noizzeserver/removeUser', options).then(res => res.json()).then(json => {
             this.props.authAfterDeleteUser(json.isAuth)
         }).catch(err => console.log(err))
     }

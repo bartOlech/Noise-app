@@ -193,7 +193,7 @@ class ChangePassword extends Component {
                     'mode': 'cors',
                     'cashe': 'default'
                 };
-                fetch('/api/changePassword', options).then(res => res.json()).then(json => {
+                fetch('https://noizze.pl/noizzeserver/changePassword', options).then(res => res.json()).then(json => {
                     toastTemplate('Hasło zostało zmienione', 0)
                 }).then(() => {
                     toastTemplate('zaloguj się ponownie', 1000)

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Cookies from 'js-cookie';
 import Loader from 'react-loader-spinner';
+import '../cssFonts/fonts.css'
 
     const UserCnt = styled.div`
         display: ${props => props.visibility};
@@ -17,6 +18,7 @@ import Loader from 'react-loader-spinner';
         color: #ECECEC;
         font-weight: 700;
         padding-right: 10px;
+        font-family: 'Amatic SC', sans-serif;
     `
     const LoaderSection = styled.div`
         display: ${props => props.visibility};
@@ -46,7 +48,7 @@ class UserData extends Component {
                     credentials: 'include',
                     cache: 'default'
                 };
-                fetch('/api/googleVerify', options).then(r => {
+                fetch('https://noizze.pl/noizzeserver/googleVerify', options).then(r => {
                     r.json().then(json => {
                         if (json.fullName) {
                             this.setState({
@@ -71,7 +73,7 @@ class UserData extends Component {
                     credentials: 'include',
                     cache: 'default'
                 };
-                fetch('/api/auth', options).then(res => {
+                fetch('https://noizze.pl/noizzeserver/auth', options).then(res => {
                     res.json().then(json => {
                         if (json.fullName) {
                             this.setState({

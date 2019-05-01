@@ -305,7 +305,7 @@ class LogInSignUp extends Component {
         })
         const { correctSignUp, valEmailSignUp, valPassSignUp, valPass2SignUp } = this.state;
         if (correctSignUp) {
-            fetch('/api/signUp', {
+            fetch('https://noizze.pl/noizzeserver/signUp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -380,7 +380,7 @@ class LogInSignUp extends Component {
             mode: 'cors',
             cache: 'default'
         };
-        fetch('/api/facebook', options).then(r => {
+        fetch('https://noizze.pl/noizzeserver/facebook', options).then(r => {
             const token = r.headers.get('x-auth-token');
             r.json().then(user => {
                 if (token) {
@@ -412,7 +412,7 @@ class LogInSignUp extends Component {
             mode: 'cors',
             cache: 'default'
         };
-        fetch('/api/google', options).then(r => {
+        fetch('https://noizze.pl/noizzeserver/google', options).then(r => {
             const token = r.headers.get('x-auth-token');
             r.json().then(user => {
                 if (token) {
@@ -451,7 +451,7 @@ class LogInSignUp extends Component {
 
         const { valEmailSignIn, valPassSignIn } = this.state;
 
-        fetch('/api/login', {
+        fetch('https://noizze.pl/noizzeserver/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

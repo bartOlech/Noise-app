@@ -108,7 +108,7 @@ const TextSound = styled.h3`
 const PlaySound = styled.button`
     width: 28px;
     height: 28px;
-    background: url(${PlayIcon});
+    background: url(${props => props.playIco});
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
@@ -158,7 +158,6 @@ class Favourites extends Component {
 
     // remove a favourite element
     removeEl = (index, el) => {
-        console.log(el)
     // Remove a sound from database
     const options = {
         method: 'POST',
@@ -171,7 +170,7 @@ class Favourites extends Component {
         }),
         mode: 'cors',
     };
-    fetch('/api/removeFromFavourite', options).then(res => res.json()).then(json => {
+    fetch('https://noizze.pl/noizzeserver/removeFromFavourite', options).then(res => res.json()).then(json => {
         
     }).catch(err => console.log(err))
     this.props.removeFavEl(index, el)
@@ -216,10 +215,11 @@ class Favourites extends Component {
 
                                         </RemoveSound>
                                         <TextSound>
-                                        {this.props.favouriteSoundsPl[index]}  
+                                            {this.props.favouriteSoundsPl[index]}  
                                         </TextSound>
-                                        <PlaySound onClick={() => this.playSoundFromFavourite(index, el)}>
-
+                                        <PlaySound 
+                                            playIco={PlayIcon}
+                                            onClick={() => this.playSoundFromFavourite(index, el)}>
                                         </PlaySound>
                                     </SoundBtn>
                                 )   
