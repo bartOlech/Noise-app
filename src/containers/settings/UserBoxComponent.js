@@ -8,12 +8,16 @@ function UserDataSettings(props) {
     const Content = styled.div`
         min-height: 186px;
         margin-top: 45px;
-            @media (min-width: 543px){
-                transform: translate(10vw, 0%);
-            }
-            @media (min-width: 943px){
-                transform: translate(calc(8vw + 10px), 0%);
-            }
+        @media (min-width: 543px){
+            -webkit-transform: translate(10vw, 0%);
+            -ms-transform: translate(10vw, 0%);
+            transform: translate(10vw, 0%);
+        }
+        @media (min-width: 943px){
+            -webkit-transform: translate(calc(8vw + 10px), 0%);
+            -ms-transform: translate(calc(8vw + 10px), 0%);
+            transform: translate(calc(8vw + 10px), 0%);
+        }
     `
     const UserThumbnail = styled.div`
         width: 130px;
@@ -21,17 +25,32 @@ function UserDataSettings(props) {
         background-color: #394166;
         margin-right: 200px;
         border-radius: 15px;
-        transform: translate(33vw, 55%);
+        -webkit-transform: translate(33vw, 55%);
+        -ms-transform: translate(33vw, 55%);
+                transform: translate(33vw, 55%);
         position: absolute;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         cursor: pointer;
         @media (max-width: 430px){
+            -webkit-transform: translate(31vw, 55%);
+            -ms-transform: translate(31vw, 55%);
             transform: translate(31vw, 55%);
         }
         @media (max-width: 350px){
+            -webkit-transform: translate(31vw, 55%);
+            -ms-transform: translate(31vw, 55%);
             transform: translate(31vw, 55%);
         }
     `

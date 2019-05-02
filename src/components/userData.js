@@ -6,6 +6,8 @@ import '../cssFonts/fonts.css'
 
     const UserCnt = styled.div`
         display: ${props => props.visibility};
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         margin-top: 5px;
     `
@@ -18,10 +20,12 @@ import '../cssFonts/fonts.css'
         color: #ECECEC;
         font-weight: 700;
         padding-right: 10px;
-        font-family: 'Amatic SC', sans-serif;
+        font-family: 'Varela Round', sans-serif;
     `
     const LoaderSection = styled.div`
         display: ${props => props.visibility};
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         margin-top: 0;
         margin-right: 60px;
@@ -48,7 +52,7 @@ class UserData extends Component {
                     credentials: 'include',
                     cache: 'default'
                 };
-                fetch('https://noizze.pl/noizzeserver/googleVerify', options).then(r => {
+                fetch('/api/googleVerify', options).then(r => {
                     r.json().then(json => {
                         if (json.fullName) {
                             this.setState({
@@ -73,7 +77,7 @@ class UserData extends Component {
                     credentials: 'include',
                     cache: 'default'
                 };
-                fetch('https://noizze.pl/noizzeserver/auth', options).then(res => {
+                fetch('/api/noizzeserver/auth', options).then(res => {
                     res.json().then(json => {
                         if (json.fullName) {
                             this.setState({

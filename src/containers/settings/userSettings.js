@@ -50,8 +50,14 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
     `
     const ReturnToMenuCnt = styled.div`
         width: 100vw;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
         flex-direction: row;
+        -ms-flex-pack: distribute;
         justify-content: space-around;
         position: relative;
     `
@@ -76,7 +82,11 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
         position: absolute;
         left: 0;
         top: 10px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
         justify-content: flex-start;
     `
 
@@ -85,13 +95,24 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
         width: 70vw;
         max-width: 300px;
         min-height: 186px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         top: 0;
         margin-left: -63px;
+        -webkit-transform: translate(30vw, 55%);
+        -ms-transform: translate(30vw, 55%);
         transform: translate(30vw, 55%);
         @media (min-width: 543px){
+            -webkit-transform: translate(40vw, 55%);
+            -ms-transform: translate(40vw, 55%);
             transform: translate(40vw, 55%);
         }
     `
@@ -103,8 +124,14 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
         margin-bottom: 20px;
         background-color: #394166;
         border-radius: 15px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
         justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
     `
     // Main settings content
@@ -135,6 +162,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
             -webkit-transform: translate(0, -50%);
             transform: translate(0, -50%);
             -webkit-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
             transition: all 0.3s ease;
             left: 1px;
             width: 36px;
@@ -152,12 +180,14 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
             -webkit-transform: translate(0, -50%);
             transform: translate(0, -50%);
             -webkit-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
             transition: all 0.3s ease;
             left: 0;
             width: 20px;
             height: 20px;
             background-color: #FAFAFA;
             border-radius: 50%;
+            -webkit-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.084);
             box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.084);
         }
     `
@@ -192,11 +222,17 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
     `
     // User form section
     const FormUser = styled.form`
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         position: relative;
-    
     `
     const InputForm = styled.input`
         width: 110%;
@@ -205,10 +241,18 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
         border: none;
         border-radius: 7px;
         outline: 0;
+        ::-webkit-input-placeholder{
+            padding-left: 10px;
+        }
+        :-ms-input-placeholder{
+            padding-left: 10px;
+        }
+        ::-ms-input-placeholder{
+            padding-left: 10px;
+        }
         ::placeholder{
             padding-left: 10px;
         }
-        
     `
     const LabelForm = styled.label`
          color: #E8ECEF;
@@ -223,13 +267,24 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
         max-width: 400px;
         height: 200px;
         background-color: #FFFFFF;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         border-radius: 4px;
     `
     const ContentUIBtnBox = styled.div`
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     `
     const ContentUIBtn = styled.button`
@@ -240,6 +295,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
         border: none;
         border-radius: 6px;
         color: #fff;
+        -webkit-transition: .3s;
+        -o-transition: .3s;
         transition: .3s;
         cursor: pointer;
         outline: 0;
@@ -321,7 +378,7 @@ class UserSettings extends Component {
             credentials: 'include',
             cache: 'default'
         };
-        fetch('https://noizze.pl/noizzeserver/removeUser', options).then(res => res.json()).then(json => {
+        fetch('/api/removeUser', options).then(res => res.json()).then(json => {
             this.props.authAfterDeleteUser(json.isAuth)
         }).catch(err => console.log(err))
     }

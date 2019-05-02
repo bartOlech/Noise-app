@@ -19,6 +19,8 @@ import { config } from '../../config/config';
         z-index: 7;
         top: 50%;
         left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         border-radius: 8px;
         top: 330px;
@@ -34,22 +36,38 @@ import { config } from '../../config/config';
     `
     //log in Facebook/Google
     const Buttons = styled.div`
+        display:-webkit-box;
+        display:-ms-flexbox;
         display:flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         margin-top: 20px;
         position: relative;
         @media(max-width: 410px){
-            flex-direction: column;
-            align-items: space-beetween;
-            margin-left: 85px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: space-beetween;
+        -ms-flex-align: space-beetween;
+        align-items: space-beetween;
+        margin-left: 85px;
         }
     `
 
     //form
 
     const FormCnt = styled.form`
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         margin-top: 25px;
     `
@@ -64,6 +82,7 @@ import { config } from '../../config/config';
         background-color: #F7F7F7;
         border-radius: 8px;
         border: none;
+        -webkit-box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2);
         margin-bottom: 15px;
         @media(max-width: 410px){
@@ -120,7 +139,11 @@ import { config } from '../../config/config';
         display: ${props => props.displaySignup};
     `
     const ErrorInfoCnt = styled.div`
+        display: -webkit-box; 
+        display: -ms-flexbox; 
         display: flex; 
+        -webkit-box-pack: center; 
+        -ms-flex-pack: center; 
         justify-content: center;
         display: ${props => props.error};
     `
@@ -137,7 +160,11 @@ import { config } from '../../config/config';
     `
 
     const SuccessInfoCnt = styled.div`
+        display: -webkit-box; 
+        display: -ms-flexbox; 
         display: flex; 
+        -webkit-box-pack: center; 
+        -ms-flex-pack: center; 
         justify-content: center;
         display: ${props => props.success};
     `
@@ -165,7 +192,11 @@ import { config } from '../../config/config';
     `
 
     const EmailExist = styled.div`
+        display: -webkit-box; 
+        display: -ms-flexbox; 
         display: flex; 
+        -webkit-box-pack: center; 
+        -ms-flex-pack: center; 
         justify-content: center;
         display: ${props => props.alert};
     `
@@ -175,16 +206,21 @@ import { config } from '../../config/config';
     `
     const LoaderCnt = styled.div`
         display: ${props => props.loader};
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
     `
     const LogInfo = styled.div`
         display: ${props => props.visibility};
         height: 42px;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         background-color: #D4EDDA;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         position: relative;
+        -webkit-box-shadow: 0 1px 1px -1px gray;
         box-shadow: 0 1px 1px -1px gray;
     `
     const LogInfoText = styled.div`
@@ -192,6 +228,8 @@ import { config } from '../../config/config';
         position: absolute;
         top: 50%;
         left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         @media(max-width: 410px){
             left:40%
@@ -305,7 +343,7 @@ class LogInSignUp extends Component {
         })
         const { correctSignUp, valEmailSignUp, valPassSignUp, valPass2SignUp } = this.state;
         if (correctSignUp) {
-            fetch('https://noizze.pl/noizzeserver/signUp', {
+            fetch('/api/signUp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -380,7 +418,7 @@ class LogInSignUp extends Component {
             mode: 'cors',
             cache: 'default'
         };
-        fetch('https://noizze.pl/noizzeserver/facebook', options).then(r => {
+        fetch('/api/facebook', options).then(r => {
             const token = r.headers.get('x-auth-token');
             r.json().then(user => {
                 if (token) {
@@ -412,7 +450,7 @@ class LogInSignUp extends Component {
             mode: 'cors',
             cache: 'default'
         };
-        fetch('https://noizze.pl/noizzeserver/google', options).then(r => {
+        fetch('/api/google', options).then(r => {
             const token = r.headers.get('x-auth-token');
             r.json().then(user => {
                 if (token) {
@@ -451,7 +489,7 @@ class LogInSignUp extends Component {
 
         const { valEmailSignIn, valPassSignIn } = this.state;
 
-        fetch('https://noizze.pl/noizzeserver/login', {
+        fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

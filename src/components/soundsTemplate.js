@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import playIco from '../img/play.png';
 import playIconNavy from '../img/play2.png';
 import LikeIco from '../img/like.png';
+import '../App.css'
 
 // react notification
 import { ToastContainer, toast } from 'react-toastify';
@@ -48,10 +49,10 @@ const Template = (props) => {
             margin-left: 80px;
             margin-right: 80px;
             margin-bottom: 85px;
-            
         }
     `
     const Button2 = styled.option`
+    
         width: 50px;
         height: 50px;
         position: absolute;
@@ -82,7 +83,9 @@ const Template = (props) => {
         right: 1px;
         filter: ${props => props.blur};
         outline:none;
+        -webkit-box-shadow: 0 2px 3px #ccc;
         box-shadow: 0 2px 3px #ccc;
+        
     `
     // Rate ico
     const RateIcoSection = styled.div`
@@ -98,14 +101,24 @@ const Template = (props) => {
         top: 26px;
         cursor: pointer;
         outline: 0;
+        -webkit-transition: 1s;
+        -o-transition: 1s;
         transition: 1s;
         &:first-child{
             left: -44px;
             top: 42px;
-            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+                -ms-transform: rotate(180deg);
+                    transform: rotate(180deg);
         }
         &:active{
-            animation: clickAnimation .5s;
+            -webkit-animation: clickAnimation .5s;
+                    animation: clickAnimation .5s;
+        }
+        @-webkit-keyframes clickAnimation {
+            0%{width: 33px; height: 33px;}
+            50%{width: 36px; height: 36px;}
+            100%{width: 33px; height: 33px;}
         }
         @keyframes clickAnimation {
             0%{width: 33px; height: 33px;}
@@ -132,7 +145,7 @@ const Template = (props) => {
                 }),
                 mode: 'cors',
             };
-            fetch('https://noizze.pl/noizzeserver/setFavourite', options).then(res => res.json()).then(json => {
+            fetch('/api/setFavourite', options).then(res => res.json()).then(json => {
   
             }).catch(err => {
                 console.log(err)
@@ -156,7 +169,7 @@ const Template = (props) => {
                 }),
                 mode: 'cors',
             };
-            fetch('https://noizze.pl/noizzeserver/removeFromFavourite', options).then(res => res.json()).then(json => {
+            fetch('/api/removeFromFavourite', options).then(res => res.json()).then(json => {
     
             }).catch(err => console.log(err))
             
@@ -192,7 +205,9 @@ const Template = (props) => {
                 playIco={props.playIco === 'on' ? playIconNavy : playIco} 
                 onClick={clickIco} 
                 value={props.icoValue} 
-                title={props.tittle}>
+                title={props.tittle}
+                className='btn1-soundsTemplate '
+                >
             </Button2>
         </Content>
     )

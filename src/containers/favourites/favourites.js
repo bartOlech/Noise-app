@@ -19,10 +19,17 @@ const Content = styled.div`
     top: 0;
     z-index: 4;
     display: ${props => props.displayContent};
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     `
 const Header = styled.div`
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     position: absolute;
     left: 0;
@@ -35,8 +42,15 @@ const FavouriteMainText = styled.h2`
 
     `
 const MainSection = styled.div`
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     `
     // Heart ico in circle section
@@ -61,17 +75,26 @@ const HeartIco = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+    -webkit-transform: translate(36%, 37%);
+    -ms-transform: translate(36%, 37%);
     transform: translate(36%, 37%);
     @media (min-width: 500px){
         width: 60px;
         height: 60px;
+        -webkit-transform: translate(33%, 34%);
+        -ms-transform: translate(33%, 34%);
         transform: translate(33%, 34%);
     }
     `
     //Sounds section
 const SoundsBtnSection = styled.div`
     display: ${props => props.displayFavourite};
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     margin-top: 30px;
     `
@@ -82,8 +105,14 @@ const SoundBtn = styled.div`
     background: #2A0E22;
     border: 2px solid #E8ECEF;
     border-radius: 6px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     margin-bottom: 20px;
     `
@@ -134,11 +163,15 @@ const EmptyArrayText = styled.h2`
     // loader
 const LoaderCnt = styled.div`
     display: ${props => props.display};
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     margin-top: 65px;
     `
 const LoaderSection = styled.div`
     display: ${props => props.display};
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     `
 
@@ -170,7 +203,7 @@ class Favourites extends Component {
         }),
         mode: 'cors',
     };
-    fetch('https://noizze.pl/noizzeserver/removeFromFavourite', options).then(res => res.json()).then(json => {
+    fetch('/api/removeFromFavourite', options).then(res => res.json()).then(json => {
         
     }).catch(err => console.log(err))
     this.props.removeFavEl(index, el)

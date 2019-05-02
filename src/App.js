@@ -19,8 +19,15 @@ const GlobalStyle = createGlobalStyle`
   }
 `
   const UserCnt = styled.div`
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
     align-items: flex-end;
   
   `
@@ -132,7 +139,7 @@ class App extends Component {
 
   // Play a sound from the favourite component
   playSoundFromFavourite = (favouriteSounds, playSound) => {
-    const currentSound = `https://noizze.pl/noizzeserver/sounds:${favouriteSounds}`;
+    const currentSound = `/api/sounds:${favouriteSounds}`;
     this.childSoundSlider.current.setSound(currentSound, playSound);
   }
 

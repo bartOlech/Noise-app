@@ -13,7 +13,12 @@ const Container = styled.div`
 
 const Content = styled.div`
     display: ${props => props.displayValue};
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center; 
     `;
 
@@ -47,7 +52,7 @@ class MainContent extends Component {
         this.setState({
             buttonValue: val
         }, () => {
-            this.props.setSoundValue(this.state.playSound, `https://noizze.pl/noizzeserver/sounds:${val}`)
+            this.props.setSoundValue(this.state.playSound, `/api/sounds:${val}`)
         })
         if (val === clickedBtn && !clicked) {
             this.setState({

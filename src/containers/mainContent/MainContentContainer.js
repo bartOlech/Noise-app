@@ -8,12 +8,21 @@ const fadeInLeftAnimation = keyframes`${fadeIn}`;
 
 
 const Content = styled.div`
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center; 
     animation: 700ms forwards ${fadeInLeftAnimation};
     `
 const CategoryContent = styled.div`
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: ${props => props.display};
     `
 const HeaderText = styled.h2`

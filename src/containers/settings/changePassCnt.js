@@ -40,8 +40,14 @@ const toastTemplate = (notification, delay) => {
     `
     const ReturnToMenuCnt = styled.div`
         width: 100vw;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
         flex-direction: row;
+        -ms-flex-pack: distribute;
         justify-content: space-around;
         position: relative;
     `
@@ -66,13 +72,24 @@ const toastTemplate = (notification, delay) => {
         position: absolute;
         left: 0;
         top: 10px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
         justify-content: flex-start;
     `
     // User form section
     const FormUser = styled.form`
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         position: relative;
         margin-top: 150px;
@@ -85,6 +102,15 @@ const toastTemplate = (notification, delay) => {
         border: none;
         border-radius: 7px;
         outline: 0;
+        ::-webkit-input-placeholder{
+            padding-left: 10px;
+        }
+        :-ms-input-placeholder{
+            padding-left: 10px;
+        }
+        ::-ms-input-placeholder{
+            padding-left: 10px;
+        }
         ::placeholder{
             padding-left: 10px;
         }
@@ -107,6 +133,8 @@ const toastTemplate = (notification, delay) => {
         border: none;
         border-radius: 7px;
         cursor: pointer;
+        -webkit-transition: .4s;
+        -o-transition: .4s;
         transition: .4s;
         outline: 0;
         &:hover{
@@ -131,7 +159,11 @@ const toastTemplate = (notification, delay) => {
         background-color: #E34E46;
         border-radius: 7px;
         display: ${props => props.displayAlert}; 
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
     `
     const AlertText = styled.h4`
@@ -193,7 +225,7 @@ class ChangePassword extends Component {
                     'mode': 'cors',
                     'cashe': 'default'
                 };
-                fetch('https://noizze.pl/noizzeserver/changePassword', options).then(res => res.json()).then(json => {
+                fetch('/api/changePassword', options).then(res => res.json()).then(json => {
                     toastTemplate('Hasło zostało zmienione', 0)
                 }).then(() => {
                     toastTemplate('zaloguj się ponownie', 1000)

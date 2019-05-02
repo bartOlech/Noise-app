@@ -7,14 +7,23 @@ import Menu from './Menu';
 import '../../cssFonts/fonts.css'
 
 const Content = styled.div`
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
     width: 100vw;
     height: 95px;
     background: ${props => props.background};
+    -webkit-box-shadow: 2px 2px 15px rgba(0,0,0,.2);
     box-shadow: 2px 2px 15px rgba(0,0,0,.2);
     @media (min-width:600px){
+        display:-webkit-box;
+        display:-ms-flexbox;
         display:flex;
+        -webkit-box-orient:horizontal;
+        -webkit-box-direction:normal;
+        -ms-flex-direction:row;
         flex-direction:row;
     } 
     `

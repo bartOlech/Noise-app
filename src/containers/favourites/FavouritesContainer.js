@@ -22,7 +22,7 @@ class FavouritesContainer extends Component {
             loadedFavouritesEl: false,
             favouritesSectionIsVisible: true
         })
-        fetch('https://noizze.pl/noizzeserver/getFavouritesSounds')
+        fetch('/api/getFavouritesSounds')
             .then(res => res.json())
             .then(json => {
                 this.setState({

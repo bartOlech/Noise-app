@@ -5,11 +5,15 @@ import '../../cssFonts/fonts.css';
 function RemoveAccount (props) {
 
     const Content = styled.div`
-    width: 100%;
-    margin-top: 120px;
-    margin-left: -30px;
-    display: flex;
-    justify-content: flex-end;
+        width: 100%;
+        margin-top: 120px;
+        margin-left: -30px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
         @media(min-height: 580px){
             margin-top: 130px;
         }
