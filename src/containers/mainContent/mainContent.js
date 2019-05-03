@@ -52,7 +52,7 @@ class MainContent extends Component {
         this.setState({
             buttonValue: val
         }, () => {
-            this.props.setSoundValue(this.state.playSound, `/api/sounds:${val}`)
+            this.props.setSoundValue(this.state.playSound, `https://noizze.pl/noizzeserver/sounds:${val}`)
         })
         if (val === clickedBtn && !clicked) {
             this.setState({

@@ -1,3 +1,4 @@
+require('dotenv').config({path: '.env'});
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -11,7 +12,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 require('./config/passport')(passport);
 
-mongoose.connect('mongodb://localhost:27017/noiseApp-users', { useNewUrlParser: true }).then(() => {console.log('MongoDB Connected')})
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }).then(() => {console.log('MongoDB Connected')})
 .catch(err => {console.log(err)})
 mongoose.Promise = global.Promise;
 

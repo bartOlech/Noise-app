@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports.getFavourite = (req, res) => {
     const { social, registerUser } = req.cookies;
 
-    mongoose.connect('mongodb://localhost:27017/noiseApp-users', {
+    mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true
     })
 

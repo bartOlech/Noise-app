@@ -203,7 +203,7 @@ class Favourites extends Component {
         }),
         mode: 'cors',
     };
-    fetch('/api/removeFromFavourite', options).then(res => res.json()).then(json => {
+    fetch('https://noizze.pl/noizzeserver/removeFromFavourite', options).then(res => res.json()).then(json => {
         
     }).catch(err => console.log(err))
     this.props.removeFavEl(index, el)

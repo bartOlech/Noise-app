@@ -88,7 +88,11 @@ router.post('/signUp',
 router.get('/signUp', signUpController.signUp)
 
 // Login
-
 router.post("/login", signInController.signIn) 
+
+// homepage
+router.get('/', (req, res) => {
+    res.send('Hello...')
+})
 
 module.exports = router;

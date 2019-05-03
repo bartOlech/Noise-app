@@ -52,7 +52,7 @@ class UserData extends Component {
                     credentials: 'include',
                     cache: 'default'
                 };
-                fetch('/api/googleVerify', options).then(r => {
+                fetch('https://noizze.pl/noizzeserver/googleVerify', options).then(r => {
                     r.json().then(json => {
                         if (json.fullName) {
                             this.setState({
@@ -77,7 +77,7 @@ class UserData extends Component {
                     credentials: 'include',
                     cache: 'default'
                 };
-                fetch('/api/noizzeserver/auth', options).then(res => {
+                fetch('https://noizze.pl/noizzeserver/auth', options).then(res => {
                     res.json().then(json => {
                         if (json.fullName) {
                             this.setState({

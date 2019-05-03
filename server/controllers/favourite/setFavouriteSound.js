@@ -8,7 +8,7 @@ module.exports.setFavourite = (req, res, next) => {
     const { social, registerUser } = req.cookies;
     const { soundName, soundNamePl } = req.body;
 
-    mongoose.connect('mongodb://localhost:27017/noiseApp-users', {
+    mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true
     })
 

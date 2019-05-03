@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import MainContent from './mainContent';
 import Category from './category'
 import { fadeIn } from 'react-animations';
+import HideSoundsContent from './HideSoundsContent';
 
 const fadeInLeftAnimation = keyframes`${fadeIn}`;
 
@@ -82,11 +83,19 @@ class MainContentContainer extends Component {
         
         this.childMainContnt.current.resaveView()
     }
+    
+    hideSoundsContent = () => {
+        this.props.hideSoundsContent();
+    }
 
     render() {
         const { mainCntIsVisible, categoryIsVisible, selectedCtg } = this.state;
         return (
             <Content>
+                <HideSoundsContent 
+                    hideSoundsContent={this.hideSoundsContent}
+                    display={mainCntIsVisible?'inline':'none'}
+                ></HideSoundsContent>
                 <HeaderText display={categoryIsVisible?'none':'inline'}>
                     {this.state.categoryName}
                     <HrLine></HrLine>

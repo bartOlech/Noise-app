@@ -5,7 +5,7 @@ const config = require('../config/config')
 
 exports.upsertFbUser = (accessToken, refreshToken, profile, cb) =>{
     console.log(refreshToken)
-    mongoose.connect('mongodb://localhost:27017/noiseApp-users', {useNewUrlParser:true});
+    mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser:true});
     mongoose.Promise = global.Promise;
 
     UserData.findOne({

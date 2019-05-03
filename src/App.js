@@ -139,7 +139,7 @@ class App extends Component {
 
   // Play a sound from the favourite component
   playSoundFromFavourite = (favouriteSounds, playSound) => {
-    const currentSound = `/api/sounds:${favouriteSounds}`;
+    const currentSound = `https://noizze.pl/noizzeserver/sounds:${favouriteSounds}`;
     this.childSoundSlider.current.setSound(currentSound, playSound);
   }
 
@@ -245,6 +245,7 @@ class App extends Component {
           setSoundValue={this.setSoundValue}
           ref={this.childMainContent}
           setBackground={this.setBackground}
+          hideSoundsContent={this.clickHeaderLogo}
         ></MainContentContainer>
         <GlobalStyle bcg={backgroundColorApp}></GlobalStyle>
       </div>

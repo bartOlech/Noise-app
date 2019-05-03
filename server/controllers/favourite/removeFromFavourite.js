@@ -14,7 +14,7 @@ module.exports.removeFavourite = (req, res, next) => {
     const soundNameInArr = [req.body.soundName]
     const soundNamePlInArr = [req.body.soundNamePl]
 
-    mongoose.connect('mongodb://localhost:27017/noiseApp-users', {
+    mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true
     })
 
