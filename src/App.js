@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './containers/header/Header';
-import Favicon from 'react-favicon';
 // import MainContent from './containers/mainContent/mainContent';
 import UserData from './components/userData';
 import * as backgroundColors from './components/backgroundColors';
@@ -178,8 +177,6 @@ class App extends Component {
 
     return (
       <div>
-        <Favicon url='./img/favicon.ico' />
-
         {/* Login section */}
         <LogContainer
           ref={this.childLogUser}

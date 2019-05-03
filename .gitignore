@@ -5,6 +5,7 @@
 /server/sounds
 /server/node_modules
 /server/.env
+/server/env
 /node_modules
 /.pnp
 .pnp.js

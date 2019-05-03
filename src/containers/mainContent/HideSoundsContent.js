@@ -6,11 +6,12 @@ import '../../cssFonts/fonts.css'
 const HideSoundsContent = (props) => {
 
     const Content = styled.div`
-        display: ${props => props.display}
+        display: ${props => props.display};
         width: 200px;
         height: 200px;
         position: absolute;
         left: 2px;
+        top: 100px; 
     `
     const Button = styled.button`
         width: 40px;
@@ -30,6 +31,9 @@ const HideSoundsContent = (props) => {
         left: 36px;
         top: 16px;
         cursor: pointer;
+        @media (max-width: 470px) {
+            display: none;
+        }
     `
 
     const hideSoundsContent = () => {
