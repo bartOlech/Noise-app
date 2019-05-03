@@ -4,6 +4,7 @@
 /server/config
 /server/sounds
 /server/node_modules
+/server/.env
 /node_modules
 /.pnp
 .pnp.js
