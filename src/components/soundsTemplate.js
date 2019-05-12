@@ -52,7 +52,6 @@ const Template = (props) => {
         }
     `
     const Button2 = styled.option`
-    
         width: 50px;
         height: 50px;
         position: absolute;
@@ -66,7 +65,6 @@ const Template = (props) => {
         cursor: pointer;
         opacity: .8;
         outline:none;
-       
     `
     const Button = styled.button`
         width: 100px;
@@ -202,7 +200,7 @@ const Template = (props) => {
             </RateIcoSection>
             <ToastContainer transition={Bounce}/>
             <Button2 
-                playIco={props.playIco === 'on' ? playIconNavy : playIco} 
+                playIco={props.playIco === 'on' ? null : playIco} 
                 onClick={clickIco} 
                 value={props.icoValue} 
                 title={props.tittle}

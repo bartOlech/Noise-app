@@ -21,6 +21,9 @@ const LogoBtn = styled.img`
      @media (max-width: 700px){
         margin-left: 0;
     }
+    @media (max-width: 600px){
+        margin-left: -55px;
+    }
     `
 
 const Logo = (props) => {
