@@ -4,8 +4,8 @@ import ReturnToMenu from '../ReturnToMenu';
 import '../../cssFonts/fonts.css';
 import UserIco from '../../img/user-ico/avatar.png';
 import UserBoxComponent from './UserBoxComponent';
-import RemoveAccount from './removeAccount';
-import ChangePassword from './changePasswordBtn';
+import RemoveAccount from './RemoveAccount';
+import ChangePassword from './ChangePasswordBtn';
 import Cookies from 'js-cookie';
 import AlertCircleIco from '../../img/user-ico/alert-circle.png'
 

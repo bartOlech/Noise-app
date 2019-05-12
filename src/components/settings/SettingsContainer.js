@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import SettingsBtn from './SettingsBtn';
 import Settings from './Settings';
-import UserSettings from './userSettings';
-import ChangePassword from './changePassCnt';
+import UserSettings from './UserSettings';
+import ChangePassword from './ChangePassCnt';
 
 
 const Content = styled.div`

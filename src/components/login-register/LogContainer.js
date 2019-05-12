@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from 'react';
 import styled from 'styled-components';
 // LogIn / SignUp component
-const LogInSignUp = lazy(() => import('./logIn_SignUp'))
+const LogInSignUp = lazy(() => import('./LogIn_SignUp'))
 
 const Content = styled.div`
     `

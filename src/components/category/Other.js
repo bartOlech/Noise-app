@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SoundsTemplate from '../../components/soundsTemplate';
+import SoundsTemplate from '../SoundsTemplate';
 import coins from '../../img/sounds_ico/other/coins.png';
 import penWritting from '../../img/sounds_ico/other/pen_writting.png';
 import popcorn from '../../img/sounds_ico/other/popcorn.png';

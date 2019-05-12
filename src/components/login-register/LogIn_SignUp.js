@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import CloseLogIn from './closeLogIn';
+import CloseLogIn from './CloseLogIn';
 import Loader from 'react-loader-spinner';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';

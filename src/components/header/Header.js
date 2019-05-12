@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../App.css';
-import LogInBtn from '../logUser/logInBtn';
+import LogInBtn from '../login-register/LogInBtn';
 import Logo from './Logo';
 import Menu from './Menu';
 import '../../cssFonts/fonts.css'

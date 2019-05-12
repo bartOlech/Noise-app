@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import FavouritesBtn from './FavouritesBtn';
-import Favourites from './favourites';
+import Favourites from './Favourites';
 
 const Content = styled.div`
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
-import MainContent from './mainContent';
-import Category from './category'
+import MainContent from './MainContent';
+import Category from './Category'
 import { fadeIn } from 'react-animations';
 import HideSoundsContent from './HideSoundsContent';
 

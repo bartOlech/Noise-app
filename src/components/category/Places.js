@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SoundsTemplate from '../../components/soundsTemplate';
+import SoundsTemplate from '../SoundsTemplate';
 import amusementPark from '../../img/sounds_ico/places/amusement_park.png';
 import casino from '../../img/sounds_ico/places/casino.png';
 import city from '../../img/sounds_ico/places/city.png';

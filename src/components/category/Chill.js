@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SoundsTemplate from '../../components/soundsTemplate';
+import SoundsTemplate from '../SoundsTemplate';
 import birds from '../../img/sounds_ico/chill/birds.png';
 import purring from '../../img/sounds_ico/chill/purring.png';
 import fire from '../../img/sounds_ico/chill/fire.png';

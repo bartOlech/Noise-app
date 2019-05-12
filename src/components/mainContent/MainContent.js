@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Nature from '../category/nature';
-import Chill from '../category/chill';
-import Animals from '../category/animals';
-import Places from '../category/places';
-import Other from '../category/other';
+import Nature from '../category/Nature';
+import Chill from '../category/Chill';
+import Animals from '../category/Animals';
+import Places from '../category/Places';
+import Other from '../category/Other';
 // import '../../cssFonts/fonts.css';
 
 const Container = styled.div`

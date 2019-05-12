@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import Header from './containers/header/Header';
-// import MainContent from './containers/mainContent/mainContent';
-import UserData from './components/userData';
-import * as backgroundColors from './components/backgroundColors';
-import SoundSlider from './components/soundSlider';
-import SettingsSection from './containers/settings/SettingsContainer';
-import FavouritesSection from './containers/favourites/FavouritesContainer';
-import LogContainer from './containers/logUser/LogContainer';
-import MainContentContainer from './containers/mainContent/MainContentContainer'
+import Header from './components/header/Header';
+import UserData from './components/UserData';
+import * as backgroundColors from './components/BackgroundColors';
+import SoundSlider from './components/SoundSlider';
+import SettingsSection from './components/settings/SettingsContainer';
+import FavouritesSection from './components/favourites/FavouritesContainer';
+import LogContainer from './components/login-register/LogContainer';
+import MainContentContainer from './components/mainContent/MainContentContainer'
 
 const GlobalStyle = createGlobalStyle`
   body {
+    /* background: ${props => props.bcg};
+    height: 100%;
+    position: relative; */
     background: ${props => props.bcg};
     height: 100%;
+    width: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     position: relative;
   }
 `
