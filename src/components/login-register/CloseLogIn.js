@@ -20,8 +20,22 @@ class CloseLogIn extends Component{
             closeBtnIsClicked: false
         }
 
-    closeLogIn = ()=>{
+    closeLogIn = () => {
         this.props.closeLogIn(this.state.closeBtnIsClicked);
+    }
+
+    // hide login page if the esc key has been clicked
+    escFunction = (event) => {
+        if(event.keyCode === 27) {
+            this.props.closeLogIn(false);
+        }
+      }
+
+    componentDidMount(){
+        document.addEventListener("keydown", this.escFunction, false);
+      }
+    componentWillUnmount(){
+        document.removeEventListener("keydown", this.escFunction, false);
     }
 
     render(){

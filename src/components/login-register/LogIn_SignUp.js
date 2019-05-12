@@ -268,7 +268,6 @@ class LogInSignUp extends Component {
     // close LogContainer
     closeLogIn = (val) => {
         this.props.closeLogIn(val)
-        console.log(val)
     }
     logOrReg = () => {
 

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const LogInSignUp = lazy(() => import('./LogIn_SignUp'))
 
 const Content = styled.div`
+    opacity: 1;
     `
 
 class LogContainers extends Component {
@@ -21,6 +22,7 @@ class LogContainers extends Component {
         this.setState({
             clickLogIn: val
         })
+        this.props.closeLogIn()
     }
 
     // set the authorization

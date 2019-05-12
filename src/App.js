@@ -23,6 +23,9 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
   }
 `
+  const Container = styled.div`
+    opacity: ${props => props.opacity};
+  `
   const UserCnt = styled.div`
     display: -webkit-box;
     display: -ms-flexbox;
@@ -83,6 +86,14 @@ class App extends Component {
 
   isClickedLogIn = (val) => {
     this.childLogUser.current.setClickLogInBtn(val);
+    this.setState({
+      clickLogIn: val
+    })
+  }
+  closeLogIn = () => {
+    this.setState({
+      clickLogIn: false
+    })
   }
 
   setAuthValue = (isAuth, fullName, email) => {
@@ -172,7 +183,8 @@ class App extends Component {
       isAuthenticated, 
       fullName, 
       userEmail,
-      sliderSoundActiveColor } = this.state;
+      sliderSoundActiveColor,
+      clickLogIn } = this.state;
 
       // shorten the text if is desktop width
     let substringFullName = fullName
@@ -187,71 +199,74 @@ class App extends Component {
         <LogContainer
           ref={this.childLogUser}
           isAuth={this.isAuth}
-         ></LogContainer>
-
-        {/* header section */}
-        <Header 
-          clickedCategory={clickedCategory} 
-          selectedHeaderColor={selectedHeaderColor} 
-          userIsLogOut={this.userIsLogOut} 
-          isAuth={isAuthenticated} 
-          isClickedLogIn={this.isClickedLogIn} 
-          clickHeaderLogo={this.clickHeaderLogo}
-          menuUserBtn={this.menuUserBtn}
-          favouritesSection={this.favouritesSection}
-          menuSettingsBtn={this.settingsHandle} 
-          setBackground={this.setBackground}
-          >
-        </Header>
-
-        {/* user data */}
-        <UserCnt>
-          <UserData 
-            fullName={fullName} 
+          closeLogIn={this.closeLogIn}
+        ></LogContainer>
+        <Container opacity={clickLogIn ? .3 : 1}>
+          {/* header section */}
+          <Header 
+            clickedCategory={clickedCategory} 
+            selectedHeaderColor={selectedHeaderColor} 
+            userIsLogOut={this.userIsLogOut} 
             isAuth={isAuthenticated} 
-            userLogOut={this.userLogOut} 
-            setAuthValue={this.setAuthValue} 
-            ref={this.childUserData}>
-          </UserData>
-          {/* Favourites */}
-          <FavouritesSection 
-            playSoundFromFavourite={this.playSoundFromFavourite}
-            isAuth={isAuthenticated}
-            ref={this.childFavourites}
+            isClickedLogIn={this.isClickedLogIn} 
+            clickHeaderLogo={this.clickHeaderLogo}
+            menuUserBtn={this.menuUserBtn}
+            favouritesSection={this.favouritesSection}
+            menuSettingsBtn={this.settingsHandle} 
             setBackground={this.setBackground}
-            resaveView={this.clickHeaderLogo}
-          >
-          </FavouritesSection>
-          {/* Settings */}
-          <SettingsSection 
-            isAuth={isAuthenticated}
-            userEmail={userEmail}
-            user={this.userIsLogOut}
-            userIsLogOut={this.userIsLogOut}
-            fullName={substringFullName}
-            ref={this.childUserSettings}
-            setBackground={this.setBackground}
-            resaveView={this.clickHeaderLogo}
-             >
-          </SettingsSection>
-          {/* Play sound */}
-          <SoundSlider 
-            playSound={playSound} 
-            currentSound={currentSound}
-            ref={this.childSoundSlider}
-            sliderSoundActiveColor={sliderSoundActiveColor}
             >
-          </SoundSlider>
-        </UserCnt>
-        <MainContentContainer
-          isAuth={isAuthenticated} 
-          setSoundValue={this.setSoundValue}
-          ref={this.childMainContent}
-          setBackground={this.setBackground}
-          hideSoundsContent={this.clickHeaderLogo}
-        ></MainContentContainer>
-        <GlobalStyle bcg={backgroundColorApp}></GlobalStyle>
+          </Header>
+
+          {/* user data */}
+          <UserCnt>
+            <UserData 
+              fullName={fullName} 
+              isAuth={isAuthenticated} 
+              userLogOut={this.userLogOut} 
+              setAuthValue={this.setAuthValue} 
+              ref={this.childUserData}>
+            </UserData>
+            {/* Favourites */}
+            <FavouritesSection 
+              playSoundFromFavourite={this.playSoundFromFavourite}
+              isAuth={isAuthenticated}
+              ref={this.childFavourites}
+              setBackground={this.setBackground}
+              resaveView={this.clickHeaderLogo}
+            >
+            </FavouritesSection>
+            {/* Settings */}
+            <SettingsSection 
+              isAuth={isAuthenticated}
+              userEmail={userEmail}
+              user={this.userIsLogOut}
+              userIsLogOut={this.userIsLogOut}
+              fullName={substringFullName}
+              ref={this.childUserSettings}
+              setBackground={this.setBackground}
+              resaveView={this.clickHeaderLogo}
+              >
+            </SettingsSection>
+            {/* Play sound */}
+            <SoundSlider 
+              playSound={playSound} 
+              currentSound={currentSound}
+              ref={this.childSoundSlider}
+              sliderSoundActiveColor={sliderSoundActiveColor}
+              >
+            </SoundSlider>
+          </UserCnt>
+          <MainContentContainer
+            isAuth={isAuthenticated} 
+            setSoundValue={this.setSoundValue}
+            ref={this.childMainContent}
+            setBackground={this.setBackground}
+            hideSoundsContent={this.clickHeaderLogo}
+          ></MainContentContainer>
+          <GlobalStyle bcg={backgroundColorApp}></GlobalStyle>
+        </Container>
       </div>
+      
     )
   }
 }
