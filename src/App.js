@@ -8,7 +8,7 @@ import SoundSlider from './components/soundSlider';
 import SettingsSection from './containers/settings/SettingsContainer';
 import FavouritesSection from './containers/favourites/FavouritesContainer';
 import LogContainer from './containers/logUser/LogContainer';
-import MainContentContainer from './containers/mainContent/MainContentContainer';
+import MainContentContainer from './containers/mainContent/MainContentContainer'
 
 const GlobalStyle = createGlobalStyle`
   body {
